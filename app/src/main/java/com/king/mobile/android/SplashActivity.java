@@ -24,7 +24,7 @@ public class SplashActivity extends BaseActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
             attributes.layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES;
         }
-        setContentView(R.layout.activity_list_base);
+        setContentView(R.layout.activity_main);
         Button btn = findViewById(R.id.button);
         btn.setOnClickListener(v -> startMainActivity());
         handler = new Handler(msg -> {
