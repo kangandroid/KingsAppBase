@@ -10,15 +10,13 @@
     <ImageView
         android:id="@+id/action_icon"
         android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:src="@drawable/ic_chevron_left_black_24dp" />
+        android:layout_height="48dp" />
 
     <TextView
         android:id="@+id/page_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="page_title"
         android:textColor="@color/white"
         android:textSize="16sp"
         android:textStyle="bold"

@@ -1,6 +1,7 @@
 package com.king.mobile.widget;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -57,16 +58,15 @@ public class TitleBar extends LinearLayout {
     private void inflateView(Context context) {
         View view = LayoutInflater.from(context).inflate(R.layout.layout_app_title, this);
         container = view.findViewById(R.id.container);
-
         actionLeft = container.findViewById(R.id.action_left);
         iconLeft = actionLeft.findViewById(R.id.icon_left);
         txTitleLeft = actionLeft.findViewById(R.id.title_left);
-
         actionRight = container.findViewById(R.id.action_right);
         iconRight = actionRight.findViewById(R.id.icon_right);
         txTitleRight = actionRight.findViewById(R.id.title_right);
 
         txTitle = container.findViewById(R.id.title);
+
     }
 
     public TitleBar setTitle(String title) {
@@ -89,11 +89,48 @@ public class TitleBar extends LinearLayout {
         return this;
     }
 
-    public void setTitleTextColor(@ColorRes int color) {
+    public TitleBar setTitleTextColor(@ColorRes int color) {
         titleTextColor = color;
+        return this;
     }
 
-    class Action {
+    public void invalidate(){
+        setBackgroundColor(bacgroundColor);
+        txTitleLeft.setTextColor(titleTextColor);
+        if (leftAction!=null){
+            actionLeft.setVisibility(VISIBLE);
+            actionLeft.setOnClickListener(leftAction.action);
+            if(leftAction.icon != 0){
+                iconLeft.setVisibility(VISIBLE);
+                iconLeft.setImageResource(leftAction.icon);
+            }
+            if(!TextUtils.isEmpty(leftAction.title)){
+                txTitleLeft.setVisibility(VISIBLE);
+                txTitleLeft.setText(leftAction.title);
+            }
+        }else {
+            actionLeft.setVisibility(GONE);
+        }
+        txTitleRight.setTextColor(titleTextColor);
+        if (rightAction!=null){
+            actionRight.setVisibility(VISIBLE);
+            actionRight.setOnClickListener(rightAction.action);
+            if(rightAction.icon != 0){
+                iconRight.setVisibility(VISIBLE);
+                iconRight.setImageResource(rightAction.icon);
+            }
+            if(!TextUtils.isEmpty(rightAction.title)){
+                txTitleRight.setVisibility(VISIBLE);
+                txTitleRight.setText(rightAction.title);
+            }
+        }else {
+            actionRight.setVisibility(GONE);
+        }
+        txTitle.setText(mTitle);
+        txTitle.setTextColor(titleTextColor);
+    }
+
+    public static class Action {
         @Nullable
         String title;
         @DrawableRes
@@ -101,7 +138,7 @@ public class TitleBar extends LinearLayout {
         @NonNull
         View.OnClickListener action;
 
-        public Action(String title, int icon, View.OnClickListener action) {
+        public Action(@Nullable String title, int icon, @NonNull View.OnClickListener action) {
             this.title = title;
             this.icon = icon;
             this.action = action;

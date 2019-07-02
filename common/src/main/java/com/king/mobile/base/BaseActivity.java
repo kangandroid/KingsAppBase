@@ -20,6 +20,9 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ImmersionBar.with(this)
+                .statusBarDarkFont(false).statusBarColor(ThemeManager.getPrimarColor())
+                .init();
         if(isOverlay()){
             setContentView(R.layout.activity_base_overlay);
         }else {
@@ -28,13 +31,14 @@ public class BaseActivity extends AppCompatActivity {
         titleBar = findViewById(R.id.title_bar);
         titleBar.setTitleBarColor(ThemeManager.getPrimarColor())
                 .setTitle("BaseActivity")
-                .setTitleTextColor(R.color.white);
-        ImmersionBar.with(this).statusBarColor(R.color.transparent)
-                .statusBarDarkFont(false).init();
+                .setLeftAction(new TitleBar.Action(null, R.drawable.ic_chevron_left_black_24dp, v -> finish()))
+                .setTitleTextColor(R.color.white)
+                .invalidate();
+
     }
 
     protected boolean isOverlay() {
-        return false;
+        return true;
     }
 
     protected boolean isStateBarTran() {

@@ -16,7 +16,7 @@ public class ThemeManager {
     }
 
     @ColorRes
-    private int primaryColor = R.color.colorAccent;
+    private int primaryColor = R.color.transparent;
 
     public static int getPrimarColor() {
         return getInstance().primaryColor;
