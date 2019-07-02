@@ -5,7 +5,14 @@
     <color name="colorAccent">#D81B60</color>
 
     <color name="black_overlay">#00BCD4</color>
+
     <color name="white">#FFF</color>
     <color name="textBlack">#333</color>
-    <color name="bgGray">#EEE</color>
+    <color name="textWhite">#E0F7FA</color>
+    <color name="textLink">#03A9F4</color>
+    <color name="textError">#D50000</color>
+
+    <color name="bgGray">#F1F8E9</color>
+    <color name="transparent">#FF000000</color>
+
 </resources>

@@ -7,6 +7,7 @@
         android:resizeableActivity="true"
         android:theme="@style/AppTheme"
         android:name="com.king.mobile.base.BaseApplication">
+        <activity android:name="com.king.mobile.base.BaseActivity"/>
         <!--适配华为（huawei）刘海屏-->
         <meta-data
             android:name="android.notch_support"
