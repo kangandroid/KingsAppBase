@@ -1,14 +1,12 @@
 package com.king.mobile.android;
 
-import android.os.Bundle;
-
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.king.mobile.base.BaseActivity;
+import android.view.MenuItem;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
-import android.view.MenuItem;
-import android.widget.TextView;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.king.mobile.base.BaseActivity;
 
 public class HomeActivity extends BaseActivity {
     private TextView mTextMessage;
@@ -34,12 +32,21 @@ public class HomeActivity extends BaseActivity {
     };
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
-        BottomNavigationView navView = findViewById(R.id.nav_view);
-        mTextMessage = findViewById(R.id.message);
-        navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+    protected boolean isOverlay() {
+        return false;
     }
+
+    @Override
+    protected int getContentLayoutId() {
+        return R.layout.activity_home;
+    }
+
+    @Override
+    protected void initView() {
+//        BottomNavigationView navView = findViewById(R.id.nav_view);
+//        mTextMessage = findViewById(R.id.message);
+//        navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+    }
+
 
 }

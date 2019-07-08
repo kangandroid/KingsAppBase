@@ -10,11 +10,13 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.ColorInt;
 import androidx.annotation.ColorRes;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.king.mobile.util.ColorUtil;
 import com.king.mobile.util.R;
 import com.king.mobile.util.ScreenUtils;
 
@@ -31,10 +33,13 @@ public class TitleBar extends LinearLayout {
 
     private View stateBarPlaceholder;
     private String mTitle;
+    @ColorInt
     private int bacgroundColor;
+    @ColorInt
     private int titleTextColor;
     private Action leftAction;
     private Action rightAction;
+    private ImageView imageBg;
 
     public TitleBar(Context context) {
         this(context, null);
@@ -51,6 +56,7 @@ public class TitleBar extends LinearLayout {
         int statusBarHeight = ScreenUtils.getStatusBarHeight(context);
         stateBarPlaceholder = new View(context);
         this.addView(stateBarPlaceholder, 0);
+        imageBg = new ImageView(context);
         stateBarPlaceholder.getLayoutParams().height = statusBarHeight;
         inflateView(context);
     }
@@ -74,8 +80,18 @@ public class TitleBar extends LinearLayout {
         return this;
     }
 
-    public TitleBar setTitleBarColor(@ColorRes int color) {
+    public TitleBar setTitleBarColorRes(@ColorRes int color) {
+        bacgroundColor = ColorUtil.getColor(mContext, color);
+        return this;
+    }
+
+    public TitleBar setTitleBarColorInt(@ColorInt int color) {
         bacgroundColor = color;
+        return this;
+    }
+
+    public TitleBar setTitleBarColor(String color) {
+        bacgroundColor = ColorUtil.getColor(color);
         return this;
     }
 
@@ -90,40 +106,45 @@ public class TitleBar extends LinearLayout {
     }
 
     public TitleBar setTitleTextColor(@ColorRes int color) {
-        titleTextColor = color;
+        titleTextColor = ColorUtil.getColor(mContext, color);
         return this;
     }
 
-    public void invalidate(){
+    public TitleBar setTitleTextColor(String color) {
+        titleTextColor = ColorUtil.getColor(color);
+        return this;
+    }
+
+    public void invalidate() {
         setBackgroundColor(bacgroundColor);
         txTitleLeft.setTextColor(titleTextColor);
-        if (leftAction!=null){
+        if (leftAction != null) {
             actionLeft.setVisibility(VISIBLE);
             actionLeft.setOnClickListener(leftAction.action);
-            if(leftAction.icon != 0){
+            if (leftAction.icon != 0) {
                 iconLeft.setVisibility(VISIBLE);
                 iconLeft.setImageResource(leftAction.icon);
             }
-            if(!TextUtils.isEmpty(leftAction.title)){
+            if (!TextUtils.isEmpty(leftAction.title)) {
                 txTitleLeft.setVisibility(VISIBLE);
                 txTitleLeft.setText(leftAction.title);
             }
-        }else {
+        } else {
             actionLeft.setVisibility(GONE);
         }
         txTitleRight.setTextColor(titleTextColor);
-        if (rightAction!=null){
+        if (rightAction != null) {
             actionRight.setVisibility(VISIBLE);
             actionRight.setOnClickListener(rightAction.action);
-            if(rightAction.icon != 0){
+            if (rightAction.icon != 0) {
                 iconRight.setVisibility(VISIBLE);
                 iconRight.setImageResource(rightAction.icon);
             }
-            if(!TextUtils.isEmpty(rightAction.title)){
+            if (!TextUtils.isEmpty(rightAction.title)) {
                 txTitleRight.setVisibility(VISIBLE);
                 txTitleRight.setText(rightAction.title);
             }
-        }else {
+        } else {
             actionRight.setVisibility(GONE);
         }
         txTitle.setText(mTitle);

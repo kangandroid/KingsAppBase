@@ -1,6 +1,6 @@
 package com.king.mobile.util;
 
-import androidx.annotation.ColorRes;
+import android.graphics.Color;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,17 +11,19 @@ import java.util.List;
  * 统一管理titleBar的背景色与字体颜色状态栏字体及颜色
  */
 public class ThemeManager {
+    Theme defaultTheme;
     List<Theme> themes = new ArrayList<>();
     private Theme theme;
 
     private ThemeManager() {
-    }
-
-    @ColorRes
-    private int primaryColor = R.color.transparent;
-
-    public static int getPrimarColor() {
-        return getInstance().primaryColor;
+        defaultTheme = new Theme("default");
+        defaultTheme.activeColor = Color.parseColor("#123456");
+        defaultTheme.inactiveColor = Color.parseColor("#224466");
+        defaultTheme.activityBackgrounColor = Color.parseColor("#11dd33");
+        defaultTheme.titleBgColor = Color.parseColor("#2244de");
+        defaultTheme.titleFontColor = Color.parseColor("#aabb11");
+        defaultTheme.navigateBarColor = Color.parseColor("#dd3322");
+        theme = defaultTheme;
     }
 
     public static ThemeManager getInstance() {
@@ -40,7 +42,7 @@ public class ThemeManager {
         return theme;
     }
 
-    public void addTheme(Theme theme){
+    public void addTheme(Theme theme) {
         themes.add(theme);
     }
 
@@ -49,7 +51,16 @@ public class ThemeManager {
         public int titleBgColor;
         public int titleFontColor;
         public int navigateBarColor;
+        public int activityBackgrounColor;
         public int activeColor;
         public int inactiveColor;
+
+        public Theme(String name) {
+            this.name = name;
+        }
+    }
+
+    interface OnThemeChangListener {
+        void onThemeChange(Theme current, Theme next);
     }
 }

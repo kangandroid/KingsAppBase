@@ -11,8 +11,6 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.king.mobile.base.BaseActivity;
-
 
 public class SplashActivity extends AppCompatActivity {
     private volatile int waitSecond = 2;
@@ -47,7 +45,7 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     private void startMainActivity(){
-        Intent intent = new Intent(SplashActivity.this, BaseActivity.class);
+        Intent intent = new Intent(SplashActivity.this, HomeActivity.class);
         startActivity(intent);
     }
 
