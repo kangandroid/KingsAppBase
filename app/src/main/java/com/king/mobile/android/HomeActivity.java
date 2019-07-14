@@ -1,12 +1,14 @@
 package com.king.mobile.android;
 
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.king.mobile.base.BaseActivity;
+import com.king.mobile.widget.TitleBar;
 
 public class HomeActivity extends BaseActivity {
     private TextView mTextMessage;
@@ -30,6 +32,11 @@ public class HomeActivity extends BaseActivity {
             return false;
         }
     };
+
+    @Override
+    protected void setTitle(TitleBar titleBar) {
+        titleBar.setVisibility(View.GONE);
+    }
 
     @Override
     protected boolean isOverlay() {
