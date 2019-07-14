@@ -19,10 +19,10 @@ public class ThemeManager {
         defaultTheme = new Theme("default");
         defaultTheme.activeColor = Color.parseColor("#123456");
         defaultTheme.inactiveColor = Color.parseColor("#224466");
-        defaultTheme.activityBackgrounColor = Color.parseColor("#11dd33");
-        defaultTheme.titleBgColor = Color.parseColor("#2244de");
-        defaultTheme.titleFontColor = Color.parseColor("#aabb11");
-        defaultTheme.navigateBarColor = Color.parseColor("#dd3322");
+        defaultTheme.activityBackgrounColor = Color.parseColor("#EEEEEE");
+        defaultTheme.titleBgColor = Color.parseColor("#AAFFFFFF");
+        defaultTheme.titleFontColor = Color.parseColor("#333333");
+        defaultTheme.navigateBarColor = Color.parseColor("#FFFFFF");
         theme = defaultTheme;
     }
 

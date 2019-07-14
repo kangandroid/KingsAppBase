@@ -39,5 +39,8 @@ dependencies {
     implementation files('libs/immersionbar-2.3.3.aar')
     implementation 'com.google.code.gson:gson:2.8.5'
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
+    implementation 'com.blankj:utilcodex:1.24.7'
+    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-28'
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.0-alpha-3'
 
 }

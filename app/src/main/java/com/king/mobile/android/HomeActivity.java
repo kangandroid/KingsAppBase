@@ -33,7 +33,7 @@ public class HomeActivity extends BaseActivity {
 
     @Override
     protected boolean isOverlay() {
-        return false;
+        return true;
     }
 
     @Override

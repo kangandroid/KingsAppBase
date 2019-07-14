@@ -109,6 +109,10 @@ public class TitleBar extends LinearLayout {
         titleTextColor = ColorUtil.getColor(mContext, color);
         return this;
     }
+    public TitleBar setTitleTextColorInt(@ColorInt int color) {
+        titleTextColor = color;
+        return this;
+    }
 
     public TitleBar setTitleTextColor(String color) {
         titleTextColor = ColorUtil.getColor(color);
