@@ -15,4 +15,8 @@
     <color name="bgGray">#F1F8E9</color>
     <color name="transparent">#00FFFFFF</color>
 
+    <color name="defaultTitleBg">#AFFF</color>
+    <color name="defaultTitleText">#333</color>
+    <color name="defaultContentBg">#AFFF</color>
+
 </resources>
