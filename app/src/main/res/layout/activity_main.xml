@@ -17,7 +17,7 @@
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="top|right"
+        android:layout_gravity="top|end"
         android:layout_margin="@dimen/activity_horizontal_margin"
         android:background="@drawable/pressed_bg"
         android:text="Button" />

@@ -27,10 +27,10 @@ public class ThemeManager {
     }
 
     public static ThemeManager getInstance() {
-        return IntanceHolder.instance;
+        return InstanceHolder.instance;
     }
 
-    static class IntanceHolder {
+    private static class InstanceHolder {
         private static ThemeManager instance = new ThemeManager();
     }
 
