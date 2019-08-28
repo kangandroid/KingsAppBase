@@ -63,7 +63,7 @@ public class TitleBar extends LinearLayout {
 
     private void inflateView(Context context) {
         View view = LayoutInflater.from(context).inflate(R.layout.layout_app_title, this);
-        container = view.findViewById(R.id.container);
+        container = view.findViewById(R.id.action_container);
         actionLeft = container.findViewById(R.id.action_left);
         iconLeft = actionLeft.findViewById(R.id.icon_left);
         txTitleLeft = actionLeft.findViewById(R.id.title_left);

@@ -38,7 +38,7 @@ public abstract class BaseFragment extends Fragment {
             }
             titleBar = view.findViewById(R.id.title_bar);
             setTitle(titleBar);
-            mContainer = view.findViewById(R.id.container);
+            mContainer = view.findViewById(R.id.action_container);
             inflater.inflate(getContentLayoutId(), mContainer);
         } else {
             view = inflater.inflate(getContentLayoutId(), container);

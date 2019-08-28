@@ -13,15 +13,9 @@
             android:alwaysRetainTaskState="true"
             android:launchMode="singleInstance">
             <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:theme="@style/SplashActivity"
-            android:name=".SplashActivity">
-            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
     </application>
