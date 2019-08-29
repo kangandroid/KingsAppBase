@@ -1,5 +1,9 @@
 package com.king.mobile.android;
 
+import android.os.Build;
+import android.view.Window;
+import android.view.WindowManager;
+
 import com.king.mobile.base.BaseActivity;
 import com.king.mobile.widget.SplashFragment;
 import com.king.mobile.widget.TitleBar;
@@ -31,6 +35,12 @@ public class HomeActivity extends BaseActivity {
 
     @Override
     protected void initView() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            Window window = getWindow();
+            WindowManager.LayoutParams lp = window.getAttributes();
+            lp.layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES;
+            window.setAttributes(lp);
+        }
         SplashFragment.show(getSupportFragmentManager());
     }
 

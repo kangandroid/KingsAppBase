@@ -1,7 +1,9 @@
 package com.king.mobile.widget;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
 
+import com.gyf.barlibrary.ImmersionBar;
 import com.king.mobile.util.R;
 
 import java.util.Objects;
@@ -19,7 +22,7 @@ import java.util.Objects;
 public class SplashFragment extends DialogFragment {
 
     private Handler handler;
-    private int waitSecond;
+    private int waitSecond ;
 
     private SplashFragment() { }
 
@@ -54,7 +57,10 @@ public class SplashFragment extends DialogFragment {
         params.width = WindowManager.LayoutParams.MATCH_PARENT;
         params.height = WindowManager.LayoutParams.MATCH_PARENT;
         Objects.requireNonNull(getDialog().getWindow()).setAttributes(params);
+        ImmersionBar.with(this).statusBarColorInt(Color.TRANSPARENT).init();
         super.onResume();
+        waitSecond = 5;
+        handler.sendEmptyMessageDelayed(1, 1000);
     }
 
     @Override
@@ -63,6 +69,7 @@ public class SplashFragment extends DialogFragment {
         handler = new Handler(msg -> {
             if (msg.what == 1) {
                 waitSecond--;
+                Log.d("KK",String.format("剩余%dS",waitSecond));
                 if (waitSecond == 0) {
                     dismiss();
                     msg.getTarget().removeCallbacksAndMessages(null);
