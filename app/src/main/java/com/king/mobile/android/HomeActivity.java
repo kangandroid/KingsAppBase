@@ -1,9 +1,5 @@
 package com.king.mobile.android;
 
-import android.os.Build;
-import android.view.Window;
-import android.view.WindowManager;
-
 import com.king.mobile.base.BaseActivity;
 import com.king.mobile.widget.SplashFragment;
 import com.king.mobile.widget.TitleBar;
@@ -11,20 +7,18 @@ import com.king.mobile.widget.TitleBar;
 
 public class HomeActivity extends BaseActivity {
 
-
-    private SplashFragment splashFragment;
-
     @Override
     protected void setTitle(TitleBar titleBar) {
-        titleBar.setTitle("德美")
+        titleBar.setTitle(getResources().getString(R.string.app_name))
                 .setTitleTextColor("#FFFFFF")
-                .setTitleBarColorRes(R.color.colorAccent)
-                .setLeftAction(new TitleBar.Action("闪屏",0,v -> SplashFragment.show(getSupportFragmentManager())))
+                .setTitleBarColorRes(R.color.colorPrimary)
+                .setLeftAction(new TitleBar.Action("ENV", 0, v ->{}))
                 .invalidate();
     }
 
     @Override
     protected boolean isOverlay() {
+        SplashFragment.show(getSupportFragmentManager());
         return false;
     }
 
@@ -35,13 +29,6 @@ public class HomeActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            Window window = getWindow();
-            WindowManager.LayoutParams lp = window.getAttributes();
-            lp.layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES;
-            window.setAttributes(lp);
-        }
-        SplashFragment.show(getSupportFragmentManager());
     }
 
 

@@ -3,6 +3,7 @@ package com.king.mobile.base;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.widget.FrameLayout;
 
 import androidx.annotation.LayoutRes;
 import androidx.annotation.Nullable;
@@ -12,12 +13,11 @@ import com.gyf.barlibrary.ImmersionBar;
 import com.king.mobile.util.R;
 import com.king.mobile.util.ThemeManager;
 import com.king.mobile.widget.TitleBar;
-import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
 public abstract class BaseActivity extends AppCompatActivity {
 
     protected TitleBar titleBar;
-    protected SmartRefreshLayout mContainer;
+    protected FrameLayout mContainer;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
