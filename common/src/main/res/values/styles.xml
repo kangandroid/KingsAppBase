@@ -1,5 +1,12 @@
 <resources>
-
+    <!-- Base application theme. -->
+    <style name="AppThemeBase" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowBackground">@drawable/start_window</item>
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
     <!-- Base application theme. -->
     <style name="AppBaseTheme" parent="Theme.AppCompat.NoActionBar">
         <item name="android:windowBackground">@drawable/start_window</item>
@@ -11,5 +18,10 @@
     <style name="Dialog.FullScreen" parent="Theme.AppCompat.Dialog">
         <item name="android:padding">0dp</item>
         <item name="android:windowBackground">@color/transparent</item>
+        <item name="android:windowAnimationStyle">@style/AnimationFadeOut</item>
+    </style>
+
+    <style name="AnimationFadeOut">
+        <item name="android:windowExitAnimation">@android:anim/fade_out</item>
     </style>
 </resources>

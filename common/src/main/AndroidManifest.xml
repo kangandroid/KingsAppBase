@@ -6,7 +6,7 @@
         android:label="@string/app_name"
         android:maxAspectRatio="2.4"
         android:resizeableActivity="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppThemeBase">
         <!--适配华为（huawei）刘海屏-->
         <meta-data
             android:name="android.notch_support"
