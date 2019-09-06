@@ -37,18 +37,19 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(path: ':common')
     implementation 'androidx.appcompat:appcompat:1.1.0-rc01'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.0-beta2'
     implementation 'com.google.android.material:material:1.1.0-alpha09'
     implementation 'androidx.vectordrawable:vectordrawable:1.1.0-rc01'
-    testImplementation 'junit:junit:4.13-beta-3'
-    androidTestImplementation 'androidx.test:runner:1.3.0-alpha02'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0-alpha02'
-    implementation project(path: ':common')
     implementation 'com.google.android.material:material:1.1.0-alpha09'
     implementation 'androidx.navigation:navigation-fragment:2.0.0'
     implementation 'androidx.navigation:navigation-ui:2.0.0'
-    implementation "androidx.room:room-runtime:2.1.0"
-    annotationProcessor "androidx.room:room-compiler:2.1.0"
+
+    implementation "androidx.room:room-runtime:${rootProject.ext.xRoomVersion}"
+    annotationProcessor "androidx.room:room-compiler:${rootProject.ext.xRoomVersion}"
 }
+testImplementation 'junit:junit:4.13-beta-3'
+androidTestImplementation 'androidx.test:runner:1.3.0-alpha02'
+androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0-alpha02'

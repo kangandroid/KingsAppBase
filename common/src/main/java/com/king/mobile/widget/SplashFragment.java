@@ -57,7 +57,7 @@ public class SplashFragment extends DialogFragment {
         params.width = WindowManager.LayoutParams.MATCH_PARENT;
         params.height = WindowManager.LayoutParams.MATCH_PARENT;
         Objects.requireNonNull(getDialog().getWindow()).setAttributes(params);
-        ImmersionBar.with(this).statusBarColorInt(Color.TRANSPARENT).init();
+        ImmersionBar.with(getActivity()).statusBarColorInt(Color.TRANSPARENT).init();
         super.onResume();
         waitSecond = 5;
         handler.sendEmptyMessageDelayed(1, 1000);
