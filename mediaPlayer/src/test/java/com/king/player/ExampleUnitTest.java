@@ -1,4 +1,4 @@
-package com.king.componetdemo;
+package com.king.player;
 
 import org.junit.Test;
 

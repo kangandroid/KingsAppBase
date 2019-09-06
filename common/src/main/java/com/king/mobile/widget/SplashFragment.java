@@ -14,7 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
 
-import com.gyf.barlibrary.ImmersionBar;
+import com.gyf.immersionbar.ImmersionBar;
 import com.king.mobile.util.R;
 
 import java.util.Objects;
@@ -57,7 +57,6 @@ public class SplashFragment extends DialogFragment {
         params.width = WindowManager.LayoutParams.MATCH_PARENT;
         params.height = WindowManager.LayoutParams.MATCH_PARENT;
         Objects.requireNonNull(getDialog().getWindow()).setAttributes(params);
-        ImmersionBar.with(getActivity()).statusBarColorInt(Color.TRANSPARENT).init();
         super.onResume();
         waitSecond = 5;
         handler.sendEmptyMessageDelayed(1, 1000);
