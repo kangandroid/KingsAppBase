@@ -26,9 +26,11 @@ task clean(type: Delete) {
 }
 
 ext {
+    minSdkVersion = 15
     compileSdkVersion = 28
     targetSdkVersion = 28
-    buildToolsVersion = '28.03'
+    buildToolsVersion = '28.0.3'
+    supportLibraryVersion = '28.0.0'
     appcompatVersion = '1.1.0-rc01'
     xRecyclerviewVersion = '1.0.0'
     xNavigationVersion = '2.0.0'
