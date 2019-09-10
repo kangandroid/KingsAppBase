@@ -1,8 +1,11 @@
 package com.king.player;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.content.res.AssetManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Surface;
 import android.view.View;
@@ -17,6 +20,7 @@ import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.audio.AudioRendererEventListener;
 import com.google.android.exoplayer2.decoder.DecoderCounters;
+import com.google.android.exoplayer2.source.ExtractorMediaSource;
 import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.source.dash.DashChunkSource;
 import com.google.android.exoplayer2.source.dash.DashMediaSource;
@@ -49,7 +53,6 @@ public class PlayerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_player);
-
         componentListener = new ComponentListener();
         playerView = findViewById(R.id.video_view);
     }
@@ -93,8 +96,10 @@ public class PlayerActivity extends AppCompatActivity {
             TrackSelection.Factory adaptiveTrackSelectionFactory =
                     new AdaptiveTrackSelection.Factory(BANDWIDTH_METER);
             // using a DefaultTrackSelector with an adaptive video selection factory
-            player = ExoPlayerFactory.newSimpleInstance(new DefaultRenderersFactory(this),
-                    new DefaultTrackSelector(adaptiveTrackSelectionFactory), new DefaultLoadControl());
+            player = ExoPlayerFactory.newSimpleInstance(
+                    new DefaultRenderersFactory(this),
+                    new DefaultTrackSelector(adaptiveTrackSelectionFactory),
+                    new DefaultLoadControl());
             player.addListener(componentListener);
             player.addVideoDebugListener(componentListener);
             player.addAudioDebugListener(componentListener);
@@ -102,7 +107,12 @@ public class PlayerActivity extends AppCompatActivity {
             player.setPlayWhenReady(playWhenReady);
             player.seekTo(currentWindow, playbackPosition);
         }
-        MediaSource mediaSource = buildMediaSource(Uri.parse(getString(R.string.media_url_mp4)));
+        Intent intent = getIntent();
+        String source = intent.getStringExtra("media_source");
+        if (TextUtils.isEmpty(source)) {
+            source = getResources().getString(R.string.media_url_mp4_1);
+        }
+        MediaSource mediaSource = buildMediaSource(Uri.parse(source));
         player.prepare(mediaSource, true, false);
     }
 
@@ -120,11 +130,14 @@ public class PlayerActivity extends AppCompatActivity {
     }
 
     private MediaSource buildMediaSource(Uri uri) {
-        DataSource.Factory manifestDataSourceFactory = new DefaultHttpDataSourceFactory("ua");
-        DashChunkSource.Factory dashChunkSourceFactory = new DefaultDashChunkSource.Factory(
-                new DefaultHttpDataSourceFactory("ua", BANDWIDTH_METER));
-        return new DashMediaSource.Factory(dashChunkSourceFactory, manifestDataSourceFactory)
-                .createMediaSource(uri);
+//        DataSource.Factory dataSourceFactory = new DefaultHttpDataSourceFactory("ua");
+//        DefaultHttpDataSourceFactory bandwidthMeter = new DefaultHttpDataSourceFactory("ua", BANDWIDTH_METER);
+//        DashChunkSource.Factory dashChunkSourceFactory = new DefaultDashChunkSource.Factory(bandwidthMeter);
+//        DashMediaSource.Factory factory = new DashMediaSource.Factory(dashChunkSourceFactory, dataSourceFactory);
+//        return factory.createMediaSource(uri);
+        return new ExtractorMediaSource.Factory(
+                new DefaultHttpDataSourceFactory("exoplayer-codelab")
+        ).createMediaSource(uri);
     }
 
     @SuppressLint("InlinedApi")
@@ -232,5 +245,10 @@ public class PlayerActivity extends AppCompatActivity {
             // Do nothing.
         }
 
+    }
+
+    @Override
+    public AssetManager getAssets() {
+        return super.getAssets();
     }
 }

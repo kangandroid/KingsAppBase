@@ -9,6 +9,7 @@
         android:supportsRtl="true">
         <activity
             android:name="com.king.player.PlayerActivity"
+            android:screenOrientation="landscape"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|smallestScreenSize|uiMode"
             android:label="@string/player_activity_name"
             android:theme="@style/AppTheme">
