@@ -14,9 +14,10 @@ android {
         javaCompileOptions {
             annotationProcessorOptions {
                 arguments = [
-                        "room.schemaLocation":"$projectDir/schemas".toString(),
-                        "room.incremental":"true",
-                        "room.expandProjection":"true"]
+                        AROUTER_MODULE_NAME    : project.getName(),
+                        "room.schemaLocation"  : "$projectDir/schemas".toString(),
+                        "room.incremental"     : "true",
+                        "room.expandProjection": "true"]
             }
         }
 
@@ -42,27 +43,31 @@ android {
 
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar','*.arr'])
+    implementation fileTree(dir: 'libs', include: ['*.jar', '*.arr'])
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation files('libs/immersionbar-2.3.3.aar')
+    implementation 'androidx.appcompat:appcompat:1.2.0-alpha01'
 
     implementation 'com.gyf.immersionbar:immersionbar:3.0.0'
     implementation 'com.gyf.immersionbar:immersionbar-components:3.0.0'
-    implementation "androidx.appcompat:appcompat:1.0.2"
-    implementation "androidx.recyclerview:recyclerview:1.0.0"
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'androidx.navigation:navigation-fragment:2.0.0'
-    implementation 'androidx.navigation:navigation-ui:2.0.0'
-    implementation "androidx.room:room-runtime:2.1.0"
-    annotationProcessor "androidx.room:room-compiler:2.1.0"
 
     implementation 'com.google.code.gson:gson:2.8.5'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
     implementation 'org.greenrobot:eventbus:3.1.1'
     implementation 'com.squareup.okhttp3:okhttp:4.1.1'
     implementation 'com.squareup.retrofit2:retrofit:2.6.1'
-//    implementation 'com.github.bumptech.glide:glide:4.9.0'
+    implementation 'com.github.bumptech.glide:glide:4.9.0'
     implementation 'com.blankj:utilcodex:1.24.7'
     implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-andx-15'
     implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.0-andx-15'
-
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.navigation:navigation-fragment:2.1.0'
+    implementation 'androidx.navigation:navigation-ui:2.1.0'
+    implementation "androidx.room:room-runtime:2.2.2"
+    annotationProcessor "androidx.room:room-compiler:2.2.2"
+    implementation 'com.alibaba:arouter-api:1.5.0'
+    annotationProcessor 'com.alibaba:arouter-compiler:1.2.2'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
