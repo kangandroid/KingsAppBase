@@ -1,15 +1,10 @@
 package com.king.mobile.component;
 
 public class ComponentInfo {
-    public String group;
+    public String moduleName;
     public String name;
+    public String params;
+    public Callback callback;
     public Class componentClass;
-    public Type type;
-
-    public enum Type {
-        COMPONENT_TYPE_ACTIVITY,
-        COMPONENT_TYPE_FRAGMENT,
-        COMPONENT_TYPE_VIEW,
-        COMPONENT_TYPE_FUNCTION;
-    }
+    public CptType type;
 }

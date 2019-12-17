@@ -1,1 +1,4 @@
-include ':app', ':common', ':mediaPlayer', ':logincomponent', ':camera'
+include ':app',
+        ':mediaPlayer',
+//        ':camera',
+        ':common'

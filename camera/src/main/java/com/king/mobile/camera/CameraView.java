@@ -40,42 +40,42 @@ import com.king.mobile.camera.base.CameraViewImpl;
 import com.king.mobile.camera.base.Constants;
 import com.king.mobile.camera.base.DisplayOrientationDetector;
 import com.king.mobile.camera.base.PreviewImpl;
+import com.king.mobile.component.Component;
+import com.king.mobile.component.CptType;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.util.ArrayList;
 import java.util.Set;
 
+@Component(name = "CameraView", type = CptType.VIEW)
 public class CameraView extends FrameLayout {
-
-    /** The camera device faces the opposite direction as the device's screen. */
+    // 使用后置摄像头
     public static final int FACING_BACK = Constants.FACING_BACK;
-
-    /** The camera device faces the same direction as the device's screen. */
+    // 前置摄像头
     public static final int FACING_FRONT = Constants.FACING_FRONT;
 
-    /** Direction the camera faces relative to device screen. */
+    // 摄像头与屏幕的相对朝向
     @IntDef({FACING_BACK, FACING_FRONT})
     @Retention(RetentionPolicy.SOURCE)
     public @interface Facing {
     }
 
-    /** Flash will not be fired. */
+    // 关闭闪光灯
     public static final int FLASH_OFF = Constants.FLASH_OFF;
-
-    /** Flash will always be fired during snapshot. */
+    // 开启闪光灯
     public static final int FLASH_ON = Constants.FLASH_ON;
-
-    /** Constant emission of light during preview, auto-focus and snapshot. */
+    // 在预览、自动对焦和快照期间持续发光。
     public static final int FLASH_TORCH = Constants.FLASH_TORCH;
-
-    /** Flash will be fired automatically when required. */
+    // 需要时，闪光灯将自动启动。
     public static final int FLASH_AUTO = Constants.FLASH_AUTO;
 
-    /** Flash will be fired in red-eye reduction mode. */
+    // 红眼模式下开启闪光
     public static final int FLASH_RED_EYE = Constants.FLASH_RED_EYE;
 
-    /** The mode for for the camera device's flash control */
+    /**
+     * The mode for for the camera device's flash control
+     */
     @IntDef({FLASH_OFF, FLASH_ON, FLASH_TORCH, FLASH_AUTO, FLASH_RED_EYE})
     public @interface Flash {
     }

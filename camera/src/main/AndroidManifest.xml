@@ -8,9 +8,7 @@
         android:label="@string/app_name"
         android:icon="@drawable/ic_camera">
         <activity
-            android:name=".CameraActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/title_activity_camera">
+            android:name=".CameraActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />
