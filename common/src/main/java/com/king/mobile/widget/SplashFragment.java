@@ -1,9 +1,7 @@
 package com.king.mobile.widget;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,6 +51,9 @@ public class SplashFragment extends DialogFragment {
 
     @Override
     public void onResume() {
+        ImmersionBar.with(this)
+                .statusBarDarkFont(true, 0.2f)
+                .init();
         WindowManager.LayoutParams params = Objects.requireNonNull(Objects.requireNonNull(getDialog()).getWindow()).getAttributes();
         params.width = WindowManager.LayoutParams.MATCH_PARENT;
         params.height = WindowManager.LayoutParams.MATCH_PARENT;
@@ -68,7 +69,6 @@ public class SplashFragment extends DialogFragment {
         handler = new Handler(msg -> {
             if (msg.what == 1) {
                 waitSecond--;
-                Log.d("KK",String.format("剩余%dS",waitSecond));
                 if (waitSecond == 0) {
                     dismiss();
                     msg.getTarget().removeCallbacksAndMessages(null);

@@ -21,7 +21,9 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ImmersionBar.with(this).init();
+        ImmersionBar.with(this)
+                .statusBarDarkFont(true, 0.2f)
+                .init();
         if (isOverlay()) {
             setContentView(R.layout.activity_base_overlay);
         } else {
