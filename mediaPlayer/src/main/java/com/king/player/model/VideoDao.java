@@ -4,8 +4,10 @@ import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.Update;
 
 import java.util.List;
+
 
 @Dao
 public interface VideoDao {
@@ -19,8 +21,14 @@ public interface VideoDao {
     VideoInfo findByUrl(String url);
 
     @Insert
-    void insertAll(VideoInfo... users);
+    Long insert(VideoInfo videoInfo);
+
+    @Insert
+    List<Long> insertAll(List<VideoInfo> videoInfo);
+
+    @Update
+    Integer update(VideoInfo... videoInfo);
 
     @Delete
-    void delete(VideoInfo user);
+    Integer delete(VideoInfo videoInfo);
 }

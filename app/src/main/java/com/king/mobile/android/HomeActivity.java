@@ -1,5 +1,7 @@
 package com.king.mobile.android;
 
+import android.view.View;
+
 import com.king.mobile.base.BaseActivity;
 import com.king.mobile.component.Component;
 import com.king.mobile.component.ComponentManager;
@@ -33,8 +35,7 @@ public class HomeActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-        ComponentManager.getViewComponet("Camera", "CameraView", this);
-
+        View view = ComponentManager.getViewComponet("Camera", "CameraView", this);
     }
 
 

@@ -40,7 +40,7 @@ public class ComponentManager {
             return componentModule != null ? componentModule.getView(componentName) : null;
         } else {
             TextView textView = new TextView(context);
-            textView.setText(String.format("Module%是没有注册", moduleName));
+            textView.setText(String.format("Module%s是没有注册", moduleName));
             return textView;
         }
     }

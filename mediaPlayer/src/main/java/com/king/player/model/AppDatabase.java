@@ -5,5 +5,5 @@ import androidx.room.RoomDatabase;
 
 @Database( entities = {VideoInfo.class}, version = 1, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
-    public abstract VideoDao userDao();
+    public abstract VideoDao videoDao();
 }

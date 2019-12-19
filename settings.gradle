@@ -1,4 +1,4 @@
 include ':app',
         ':mediaPlayer',
 //        ':camera',
-        ':common'
+        ':common', ':immersionbar'
