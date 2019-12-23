@@ -1,5 +1,7 @@
 package com.king.mobile.base;
 
+import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.widget.FrameLayout;
@@ -9,6 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.gyf.immersionbar.ImmersionBar;
+import com.king.mobile.util.ColorUtil;
 import com.king.mobile.util.R;
 import com.king.mobile.util.ThemeManager;
 import com.king.mobile.widget.TitleBar;
@@ -51,11 +54,12 @@ public abstract class BaseActivity extends AppCompatActivity {
 
 
     protected void setTitle(TitleBar titleBar) {
+        int[] colors = {ColorUtil.getColor("#4876FF"),Color.parseColor("#5CACEE")};
         ThemeManager.Theme currentTheme = ThemeManager.getInstance().getTheme();
-        titleBar.setTitleBarColorInt(currentTheme.titleBgColor)
+        titleBar.gradient(GradientDrawable.Orientation.TL_BR, colors)
                 .setTitle(getTitle().toString())
                 .setLeftAction(new TitleBar.Action(null, R.drawable.ic_chevron_left_black_24dp, v -> finish()))
-                .setTitleTextColorInt(currentTheme.titleFontColor)
+                .setTitleTextColorInt(Color.WHITE)
                 .invalidate();
     }
 

@@ -1,6 +1,8 @@
 package com.king.mobile.widget;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -40,6 +42,7 @@ public class TitleBar extends LinearLayout {
     private Action leftAction;
     private Action rightAction;
     private ImageView imageBg;
+    private Drawable gradientBg;
 
     public TitleBar(Context context) {
         this(context, null);
@@ -56,13 +59,13 @@ public class TitleBar extends LinearLayout {
         int statusBarHeight = ScreenUtils.getStatusBarHeight(context);
         stateBarPlaceholder = new View(context);
         this.addView(stateBarPlaceholder, 0);
-        imageBg = new ImageView(context);
         stateBarPlaceholder.getLayoutParams().height = statusBarHeight;
         inflateView(context);
     }
 
     private void inflateView(Context context) {
         View view = LayoutInflater.from(context).inflate(R.layout.layout_app_title, this);
+        imageBg = findViewById(R.id.iv_title_bg);
         container = view.findViewById(R.id.action_container);
         actionLeft = container.findViewById(R.id.action_left);
         iconLeft = actionLeft.findViewById(R.id.icon_left);
@@ -70,10 +73,24 @@ public class TitleBar extends LinearLayout {
         actionRight = container.findViewById(R.id.action_right);
         iconRight = actionRight.findViewById(R.id.icon_right);
         txTitleRight = actionRight.findViewById(R.id.title_right);
-
         txTitle = container.findViewById(R.id.title);
-
     }
+
+    /**
+     * 需要动态设置title背景图片时获取
+     *
+     * @return
+     */
+    ImageView getBgImage() {
+        imageBg.setVisibility(VISIBLE);
+        return imageBg;
+    }
+
+    public TitleBar gradient(GradientDrawable.Orientation orientation, @ColorInt int[] colors) {
+        gradientBg = new GradientDrawable(orientation,colors);
+        return this;
+    }
+
 
     public TitleBar setTitle(String title) {
         this.mTitle = title;
@@ -81,16 +98,19 @@ public class TitleBar extends LinearLayout {
     }
 
     public TitleBar setTitleBarColorRes(@ColorRes int color) {
+        gradientBg = null;
         bacgroundColor = ColorUtil.getColor(mContext, color);
         return this;
     }
 
     public TitleBar setTitleBarColorInt(@ColorInt int color) {
+        gradientBg = null;
         bacgroundColor = color;
         return this;
     }
 
     public TitleBar setTitleBarColor(String color) {
+        gradientBg = null;
         bacgroundColor = ColorUtil.getColor(color);
         return this;
     }
@@ -109,6 +129,7 @@ public class TitleBar extends LinearLayout {
         titleTextColor = ColorUtil.getColor(mContext, color);
         return this;
     }
+
     public TitleBar setTitleTextColorInt(@ColorInt int color) {
         titleTextColor = color;
         return this;
@@ -120,7 +141,13 @@ public class TitleBar extends LinearLayout {
     }
 
     public void invalidate() {
-        setBackgroundColor(bacgroundColor);
+        if (imageBg.getVisibility() == VISIBLE) {
+            setBackgroundColor(ColorUtil.getColor(mContext, R.color.transparent));
+        } else if (gradientBg != null) {
+            setBackground(gradientBg);
+        } else {
+            setBackgroundColor(bacgroundColor);
+        }
         txTitleLeft.setTextColor(titleTextColor);
         if (leftAction != null) {
             actionLeft.setVisibility(VISIBLE);

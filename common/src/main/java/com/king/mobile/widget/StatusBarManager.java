@@ -7,12 +7,15 @@ import android.view.WindowManager;
 
 public class StatusBarManager {
 
-    public static void immerseStateBar(Activity activity){
-
-        WindowManager windowManager = activity.getWindowManager();
-
+    /**
+     *
+     * @param activity
+     */
+    public static void statusBar(Activity activity){
 
     }
+
+
 
 
 }

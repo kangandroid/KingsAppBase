@@ -3,14 +3,14 @@
     android:opacity="translucent">
     <item>
         <shape>
-            <solid android:color="@color/bgGray"/>
+            <solid android:color="@color/white" />
         </shape>
     </item>
-    <item android:bottom="40dp"
+    <item
+        android:bottom="40dp"
         android:gravity="bottom|center"
-        android:width="160dp"
-        android:height="40dp">
-        <bitmap android:src="@mipmap/logo"/>
+        android:top="140dp">
+        <bitmap android:src="@drawable/ic_logo_text" />
     </item>
 
 </layer-list>

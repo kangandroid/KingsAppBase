@@ -46,19 +46,12 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar', '*.arr'])
-    implementation files('libs/immersionbar-2.3.3.aar')
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'androidx.navigation:navigation-fragment:2.1.0'
-    implementation 'androidx.navigation:navigation-ui:2.1.0'
-    implementation "androidx.room:room-runtime:2.2.2"
-    annotationProcessor "androidx.room:room-compiler:2.2.2"
-
-//    implementation 'com.gyf.immersionbar:immersionbar:3.0.0'
-//    implementation 'com.gyf.immersionbar:immersionbar-components:3.0.0'
-
+//    implementation 'androidx.navigation:navigation-fragment:2.1.0'
+//    implementation 'androidx.navigation:navigation-ui:2.1.0'
     implementation 'com.google.code.gson:gson:2.8.6'
     implementation 'org.greenrobot:eventbus:3.1.1'
     implementation 'com.squareup.okhttp3:okhttp:4.2.2'

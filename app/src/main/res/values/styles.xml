@@ -2,7 +2,7 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="AppBaseTheme">
-        <item name="android:windowBackground">@drawable/start_window</item>
+        <item name="android:windowBackground">@color/white</item>
 <!--        全屏无状态栏-->
 <!--        <item name="android:windowFullscreen">true</item>-->
 
