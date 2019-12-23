@@ -1,7 +1,9 @@
 package com.king.mobile.widget;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,12 +19,13 @@ import com.king.mobile.util.R;
 
 import java.util.Objects;
 
-public class SplashFragment extends DialogFragment {
+public class SplashFragment extends CommonDialog {
 
     private Handler handler;
-    private int waitSecond ;
+    private int waitSecond;
 
-    private SplashFragment() { }
+    private SplashFragment() {
+    }
 
     private static SplashFragment getInstance() {
         return InstanceHolder.instance;
@@ -43,42 +46,33 @@ public class SplashFragment extends DialogFragment {
         private static SplashFragment instance = new SplashFragment();
     }
 
-    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.layout_splash, null);
+    protected int setLayoutId() {
+        return R.layout.layout_splash;
     }
 
-    @Override
-    public void onResume() {
-        ImmersionBar.with(this)
-                .statusBarDarkFont(true, 0.2f)
-                .init();
-        WindowManager.LayoutParams params = Objects.requireNonNull(Objects.requireNonNull(getDialog()).getWindow()).getAttributes();
-        params.width = WindowManager.LayoutParams.MATCH_PARENT;
-        params.height = WindowManager.LayoutParams.MATCH_PARENT;
-        Objects.requireNonNull(getDialog().getWindow()).setAttributes(params);
-        super.onResume();
-        waitSecond = 5;
-        handler.sendEmptyMessageDelayed(1, 1000);
-    }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+    protected void initView(View mRootView) {
+        mRootView.findViewById(R.id.tv_skip).setOnClickListener(v -> this.dismiss());
         handler = new Handler(msg -> {
             if (msg.what == 1) {
                 waitSecond--;
+                Log.d("KK", String.format("剩余%dS", waitSecond));
                 if (waitSecond == 0) {
                     dismiss();
                     msg.getTarget().removeCallbacksAndMessages(null);
+                    return true;
                 } else {
                     msg.getTarget().sendEmptyMessageDelayed(1, 1000);
+                    return true;
                 }
+            } else {
+                return false;
             }
-            return false;
         });
     }
+
     @Override
     public void onStop() {
         super.onStop();

@@ -2,7 +2,8 @@
 
     <!-- Base application theme. -->
     <style name="AppBaseTheme" parent="Theme.AppCompat.NoActionBar">
-        <item name="android:windowBackground">@drawable/start_window</item>
+        <item name="android:windowBackground">@color/white</item>
+        <item name="android:windowTranslucentStatus">true</item>
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
@@ -16,5 +17,43 @@
 
     <style name="AnimationFadeOut">
         <item name="android:windowExitAnimation">@android:anim/fade_out</item>
+    </style>
+
+    <!--自定义Dialog样式-->
+    <style name="MyDialog" parent="AlertDialog.AppCompat">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">false</item>
+    </style>
+
+    <!--顶部弹出Dialog动画-->
+    <style name="TopAnimation" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/anim_top_in</item>
+        <item name="android:windowExitAnimation">@anim/anim_top_out</item>
+    </style>
+
+    <!--底部弹出Dialog动画-->
+    <style name="BottomAnimation" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/anim_bottom_in</item>
+        <item name="android:windowExitAnimation">@anim/anim_bottom_out</item>
+    </style>
+
+    <!--左边弹出Dialog动画-->
+    <style name="LeftAnimation" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/anim_left_in</item>
+        <item name="android:windowExitAnimation">@anim/anim_left_out</item>
+    </style>
+
+    <!--右边弹出Dialog动画-->
+    <style name="RightAnimation" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/anim_right_in</item>
+        <item name="android:windowExitAnimation">@anim/anim_right_out</item>
+    </style>
+
+    <!--全屏弹出Dialog淡入淡出动画-->
+    <style name="FadeAnimation" parent="android:Animation">
+<!--        <item name="android:windowEnterAnimation">@anim/fade_in</item>-->
+        <item name="android:windowExitAnimation">@anim/fade_out</item>
     </style>
 </resources>

@@ -8,10 +8,11 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.king.mobile.util.Executor;
+import com.king.mobile.util.FileUtils;
+import com.king.player.App;
 import com.king.player.Utils.DBUtil;
 import com.king.player.model.VideoInfo;
 
-import java.io.File;
 import java.util.List;
 
 public class VideoViewModel extends ViewModel {
@@ -35,20 +36,19 @@ public class VideoViewModel extends ViewModel {
     }
 
     public void addVideo(Intent resultData) {
-        Uri uri = null;
-        uri = resultData.getData();
+        Uri uri = resultData.getData();
         Log.i("KK", "Uri: " + uri.toString());
-        String path = uri.getPath();
+        String path = FileUtils.getRealFilePath(App.getContext(), uri);
         Log.i("KK", "path: " + path);
-        File file = new File(path);
-        String name = file.getName();
-        Log.i("KK", "name: " + name);
         final VideoInfo videoInfo = new VideoInfo();
         videoInfo.createTime = System.currentTimeMillis() / 1000;
-        videoInfo.name = name;
+        videoInfo.name = path.substring(path.lastIndexOf('/') + 1);
         videoInfo.url = uri.toString();
         Executor.getInstance().excute(
-                () -> DBUtil.getDB().videoDao().insert(videoInfo)
+                () -> {
+                    DBUtil.getDB().videoDao().insert(videoInfo);
+                    loadVideoList();
+                }
         );
     }
 }

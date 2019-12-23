@@ -23,17 +23,22 @@ import androidx.annotation.RequiresPermission;
 import static android.Manifest.permission.WRITE_SETTINGS;
 
 public class ScreenUtils {
+    /**
+     * 获取状态栏高度
+     *
+     * @param context
+     * @return
+     */
     public static int getStatusBarHeight(Context context) {
-
         Resources resources = context.getResources();
         int resourceId = resources.getIdentifier("status_bar_height", "dimen", "android");
         int height = resources.getDimensionPixelSize(resourceId);
-        Log.e("ScreenUtils","getStatusBarHeight = " + height);
+        Log.e("ScreenUtils", "getStatusBarHeight = " + height);
         return height;
     }
 
     /**
-     * Return the width of screen, in pixel.
+     * 屏幕宽度.
      *
      * @return the width of screen, in pixel
      */
@@ -50,7 +55,7 @@ public class ScreenUtils {
     }
 
     /**
-     * Return the height of screen, in pixel.
+     * 屏幕高度.
      *
      * @return the height of screen, in pixel
      */
@@ -276,7 +281,7 @@ public class ScreenUtils {
      * @param duration The duration.
      */
     @RequiresPermission(WRITE_SETTINGS)
-    public static void setSleepDuration(Context context,final int duration) {
+    public static void setSleepDuration(Context context, final int duration) {
         Settings.System.putInt(
                 context.getContentResolver(),
                 Settings.System.SCREEN_OFF_TIMEOUT,

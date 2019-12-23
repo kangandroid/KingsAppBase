@@ -47,7 +47,7 @@ public class VideoListActivity extends BaseActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         VideoListAdapter videoListAdapter = new VideoListAdapter(this);
         recyclerView.setAdapter(videoListAdapter);
-        vvm.getVideoList().observe(this, list -> videoListAdapter.addList(list));
+        vvm.getVideoList().observe(this, list -> videoListAdapter.setData(list));
         videoListAdapter.setOnItemClickLitener((video, view, index) -> play(video.url));
     }
 
@@ -55,10 +55,17 @@ public class VideoListActivity extends BaseActivity {
 
 
     public void performFileSearch() {
-        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
-        intent.addCategory(Intent.CATEGORY_OPENABLE);
-        intent.setType("video/*");
-        startActivityForResult(intent, READ_REQUEST_CODE);
+        AndPermission.with(this)
+                .runtime()
+                .permission(Permission.READ_EXTERNAL_STORAGE, Permission.RECORD_AUDIO)
+                .onGranted(data -> {
+                    Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+                    intent.addCategory(Intent.CATEGORY_OPENABLE);
+                    intent.setType("video/*");
+                    startActivityForResult(intent, READ_REQUEST_CODE);
+                })
+                .onDenied(data -> Toast.makeText(this, "授权失败", Toast.LENGTH_SHORT).show())
+                .start();
     }
 
     @Override
@@ -74,6 +81,7 @@ public class VideoListActivity extends BaseActivity {
 
 
     private void play(String url) {
+
         Intent intent = new Intent(this, PlayerActivity.class);
         intent.putExtra("url", url);
         startActivity(intent);
