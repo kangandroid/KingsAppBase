@@ -21,6 +21,10 @@ allprojects {
     repositories {
         google()
         jcenter()
+        maven {
+            url 'http://www.idescout.com/maven/repo/'
+            name 'IDEScout, Inc.'
+        }
         jcenter {url 'https://maven.aliyun.com/repository/jcenter'}
     }
 }
@@ -32,7 +36,7 @@ task clean(type: Delete) {
 ext {
     compileSdkVersion = 28
     targetSdkVersion = 28
-    minSdkVersion = 19
+    minSdkVersion = 21
     javaVersion = 1.8
     buildToolsVersion = '28.0.3'
     supportLibraryVersion = '28.0.0'
@@ -45,5 +49,6 @@ ext {
     glideVersion = '4.9.0'
     okhttp3Version = '4.1.0'
     retrofit2Version = '2.6.1'
+    var = true
 }
 

@@ -1,15 +1,21 @@
-package com.king.player;
+package com.king.player.view;
 
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.king.mobile.util.ToastUtil;
+import com.king.player.R;
+import com.king.player.model.VideoInfo;
 import com.shuyu.gsyvideoplayer.GSYBaseActivityDetail;
 import com.shuyu.gsyvideoplayer.GSYVideoManager;
 import com.shuyu.gsyvideoplayer.builder.GSYVideoOptionBuilder;
 import com.shuyu.gsyvideoplayer.video.StandardGSYVideoPlayer;
+
+import java.io.Serializable;
 
 public class PlayerActivity extends GSYBaseActivityDetail<StandardGSYVideoPlayer> {
 
@@ -22,14 +28,24 @@ public class PlayerActivity extends GSYBaseActivityDetail<StandardGSYVideoPlayer
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_player);
         Intent intent = getIntent();
-        url = intent.getStringExtra("url");
-        title = intent.getStringExtra("title");
-        detailPlayer = findViewById(R.id.detail_player);
-        //增加title
-        detailPlayer.getTitleTextView().setVisibility(View.GONE);
-        detailPlayer.getBackButton().setVisibility(View.GONE);
+        Serializable extra = intent.getSerializableExtra("videoInfo");
+        if (extra instanceof VideoInfo) {
+            VideoInfo videoInfo = (VideoInfo) extra;
+            title = videoInfo.name;
+            if (TextUtils.isEmpty(videoInfo.localPath)) {
+                url = videoInfo.url;
+            } else {
+                url = videoInfo.localPath;
+            }
+            detailPlayer = findViewById(R.id.detail_player);
+            //增加title
+            detailPlayer.getTitleTextView().setVisibility(View.GONE);
+            detailPlayer.getBackButton().setVisibility(View.GONE);
 
-        initVideoBuilderMode();
+            initVideoBuilderMode();
+        } else {
+            ToastUtil.show("视频信息出错");
+        }
 
     }
 

@@ -1,54 +1,46 @@
 package com.king.player.viewmodel;
 
-import android.content.Intent;
-import android.net.Uri;
-import android.util.Log;
+import android.app.Application;
 
-import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.LiveData;
 
-import com.king.mobile.util.Executor;
-import com.king.mobile.util.FileUtils;
-import com.king.player.App;
-import com.king.player.Utils.DBUtil;
+import com.king.mobile.component.Callback;
+import com.king.player.db.VideoRepository;
 import com.king.player.model.VideoInfo;
 
 import java.util.List;
 
-public class VideoViewModel extends ViewModel {
-    private MutableLiveData<List<VideoInfo>> videoList;
+public class VideoViewModel extends AndroidViewModel {
+    private VideoRepository repository;
+    private LiveData<List<VideoInfo>> localVideoList;
+    private LiveData<List<VideoInfo>> remoteVideoList;
 
-    public MutableLiveData<List<VideoInfo>> getVideoList() {
-        if (videoList == null) {
-            videoList = new MutableLiveData<>();
-            loadVideoList();
-        }
-        return videoList;
+
+    public VideoViewModel(Application application) {
+        super(application);
+        repository = new VideoRepository(application);
+        localVideoList = repository.getLocalVideo();
+        remoteVideoList = repository.getRemoteVideo();
     }
 
-    private void loadVideoList() {
-        Executor.getInstance().excute(
-                () -> {
-                    List<VideoInfo> all = DBUtil.getDB().videoDao().getAll();
-                    videoList.postValue(all);
-                }
-        );
+    public LiveData<List<VideoInfo>> getLocalVideoList() {
+        return localVideoList;
     }
 
-    public void addVideo(Intent resultData) {
-        Uri uri = resultData.getData();
-        Log.i("KK", "Uri: " + uri.toString());
-        String path = FileUtils.getRealFilePath(App.getContext(), uri);
-        Log.i("KK", "path: " + path);
-        final VideoInfo videoInfo = new VideoInfo();
-        videoInfo.createTime = System.currentTimeMillis() / 1000;
-        videoInfo.name = path.substring(path.lastIndexOf('/') + 1);
-        videoInfo.url = uri.toString();
-        Executor.getInstance().excute(
-                () -> {
-                    DBUtil.getDB().videoDao().insert(videoInfo);
-                    loadVideoList();
-                }
-        );
+    public LiveData<List<VideoInfo>> getRemoteVideoList() {
+        return remoteVideoList;
+    }
+
+    public void loadLocalVideo() {
+        repository.loadLocalVideo();
+    }
+
+    public void updateVideoInfo(VideoInfo videoInfo) {
+        repository.updateVideoInfo(videoInfo);
+    }
+
+    public void insert(VideoInfo videoInfo, Callback callback) {
+        repository.insert(videoInfo, callback);
     }
 }

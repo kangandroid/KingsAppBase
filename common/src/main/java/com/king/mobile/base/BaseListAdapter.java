@@ -26,7 +26,7 @@ public abstract class BaseListAdapter<T> extends
     private OnItemClickListener<T> mOnItemClickLitener;
     private OnItemLongClickListener<T> mOnItemLongClickLitener;
 
-    public void setData(List<T> list){
+    public void setData(List<T> list) {
         this.mList = list;
         notifyDataSetChanged();
     }

@@ -12,7 +12,7 @@ import com.king.player.model.VideoInfo;
 
 import java.util.List;
 
-class VideoListAdapter extends BaseListAdapter<VideoInfo> {
+public class VideoListAdapter extends BaseListAdapter<VideoInfo> {
     public VideoListAdapter(Context context) {
         super(context);
     }
@@ -27,13 +27,13 @@ class VideoListAdapter extends BaseListAdapter<VideoInfo> {
     static class VideoVieHolder extends BaseListAdapter.BaseViewHolder<VideoInfo> {
 
         private final TextView tvName;
-        private final TextView tvDesc;
+//        private final TextView tvDesc;
         private final ImageView ivIcon;
 
         public VideoVieHolder(View itemView) {
             super(itemView);
             tvName = itemView.findViewById(R.id.tv_name);
-            tvDesc = itemView.findViewById(R.id.tv_desc);
+//            tvDesc = itemView.findViewById(R.id.tv_desc);
             ivIcon = itemView.findViewById(R.id.icon);
         }
 
@@ -41,7 +41,7 @@ class VideoListAdapter extends BaseListAdapter<VideoInfo> {
         protected void bindView(VideoInfo bean, int position, Context context) {
             ImageUtil.loadImage(ivIcon, bean.url);
             tvName.setText(bean.name);
-            tvDesc.setText(bean.desc);
+//            tvDesc.setText(bean.desc);
         }
     }
 }

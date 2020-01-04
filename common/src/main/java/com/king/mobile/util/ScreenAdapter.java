@@ -35,8 +35,7 @@ public class ScreenAdapter {
         if (context == null)
             return;
         Point size = new Point();
-        ((WindowManager) Objects.requireNonNull(context.getSystemService(WINDOW_SERVICE)))
-                .getDefaultDisplay().getSize(size);
+        ((WindowManager) Objects.requireNonNull(context.getSystemService(WINDOW_SERVICE))).getDefaultDisplay().getSize(size);
         Resources resources = context.getResources();
         resources.getDisplayMetrics().xdpi = size.x / mDesignWidth * 72f;
         DisplayMetrics metrics = getMetricsOnMiui(context.getResources());

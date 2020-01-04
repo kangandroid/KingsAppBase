@@ -25,8 +25,8 @@ public abstract class CommonDialog extends DialogFragment {
     public static final String DIALOG_POSITION_RIGHT = "DIALOG_POSITION_RIGHT";
     public static final String DIALOG_POSITION_FULL_SCREEN = "DIALOG_POSITION_FULL_SCREEN";
 
-    private String dialogPositon = DIALOG_POSITION_FULL_SCREEN;
-    private int height = ViewGroup.LayoutParams.WRAP_CONTENT;
+    protected String dialogPosition = DIALOG_POSITION_FULL_SCREEN;
+    protected int height = ViewGroup.LayoutParams.WRAP_CONTENT;
     protected Activity mActivity;
     private Window mWindow;
     private View mRootView;
@@ -36,21 +36,30 @@ public abstract class CommonDialog extends DialogFragment {
         super.onStart();
         Dialog dialog = getDialog();
         //点击外部消失
-        dialog.setCanceledOnTouchOutside(true);
+        dialog.setCanceledOnTouchOutside(false);
         mWindow = dialog.getWindow();
-        mWindow.setGravity(Gravity.BOTTOM);
         mWindow.setWindowAnimations(getAnimation());
-        if (dialogPositon == DIALOG_POSITION_TOP || dialogPositon == DIALOG_POSITION_BOTTOM) {
+        if (dialogPosition == DIALOG_POSITION_TOP) {
             mWindow.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, height);
-        } else if (dialogPositon == DIALOG_POSITION_RIGHT || dialogPositon == DIALOG_POSITION_LEFT) {
+            mWindow.setGravity(Gravity.TOP);
+        } else if (dialogPosition == DIALOG_POSITION_BOTTOM) {
+            mWindow.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, height);
+            mWindow.setGravity(Gravity.BOTTOM);
+        } else if (dialogPosition == DIALOG_POSITION_RIGHT) {
             mWindow.setLayout(height, ViewGroup.LayoutParams.MATCH_PARENT);
+            mWindow.setGravity(Gravity.RIGHT);
+        } else if (
+                dialogPosition == DIALOG_POSITION_LEFT) {
+            mWindow.setLayout(height, ViewGroup.LayoutParams.MATCH_PARENT);
+            mWindow.setGravity(Gravity.LEFT);
         } else {
             mWindow.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+            mWindow.setGravity(Gravity.CENTER);
         }
     }
 
     private int getAnimation() {
-        switch (dialogPositon) {
+        switch (dialogPosition) {
             case DIALOG_POSITION_BOTTOM:
                 return R.style.BottomAnimation;
             case DIALOG_POSITION_TOP:
@@ -87,8 +96,14 @@ public abstract class CommonDialog extends DialogFragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        ImmersionBar.with(this).init();
+        if (!initImmersionBar()) {
+            ImmersionBar.with(this).keyboardEnable(true).init();
+        }
         initView(mRootView);
+    }
+
+    protected boolean initImmersionBar() {
+        return false;
     }
 
     protected abstract void initView(View mRootView);

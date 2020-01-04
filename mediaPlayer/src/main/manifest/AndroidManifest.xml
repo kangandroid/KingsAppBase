@@ -6,7 +6,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:screenOrientation="landscape"
-            android:name="com.king.player.PlayerActivity"
+            android:name="com.king.player.view.PlayerActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|smallestScreenSize|uiMode"/>
     </application>
 

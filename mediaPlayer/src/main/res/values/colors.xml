@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorPrimary">#000FFF</color>
+    <color name="colorPrimaryDark">#000FFF</color>
     <color name="colorAccent">#D81B60</color>
+
+
+
+
+
+    <color name="app_icon_primary_color">@color/colorPrimaryDark</color>
+    <color name="app_icon_bg_color">@color/white</color>
+
+    <color name="content_bg">@color/gray_1</color>
+
+
+    <color name="title_bg">@color/white</color>
+    <color name="title_text">@color/textBlack</color>
+
+    <color name="bottom_navigation_bg">@color/gray_2</color>
+    <color name="bottom_navigation_icon_default">@color/white</color>
 </resources>

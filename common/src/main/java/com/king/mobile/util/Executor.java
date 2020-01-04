@@ -23,7 +23,7 @@ public class Executor {
     }
 
 
-    public void excute(Runnable task) {
+    public void execute(Runnable task) {
         if (task == null) return;
         fixedThreadPool.execute(task);
     }
