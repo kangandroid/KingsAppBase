@@ -4,7 +4,6 @@ package com.king.player.view;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.View;
 import android.widget.ImageView;
 
 import com.king.mobile.util.ToastUtil;
@@ -39,8 +38,7 @@ public class PlayerActivity extends GSYBaseActivityDetail<StandardGSYVideoPlayer
             }
             detailPlayer = findViewById(R.id.detail_player);
             //增加title
-            detailPlayer.getTitleTextView().setVisibility(View.GONE);
-            detailPlayer.getBackButton().setVisibility(View.GONE);
+            detailPlayer.getTitleTextView().setText(title);
 
             initVideoBuilderMode();
         } else {

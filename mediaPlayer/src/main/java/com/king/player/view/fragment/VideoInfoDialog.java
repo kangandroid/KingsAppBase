@@ -5,25 +5,22 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 
-import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.google.android.material.snackbar.Snackbar;
-import com.gyf.immersionbar.ImmersionBar;
 import com.king.mobile.component.Callback;
 import com.king.mobile.util.ToastUtil;
-import com.king.mobile.widget.CommonDialog;
+import com.king.mobile.widget.BaseDialog;
 import com.king.mobile.widget.TitleBar;
 import com.king.player.R;
 import com.king.player.model.VideoInfo;
 import com.king.player.viewmodel.VideoViewModel;
 
-public class VideoInfoDialog extends CommonDialog {
+public class VideoInfoDialog extends BaseDialog {
     private VideoViewModel vvm;
     private EditText mEtName;
     private EditText mEtUrl;
-    private EditText mEtDesc;
     private TitleBar titleBar;
 
     private VideoInfoDialog() {
@@ -61,7 +58,7 @@ public class VideoInfoDialog extends CommonDialog {
 
         titleBar = mRootView.findViewById(R.id.title_bar);
         titleBar.setTitle("视频信息")
-                .immersive(this,false)
+                .immersive(this, false)
                 .setTitleTextColor(R.color.white)
                 .setTitleBarColorRes(R.color.colorPrimary)
                 .setLeftAction(new TitleBar.Action("取消", 0, v -> dismiss()))
@@ -69,13 +66,10 @@ public class VideoInfoDialog extends CommonDialog {
                 .invalidate();
         mEtName = mRootView.findViewById(R.id.et_name);
         mEtUrl = mRootView.findViewById(R.id.et_url);
-        mEtDesc = mRootView.findViewById(R.id.et_desc);
-
     }
 
     @Override
     protected boolean initImmersionBar() {
-//        ImmersionBar.with(this).keyboardEnable(true).init();
         return true;
     }
 
@@ -90,17 +84,11 @@ public class VideoInfoDialog extends CommonDialog {
             ToastUtil.show("URL不能为空");
             return;
         }
-        String desc = mEtDesc.getText().toString();
-        if (TextUtils.isEmpty(desc)) {
-            ToastUtil.show("描述不能为空");
-            return;
-        }
         VideoInfo videoInfo = new VideoInfo();
         videoInfo.url = url;
         videoInfo.name = name;
-        videoInfo.desc = desc;
+        videoInfo.createTime = System.currentTimeMillis() / 1000;
         vvm.insert(videoInfo, new Callback() {
-
             @Override
             public void onResult(Object reuslt) {
                 Snackbar.make(titleBar, "添加成功！", Snackbar.LENGTH_SHORT).show();

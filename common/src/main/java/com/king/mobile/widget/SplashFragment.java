@@ -1,25 +1,15 @@
 package com.king.mobile.widget;
 
-import android.graphics.Color;
-import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.WindowManager;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
 
-import com.gyf.immersionbar.ImmersionBar;
 import com.king.mobile.util.R;
 
-import java.util.Objects;
-
-public class SplashFragment extends CommonDialog {
+public class SplashFragment extends BaseDialog {
 
     private Handler handler;
     private int waitSecond;

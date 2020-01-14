@@ -11,15 +11,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.king.mobile.base.BaseFragment;
 import com.king.player.R;
-import com.king.player.RecentVideoListAdapter;
-import com.king.player.view.widget.ActionView;
+import com.king.player.adapter.RecentVideoListAdapter;
+import com.king.player.view.widget.ItemActionView;
 
 import static android.widget.GridLayout.VERTICAL;
 
 public class RecordManagerFragment extends BaseFragment {
 
 
-    private ActionView avRecent;
+    private ItemActionView avRecent;
     private RecyclerView recentList;
     private RecentVideoListAdapter adapter;
 

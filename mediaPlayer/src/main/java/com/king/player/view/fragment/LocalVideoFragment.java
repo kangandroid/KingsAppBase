@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.king.mobile.base.BaseListFragment;
-import com.king.player.LocalVideoListAdapter;
+import com.king.player.adapter.LocalVideoListAdapter;
 import com.king.player.model.VideoInfo;
 import com.king.player.view.PlayerActivity;
 import com.king.player.viewmodel.VideoViewModel;

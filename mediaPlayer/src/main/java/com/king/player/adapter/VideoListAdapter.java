@@ -1,20 +1,20 @@
-package com.king.player;
+package com.king.player.adapter;
 
 import android.content.Context;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.king.mobile.base.BaseListAdapter;
 import com.king.mobile.util.BindLayout;
 import com.king.mobile.util.ImageUtil;
+import com.king.player.R;
 import com.king.player.model.VideoInfo;
 
 import java.util.List;
 
-public class RecentVideoListAdapter extends BaseListAdapter<VideoInfo> {
-    public RecentVideoListAdapter(Context context) {
+public class VideoListAdapter extends BaseListAdapter<VideoInfo> {
+    public VideoListAdapter(Context context) {
         super(context);
     }
 
@@ -24,26 +24,25 @@ public class RecentVideoListAdapter extends BaseListAdapter<VideoInfo> {
     }
 
 
-    @BindLayout(id = R.layout.item_recent_video)
-    static class VideoVieHolder extends BaseViewHolder<VideoInfo> {
+    @BindLayout(id = R.layout.item_video)
+    static class VideoVieHolder extends BaseListAdapter.BaseViewHolder<VideoInfo> {
 
         private final TextView tvName;
-        private final ProgressBar progressBar;
+//        private final TextView tvDesc;
         private final ImageView ivIcon;
 
         public VideoVieHolder(View itemView) {
             super(itemView);
             tvName = itemView.findViewById(R.id.tv_name);
-            progressBar = itemView.findViewById(R.id.progressBar);
+//            tvDesc = itemView.findViewById(R.id.tv_desc);
             ivIcon = itemView.findViewById(R.id.icon);
         }
 
         @Override
         protected void bindView(VideoInfo bean, int position, Context context) {
-            ImageUtil.loadCover(ivIcon, bean.url);
+            ImageUtil.loadImage(ivIcon, bean.url);
             tvName.setText(bean.name);
-            progressBar.setMax(bean.duration);
-            progressBar.setProgress(bean.progress);
+//            tvDesc.setText(bean.desc);
         }
     }
 }

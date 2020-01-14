@@ -33,7 +33,7 @@ public class HomeActivity extends BaseActivity {
                     .runtime()
                     .permission(Permission.READ_EXTERNAL_STORAGE, Permission.WRITE_EXTERNAL_STORAGE)
                     .onGranted(data -> videoViewModel.loadLocalVideo())
-                    .onDenied(data -> Toast.makeText(this, getString(R.string.premission_deny), Toast.LENGTH_SHORT).show())
+                    .onDenied(data -> Toast.makeText(this, getString(R.string.permission_deny), Toast.LENGTH_SHORT).show())
                     .start());
 
     private TitleBar.Action actionAdd = new TitleBar.Action(null, R.drawable.ic_action_add,

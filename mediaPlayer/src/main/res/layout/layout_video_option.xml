@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:gravity="start"
+        app:cardBackgroundColor="@color/white"
+        app:cardElevation="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/action_edit"
+                android:layout_width="60dp"
+                android:layout_height="36dp"
+                android:drawableLeft="@drawable/ic_edit"
+                android:gravity="center"
+                android:text="@string/edit"
+                android:textAlignment="center"
+                android:textColor="@color/textBlack"
+                android:textSize="14sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gray_1" />
+
+            <TextView
+                android:id="@+id/action_delete"
+                android:layout_width="60dp"
+                android:layout_height="36dp"
+                android:drawableLeft="@drawable/ic_delete_sweep"
+                android:gravity="center"
+                android:text="@string/delete"
+                android:textAlignment="center"
+                android:textColor="@color/textBlack"
+                android:textSize="14sp" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</FrameLayout>

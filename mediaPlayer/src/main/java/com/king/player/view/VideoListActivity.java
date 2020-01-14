@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.king.mobile.base.BaseActivity;
 import com.king.mobile.widget.TitleBar;
 import com.king.player.R;
-import com.king.player.VideoListAdapter;
+import com.king.player.adapter.VideoListAdapter;
 import com.king.player.view.fragment.VideoInfoDialog;
 import com.king.player.viewmodel.VideoCollectionViewModel;
 import com.yanzhenjie.permission.AndPermission;

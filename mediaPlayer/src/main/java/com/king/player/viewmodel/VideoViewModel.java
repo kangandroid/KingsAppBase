@@ -43,4 +43,8 @@ public class VideoViewModel extends AndroidViewModel {
     public void insert(VideoInfo videoInfo, Callback callback) {
         repository.insert(videoInfo, callback);
     }
+
+    public void delete(VideoInfo videoInfo) {
+        repository.delete(videoInfo);
+    }
 }

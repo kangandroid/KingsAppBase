@@ -5,17 +5,20 @@ import android.content.Context;
 import android.database.Cursor;
 import android.provider.MediaStore;
 
-import androidx.annotation.RequiresPermission;
-
 import com.king.player.model.VideoInfo;
-import com.yanzhenjie.permission.runtime.Permission;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class LocalVideoSource {
 
-    public static List<VideoInfo> getVideoList(Context context) {
+    private Context mContext;
+
+    public LocalVideoSource(Context context) {
+        this.mContext = context;
+    }
+
+    public List<VideoInfo> getVideoList() {
         String[] mediaColumns = {
                 MediaStore.Video.Media._ID, // id
                 MediaStore.Video.Media.DATA, // Uri
@@ -23,7 +26,7 @@ public class LocalVideoSource {
                 MediaStore.Video.Media.MIME_TYPE, // 类型
                 MediaStore.Video.Media.SIZE, // 大小
                 MediaStore.Video.Media.DATE_ADDED}; // 文件名
-        ContentResolver contentResolver = context.getContentResolver();
+        ContentResolver contentResolver = mContext.getContentResolver();
         Cursor cursor = contentResolver.query(MediaStore.Video.Media.EXTERNAL_CONTENT_URI, mediaColumns, null, null, null);
         List<VideoInfo> videoList = new ArrayList<>();
         if (cursor == null || cursor.getCount() == 0) {
@@ -43,7 +46,7 @@ public class LocalVideoSource {
                 info.url = data;
                 info.type = type;
                 info.size = size;
-                info.createTime = System.currentTimeMillis()/1000;
+                info.createTime = System.currentTimeMillis() / 1000;
                 info.dateAdded = addDate;
                 info.dateModified = addDate;
                 videoList.add(info);

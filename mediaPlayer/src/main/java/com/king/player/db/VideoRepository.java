@@ -4,7 +4,6 @@ import android.app.Application;
 import android.content.Context;
 
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 
 import com.king.mobile.component.Callback;
 import com.king.mobile.util.Executor;
@@ -60,7 +59,7 @@ public class VideoRepository {
     public void loadLocalVideo() {
         Executor.getInstance().execute(() -> {
             Context context = app.getApplicationContext();
-            List<VideoInfo> videoList = LocalVideoSource.getVideoList(context);
+            List<VideoInfo> videoList = new LocalVideoSource(context).getVideoList();
             List<VideoInfo> local = videoDao.findLocalList();
             videoList.removeAll(local);
             if (videoList.size() > 0) {

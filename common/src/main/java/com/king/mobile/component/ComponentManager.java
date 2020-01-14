@@ -8,7 +8,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
-import com.blankj.utilcode.util.ToastUtils;
+
+import com.king.mobile.util.ToastUtil;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -52,7 +53,7 @@ public class ComponentManager {
                 componentModule.invokeFunction(componentName,params);
             }
         } else {
-            ToastUtils.showLong(String.format("Module%是没有注册", moduleName));
+            ToastUtil.show(String.format("Module%是没有注册", moduleName));
         }
     }
 

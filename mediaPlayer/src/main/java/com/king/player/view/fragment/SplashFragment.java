@@ -8,9 +8,9 @@ import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.king.mobile.util.R;
-import com.king.mobile.widget.CommonDialog;
+import com.king.mobile.widget.BaseDialog;
 
-public class SplashFragment extends CommonDialog {
+public class SplashFragment extends BaseDialog {
 
     private Handler handler;
     private int waitSecond = 3;

@@ -1,4 +1,4 @@
-package com.king.player;
+package com.king.player.adapter;
 
 import android.content.Context;
 import android.view.View;
@@ -8,12 +8,13 @@ import android.widget.TextView;
 import com.king.mobile.base.BaseListAdapter;
 import com.king.mobile.util.BindLayout;
 import com.king.mobile.util.ImageUtil;
+import com.king.player.R;
 import com.king.player.model.VideoInfo;
 
 import java.util.List;
 
-public class LocalVideoListAdapter extends BaseListAdapter<VideoInfo> {
-    public LocalVideoListAdapter(Context context) {
+public class LiveTVListAdapter extends BaseListAdapter<VideoInfo> {
+    public LiveTVListAdapter(Context context) {
         super(context);
     }
 

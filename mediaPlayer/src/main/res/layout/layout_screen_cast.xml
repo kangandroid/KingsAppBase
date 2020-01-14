@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:background="@color/textBlack">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="18dp"
+            android:text="客厅盒子"
+            android:textColor="@color/textWhite"
+            android:textSize="18sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"
+            android:text="投放中"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <SeekBar
+            android:id="@+id/seekBar"
+            style="@style/Widget.AppCompat.SeekBar.Discrete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="20dp"
+            android:max="110"
+            android:progress="30" />
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="80dp"
+        android:layout_gravity="center"
+        android:background="@color/white"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="36dp"
+            android:background="@drawable/bg_action_left"
+            android:gravity="center"
+            android:text="1080P" />
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="36dp"
+            android:layout_marginHorizontal="1dp"
+            android:background="@color/colorPrimaryDark"
+            android:scaleType="center"
+            android:src="@drawable/ic_power_settings" />
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="36dp"
+            android:background="@drawable/bg_action_right"
+            android:gravity="center"
+            android:text="换设备" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

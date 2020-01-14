@@ -55,13 +55,13 @@ public interface VideoDao {
      *
      * @return
      */
-    @Query("select * from tab_videos where local_id is not null ORDER BY create_time ASC")
+    @Query("select * from tab_videos where local_id is not null ORDER BY create_time DESC")
     LiveData<List<VideoInfo>> findLocal();/**
      * 查询全部本地视频
      *
      * @return
      */
-    @Query("select * from tab_videos where local_id is not null ORDER BY create_time ASC")
+    @Query("select * from tab_videos where local_id is not null ORDER BY create_time DESC")
     List<VideoInfo> findLocalList();
 
     @Insert

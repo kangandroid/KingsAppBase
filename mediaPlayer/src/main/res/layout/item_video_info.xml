@@ -12,56 +12,75 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent">
 
-        <androidx.appcompat.widget.AppCompatImageView
+        <ImageView
+            android:id="@+id/cover"
             android:layout_width="130dp"
             android:layout_height="100dp"
             android:layout_gravity="center|start"
             android:background="@color/colorPrimaryDark"
-            android:foreground="@drawable/ic_play_circle_outline"
             android:scaleType="centerCrop" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_play_circle_outline" />
 
         <TextView
             android:id="@+id/status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="top|end"
-            android:background="@drawable/bg_tag" />
+            android:background="@drawable/bg_tag"
+            android:visibility="gone" />
     </FrameLayout>
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:orientation="vertical"
-        android:padding="8dp">
+        android:layout_weight="1">
 
-        <TextView
-            android:id="@+id/name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="top|start"
-            android:lines="1"
-            android:text="@string/latest_play"
-            android:textColor="@color/textBlack"
-            android:textSize="@dimen/permission_sp_16"
-            android:textStyle="bold" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:padding="8dp">
 
-        <TextView
-            android:id="@+id/desc"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|start"
-            android:layout_marginTop="8dp"
-            android:text="打发打发的发发呆发呆发呆发放打发是短发短发短发"
-            android:textColor="@color/textGray"
-            android:textSize="14sp" />
-    </LinearLayout>
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top|start"
+                android:layout_marginEnd="40dp"
+                android:ellipsize="end"
+                android:lines="1"
+                android:text="@string/latest_play"
+                android:textColor="@color/textBlack"
+                android:textSize="@dimen/permission_sp_16"
+                android:textStyle="bold" />
 
-    <ImageView
-        android:id="@+id/iv_overflow"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:padding="8dp"
-        android:src="@drawable/ic_more_vert" />
+            <TextView
+                android:id="@+id/desc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|start"
+                android:layout_marginTop="8dp"
+                android:text="打发打发的发发呆发呆发呆发放打发是短发短发短发"
+                android:textColor="@color/textGray"
+                android:textSize="14sp" />
+
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/action"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_gravity="end|top"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_more_vert" />
+    </FrameLayout>
 
 </LinearLayout>

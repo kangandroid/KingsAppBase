@@ -8,10 +8,11 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.king.mobile.base.BaseListFragment;
-import com.king.player.LocalVideoListAdapter;
+import com.king.player.adapter.RemoteVideoListAdapter;
 import com.king.player.model.VideoInfo;
 import com.king.player.view.PlayerActivity;
 import com.king.player.viewmodel.VideoViewModel;
@@ -23,7 +24,7 @@ import static android.widget.GridLayout.VERTICAL;
 
 public class RemoteVideoFragment extends BaseListFragment {
     private VideoViewModel videoViewModel;
-    private LocalVideoListAdapter adapter;
+    private RemoteVideoListAdapter adapter;
     private FragmentActivity activity;
 
 
@@ -36,13 +37,11 @@ public class RemoteVideoFragment extends BaseListFragment {
 
     @Override
     protected void adaptList(RecyclerView recyclerView) {
-        recyclerView.setLayoutManager(new GridLayoutManager(activity, 3));
-        adapter = new LocalVideoListAdapter(activity);
+        recyclerView.setLayoutManager(new LinearLayoutManager(activity,RecyclerView.VERTICAL ,false));
+        adapter = new RemoteVideoListAdapter(activity);
         Context context = Objects.requireNonNull(getContext());
         DividerItemDecoration decorV = new DividerItemDecoration(context, VERTICAL);
-        DividerItemDecoration decorH = new DividerItemDecoration(context, HORIZONTAL);
         recyclerView.addItemDecoration(decorV);
-        recyclerView.addItemDecoration(decorH);
         recyclerView.setAdapter(adapter);
         adapter.setOnItemClickLitener((videoInfo, view, position) -> play(videoInfo));
         videoViewModel.getRemoteVideoList().observe(this, list -> adapter.setData(list));

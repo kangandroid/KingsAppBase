@@ -13,24 +13,24 @@ import android.widget.TextView;
 import com.king.mobile.util.ScreenAdapter;
 import com.king.player.R;
 
-public class ActionView extends FrameLayout {
+public class ItemActionView extends FrameLayout {
 
     private TextView tvTitle;
     private TextView tvSubTitle;
 
-    public ActionView(Context context) {
+    public ItemActionView(Context context) {
         this(context, null);
     }
 
-    public ActionView(Context context, AttributeSet attrs) {
+    public ItemActionView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public ActionView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public ItemActionView(Context context, AttributeSet attrs, int defStyleAttr) {
         this(context, attrs, defStyleAttr, 0);
     }
 
-    public ActionView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    public ItemActionView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
         inflateView(context, attrs);
 
@@ -39,9 +39,9 @@ public class ActionView extends FrameLayout {
     private void inflateView(Context context, AttributeSet attrs) {
         tvTitle = new TextView(context);
         tvSubTitle = new TextView(context);
-        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.ActionView);
-        String title = typedArray.getString(R.styleable.ActionView_title);
-        String subTitle = typedArray.getString(R.styleable.ActionView_sub_title);
+        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.ItemActionView);
+        String title = typedArray.getString(R.styleable.ItemActionView_title);
+        String subTitle = typedArray.getString(R.styleable.ItemActionView_sub_title);
         typedArray.recycle();
         tvTitle.setTextColor(getResources().getColor(R.color.textBlack));
         tvTitle.setTextSize(16);

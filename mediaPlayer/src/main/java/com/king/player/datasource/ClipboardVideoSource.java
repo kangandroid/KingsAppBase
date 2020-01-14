@@ -1,35 +1,47 @@
 package com.king.player.datasource;
 
-import android.content.ClipData;
-import android.content.ClipboardManager;
 import android.content.Context;
 import android.text.TextUtils;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.king.mobile.util.Loker;
+import com.king.mobile.util.ClipboardUtils;
+import com.king.mobile.util.CommonRegexs;
+import com.king.mobile.util.JSONUtil;
 import com.king.player.model.VideoInfo;
 
-import static android.content.ClipDescription.MIMETYPE_TEXT_PLAIN;
+import java.util.ArrayList;
+import java.util.List;
 
-public class ClipboardVideoSource {
+public class ClipboardVideoSource implements IDataSource {
 
-    public static final String regex = "";
-    public static final String sample = "";
-    public static void checkClipboard(Context context) {
-        ClipboardManager clipboard = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
+    private Context mContext;
 
-        // If the clipboard doesn't contain data, disable the paste menu item.
-        // If it does contain data, decide if you can handle the data.
-        if (clipboard.hasPrimaryClip() && (clipboard.getPrimaryClipDescription().hasMimeType(MIMETYPE_TEXT_PLAIN))) {
-            ClipData.Item item = clipboard.getPrimaryClip().getItemAt(0);
-            String copyText = item.getText().toString();
-            Loker.d(copyText);
-            if(!TextUtils.isEmpty(copyText)&& copyText.matches(regex)){
-                Gson gson = new GsonBuilder().create();
-                gson.fromJson(copyText, VideoInfo.class);
+    public ClipboardVideoSource(Context context) {
+        this.mContext = context;
+    }
+
+    @Override
+    public List<VideoInfo> getVideos() {
+        String text = ClipboardUtils.getText(mContext);
+        if (TextUtils.isEmpty(text)) return null;
+        List<VideoInfo> videos;
+        if (JSONUtil.isJson(text)) {
+            if (JSONUtil.isJsonArray(text)) {
+                videos = JSONUtil.parseArray(text, VideoInfo.class);
+            } else {
+                videos = new ArrayList<>();
+                VideoInfo parse = JSONUtil.parse(text);
+                if (TextUtils.isEmpty(parse.url)) return null;
+                videos.add(parse);
             }
-
+        } else if (text.matches(CommonRegexs.REGEX_URL)) {
+            videos = new ArrayList<>();
+            VideoInfo videoInfo = new VideoInfo();
+            videoInfo.name = "未知";
+            videoInfo.url = text;
+            videos.add(videoInfo);
+        } else {
+            return null;
         }
+        return videos;
     }
 }
