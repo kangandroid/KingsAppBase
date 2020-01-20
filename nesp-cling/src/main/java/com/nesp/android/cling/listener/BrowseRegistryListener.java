@@ -13,12 +13,6 @@ import org.fourthline.cling.model.meta.RemoteDevice;
 import org.fourthline.cling.registry.DefaultRegistryListener;
 import org.fourthline.cling.registry.Registry;
 
-/**
- * 说明：
- * 作者：zhouzhan
- * 日期：17/6/29 11:05
- */
-
 public class BrowseRegistryListener extends DefaultRegistryListener {
 
 

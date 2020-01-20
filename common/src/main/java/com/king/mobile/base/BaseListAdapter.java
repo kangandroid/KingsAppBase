@@ -59,8 +59,9 @@ public abstract class BaseListAdapter<T> extends
             View view = mInflater.inflate(layoutId, parent, false);
             return (BaseViewHolder<T>) InstanceUtil.getInstance(viewBundle, new Class[]{View.class}, new Object[]{view});
 
-        } else
-            throw new IllegalArgumentException("mviewbundles can not be null or empty!");
+        } else {
+            throw new IllegalArgumentException("view bundles can not be null or empty!");
+        }
     }
 
     private Class findViewHolderClazz(int viewType) {

@@ -21,6 +21,12 @@ public class AssetDataSource implements IDataSource {
         try {
             String tvJson = AssetsUtil.readText(mContext, "LiveTVm3u8.json");
             List<VideoInfo> videoInfos = JSONUtil.parseArray(tvJson, VideoInfo.class);
+            if (videoInfos.size() > 0) {
+                for (VideoInfo info : videoInfos) {
+                    info.type = 2; // 电视直播
+                    info.createTime = System.currentTimeMillis()/1000;
+                }
+            }
             return videoInfos;
         } catch (IOException e) {
             e.printStackTrace();

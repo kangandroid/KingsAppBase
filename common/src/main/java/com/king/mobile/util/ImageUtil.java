@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.media.MediaMetadataRetriever;
 import android.media.ThumbnailUtils;
 import android.provider.MediaStore;
+import android.text.TextUtils;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -19,24 +20,20 @@ public class ImageUtil {
      * url就是视频的地址
      */
     public static void loadCover(ImageView view, String url) {
-        Bitmap bitmap = null;
-        if (url.startsWith("/")){
-            bitmap = getVideoCover(url);
-            if (bitmap != null){
-                Glide.with(view).load(bitmap).into(view);
-            } else {
-                RequestOptions requestOptions = new RequestOptions()
-                        .frame(4000000)
-                        .centerCrop();
-                Glide.with(view)
-                        .setDefaultRequestOptions(requestOptions)
-                        .load(url)
-                        .into(view);
-            }
-        } else if(url.contains(".m3u8")) {
-
+        if (TextUtils.isEmpty(url) || view == null) {
+            return;
         }
+        if (url.contains(".m3u8")) {
 
+        } else {
+            RequestOptions requestOptions = new RequestOptions()
+                    .frame(4000000)
+                    .centerCrop();
+            Glide.with(view)
+                    .setDefaultRequestOptions(requestOptions)
+                    .load(url)
+                    .into(view);
+        }
     }
 
     /**
@@ -51,7 +48,7 @@ public class ImageUtil {
         if (bitmap == null) {
             //提取到的视频封面为空
             bitmap = getVideoThumb(path);
-            if (bitmap == null){
+            if (bitmap == null) {
                 ToastUtil.show("获取失败");
             }
         }

@@ -47,6 +47,21 @@ public class TitleBar extends LinearLayout {
     private ImageView imageBg;
     private Drawable gradientBg;
 
+    public static Action ACTION_BACK_DARK;
+    public static Action ACTION_BACK_LIGHT;
+
+    static {
+        OnClickListener onClickListener = v -> {
+            Context context = v.getContext();
+            if (context == null) return;
+            if (context instanceof Activity) {
+                ((Activity) context).onBackPressed();
+            }
+        };
+        ACTION_BACK_DARK = new Action("", R.drawable.ic_back_white, onClickListener);
+        ACTION_BACK_LIGHT = new Action("", R.drawable.ic_back_black, onClickListener);
+    }
+
     public TitleBar(Context context) {
         this(context, null);
     }
@@ -225,4 +240,6 @@ public class TitleBar extends LinearLayout {
         }
 
     }
+
+
 }

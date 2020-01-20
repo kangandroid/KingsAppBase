@@ -6,7 +6,9 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.ImageView;
 
+import com.king.mobile.util.Loker;
 import com.king.mobile.util.ToastUtil;
+import com.king.mobile.widget.TitleBar;
 import com.king.player.R;
 import com.king.player.model.VideoInfo;
 import com.shuyu.gsyvideoplayer.GSYBaseActivityDetail;
@@ -16,11 +18,13 @@ import com.shuyu.gsyvideoplayer.video.StandardGSYVideoPlayer;
 
 import java.io.Serializable;
 
+import static com.king.mobile.util.ImageUtil.loadCover;
+
 public class PlayerActivity extends GSYBaseActivityDetail<StandardGSYVideoPlayer> {
 
     private StandardGSYVideoPlayer detailPlayer;
     private String url;
-    private String title;
+    private TitleBar titleBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,16 +34,20 @@ public class PlayerActivity extends GSYBaseActivityDetail<StandardGSYVideoPlayer
         Serializable extra = intent.getSerializableExtra("videoInfo");
         if (extra instanceof VideoInfo) {
             VideoInfo videoInfo = (VideoInfo) extra;
-            title = videoInfo.name;
+            String title = videoInfo.name;
             if (TextUtils.isEmpty(videoInfo.localPath)) {
                 url = videoInfo.url;
             } else {
                 url = videoInfo.localPath;
             }
             detailPlayer = findViewById(R.id.detail_player);
-            //增加title
-            detailPlayer.getTitleTextView().setText(title);
-
+            Loker.d("title ====== " +title);
+            titleBar = findViewById(R.id.title_bar);
+            titleBar.setTitleTextColor(R.color.textWhite)
+                    .setTitle(title)
+                    .setLeftAction(TitleBar.ACTION_BACK_DARK)
+                    .setTitleBarColorRes(R.color.transparent)
+                    .invalidate();
             initVideoBuilderMode();
         } else {
             ToastUtil.show("视频信息出错");
@@ -82,7 +90,7 @@ public class PlayerActivity extends GSYBaseActivityDetail<StandardGSYVideoPlayer
     public GSYVideoOptionBuilder getGSYVideoOptionBuilder() {
         //内置封面可参考SampleCoverVideo
         ImageView imageView = new ImageView(this);
-//        loadCover(imageView, url);
+        loadCover(imageView, url);
         return new GSYVideoOptionBuilder()
                 .setThumbImageView(imageView)
                 .setUrl(url)

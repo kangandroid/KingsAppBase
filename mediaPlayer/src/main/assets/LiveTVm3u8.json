@@ -1,354 +1,87 @@
 [
   {
-    "name": "CCTV1 高清",
+    "name": "CCTV1 综合",
     "url": "http://125.210.152.18:9090/live/CCTV1HD_H265.m3u8"
   },
   {
-    "name": "CCTV1综合",
-    "url": "http://cctvtxyh5c.liveplay.myqcloud.com/live/cctv1_2/index.m3u8"
-  },
-  {
-    "name": "CCTV1综合(移动线路)",
-    "url": "http://223.110.241.139:6610/gitv/live1/G_CCTV-1-HQ/G_CCTV-1-HQ/"
-  },
-  {
-    "name": "CCTV-1综合HD",
-    "url": "http://39.135.36.151:18890/000000001000/1000000001000021973/1.m3u8?channel-id=ystenlive&Contentid=1000000001000021973&livemode=1&stbId=005203FF000360100001001A34C0CD33&userToken=4ef1f6fdd53988bdf19472c73151206f21vv&usergroup=g21077200000&version=1.0&owaccmark=1000000001000021973&owchid=ystenlive&owsid=1106497909461769539&AuthInfo=yOLXJswzZFfV3FvB8MhHuElKGJKLbU5H0jB3qAhfSE7AORAoVDZDWbFnJ0sXJEaRLaQJeR5usCQMKdpIDCZAoYPt4bOuuiUwGxs8%2fKxpb7Wa3xqB26AcGEvjhx3JJlw6"
-  },
-  {
-    "name": "CCTV2 高清",
+    "name": "CCTV2 财经",
     "url": "http://125.210.152.18:9090/live/CCTV2HD_H265.m3u8"
   },
   {
-    "name": "CCTV2财经",
-    "url": "http://wxcnlive.videocc.net/vod1/cctv2169/01.m3u8"
-  },
-  {
-    "name": "CCTV2财经(移动线路)",
-    "url": "http://223.110.241.139:6610/gitv/live1/G_CCTV-2-HD/G_CCTV-2-HD/"
-  },
-  {
-    "name": "CCTV-2财经",
-    "url": "http://39.135.36.150:18890/000000001000/1000000001000012442/1.m3u8?channel-id=ystenlive&Contentid=1000000001000012442&livemode=1&stbId=005203FF000360100001001A34C0CD33&userToken=4ef1f6fdd53988bdf19472c73151206f21vv&usergroup=g21077200000&version=1.0&owaccmark=1000000001000012442&owchid=ystenlive&owsid=1106497909461775063&AuthInfo=yOLXJswzZFfV3FvB8MhHuElKGJKLbU5H0jB3qAhfSE7AORAoVDZDWbFnJ0sXJEaRknGE%2fO0VC9Co37x%2f7gMjaWYjatUfTQlAa15Ksg%2fXe8sQo%2fi5btdpzeV%2b1v4UwuHf"
-  },
-  {
-    "name": "CCTV3 高清",
+    "name": "CCTV3 综艺",
     "url": "http://125.210.152.18:9090/live/CCTV3HD_H265.m3u8"
   },
   {
-    "name": "CCTV3综艺https://cctvtxyh5c.liveplay.myqcloud.com/live/cctv3_2/index.m3u8"
-  },
-  {
-    "name": "CCTV3综艺(移动线路)",
-    "url": "http://223.110.241.139:6610/gitv/live1/G_CCTV-3-HQ/G_CCTV-3-HQ/"
-  },
-  {
-    "name": "CCTV-3综艺",
-    "url": "http://39.135.36.141:18890/000000001000/1000000001000011218/1.m3u8?channel-id=ystenlive&Contentid=1000000001000011218&livemode=1&stbId=005203FF000360100001001A34C0CD33&userToken=4ef1f6fdd53988bdf19472c73151206f21vv&usergroup=g21077200000&version=1.0&owaccmark=1000000001000011218&owchid=ystenlive&owsid=1106497909461779572&AuthInfo=yOLXJswzZFfV3FvB8MhHuElKGJKLbU5H0jB3qAhfSE7AORAoVDZDWbFnJ0sXJEaRrAyJU4rR1Dadw9ISEYm5oBbA9lSzNfT0W7kMLAWHUBTbBAjpiIN0Pdi%2fTRm3zPoh"
-  },
-  {
-    "name": "CCTV4 高清",
+    "name": "CCTV4 国际",
     "url": "http://121.31.30.91:8081/ysten-business/live/cctv-4/1.m3u8"
   },
   {
-    "name": "CCTV4国际(移动线路)",
-    "url": "http://223.110.241.139:6610/gitv/live1/G_CCTV-4-HQ/G_CCTV-4-HQ/"
-  },
-  {
-    "name": "CCTV-4国际",
-    "url": "http://39.135.36.150:18890/000000001000/1000000002000031664/1.m3u8?channel-id=ystenlive&Contentid=1000000002000031664&livemode=1&stbId=005203FF000360100001001A34C0CD33&userToken=bd8bb70bdb2b54bd84b587dffa024f7621vv&usergroup=g21077200000&version=1.0&owaccmark=1000000002000031664&owchid=ystenlive&owsid=1106497909461056460&AuthInfo=yOLXJswzZFfV3FvB8MhHuElKGJKLbU5H0jB3qAhfSE5oj7lZFbEKIj3xJcvQPkjhSaNRr4LzI3YsXQPQcGzS6VSIZXSs858JtCAdvl%2fg%2f2u5lawXOBSX%2fqESSB5FmTXS"
-  },
-  {
-    "name": "CCTV5 高清",
+    "name": "CCTV5 体育",
     "url": "http://125.210.152.18:9090/live/CCTV5HD_H265.m3u8"
   },
   {
-    "name": "CCTV-5体育",
-    "url": "http://39.135.36.146:18890/000000001000/1000000001000004794/1.m3u8?channel-id=ystenlive&contentid=1000000001000004794&livemode=1&stbid=005203ff000360100001001a34c0cd33&usertoken=bd8bb70bdb2b54bd84b587dffa024f7621vv&usergroup=g21077200000&version=1.0&owaccmark=1000000001000004794&owchid=ystenlive&owsid=1106497909461092492&authinfo=yolxjswzzffv3fvb8mhhuelkgjklbu5h0jb3qahfse7aoraovdzdwbfnj0sxjearfiatofcd93c7ach3puyar1v%2bioi39cfseenlxp5u9ufadu6bcdl7v7ctgkugzw1d"
-  },
-  {
-    "name": "CCTV-5体育(移动线路)",
-    "url": "http://223.110.241.139:6610/gitv/live1/G_CCTV-5-HQ/G_CCTV-5-HQ/"
-  },
-  {
-    "name": "CCTV-5+体育赛事(移动线路)",
-    "url": "http://223.110.241.139:6610/gitv/live1/G_CCTV-5PLUS-HQ/G_CCTV-5PLUS-HQ/"
-  },
-  {
-    "name": "CCTV-5+体育",
-    "url": "http://39.135.36.152:18890/000000001000/1000000001000020505/1.m3u8?channel-id=ystenlive&Contentid=1000000001000020505&livemode=1&stbId=005203FF000360100001001A34C0CD33&userToken=bd8bb70bdb2b54bd84b587dffa024f7621vv&usergroup=g21077200000&version=1.0&owaccmark=1000000001000020505&owchid=ystenlive&owsid=1106497909461103025&AuthInfo=yOLXJswzZFfV3FvB8MhHuElKGJKLbU5H0jB3qAhfSE7AORAoVDZDWbFnJ0sXJEaRkrZ1YVus93dDbxNB4SF1DDcF4ZpIL8iGHt%2bMdt2ZAOlknlq9lyy%2fQZJVqiFUxfle"
-  },
-  {
-    "name": "CCTV6 高清",
+    "name": "CCTV6 电影",
     "url": "http://125.210.152.18:9090/live/CCTV6HD_H265.m3u8"
   },
   {
-    "name": "CCTV6电影",
-    "url": "http://cctvcnch5c.v.wscdns.com/live/cctv6_2/index.m3u8"
-  },
-  {
-    "name": "CCTV6电影(移动线路)",
-    "url": "http://223.110.241.139:6610/gitv/live1/G_CCTV-6-HQ/G_CCTV-6-HQ/"
-  },
-  {
-    "name": "CCTV6电影频道",
-    "url": "http://223.82.250.72/live/cctv-6/1.m3u8"
-  },
-  {
-    "name": "CCTV-6高清",
-    "url": "http://39.135.36.140:18890/000000001000/1000000001000016466/1.m3u8?channel-id=ystenlive&Contentid=1000000001000016466&livemode=1&stbId=005203FF000360100001001A34C0CD33&userToken=bd8bb70bdb2b54bd84b587dffa024f7621vv&usergroup=g21077200000&version=1.0&owaccmark=1000000001000016466&owchid=ystenlive&owsid=1106497909461115566&AuthInfo=yOLXJswzZFfV3FvB8MhHuElKGJKLbU5H0jB3qAhfSE7AORAoVDZDWbFnJ0sXJEaRPL4aTeGJNlZwIkZROfGAKEC3iG4uOUkYNIdPRliCqBi8AjSQtKTBHB8b3LPXJcIA"
-  },
-  {
-    "name": "CCTV7 高清",
+    "name": "CCTV7 军事农业",
     "url": "http://125.210.152.18:9090/live/CCTV7HD_H265.m3u8"
   },
   {
-    "name": "CCTV7军事农业(移动线路)",
-    "url": "http://223.110.241.139:6610/gitv/live1/G_CCTV-7-HQ/G_CCTV-7-HQ/"
-  },
-  {
-    "name": "CCTV-7军事农业",
-    "url": "http://39.135.36.152:18890/000000001000/7050628689018054317/1.m3u8?channel-id=ystenlive&Contentid=7050628689018054317&livemode=1&stbId=005203FF000360100001001A34C0CD33&userToken=bd8bb70bdb2b54bd84b587dffa024f7621vv&usergroup=g21077200000&version=1.0&owaccmark=7050628689018054317&owchid=ystenlive&owsid=1106497909461123525&AuthInfo=yOLXJswzZFfV3FvB8MhHuElKGJKLbU5H0jB3qAhfSE5v8WYfJSLSoSDQSshIAsx77pE15UEXEdMCmKIrL5%2f3xV22iBl6KMm%2bLcZrmbA5H1KmAD8EY%2bWAeRUs2LJ9Vxxk"
-  },
-  {
-    "name": "CCTV8 高清",
+    "name": "CCTV8 电视剧",
     "url": "http://125.210.152.18:9090/live/CCTV8HD_H265.m3u8"
   },
   {
-    "name": "CCTV8电视剧",
-    "url": "http://cctvcnch5c.v.wscdns.com/live/cctv8_2/index.m3u8"
-  },
-  {
-    "name": "CCTV8电视剧(移动线路)",
-    "url": "http://223.110.241.139:6610/gitv/live1/G_CCTV-8-HQ/G_CCTV-8-HQ/"
-  },
-  {
-    "name": "CCTV-8高清",
-    "url": "http://39.135.36.154:18890/000000001000/1000000001000003736/1.m3u8?channel-id=ystenlive&Contentid=1000000001000003736&livemode=1&stbId=005203FF000360100001001A34C0CD33&userToken=bd8bb70bdb2b54bd84b587dffa024f7621vv&usergroup=g21077200000&version=1.0&owaccmark=1000000001000003736&owchid=ystenlive&owsid=1106497909461132718&AuthInfo=yOLXJswzZFfV3FvB8MhHuElKGJKLbU5H0jB3qAhfSE7AORAoVDZDWbFnJ0sXJEaRKhIjYL3aRNrIf2qoTcK90Bd0oe1gvWxxvd9Qs9pkD5eKCeYPeHs2GppHtnd1klhd"
-  },
-  {
-    "name": "CCTV9 高清",
+    "name": "CCTV9 纪录",
     "url": "http://125.210.152.18:9090/live/CCTVJLHD_H265.m3u8"
   },
   {
-    "name": "CCTV-9纪录",
-    "url": "http://39.135.36.145:18890/000000001000/1000000001000014583/1.m3u8?channel-id=ystenlive&Contentid=1000000001000014583&livemode=1&stbId=005203FF000360100001001A34C0CD33&userToken=bd8bb70bdb2b54bd84b587dffa024f7621vv&usergroup=g21077200000&version=1.0&owaccmark=1000000001000014583&owchid=ystenlive&owsid=1106497909461138654&AuthInfo=yOLXJswzZFfV3FvB8MhHuElKGJKLbU5H0jB3qAhfSE7AORAoVDZDWbFnJ0sXJEaRh3XYVWmjehcJ6eeMnvhxAUHggQtCK8Xdm86HMC53JU75N56tG8kTzA%2fMocL0w%2bEi"
-  },
-  {
-    "name": "CCTV9记录(移动线路)",
-    "url": "http://223.110.241.139:6610/gitv/live1/G_CCTV-9/G_CCTV-9/"
-  },
-  {
-    "name": "CCTV10 高清",
+    "name": "CCTV10 科教",
     "url": "http://125.210.152.18:9090/live/CCTV10HD_H265.m3u8"
   },
   {
-    "name": "CCTV10科教",
-    "url": "http://cctvcnch5c.v.wscdns.com/live/cctv10_2/index.m3u8"
-  },
-  {
-    "name": "CCTV10科教(移动线路)",
-    "url": "http://223.110.241.139:6610/gitv/live1/G_CCTV-10-HQ/G_CCTV-10-HQ/"
-  },
-  {
-    "name": "CCTV-10科教",
-    "url": "http://39.135.36.151:18890/000000001000/7019587760656900133/1.m3u8?channel-id=ystenlive&Contentid=7019587760656900133&livemode=1&stbId=005203FF000360100001001A34C0CD33&userToken=bd8bb70bdb2b54bd84b587dffa024f7621vv&usergroup=g21077200000&version=1.0&owaccmark=7019587760656900133&owchid=ystenlive&owsid=1106497909461152716&AuthInfo=yOLXJswzZFfV3FvB8MhHuElKGJKLbU5H0jB3qAhfSE5DtJGdM%2bq9fDiivHNjKl%2bK%2b9%2fvTG5xUEzd4ADPtXjiSOOAPl07bvHVEc1KInbp3p%2fXrmwsjTHZ%2fLcoxEWqnCxI"
-  },
-  {
-    "name": "CCTV11 高清",
+    "name": "CCTV11 戏曲",
     "url": "http://121.31.30.91:8081/ysten-business/live/cctv-11/1.m3u8"
   },
   {
-    "name": "CCTV11戏曲",
-    "url": "http://cctvcnch5c.v.wscdns.com/live/cctv11_2/index.m3u8"
-  },
-  {
-    "name": "CCTV11戏曲(移动线路)",
-    "url": "http://223.110.241.139:6610/gitv/live1/G_CCTV-11-HQ/G_CCTV-11-HQ/"
-  },
-  {
-    "name": "CCTV11戏曲",
-    "url": "http://223.82.250.72/live/cctv-11/1.m3u8"
-  },
-  {
-    "name": "CCTV-11戏曲",
-    "url": "http://39.135.36.157:18890/000000001000/1000000002000019789/1.m3u8?channel-id=ystenlive&Contentid=1000000002000019789&livemode=1&stbId=005203FF000360100001001A34C0CD33&userToken=bd8bb70bdb2b54bd84b587dffa024f7621vv&usergroup=g21077200000&version=1.0&owaccmark=1000000002000019789&owchid=ystenlive&owsid=1106497909461158507&AuthInfo=yOLXJswzZFfV3FvB8MhHuElKGJKLbU5H0jB3qAhfSE5oj7lZFbEKIj3xJcvQPkjhUELVtb8TDQzMSm5TScAJJF9JU4YcW5z4YHYDU6y7yn5EMhEqmI%2fAHiE6j4Y95QQ6"
-  },
-  {
-    "name": "CCTV12 高清",
+    "name": "CCTV12 社会与法",
     "url": "http://125.210.152.18:9090/live/CCTV12HD_H265.m3u8"
   },
   {
-    "name": "CCTV12社会与法",
-    "url": "http://cctvcnch5c.v.wscdns.com/live/cctv12_2/index.m3u8"
+    "name": "CCTV13 新闻",
+    "url": "http://121.31.30.91:8081/ysten-business/live/cctv-13/1.m3u8"
   },
   {
-    "name": "CCTV12社会与法(移动线路)",
-    "url": "http://223.110.241.139:6610/gitv/live1/CCTV-12/CCTV-12/"
-  },
-  {
-    "name": "CCTV-12社会与法",
-    "url": "http://39.135.36.153:18890/000000001000/5325631075193490169/1.m3u8?channel-id=ystenlive&Contentid=5325631075193490169&livemode=1&stbId=005203FF000360100001001A34C0CD33&userToken=bd8bb70bdb2b54bd84b587dffa024f7621vv&usergroup=g21077200000&version=1.0&owaccmark=5325631075193490169&owchid=ystenlive&owsid=1106497909461165978&AuthInfo=yOLXJswzZFfV3FvB8MhHuElKGJKLbU5H0jB3qAhfSE7Q36zc4fu7NwQ%2fn1v2mTHqagOL8gLhzmY66HLCxgy24bGH5Xn1D6yEQdwViWmtBz15WRKuKxWsf0XH20JE0dby"
-  },
-  {
-    "name": "CCTV13 标清",
-    "url": "http://125.210.152.18:9090/live/CCTV13_750.m3u8"
-  },
-  {
-    "name": "CCTV-13新闻",
-    "url": "http://39.135.36.142:18890/000000001000/1000000002000021303/1.m3u8?channel-id=ystenlive&Contentid=1000000002000021303&livemode=1&stbId=005203FF000360100001001A34C0CD33&userToken=bd8bb70bdb2b54bd84b587dffa024f7621vv&usergroup=g21077200000&version=1.0&owaccmark=1000000002000021303&owchid=ystenlive&owsid=1106497909461172796&AuthInfo=yOLXJswzZFfV3FvB8MhHuElKGJKLbU5H0jB3qAhfSE5oj7lZFbEKIj3xJcvQPkjht3HVAbnHsmZNUh9hfpXto6CyOW1rkA%2biXZhxwyg0QWyFIN7oKbswdBdf7iWy8vlE"
-  },
-  {
-    "name": "CCTV13新闻(移动线路)",
-    "url": "http://223.110.241.139:6610/gitv/live1/G_CCTV-13-HQ/G_CCTV-13-HQ/"
-  },
-  {
-    "name": "CCTV13新闻HD",
-    "url": "http://113.105.231.178/tlivecloud-cdn.ysp.cctv.cn/07137427E3EC792C3861C6FEF1725AC7FAEB341E9BDD711DA3C2660472C7467C8F62208FD1C086F8F797BCD1CD6D56411FAE92CC97B51B953394A89D1ABD609BD8A9551B2A0806973BB978F096C19DACF1C2AFB041ACD75BC730410DE711E4FB/2000204603.m3u8"
-  },
-  {
-    "name": "CCTV14 高清",
+    "name": "CCTV14 少儿",
     "url": "http://125.210.152.18:9090/live/CCTV14HD_H265.m3u8"
   },
   {
-    "name": "CCTV14少儿",
-    "url": "https://cctvtxyh5c.liveplay.myqcloud.com/live/cctvchild_2/index.m3u8"
-  },
-  {
-    "name": "CCTV14少儿(移动线路)",
-    "url": "http://223.110.241.139:6610/gitv/live1/G_CCTV-14/G_CCTV-14/"
-  },
-  {
-    "name": "CCTV-14少儿",
-    "url": "http://39.135.36.147:18890/000000001000/8203666801302077036/1.m3u8?channel-id=ystenlive&Contentid=8203666801302077036&livemode=1&stbId=005203FF000360100001001A34C0CD33&userToken=bd8bb70bdb2b54bd84b587dffa024f7621vv&usergroup=g21077200000&version=1.0&owaccmark=8203666801302077036&owchid=ystenlive&owsid=1106497909461179285&AuthInfo=yOLXJswzZFfV3FvB8MhHuElKGJKLbU5H0jB3qAhfSE5OdsPl7aB2c%2fh9IG5fEu5Y1yWuhr6PsL8ovQK5JmdmvjbSpXjguwCa8emDxg5lQPKN6B6go0yKDtys3NmnOM6U"
-  },
-  {
-    "name": "CCTV15 高清",
+    "name": "CCTV15 音乐",
     "url": "http://121.31.30.91:8081/ysten-business/live/cctv-15/1.m3u8"
   },
   {
-    "name": "CCTV-15音乐",
-    "url": "http://39.135.36.158:18890/000000001000/1000000002000008163/1.m3u8?channel-id=ystenlive&Contentid=1000000002000008163&livemode=1&stbId=005203FF000360100001001A34C0CD33&userToken=bd8bb70bdb2b54bd84b587dffa024f7621vv&usergroup=g21077200000&version=1.0&owaccmark=1000000002000008163&owchid=ystenlive&owsid=1106497909461186580&AuthInfo=yOLXJswzZFfV3FvB8MhHuElKGJKLbU5H0jB3qAhfSE5oj7lZFbEKIj3xJcvQPkjhY20qRt7%2f617UUdZqFKeX8uE3lV%2bUYqhdkQW8TTtgMeMYnBWivLOAtJKqm6UM8Epy"
+    "name": "浙江卫视",
+    "url": "http://125.210.152.18:9090/live/ZJWSHD_H265.m3u8"
   },
   {
-    "name": "CCTV15音乐(移动线路)",
-    "url": "http://223.110.241.139:6610/gitv/live1/G_CCTV-15/G_CCTV-15/"
+    "name": "重庆卫视",
+    "url": "http://118.123.60.12:8114/LIVES/Fsv_otype=1&FvSeid=&Fsv_filetype=mull&Fsv_chan_hls_se_idx=012&Provider_id=&Pcontent_id=index.m3u8"
   },
   {
-    "name": "CCTV-17农村农业",
-    "url": "http://39.135.36.140:18890/000000001000/1000000005000056836/1.m3u8?channel-id=ystenlive&Contentid=1000000005000056836&livemode=1&stbId=005203FF000360100001001A34C0CD33&userToken=bd8bb70bdb2b54bd84b587dffa024f7621vv&usergroup=g21077200000&version=1.0&owaccmark=1000000005000056836&owchid=ystenlive&owsid=1106497909461196027&AuthInfo=yOLXJswzZFfV3FvB8MhHuElKGJKLbU5H0jB3qAhfSE6skxOPttMtBQzbEMb71jMrM9bNA5sjuldmGASVEj1FB1TOzqCEWAK6w%2FJbtYz8kEYu99sUSfTSd48Av%2FzOzjC1"
-  },
-  {
-    "name": "CCTV 4K",
-    "url": "http://150.138.226.32/tlivecloud-cdn.ysp.cctv.cn/1C899925864EB61F941FE4EBC13DDF6BC0D437B2C62BDFBE49E48A1AA07E800BBDBC3A29685516F96890145FB79831C608F5ED31A7068DA674A56A9EACC455580C4C1D248E9B7F7C033921C381FAC1EC2D87FABEC811E1D30EE3289765BCA92D/2000266303.m3u8"
-  },
-  {
-    "name": "CCTV老故事",
-    "url": "http://hls-ott-zhibo.wasu.tv/live/131/index.m3u8"
-  },
-  {
-    "name": "CGTN Documentary",
+    "name": "CGTN",
     "url": "http://livedoc.cgtn.com/1000d/prog_index.m3u8"
-  },
-  {
-    "name": "CGTV",
-    "url": "http://39.135.36.140:18890/000000001000/8428799834696888424/1.m3u8?channel-id=ystenlive&Contentid=8428799834696888424&livemode=1&stbId=005203FF000360100001001A34C0CD33&userToken=4ef1f6fdd53988bdf19472c73151206f21vv&usergroup=g21077200000&version=1.0&owaccmark=8428799834696888424&owchid=ystenlive&owsid=1106497909461789280&AuthInfo=yOLXJswzZFfV3FvB8MhHuElKGJKLbU5H0jB3qAhfSE7RqKDfJDas7YyDZNJl7HttN1saAiHHRx97PWslNR2vzkU1dWcTZfUtlvjMMZgBZvORGIuGa%2b7fRg7bV0%2fSlWh1"
-  },
-  {
-    "name": "金鹰纪实",
-    "url": "http://39.135.36.158:18890/000000001000/1000000002000011724/1.m3u8?channel-id=ystenlive&Contentid=1000000002000011724&livemode=1&stbId=005203FF000360100001001A34C0CD33&userToken=bd8bb70bdb2b54bd84b587dffa024f7621vv&usergroup=g21077200000&version=1.0&owaccmark=1000000002000011724&owchid=ystenlive&owsid=1106497909461431848&AuthInfo=yOLXJswzZFfV3FvB8MhHuElKGJKLbU5H0jB3qAhfSE5oj7lZFbEKIj3xJcvQPkjhGRixuNJLUNu2DBYpc6QsaE3%2flx5n8V0jfiNYU%2fTgbW1jSw07dYEaQMRlC6v1JMQu"
-  },
-  {
-    "name": "金鹰卡通",
-    "url": "http://39.135.36.143:18890/000000001000/1000000002000016601/1.m3u8?channel-id=ystenlive&Contentid=1000000002000016601&livemode=1&stbId=005203FF000360100001001A34C0CD33&userToken=bd8bb70bdb2b54bd84b587dffa024f7621vv&usergroup=g21077200000&version=1.0&owaccmark=1000000002000016601&owchid=ystenlive&owsid=1106497909461440110&AuthInfo=yOLXJswzZFfV3FvB8MhHuElKGJKLbU5H0jB3qAhfSE5oj7lZFbEKIj3xJcvQPkjh3lvQbkJR7yvxA1RDMtL0LOgZJUasCVca4o22xp7Fqo70%2bkmwxtIe5WPGbFPdTEWf"
-  },
-  {
-    "name": "嘉佳卡通",
-    "url": "http://39.135.36.158:18890/000000001000/1000000002000025964/1.m3u8?channel-id=ystenlive&Contentid=1000000002000025964&livemode=1&stbId=005203FF000360100001001A34C0CD33&userToken=bd8bb70bdb2b54bd84b587dffa024f7621vv&usergroup=g21077200000&version=1.0&owaccmark=1000000002000025964&owchid=ystenlive&owsid=1106497909461445399&AuthInfo=yOLXJswzZFfV3FvB8MhHuElKGJKLbU5H0jB3qAhfSE5oj7lZFbEKIj3xJcvQPkjhTdKQ4wsazi%2bjWctAkM%2b3AyHZX%2bK23G5GXJY0zYdFr53ZLGcc%2fpaa0eBryrKOGOCn"
-  },
-  {
-    "name": "哈哈炫动",
-    "url": "http://39.135.36.141:18890/000000001000/1000000002000000172/1.m3u8?channel-id=ystenlive&Contentid=1000000002000000172&livemode=1&stbId=005203FF000360100001001A34C0CD33&userToken=bd8bb70bdb2b54bd84b587dffa024f7621vv&usergroup=g21077200000&version=1.0&owaccmark=1000000002000000172&owchid=ystenlive&owsid=1106497909461453987&AuthInfo=yOLXJswzZFfV3FvB8MhHuElKGJKLbU5H0jB3qAhfSE5oj7lZFbEKIj3xJcvQPkjhWcrsHswwWp2dWLb8s5W8TNE0OJVYRjGF0bAUDhLlZ%2fS%2buYp9XTsbJzJ2IhAUAbXB"
-  },
-  {
-    "name": "卡酷少儿",
-    "url": "http://39.135.36.158:18890/000000001000/7589856436881630561/1.m3u8?channel-id=ystenlive&Contentid=7589856436881630561&livemode=1&stbId=005203FF000360100001001A34C0CD33&userToken=bd8bb70bdb2b54bd84b587dffa024f7621vv&usergroup=g21077200000&version=1.0&owaccmark=7589856436881630561&owchid=ystenlive&owsid=1106497909461461523&AuthInfo=yOLXJswzZFfV3FvB8MhHuElKGJKLbU5H0jB3qAhfSE6w5tj6QNQmxgPk9QJsy7%2fzSWjcIgWGBaWYpmGQ1JTlRh0%2b1GDs%2b%2fmAEmuKcn81VSv8Jmm8qRlsJnY7A7xx1NX%2b"
-  },
-  {
-    "name": "优漫卡通",
-    "url": "http://39.135.36.157:18890/000000001000/1000000002000010063/1.m3u8?channel-id=ystenlive&Contentid=1000000002000010063&livemode=1&stbId=005203FF000360100001001A34C0CD33&userToken=4ef1f6fdd53988bdf19472c73151206f21vv&usergroup=g21077200000&version=1.0&owaccmark=1000000002000010063&owchid=ystenlive&owsid=1106497909461609150&AuthInfo=yOLXJswzZFfV3FvB8MhHuElKGJKLbU5H0jB3qAhfSE5oj7lZFbEKIj3xJcvQPkjhtaBjjE4TN9WTWZSJCyB7q9lx71XBn28Da%2bdFI9LQTRkZjhTxMpgayQKIC2eH%2bMbL"
-  },
-  {
-    "name": "CETV1",
-    "url": "http://39.135.36.146:18890/000000001000/1000000002000027253/1.m3u8?channel-id=ystenlive&Contentid=1000000002000027253&livemode=1&stbId=005203FF000360100001001A34C0CD33&userToken=4ef1f6fdd53988bdf19472c73151206f21vv&usergroup=g21077200000&version=1.0&owaccmark=1000000002000027253&owchid=ystenlive&owsid=1106497909461616097&AuthInfo=yOLXJswzZFfV3FvB8MhHuElKGJKLbU5H0jB3qAhfSE5oj7lZFbEKIj3xJcvQPkjhOJwKbFFUvff7rym6ZRGjqhoGIqpkmAjf48GP9I33YEiXzrp2cuKEymd6COk8Pa3q"
-  },
-  {
-    "name": "山东教育",
-    "url": "http://39.135.36.153:18890/000000001000/1000000002000004097/1.m3u8?channel-id=ystenlive&Contentid=1000000002000004097&livemode=1&stbId=005203FF000360100001001A34C0CD33&userToken=4ef1f6fdd53988bdf19472c73151206f21vv&usergroup=g21077200000&version=1.0&owaccmark=1000000002000004097&owchid=ystenlive&owsid=1106497909461623363&AuthInfo=yOLXJswzZFfV3FvB8MhHuElKGJKLbU5H0jB3qAhfSE5oj7lZFbEKIj3xJcvQPkjhQh378KcG4gga4vRnyBidEMtSo4pdNiVnB7cAOBwj3CyvL3T5WhKfQVwdHIJjtMT4"
   },
   {
     "name": "农林卫视",
     "url": "http://stream.snrtv.com/sxtvs-nl.m3u8"
   },
   {
-    "name": "浙江卫视",
-    "url": "http://live4.plus.hebtv.com/zjws/sd/live.m3u8"
-  },
-  {
-    "name": "浙江卫视高清",
-    "url": "http://125.210.152.18:9090/live/ZJWSHD_H265.m3u8"
-  },
-  {
-    "name": "浙江卫视高清",
-    "url": "http://39.135.36.146:18890/000000001000/1000000001000009806/1.m3u8?channel-id=ystenlive&Contentid=1000000001000009806&livemode=1&stbId=005203FF000360100001001A34C0CD33&userToken=bd8bb70bdb2b54bd84b587dffa024f7621vv&usergroup=g21077200000&version=1.0&owaccmark=1000000001000009806&owchid=ystenlive&owsid=1106497909461218392&AuthInfo=yOLXJswzZFfV3FvB8MhHuElKGJKLbU5H0jB3qAhfSE7AORAoVDZDWbFnJ0sXJEaRt6tuEx40ruFSJnrbh2BVWwXsEFuvV04XsE9ZOm50Z8cpDzo0JrXSxYrVj73IVRt9"
-  },
-  {
     "name": "湖南卫视",
-    "url": "http://stream.cdjsxy.cn/hnws/sd/live.m3u8"
-  },
-  {
-    "name": "湖南卫视高清",
     "url": "http://125.210.152.18:9090/live/HNWSHD_H265.m3u8"
   },
   {
-    "name": "湖南卫视高清",
-    "url": "http://39.135.36.153:18890/000000001000/1000000001000009115/1.m3u8?channel-id=ystenlive&Contentid=1000000001000009115&livemode=1&stbId=005203FF000360100001001A34C0CD33&userToken=bd8bb70bdb2b54bd84b587dffa024f7621vv&usergroup=g21077200000&version=1.0&owaccmark=1000000001000009115&owchid=ystenlive&owsid=1106497909461209970&AuthInfo=yOLXJswzZFfV3FvB8MhHuElKGJKLbU5H0jB3qAhfSE7AORAoVDZDWbFnJ0sXJEaRJ1HPTMtmQf%2bVwcp8RojByB2Rhtn7waHVWUQ9gcJ0mHLEp3xuYtoWp3K%2bdNVn%2bMR4"
-  },
-  {
     "name": "安徽卫视",
-    "url": "http://live1.plus.hebtv.com/ahws/sd/live.m3u8"
-  },
-  {
-    "name": "安徽国际",
-    "url": "http://zbbf2.ahtv.cn/live/dab.m3u8"
-  },
-  {
-    "name": "安徽国际",
-    "url": "http://zbbf2.ahtv.cn/live/subfile/submain.m3u8?__hlslivecid=live%2Fdab&_redcdnuserid=6714458678921446128"
-  },
-  {
-    "name": "安徽卫视高清",
     "url": "http://118.123.60.12:8114/LIVES/Fsv_otype=1&FvSeid=&Fsv_filetype=mull&Fsv_chan_hls_se_idx=008&Provider_id=&Pcontent_id=index.m3u8"
-  },
-  {
-    "name": "安徽卫视高清",
-    "url": "http://39.135.36.157:18890/000000001000/4774346722046993363/1.m3u8?channel-id=ystenlive&Contentid=4774346722046993363&livemode=1&stbId=005203FF000360100001001A34C0CD33&userToken=bd8bb70bdb2b54bd84b587dffa024f7621vv&usergroup=g21077200000&version=1.0&owaccmark=4774346722046993363&owchid=ystenlive&owsid=1106497909461303710&AuthInfo=yOLXJswzZFfV3FvB8MhHuElKGJKLbU5H0jB3qAhfSE6rtwuCbF0UBw1ECKohiyVXtAaM2LAoJTgBkO9sqSP7vGKF4XQrqmpBPeC9CblENbpBoei4M1GZJUNAFlnpSFVM"
-  },
-  {
-    "name": "重庆卫视",
-    "url": "https://onsitecdn.cbgcloud.com/76btqk/d6tb4v.m3u8"
-  },
-  {
-    "name": "重庆卫视",
-    "url": "http://live4.plus.hebtv.com/cqws/sd/live.m3u8"
-  },
-  {
-    "name": "重庆卫视高清",
-    "url": "http://118.123.60.12:8114/LIVES/Fsv_otype=1&FvSeid=&Fsv_filetype=mull&Fsv_chan_hls_se_idx=012&Provider_id=&Pcontent_id=index.m3u8"
-  },
-  {
-    "name": "重庆卫视高清",
-    "url": "http://39.135.36.150:18890/000000001000/1000000002000018937/1.m3u8?channel-id=ystenlive&Contentid=1000000002000018937&livemode=1&stbId=005203FF000360100001001A34C0CD33&userToken=bd8bb70bdb2b54bd84b587dffa024f7621vv&usergroup=g21077200000&version=1.0&owaccmark=1000000002000018937&owchid=ystenlive&owsid=1106497909461333042&AuthInfo=yOLXJswzZFfV3FvB8MhHuElKGJKLbU5H0jB3qAhfSE5oj7lZFbEKIj3xJcvQPkjhUG5grAC0rFEDUfNPlNhZzLoghzkGon0cjoqXWi7%2bGPbWnsToB9Z5BcGamUzvzuTi"
   },
   {
     "name": "江苏卫视",
@@ -356,87 +89,31 @@
   },
   {
     "name": "江苏卫视",
-    "url": "http://live2.plus.hebtv.com/jsws/sd/live.m3u8"
-  },
-  {
-    "name": "江苏卫视高清",
     "url": "http://118.123.60.6:8114/LIVES/Fsv_otype=1&FvSeid=&Fsv_filetype=mull&Fsv_chan_hls_se_idx=001&Provider_id=&Pcontent_id=index.m3u8"
-  },
-  {
-    "name": "江苏卫视高清",
-    "url": "http://39.135.36.157:18890/000000001000/1000000001000004684/1.m3u8?channel-id=ystenlive&Contentid=1000000001000004684&livemode=1&stbId=005203FF000360100001001A34C0CD33&userToken=bd8bb70bdb2b54bd84b587dffa024f7621vv&usergroup=g21077200000&version=1.0&owaccmark=1000000001000004684&owchid=ystenlive&owsid=1106497909461243101&AuthInfo=yOLXJswzZFfV3FvB8MhHuElKGJKLbU5H0jB3qAhfSE7AORAoVDZDWbFnJ0sXJEaR80rubnSCCYHmxBfxTMKdNm%2bh%2bLn%2bBGibQYrxMgSwIzfH44Sn0OHT9L7pQFHxSW%2fJ"
-  },
-  {
-    "name": "东方卫视高清",
-    "url": "http://118.123.60.6:8114/LIVES/Fsv_otype=1&FvSeid=&Fsv_filetype=mull&Fsv_chan_hls_se_idx=002&Provider_id=&Pcontent_id=index.m3u8"
   },
   {
     "name": "东方卫视",
     "url": "http://live1.plus.hebtv.com/dfws/sd/live.m3u8"
   },
   {
-    "name": "东方卫视",
-    "url": "http://cctvtxyh5c.liveplay.myqcloud.com/wstv/dongfang_2/index.m3u8"
-  },
-  {
-    "name": "东方卫视",
-    "url": "http://39.135.36.143:18890/000000001000/1000000001000030202/1.m3u8?channel-id=ystenlive&Contentid=1000000001000030202&livemode=1&stbId=005203FF000360100001001A34C0CD33&userToken=bd8bb70bdb2b54bd84b587dffa024f7621vv&usergroup=g21077200000&version=1.0&owaccmark=1000000001000030202&owchid=ystenlive&owsid=1106497909461236159&AuthInfo=yOLXJswzZFfV3FvB8MhHuElKGJKLbU5H0jB3qAhfSE7AORAoVDZDWbFnJ0sXJEaR5IXgk%2b6a%2bY1Viivj30IkCl065X8GSWgqnbGOJH69GYNl9jXWqt3b3Vkm63dGSY%2b5"
-  },
-  {
     "name": "四川卫视",
-    "url": "http://live4.plus.hebtv.com/scws/sd/live.m3u8"
-  },
-  {
-    "name": "四川卫视高清",
     "url": "http://118.123.60.12:8114/LIVES/Fsv_otype=1&FvSeid=&Fsv_filetype=mull&Fsv_chan_hls_se_idx=000&Provider_id=&Pcontent_id=index.m3u8"
   },
   {
-    "name": "四川卫视",
-    "url": "http://39.135.36.152:18890/000000001000/1000000002000016825/1.m3u8?channel-id=ystenlive&Contentid=1000000002000016825&livemode=1&stbId=005203FF000360100001001A34C0CD33&userToken=bd8bb70bdb2b54bd84b587dffa024f7621vv&usergroup=g21077200000&version=1.0&owaccmark=1000000002000016825&owchid=ystenlive&owsid=1106497909461321397&AuthInfo=yOLXJswzZFfV3FvB8MhHuElKGJKLbU5H0jB3qAhfSE5oj7lZFbEKIj3xJcvQPkjhwC686TkK%2f3k22PorZBLr8k69BtHofhbIyPVBrp9KppkHStTOpUrH7YEsmM6BR8Uo"
-  },
-  {
-    "name": "四川康巴卫视",
-    "url": "http://scgctvshow.sctv.com/sdlive/kangba/3.m3u8"
-  },
-  {
     "name": "深圳卫视",
-    "url": "http://live3.plus.hebtv.com/szws/sd/live.m3u8"
-  },
-  {
-    "name": "深圳卫视",
-    "url": "http://cdn.sxbctv.com/PLTV/88888888/224/3221225780/index.m3u8"
-  },
-  {
-    "name": "深圳卫视",
-    "url": "http://124.47.33.201/wh7f454c46tw2418546042_573875240/PLTV/88888888/224/3221225780/index.m3u8?icpid=88888888&RTS=1562657746&from=1&ocs=2_10.43.111.21_80&hms_devid=183"
-  },
-  {
-    "name": "深圳卫视高清",
     "url": "http://118.123.60.12:8114/LIVES/Fsv_otype=1&FvSeid=&Fsv_filetype=mull&Fsv_chan_hls_se_idx=002&Provider_id=&Pcontent_id=index.m3u8"
   },
   {
-    "name": "深圳卫视高清",
-    "url": "http://39.135.36.150:18890/000000001000/1000000001000011645/1.m3u8?channel-id=ystenlive&Contentid=1000000001000011645&livemode=1&stbId=005203FF000360100001001A34C0CD33&userToken=bd8bb70bdb2b54bd84b587dffa024f7621vv&usergroup=g21077200000&version=1.0&owaccmark=1000000001000011645&owchid=ystenlive&owsid=1106497909461286475&AuthInfo=yOLXJswzZFfV3FvB8MhHuElKGJKLbU5H0jB3qAhfSE7AORAoVDZDWbFnJ0sXJEaRi%2fGQBc72yY6Quo0JMFE7sAOH9P3BRKKjlume5S4R4Q4D5A%2fuxi3rN%2bHd%2bNxeQD8d"
-  },
-  {
-    "name": "天津卫视高清",
+    "name": "天津卫视",
     "url": "http://118.123.60.6:8114/LIVES/Fsv_otype=1&FvSeid=&Fsv_filetype=mull&Fsv_chan_hls_se_idx=004&Provider_id=&Pcontent_id=index.m3u8"
   },
   {
-    "name": "山东卫视高清",
+    "name": "山东卫视",
     "url": "http://118.123.60.6:8114/LIVES/Fsv_otype=1&FvSeid=&Fsv_filetype=mull&Fsv_chan_hls_se_idx=005&Provider_id=&Pcontent_id=index.m3u8"
   },
   {
-    "name": "山东卫视高清",
-    "url": "http://39.135.36.142:18890/000000001000/1000000001000012807/1.m3u8?channel-id=ystenlive&Contentid=1000000001000012807&livemode=1&stbId=005203FF000360100001001A34C0CD33&userToken=bd8bb70bdb2b54bd84b587dffa024f7621vv&usergroup=g21077200000&version=1.0&owaccmark=1000000001000012807&owchid=ystenlive&owsid=1106497909461291586&AuthInfo=yOLXJswzZFfV3FvB8MhHuElKGJKLbU5H0jB3qAhfSE7AORAoVDZDWbFnJ0sXJEaR3cBsIsjm7UHdGO3a4NjD1C4TiYtYt%2by66pvMI%2bkz57DAkgjzetftIzpJRR8RWa0K"
-  },
-  {
-    "name": "黑龙江卫视高清",
+    "name": "黑龙江卫视",
     "url": "http://118.123.60.6:8114/LIVES/Fsv_otype=1&FvSeid=&Fsv_filetype=mull&Fsv_chan_hls_se_idx=006&Provider_id=&Pcontent_id=index.m3u8"
-  },
-  {
-    "name": "黑龙江卫视高清",
-    "url": "http://39.135.36.140:18890/000000001000/8467838254824392379/1.m3u8?channel-id=ystenlive&Contentid=8467838254824392379&livemode=1&stbId=005203FF000360100001001A34C0CD33&userToken=bd8bb70bdb2b54bd84b587dffa024f7621vv&usergroup=g21077200000&version=1.0&owaccmark=8467838254824392379&owchid=ystenlive&owsid=1106497909461358444&AuthInfo=yOLXJswzZFfV3FvB8MhHuElKGJKLbU5H0jB3qAhfSE5eLzTptYlaHwBbi5jFcfGGajSKACYh%2bxMIkH12jcM41WvzLTRYworzrZ3FKkyeJf%2fWTgBHYgXtjL76Tybav9u%2b"
   },
   {
     "name": "云南卫视",
@@ -444,147 +121,63 @@
   },
   {
     "name": "云南卫视",
-    "url": "http://live4.plus.hebtv.com/ynws/sd/live.m3u8"
-  },
-  {
-    "name": "云南卫视高清",
     "url": "http://118.123.60.8:8114/LIVES/Fsv_otype=1&FvSeid=&Fsv_filetype=mull&Fsv_chan_hls_se_idx=013&Provider_id=&Pcontent_id=index.m3u8"
   },
   {
-    "name": "云南卫视",
-    "url": "http://39.135.36.157:18890/000000001000/1000000002000024694/1.m3u8?channel-id=ystenlive&Contentid=1000000002000024694&livemode=1&stbId=005203FF000360100001001A34C0CD33&userToken=bd8bb70bdb2b54bd84b587dffa024f7621vv&usergroup=g21077200000&version=1.0&owaccmark=1000000002000024694&owchid=ystenlive&owsid=1106497909461387812&AuthInfo=yOLXJswzZFfV3FvB8MhHuElKGJKLbU5H0jB3qAhfSE5oj7lZFbEKIj3xJcvQPkjh5LeWQtTPRcwTT4zmEXlA%2fwzvDSa%2fxaofg6Rpl19xhoQ1lNgovjV%2baMdiH1BrPHH%2b"
-  },
-  {
-    "name": "东方卫视高清",
+    "name": "东方卫视",
     "url": "http://118.123.60.8:8114/LIVES/Fsv_otype=1&FvSeid=&Fsv_filetype=mull&Fsv_chan_hls_se_idx=001&Provider_id=&Pcontent_id=index.m3u8"
   },
   {
     "name": "北京卫视",
-    "url": "http://live1.plus.hebtv.com/bjws/sd/live.m3u8"
-  },
-  {
-    "name": "北京卫视高清",
     "url": "http://118.123.60.8:8114/LIVES/Fsv_otype=1&FvSeid=&Fsv_filetype=mull&Fsv_chan_hls_se_idx=003&Provider_id=&Pcontent_id=index.m3u8"
   },
   {
-    "name": "北京卫视高清",
-    "url": "http://39.135.36.143:18890/000000001000/1000000001000017156/1.m3u8?channel-id=ystenlive&Contentid=1000000001000017156&livemode=1&stbId=005203FF000360100001001A34C0CD33&userToken=bd8bb70bdb2b54bd84b587dffa024f7621vv&usergroup=g21077200000&version=1.0&owaccmark=1000000001000017156&owchid=ystenlive&owsid=1106497909461249865&AuthInfo=yOLXJswzZFfV3FvB8MhHuElKGJKLbU5H0jB3qAhfSE7AORAoVDZDWbFnJ0sXJEaRV7KOtBVuvtVZFLcgrBAOKYd9hOl8T7nV%2fYYLzxPrqZvxI1UedirhXiKrowSY0GL9"
-  },
-  {
-    "name": "天津卫视高清",
+    "name": "天津卫视",
     "url": "http://118.123.60.8:8114/LIVES/Fsv_otype=1&FvSeid=&Fsv_filetype=mull&Fsv_chan_hls_se_idx=004&Provider_id=&Pcontent_id=index.m3u8"
   },
   {
-    "name": "天津卫视高清",
-    "url": "http://39.135.36.157:18890/000000001000/1000000001000000831/1.m3u8?channel-id=ystenlive&Contentid=1000000001000000831&livemode=1&stbId=005203FF000360100001001A34C0CD33&userToken=bd8bb70bdb2b54bd84b587dffa024f7621vv&usergroup=g21077200000&version=1.0&owaccmark=1000000001000000831&owchid=ystenlive&owsid=1106497909461255731&AuthInfo=yOLXJswzZFfV3FvB8MhHuElKGJKLbU5H0jB3qAhfSE7AORAoVDZDWbFnJ0sXJEaRcs9zLA6x183T6XfyDHK2Forh1U1TuZtCxYnIsImE91weAhYebQgGPi666EsPHwzC"
-  },
-  {
     "name": "湖北卫视",
-    "url": "http://live2.plus.hebtv.com/hubws/sd/live.m3u8"
-  },
-  {
-    "name": "湖北卫视高清",
     "url": "http://118.123.60.8:8114/LIVES/Fsv_otype=1&FvSeid=&Fsv_filetype=mull&Fsv_chan_hls_se_idx=005&Provider_id=&Pcontent_id=index.m3u8"
-  },
-  {
-    "name": "湖北卫视高清",
-    "url": "http://39.135.36.152:18890/000000001000/6956052407855047826/1.m3u8?channel-id=ystenlive&Contentid=6956052407855047826&livemode=1&stbId=005203FF000360100001001A34C0CD33&userToken=bd8bb70bdb2b54bd84b587dffa024f7621vv&usergroup=g21077200000&version=1.0&owaccmark=6956052407855047826&owchid=ystenlive&owsid=1106497909461296919&AuthInfo=yOLXJswzZFfV3FvB8MhHuElKGJKLbU5H0jB3qAhfSE5Z%2bo9LRgIMhzyly%2bN8KnqBuGO27GhSxZzEXYI6euRzJ3HshWQhVCNxJrt91pPA8t7cjGpkhpIVoXJ0Jyemr0DA"
-  },
-  {
-    "name": "广东卫视",
-    "url": "http://live1.plus.hebtv.com/gdws/sd/live.m3u8"
   },
   {
     "name": "广东卫视",
     "url": "http://nclive.grtn.cn/gdws/sd/live.m3u8"
   },
   {
-    "name": "广东卫视高清",
+    "name": "广东卫视",
     "url": "http://118.123.60.12:8114/LIVES/Fsv_otype=1&FvSeid=&Fsv_filetype=mull&Fsv_chan_hls_se_idx=004&Provider_id=&Pcontent_id=index.m3u8"
   },
   {
-    "name": "广东卫视高清",
-    "url": "http://39.135.36.155:18890/000000001000/1000000001000028357/1.m3u8?channel-id=ystenlive&Contentid=1000000001000028357&livemode=1&stbId=005203FF000360100001001A34C0CD33&userToken=bd8bb70bdb2b54bd84b587dffa024f7621vv&usergroup=g21077200000&version=1.0&owaccmark=1000000001000028357&owchid=ystenlive&owsid=1106497909461262352&AuthInfo=yOLXJswzZFfV3FvB8MhHuElKGJKLbU5H0jB3qAhfSE7AORAoVDZDWbFnJ0sXJEaROVzE3kgfqbxbWUefjzmwWM6UWM1tPF3fcVILxO8TukKPE2BY%2fTje83gAnl%2fZNkb%2b"
-  },
-  {
-    "name": "辽宁卫视高清",
+    "name": "辽宁卫视",
     "url": "http://118.123.60.12:8114/LIVES/Fsv_otype=1&FvSeid=&Fsv_filetype=mull&Fsv_chan_hls_se_idx=018&Provider_id=&Pcontent_id=index.m3u8"
-  },
-  {
-    "name": "辽宁卫视高清",
-    "url": "http://39.135.36.150:18890/000000001000/1000000002000024033/1.m3u8?channel-id=ystenlive&Contentid=1000000002000024033&livemode=1&stbId=005203FF000360100001001A34C0CD33&userToken=bd8bb70bdb2b54bd84b587dffa024f7621vv&usergroup=g21077200000&version=1.0&owaccmark=1000000002000024033&owchid=ystenlive&owsid=1106497909461352974&AuthInfo=yOLXJswzZFfV3FvB8MhHuElKGJKLbU5H0jB3qAhfSE5oj7lZFbEKIj3xJcvQPkjhQBci%2f2KtFqbPb5lYHzQlehPnBUBV7gDU5NsQ1fq2DyLArxZhG%2bC4a49jTs%2bwbEKo"
-  },
-  {
-    "name": "江西卫视",
-    "url": "http://live2.plus.hebtv.com/jxws/sd/live.m3u8"
-  },
-  {
-    "name": "江西卫视",
-    "url": "http://live02.jxtvcn.com.cn/live-jxtvcn/jxtv01.m3u8"
   },
   {
     "name": "江西卫视",
     "url": "http://118.123.60.8:8114/LIVES/Fsv_otype=1&FvSeid=&Fsv_filetype=mull&Fsv_chan_hls_se_idx=010&Provider_id=&Pcontent_id=index.m3u8"
   },
   {
-    "name": "江西卫视",
-    "url": "http://39.135.36.158:18890/000000001000/1000000001000013731/1.m3u8?channel-id=ystenlive&Contentid=1000000001000013731&livemode=1&stbId=005203FF000360100001001A34C0CD33&userToken=bd8bb70bdb2b54bd84b587dffa024f7621vv&usergroup=g21077200000&version=1.0&owaccmark=1000000001000013731&owchid=ystenlive&owsid=1106497909461316198&AuthInfo=yOLXJswzZFfV3FvB8MhHuElKGJKLbU5H0jB3qAhfSE7AORAoVDZDWbFnJ0sXJEaRQxb4dqC07SZV%2bYcygMME6A9OMzcDPgMD6e%2f%2fHx5xyjuJRcCBeGZaKds6mdw4roN8"
-  },
-  {
-    "name": "吉林卫视",
-    "url": "http://live2.plus.hebtv.com/jlws/sd/live.m3u8"
-  },
-  {
     "name": "吉林卫视",
     "url": "http://118.123.60.8:8114/LIVES/Fsv_otype=1&FvSeid=&Fsv_filetype=mull&Fsv_chan_hls_se_idx=011&Provider_id=&Pcontent_id=index.m3u8"
-  },
-  {
-    "name": "吉林卫视",
-    "url": "http://39.135.36.157:18890/000000001000/6042486520432105075/1.m3u8?channel-id=ystenlive&Contentid=6042486520432105075&livemode=1&stbId=005203FF000360100001001A34C0CD33&userToken=bd8bb70bdb2b54bd84b587dffa024f7621vv&usergroup=g21077200000&version=1.0&owaccmark=6042486520432105075&owchid=ystenlive&owsid=1106497909461400661&AuthInfo=yOLXJswzZFfV3FvB8MhHuElKGJKLbU5H0jB3qAhfSE4zsyYJ9%2f94ZJUxUEiCPKz71GdIgOKPVNKAV5cZDiBiTfpeXwtOnUwYO06%2bu%2fL6TfF%2fffImHwCRpMFmrhzVqshX"
   },
   {
     "name": "甘肃卫视",
     "url": "http://stream.gstv.com.cn/gsws/sd/live.m3u8"
   },
   {
-    "name": "甘肃卫视",
-    "url": "http://118.123.60.8:8114/LIVES/Fsv_otype=1&FvSeid=&Fsv_filetype=mull&Fsv_chan_hls_se_idx=012&Provider_id=&Pcontent_id=index.m3u8"
-  },
-  {
     "name": "贵州卫视",
     "url": "http://118.123.60.8:8114/LIVES/Fsv_otype=1&FvSeid=&Fsv_filetype=mull&Fsv_chan_hls_se_idx=014&Provider_id=&Pcontent_id=index.m3u8"
-  },
-  {
-    "name": "贵州卫视",
-    "url": "http://39.135.36.145:18890/000000001000/1000000002000003169/1.m3u8?channel-id=ystenlive&Contentid=1000000002000003169&livemode=1&stbId=005203FF000360100001001A34C0CD33&userToken=bd8bb70bdb2b54bd84b587dffa024f7621vv&usergroup=g21077200000&version=1.0&owaccmark=1000000002000003169&owchid=ystenlive&owsid=1106497909461328035&AuthInfo=yOLXJswzZFfV3FvB8MhHuElKGJKLbU5H0jB3qAhfSE5oj7lZFbEKIj3xJcvQPkjhEobBU2fUvDIVr2YUAB3sQC3mtTDqCyM2IHfZcfgwbCVw3In3iCPMx3CBGKKivBM4"
   },
   {
     "name": "广西卫视",
     "url": "http://118.123.60.8:8114/LIVES/Fsv_otype=1&FvSeid=&Fsv_filetype=mull&Fsv_chan_hls_se_idx=015&Provider_id=&Pcontent_id=index.m3u8"
   },
   {
-    "name": "广西卫视",
-    "url": "http://39.135.36.158:18890/000000001000/1000000002000019837/1.m3u8?channel-id=ystenlive&Contentid=1000000002000019837&livemode=1&stbId=005203FF000360100001001A34C0CD33&userToken=bd8bb70bdb2b54bd84b587dffa024f7621vv&usergroup=g21077200000&version=1.0&owaccmark=1000000002000019837&owchid=ystenlive&owsid=1106497909461204271&AuthInfo=yOLXJswzZFfV3FvB8MhHuElKGJKLbU5H0jB3qAhfSE5oj7lZFbEKIj3xJcvQPkjhsj2zH%2fW8kf2eLOhwcRnwEP0%2bGJue26Xi8vK8GznvuoMqhqMjEnqzE06kO4aZ9KPy"
-  },
-  {
     "name": "青海卫视",
     "url": "http://118.123.60.8:8114/LIVES/Fsv_otype=1&FvSeid=&Fsv_filetype=mull&Fsv_chan_hls_se_idx=016&Provider_id=&Pcontent_id=index.m3u8"
   },
   {
-    "name": "青海卫视",
-    "url": "http://39.135.36.147:18890/000000001000/1000000002000013359/1.m3u8?channel-id=ystenlive&Contentid=1000000002000013359&livemode=1&stbId=005203FF000360100001001A34C0CD33&userToken=bd8bb70bdb2b54bd84b587dffa024f7621vv&usergroup=g21077200000&version=1.0&owaccmark=1000000002000013359&owchid=ystenlive&owsid=1106497909461374163&AuthInfo=yOLXJswzZFfV3FvB8MhHuElKGJKLbU5H0jB3qAhfSE5oj7lZFbEKIj3xJcvQPkjhJ4u8mZ9HohO4vJAcHWQKsu0WB2heV8z3%2bnCiQyrISnc%2fLQjwPdTUSlBahL%2bKNKpM"
-  },
-  {
     "name": "康巴卫视",
     "url": "http://118.123.60.8:8114/LIVES/Fsv_otype=1&FvSeid=&Fsv_filetype=mull&Fsv_chan_hls_se_idx=017&Provider_id=&Pcontent_id=index.m3u8"
-  },
-  {
-    "name": "西藏卫视",
-    "url": "http://118.123.60.8:8114/LIVES/Fsv_otype=1&FvSeid=&Fsv_filetype=mull&Fsv_chan_hls_se_idx=018&Provider_id=&Pcontent_id=index.m3u8"
-  },
-  {
-    "name": "西藏卫视",
-    "url": "http://39.135.36.141:18890/000000001000/6603041244077933770/1.m3u8?channel-id=ystenlive&Contentid=6603041244077933770&livemode=1&stbId=005203FF000360100001001A34C0CD33&userToken=bd8bb70bdb2b54bd84b587dffa024f7621vv&usergroup=g21077200000&version=1.0&owaccmark=6603041244077933770&owchid=ystenlive&owsid=1106497909461425998&AuthInfo=yOLXJswzZFfV3FvB8MhHuElKGJKLbU5H0jB3qAhfSE4rU4xzu091vKo8roYmr5h0BUDfpV78hsy2ysppzSDfUZCxoKss4LitbPhVYxcC0QN4CD2KiJutsirhMo3jfYAi"
   },
   {
     "name": "西藏卫视",
@@ -599,180 +192,64 @@
     "url": "http://118.123.60.8:8114/LIVES/Fsv_otype=1&FvSeid=&Fsv_filetype=mull&Fsv_chan_hls_se_idx=019&Provider_id=&Pcontent_id=index.m3u8"
   },
   {
-    "name": "河南卫视",
-    "url": "http://cctvtxyh5c.liveplay.myqcloud.com/wstv/henan_2/index.m3u8"
-  },
-  {
-    "name": "河南卫视",
-    "url": "http://live2.plus.hebtv.com/hnws/sd/live.m3u8"
-  },
-  {
     "name": "新疆卫视",
     "url": "http://118.123.60.6:8114/LIVES/Fsv_otype=1&FvSeid=&Fsv_filetype=mull&Fsv_chan_hls_se_idx=009&Provider_id=&Pcontent_id=index.m3u8"
-  },
-  {
-    "name": "新疆卫视",
-    "url": "http://39.135.36.146:18890/000000001000/1000000002000029441/1.m3u8?channel-id=ystenlive&Contentid=1000000002000029441&livemode=1&stbId=005203FF000360100001001A34C0CD33&userToken=bd8bb70bdb2b54bd84b587dffa024f7621vv&usergroup=g21077200000&version=1.0&owaccmark=1000000002000029441&owchid=ystenlive&owsid=1106497909461419044&AuthInfo=yOLXJswzZFfV3FvB8MhHuElKGJKLbU5H0jB3qAhfSE5oj7lZFbEKIj3xJcvQPkjh5I4MdhcP3Mp5W80M2R4dfnt8vf6miKZMTn2f0J2ZVbDi2MMl6qImE0%2bmFOeDvrFW"
-  },
-  {
-    "name": "江西卫视",
-    "url": "http://118.123.60.6:8114/LIVES/Fsv_otype=1&FvSeid=&Fsv_filetype=mull&Fsv_chan_hls_se_idx=010&Provider_id=&Pcontent_id=index.m3u8"
-  },
-  {
-    "name": "江西卫视",
-    "url": "http://39.135.36.158:18890/000000001000/1000000001000013731/1.m3u8?channel-id=ystenlive&Contentid=1000000001000013731&livemode=1&stbId=005203FF000360100001001A34C0CD33&userToken=bd8bb70bdb2b54bd84b587dffa024f7621vv&usergroup=g21077200000&version=1.0&owaccmark=1000000001000013731&owchid=ystenlive&owsid=1106497909461316198&AuthInfo=yOLXJswzZFfV3FvB8MhHuElKGJKLbU5H0jB3qAhfSE7AORAoVDZDWbFnJ0sXJEaRQxb4dqC07SZV%2bYcygMME6A9OMzcDPgMD6e%2f%2fHx5xyjuJRcCBeGZaKds6mdw4roN8"
-  },
-  {
-    "name": "陕西卫视",
-    "url": "http://stream.snrtv.com/sxtvs-star.m3u8"
-  },
-  {
-    "name": "陕西卫视",
-    "url": "http://118.123.60.6:8114/LIVES/Fsv_otype=1&FvSeid=&Fsv_filetype=mull&Fsv_chan_hls_se_idx=011&Provider_id=&Pcontent_id=index.m3u8"
   },
   {
     "name": "陕西卫视",
     "url": "http://118.123.60.12:8114/LIVES/Fsv_otype=1&FvSeid=&Fsv_filetype=mull&Fsv_chan_hls_se_idx=011&Provider_id=&Pcontent_id=index.m3u8"
   },
   {
-    "name": "陕西卫视",
-    "url": "http://39.135.36.139:18890/000000001000/1000000002000007495/1.m3u8?channel-id=ystenlive&Contentid=1000000002000007495&livemode=1&stbId=005203FF000360100001001A34C0CD33&userToken=bd8bb70bdb2b54bd84b587dffa024f7621vv&usergroup=g21077200000&version=1.0&owaccmark=1000000002000007495&owchid=ystenlive&owsid=1106497909461393057&AuthInfo=yOLXJswzZFfV3FvB8MhHuElKGJKLbU5H0jB3qAhfSE5oj7lZFbEKIj3xJcvQPkjhC1U23M2CL94H7Jl9UsXCcDV0kHzvpufT%2f4%2bgoUc31ou2LTka7qAY0hPTMutW5mQ%2b"
-  },
-  {
     "name": "甘肃卫视",
     "url": "http://118.123.60.6:8114/LIVES/Fsv_otype=1&FvSeid=&Fsv_filetype=mull&Fsv_chan_hls_se_idx=012&Provider_id=&Pcontent_id=index.m3u8"
-  },
-  {
-    "name": "甘肃卫视",
-    "url": "http://39.135.36.158:18890/000000001000/1000000002000017827/1.m3u8?channel-id=ystenlive&Contentid=1000000002000017827&livemode=1&stbId=005203FF000360100001001A34C0CD33&userToken=bd8bb70bdb2b54bd84b587dffa024f7621vv&usergroup=g21077200000&version=1.0&owaccmark=1000000002000017827&owchid=ystenlive&owsid=1106497909461366475&AuthInfo=yOLXJswzZFfV3FvB8MhHuElKGJKLbU5H0jB3qAhfSE5oj7lZFbEKIj3xJcvQPkjhA4sBZEsqnSa3KvsIaVI9wPS8Gj6lJe1Zo41ze%2fWmzecpyT4Tmxoc1paT1vcrQhVS"
   },
   {
     "name": "东南卫视",
     "url": "http://118.123.60.6:8114/LIVES/Fsv_otype=1&FvSeid=&Fsv_filetype=mull&Fsv_chan_hls_se_idx=013&Provider_id=&Pcontent_id=index.m3u8"
   },
   {
-    "name": "东南卫视",
-    "url": "http://118.123.60.12:8114/LIVES/Fsv_otype=1&FvSeid=&Fsv_filetype=mull&Fsv_chan_hls_se_idx=013&Provider_id=&Pcontent_id=index.m3u8"
-  },
-  {
-    "name": "东南卫视",
-    "url": "http://39.135.36.154:18890/000000001000/1000000002000009263/1.m3u8?channel-id=ystenlive&Contentid=1000000002000009263&livemode=1&stbId=005203FF000360100001001A34C0CD33&userToken=bd8bb70bdb2b54bd84b587dffa024f7621vv&usergroup=g21077200000&version=1.0&owaccmark=1000000002000009263&owchid=ystenlive&owsid=1106497909461310172&AuthInfo=yOLXJswzZFfV3FvB8MhHuElKGJKLbU5H0jB3qAhfSE5oj7lZFbEKIj3xJcvQPkjhM1XYZKCRYYY%2ff447%2bzETLijqfFgMTSA9x9T2lf3pyhagZIF%2fdE1lc49i65lODYA%2f"
-  },
-  {
-    "name": "贵州卫视",
-    "url": "http://live2.plus.hebtv.com/gzws/sd/live.m3u8"
-  },
-  {
     "name": "贵州卫视",
     "url": "http://118.123.60.6:8114/LIVES/Fsv_otype=1&FvSeid=&Fsv_filetype=mull&Fsv_chan_hls_se_idx=014&Provider_id=&Pcontent_id=index.m3u8"
-  },
-  {
-    "name": "贵州卫视",
-    "url": "http://39.135.36.145:18890/000000001000/1000000002000003169/1.m3u8?channel-id=ystenlive&Contentid=1000000002000003169&livemode=1&stbId=005203FF000360100001001A34C0CD33&userToken=bd8bb70bdb2b54bd84b587dffa024f7621vv&usergroup=g21077200000&version=1.0&owaccmark=1000000002000003169&owchid=ystenlive&owsid=1106497909461328035&AuthInfo=yOLXJswzZFfV3FvB8MhHuElKGJKLbU5H0jB3qAhfSE5oj7lZFbEKIj3xJcvQPkjhEobBU2fUvDIVr2YUAB3sQC3mtTDqCyM2IHfZcfgwbCVw3In3iCPMx3CBGKKivBM4"
-  },
-  {
-    "name": "河北卫视",
-    "url": "http://weblive.hebtv.com/live/hbwsbq_lc/index.m3u8"
   },
   {
     "name": "河北卫视",
     "url": "http://weblive.hebtv.com/live/hbws_bq/index.m3u8"
   },
   {
-    "name": "河北卫视",
-    "url": "http://weblive.hebtv.com/live/hbws_lc/index.m3u8"
-  },
-  {
-    "name": "河北卫视",
-    "url": "http://weblive.hebtv.com/live/hbwsbq_bq/index.m3u8"
-  },
-  {
-    "name": "河北卫视",
-    "url": "http://118.123.60.6:8114/LIVES/Fsv_otype=1&FvSeid=&Fsv_filetype=mull&Fsv_chan_hls_se_idx=015&Provider_id=&Pcontent_id=index.m3u8"
-  },
-  {
-    "name": "河北卫视",
-    "url": "http://39.135.36.146:18890/000000001000/1000000002000017118/1.m3u8?channel-id=ystenlive&Contentid=1000000002000017118&livemode=1&stbId=005203FF000360100001001A34C0CD33&userToken=bd8bb70bdb2b54bd84b587dffa024f7621vv&usergroup=g21077200000&version=1.0&owaccmark=1000000002000017118&owchid=ystenlive&owsid=1106497909461347463&AuthInfo=yOLXJswzZFfV3FvB8MhHuElKGJKLbU5H0jB3qAhfSE5oj7lZFbEKIj3xJcvQPkjhCqGL1zPomfLadkujcaGzSGdRg4tEgiolyrwzgikVtMZiTQsF6T0wJRw9axwi4LXY"
-  },
-  {
     "name": "青海卫视",
     "url": "http://118.123.60.6:8114/LIVES/Fsv_otype=1&FvSeid=&Fsv_filetype=mull&Fsv_chan_hls_se_idx=016&Provider_id=&Pcontent_id=index.m3u8"
-  },
-  {
-    "name": "青海卫视",
-    "url": "http://39.135.36.147:18890/000000001000/1000000002000013359/1.m3u8?channel-id=ystenlive&Contentid=1000000002000013359&livemode=1&stbId=005203FF000360100001001A34C0CD33&userToken=bd8bb70bdb2b54bd84b587dffa024f7621vv&usergroup=g21077200000&version=1.0&owaccmark=1000000002000013359&owchid=ystenlive&owsid=1106497909461374163&AuthInfo=yOLXJswzZFfV3FvB8MhHuElKGJKLbU5H0jB3qAhfSE5oj7lZFbEKIj3xJcvQPkjhJ4u8mZ9HohO4vJAcHWQKsu0WB2heV8z3%2bnCiQyrISnc%2fLQjwPdTUSlBahL%2bKNKpM"
   },
   {
     "name": "宁夏卫视",
     "url": "http://118.123.60.6:8114/LIVES/Fsv_otype=1&FvSeid=&Fsv_filetype=mull&Fsv_chan_hls_se_idx=017&Provider_id=&Pcontent_id=index.m3u8"
   },
   {
-    "name": "宁夏卫视",
-    "url": "http://39.135.36.150:18890/000000001000/1000000002000031451/1.m3u8?channel-id=ystenlive&Contentid=1000000002000031451&livemode=1&stbId=005203FF000360100001001A34C0CD33&userToken=bd8bb70bdb2b54bd84b587dffa024f7621vv&usergroup=g21077200000&version=1.0&owaccmark=1000000002000031451&owchid=ystenlive&owsid=1106497909461406396&AuthInfo=yOLXJswzZFfV3FvB8MhHuElKGJKLbU5H0jB3qAhfSE5oj7lZFbEKIj3xJcvQPkjhdYL5WAeBmY961KZAiDk7oIQRwL3YBarKlFU8QNIToCi96iZhaB6NBJIISIjQ00jB"
-  },
-  {
     "name": "西藏卫视",
     "url": "http://118.123.60.6:8114/LIVES/Fsv_otype=1&FvSeid=&Fsv_filetype=mull&Fsv_chan_hls_se_idx=018&Provider_id=&Pcontent_id=index.m3u8"
-  },
-  {
-    "name": "西藏卫视",
-    "url": "http://39.135.36.141:18890/000000001000/6603041244077933770/1.m3u8?channel-id=ystenlive&Contentid=6603041244077933770&livemode=1&stbId=005203FF000360100001001A34C0CD33&userToken=bd8bb70bdb2b54bd84b587dffa024f7621vv&usergroup=g21077200000&version=1.0&owaccmark=6603041244077933770&owchid=ystenlive&owsid=1106497909461425998&AuthInfo=yOLXJswzZFfV3FvB8MhHuElKGJKLbU5H0jB3qAhfSE4rU4xzu091vKo8roYmr5h0BUDfpV78hsy2ysppzSDfUZCxoKss4LitbPhVYxcC0QN4CD2KiJutsirhMo3jfYAi"
   },
   {
     "name": "山西卫视",
     "url": "http://118.123.60.12:8114/LIVES/Fsv_otype=1&FvSeid=&Fsv_filetype=mull&Fsv_chan_hls_se_idx=010&Provider_id=&Pcontent_id=index.m3u8"
   },
   {
-    "name": "山西卫视",
-    "url": "http://39.135.36.150:18890/000000001000/1000000002000021220/1.m3u8?channel-id=ystenlive&Contentid=1000000002000021220&livemode=1&stbId=005203FF000360100001001A34C0CD33&userToken=bd8bb70bdb2b54bd84b587dffa024f7621vv&usergroup=g21077200000&version=1.0&owaccmark=1000000002000021220&owchid=ystenlive&owsid=1106497909461381684&AuthInfo=yOLXJswzZFfV3FvB8MhHuElKGJKLbU5H0jB3qAhfSE5oj7lZFbEKIj3xJcvQPkjhBGE2Bozg3VsjEsUfSwW1u%2f9d7qakC2cNwU6d3XLtivLzsKwupm4i1w5mp8nPnKP8"
-  },
-  {
     "name": "旅游卫视",
     "url": "http://118.123.60.12:8114/LIVES/Fsv_otype=1&FvSeid=&Fsv_filetype=mull&Fsv_chan_hls_se_idx=014&Provider_id=&Pcontent_id=index.m3u8"
-  },
-  {
-    "name": "河北卫视",
-    "url": "http://118.123.60.12:8114/LIVES/Fsv_otype=1&FvSeid=&Fsv_filetype=mull&Fsv_chan_hls_se_idx=015&Provider_id=&Pcontent_id=index.m3u8"
-  },
-  {
-    "name": "河北卫视",
-    "url": "http://39.135.36.146:18890/000000001000/1000000002000017118/1.m3u8?channel-id=ystenlive&Contentid=1000000002000017118&livemode=1&stbId=005203FF000360100001001A34C0CD33&userToken=bd8bb70bdb2b54bd84b587dffa024f7621vv&usergroup=g21077200000&version=1.0&owaccmark=1000000002000017118&owchid=ystenlive&owsid=1106497909461347463&AuthInfo=yOLXJswzZFfV3FvB8MhHuElKGJKLbU5H0jB3qAhfSE5oj7lZFbEKIj3xJcvQPkjhCqGL1zPomfLadkujcaGzSGdRg4tEgiolyrwzgikVtMZiTQsF6T0wJRw9axwi4LXY"
   },
   {
     "name": "内蒙古卫视",
     "url": "http://118.123.60.12:8114/LIVES/Fsv_otype=1&FvSeid=&Fsv_filetype=mull&Fsv_chan_hls_se_idx=016&Provider_id=&Pcontent_id=index.m3u8"
   },
   {
-    "name": "内蒙古卫视",
-    "url": "http://39.135.36.138:18890/000000001000/1000000002000014080/1.m3u8?channel-id=ystenlive&Contentid=1000000002000014080&livemode=1&stbId=005203FF000360100001001A34C0CD33&userToken=bd8bb70bdb2b54bd84b587dffa024f7621vv&usergroup=g21077200000&version=1.0&owaccmark=1000000002000014080&owchid=ystenlive&owsid=1106497909461412819&AuthInfo=yOLXJswzZFfV3FvB8MhHuElKGJKLbU5H0jB3qAhfSE5oj7lZFbEKIj3xJcvQPkjhN3VZo%2fq60rUnbic%2fTx5hxEUA%2fCrpP4GEvV3vfXDDDKv4OC8OhxCTOd9DFYTiOuf7"
-  },
-  {
     "name": "广东体育",
     "url": "http://116.199.5.52:8114/00000000/index.m3u8?&Fsv_ctype=LIVES&Fsv_otype=1&FvSeid=5abd1660af1babb4&Fsv_filetype=1&Fsv_ctype=LIVES&Fsv_cid=0&Fsv_chan_hls_se_idx=20&Fsv_rate_id=0&Fsv_SV_PARAM1=0&Fsv_ShiftEnable=0&Fsv_ShiftTsp=0&Provider_id=&Pcontent_id=&Fsv_CMSID=&Fsv_otype=1"
-  },
-  {
-    "name": "珠江卫视",
-    "url": "http://39.135.36.151:18890/000000001000/1000000004000011655/1.m3u8?channel-id=ystenlive&Contentid=1000000004000011655&livemode=1&stbId=005203FF000360100001001A34C0CD33&userToken=bd8bb70bdb2b54bd84b587dffa024f7621vv&usergroup=g21077200000&version=1.0&owaccmark=1000000004000011655&owchid=ystenlive&owsid=1106497909461268935&AuthInfo=yOLXJswzZFfV3FvB8MhHuElKGJKLbU5H0jB3qAhfSE4vNKx96%2bA3ppi2THlI0VlIDxwgnRBxQnnbWKTW8MTwvyEFUHTa6diXnUM1ACyB1BC6aNBSsOM3YI3qaHRRxYZp"
   },
   {
     "name": "南方卫视TVS2",
     "url": "http://nclive.grtn.cn/tvs2/sd/live.m3u8"
   },
   {
-    "name": "南方卫视",
-    "url": "http://39.135.36.155:18890/000000001000/1000000002000011619/1.m3u8?channel-id=ystenlive&Contentid=1000000002000011619&livemode=1&stbId=005203FF000360100001001A34C0CD33&userToken=bd8bb70bdb2b54bd84b587dffa024f7621vv&usergroup=g21077200000&version=1.0&owaccmark=1000000002000011619&owchid=ystenlive&owsid=1106497909461277024&AuthInfo=yOLXJswzZFfV3FvB8MhHuElKGJKLbU5H0jB3qAhfSE5oj7lZFbEKIj3xJcvQPkjhqSWAN1gOHXiNCpzkzcaOmsTwp2DyZ40cRRIhpnuB%2bW%2b75qTM61EOp0nB4FGyoQIk"
-  },
-  {
     "name": "厦门卫视",
     "url": "http://183.207.249.11/PLTV/2/224/3221226093/2.m3u8"
-  },
-  {
-    "name": "厦门卫视",
-    "url": "http://183.207.249.11/PLTV/2/224/3221226093/1.m3u8"
-  },
-  {
-    "name": "上海五星体育",
-    "url": "http://livejs.newsjs.net/sports/sd/live.m3u8"
   },
   {
     "name": "上海教育",
@@ -787,27 +264,15 @@
     "url": "http://183.207.249.9/PLTV/2/224/3221226045/index.m3u8"
   },
   {
-    "name": "东方电影 高清",
-    "url": "http://sousou2.top/dl/migu.php?id=623674834"
-  },
-  {
-    "name": "珠江电影",
-    "url": "http://116.199.5.52:8114/hls/Fsv_chan_hls_se_idx=7&FvSeid=1&Fsv_ctype=LIVES&Fsv_otype=1&Provider_id=0&Pcontent_id=8114.m3u8"
-  },
-  {
     "name": "珠江电影",
     "url": "http://116.199.5.52:8114/00000000/index.m3u8?&Fsv_ctype=LIVES&Fsv_otype=1&FvSeid=5abd1660af1babb4&Fsv_filetype=1&Fsv_ctype=LIVES&Fsv_cid=0&Fsv_chan_hls_se_idx=7&Fsv_rate_id=0&Fsv_SV_PARAM1=0&Fsv_ShiftEnable=0&Fsv_ShiftTsp=0&Provider_id=&Pcontent_id=&Fsv_CMSID=&Fsv_otype=1"
   },
   {
-    "name": "河北影视 标清",
+    "name": "河北影视",
     "url": "http://weblive.hebtv.com/live/hbys_bq/index.m3u8"
   },
   {
     "name": "峨眉电影HD",
     "url": "http://scgctvshow.sctv.com/hdlive/emei/1.m3u8"
-  },
-  {
-    "name": "湖南电影",
-    "url": "http://124.232.231.246:6610/000000001001/201600020005/1400.m3u8?zte_auth=ae0fcdac&ztecid=201600020005&version=v1.0&IASHttpSessionId=SLB2046220190906022827233263&AuthInfo=LPjne9%2Bz7%2B%2F905ByFWbN5McknogfJXrVwjUFLaeEL29vpHGrk2l%2FUHYgN1aASj376oO1xLnnHQM%2BvUxQhm38dnHm1eSuY7vi6YzamvW6l8OtgHpq%2BKs%2Bl9QddsFpnz4k.m3u8level=2&terminal_flag=0&ispcode=8"
   }
 ]

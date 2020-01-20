@@ -2,8 +2,13 @@ package com.king.player.view.fragment;
 
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.SparseArray;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.SimpleAdapter;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProviders;
@@ -14,14 +19,20 @@ import com.king.mobile.util.ToastUtil;
 import com.king.mobile.widget.BaseDialog;
 import com.king.mobile.widget.TitleBar;
 import com.king.player.R;
+import com.king.player.adapter.MyAdapter;
 import com.king.player.model.VideoInfo;
+import com.king.player.model.VideoType;
 import com.king.player.viewmodel.VideoViewModel;
+
+import io.reactivex.functions.Consumer;
 
 public class VideoInfoDialog extends BaseDialog {
     private VideoViewModel vvm;
     private EditText mEtName;
     private EditText mEtUrl;
     private TitleBar titleBar;
+    private Spinner mType;
+    private View mRootView;
 
     private VideoInfoDialog() {
     }
@@ -53,9 +64,9 @@ public class VideoInfoDialog extends BaseDialog {
 
     @Override
     protected void initView(View mRootView) {
-        this.setCancelable(false);
+        this.mRootView = mRootView;
+        setCancelable(true);
         vvm = ViewModelProviders.of(this).get(VideoViewModel.class);
-
         titleBar = mRootView.findViewById(R.id.title_bar);
         titleBar.setTitle("视频信息")
                 .immersive(this, false)
@@ -66,6 +77,12 @@ public class VideoInfoDialog extends BaseDialog {
                 .invalidate();
         mEtName = mRootView.findViewById(R.id.et_name);
         mEtUrl = mRootView.findViewById(R.id.et_url);
+        mType = mRootView.findViewById(R.id.spinner);
+        String[] allType = VideoType.getTypeArray();
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(mActivity, R.layout.item_type, allType);
+        adapter.setDropDownViewResource(R.layout.item_drop_down);
+        mType.setAdapter(adapter);
+
     }
 
     @Override
@@ -88,18 +105,17 @@ public class VideoInfoDialog extends BaseDialog {
         videoInfo.url = url;
         videoInfo.name = name;
         videoInfo.createTime = System.currentTimeMillis() / 1000;
-        vvm.insert(videoInfo, new Callback() {
-            @Override
-            public void onResult(Object reuslt) {
-                Snackbar.make(titleBar, "添加成功！", Snackbar.LENGTH_SHORT).show();
-                dismiss();
-            }
+        vvm.insert(videoInfo).subscribe(this::onSuccess, this::onError);
+    }
 
-            @Override
-            public void onError(Object reuslt) {
-                Snackbar.make(titleBar, "添加失败！", Snackbar.LENGTH_SHORT).show();
-            }
-        });
+    private void onError(Throwable e) {
+        Snackbar.make(mRootView, "创建视频出错", Snackbar.LENGTH_SHORT).show();
+    }
 
+    private void onSuccess(Boolean next) {
+        ToastUtil.show(next ? "创建成功" : "地址已存在");
+        mEtName.setText("");
+        mEtUrl.setText("");
+        dismiss();
     }
 }

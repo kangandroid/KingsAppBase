@@ -38,6 +38,7 @@ public class RecordManagerFragment extends BaseFragment {
         recentList.addItemDecoration(decorV);
         adapter = new RecentVideoListAdapter(getContext());
         recentList.setAdapter(adapter);
+        avRecent.setOnClickListener(v->new ScreenCastFragment().cast(getFragmentManager()));
 
     }
 }

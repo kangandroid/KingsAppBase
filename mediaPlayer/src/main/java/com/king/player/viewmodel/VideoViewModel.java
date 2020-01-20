@@ -11,10 +11,14 @@ import com.king.player.model.VideoInfo;
 
 import java.util.List;
 
+import io.reactivex.Observable;
+import io.reactivex.Single;
+
 public class VideoViewModel extends AndroidViewModel {
     private VideoRepository repository;
     private LiveData<List<VideoInfo>> localVideoList;
     private LiveData<List<VideoInfo>> remoteVideoList;
+    private LiveData<List<VideoInfo>> liveTVList;
 
 
     public VideoViewModel(Application application) {
@@ -22,6 +26,7 @@ public class VideoViewModel extends AndroidViewModel {
         repository = new VideoRepository(application);
         localVideoList = repository.getLocalVideo();
         remoteVideoList = repository.getRemoteVideo();
+        liveTVList = repository.getLiveTV();
     }
 
     public LiveData<List<VideoInfo>> getLocalVideoList() {
@@ -32,8 +37,16 @@ public class VideoViewModel extends AndroidViewModel {
         return remoteVideoList;
     }
 
+    public LiveData<List<VideoInfo>> getLiveTVList() {
+        return liveTVList;
+    }
+
     public void loadLocalVideo() {
         repository.loadLocalVideo();
+    }
+
+    public void loadLiveTv() {
+        repository.loadLiveTv();
     }
 
     public void updateVideoInfo(VideoInfo videoInfo) {
@@ -42,6 +55,10 @@ public class VideoViewModel extends AndroidViewModel {
 
     public void insert(VideoInfo videoInfo, Callback callback) {
         repository.insert(videoInfo, callback);
+    }
+
+    public Single<Boolean> insert(VideoInfo videoInfo) {
+        return repository.insert(videoInfo);
     }
 
     public void delete(VideoInfo videoInfo) {

@@ -1,12 +1,18 @@
 package com.king.mobile.widget;
 
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.text.TextUtils;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import com.king.mobile.base.BaseApplication;
 import com.king.mobile.util.R;
+import com.king.mobile.util.ScreenUtils;
 
 public class CommonDialog extends BaseDialog {
 
@@ -18,6 +24,8 @@ public class CommonDialog extends BaseDialog {
     private TextView cancel;
     private TextView confirm;
     private FrameLayout flContent;
+    private int screenWidth = ScreenUtils.getScreenWidth(BaseApplication.getContext());
+    private int marginHorizental = 40;
 
     @Override
     protected int setLayoutId() {
@@ -26,6 +34,12 @@ public class CommonDialog extends BaseDialog {
 
     public CommonDialog() {
         dialogPosition = DIALOG_NORMAL;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        mWindow.setLayout(screenWidth - 2 * marginHorizental , ViewGroup.LayoutParams.WRAP_CONTENT);
     }
 
     @Override

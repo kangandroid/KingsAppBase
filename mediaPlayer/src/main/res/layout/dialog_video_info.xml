@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/white"
     android:paddingBottom="30dp">
 
     <com.king.mobile.widget.TitleBar
@@ -14,9 +15,10 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginVertical="8dp"
         android:background="@color/white"
-        android:gravity="center"
+        android:gravity="start"
         android:orientation="horizontal">
 
         <TextView
@@ -24,10 +26,11 @@
             android:layout_height="wrap_content"
             android:text="@string/name"
             android:textColor="@color/textBlack"
-            android:textSize="16sp" />
+            android:textSize="14sp" />
 
         <EditText
             android:id="@+id/et_name"
+            android:textSize="14sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_et"
@@ -42,9 +45,10 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginVertical="8dp"
         android:background="@color/white"
-        android:gravity="center"
+        android:gravity="start"
         android:orientation="horizontal">
 
         <TextView
@@ -52,7 +56,8 @@
             android:layout_height="wrap_content"
             android:text="@string/url"
             android:textColor="@color/textBlack"
-            android:textSize="16sp" />
+            android:textSize="14sp"
+            />
 
         <EditText
             android:id="@+id/et_url"
@@ -60,11 +65,35 @@
             android:layout_height="wrap_content"
             android:background="@drawable/bg_et"
             android:hint="@string/url_input_hit"
-            android:inputType="textUri"
+            android:inputType="textUri|textMultiLine"
             android:padding="8dp"
+            android:textSize="14sp"
             android:textColor="@color/textBlack"
             android:textColorHint="@color/textGray" />
 
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginVertical="8dp"
+        android:background="@color/white"
+        android:gravity="start"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/type"
+            android:textColor="@color/textBlack"
+            android:textSize="14sp" />
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+
 
 </LinearLayout>

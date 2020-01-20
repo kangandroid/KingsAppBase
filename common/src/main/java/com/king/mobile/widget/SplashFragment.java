@@ -17,7 +17,7 @@ public class SplashFragment extends BaseDialog {
     private SplashFragment() {
     }
 
-    private static SplashFragment getInstance() {
+    public static SplashFragment getInstance() {
         return InstanceHolder.instance;
     }
 

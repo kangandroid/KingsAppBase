@@ -3,6 +3,7 @@ package com.king.mobile.widget;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -16,6 +17,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
 import com.gyf.immersionbar.ImmersionBar;
+import com.king.mobile.util.KeyboardUtil;
+import com.king.mobile.util.Loker;
 import com.king.mobile.util.R;
 
 public abstract class BaseDialog extends DialogFragment {
@@ -29,7 +32,7 @@ public abstract class BaseDialog extends DialogFragment {
     protected String dialogPosition = DIALOG_POSITION_FULL_SCREEN;
     protected int height = ViewGroup.LayoutParams.WRAP_CONTENT;
     protected Activity mActivity;
-    private Window mWindow;
+    protected Window mWindow;
     private View mRootView;
 
     @Override
@@ -61,7 +64,7 @@ public abstract class BaseDialog extends DialogFragment {
         }
     }
 
-    private int getAnimation() {
+    protected int getAnimation() {
         switch (dialogPosition) {
             case DIALOG_POSITION_BOTTOM:
                 return R.style.BottomAnimation;
@@ -117,4 +120,12 @@ public abstract class BaseDialog extends DialogFragment {
         //全屏
         setStyle(DialogFragment.STYLE_NORMAL, R.style.MyDialog);
     }
+
+
+    @Override
+    public void onDismiss(@NonNull DialogInterface dialog) {
+        super.onDismiss(dialog);
+        KeyboardUtil.hideKeyboard(mRootView);
+    }
+
 }

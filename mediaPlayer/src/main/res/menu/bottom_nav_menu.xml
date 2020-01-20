@@ -10,6 +10,10 @@
         android:id="@+id/remote_video"
         android:icon="@drawable/ic_bottom_nav_remote"
         android:title="@string/remote_video" />
+    <item
+        android:id="@+id/live_tv"
+        android:icon="@drawable/ic_live_tv"
+        android:title="@string/live_tv" />
 
     <item
         android:id="@+id/record_manage"

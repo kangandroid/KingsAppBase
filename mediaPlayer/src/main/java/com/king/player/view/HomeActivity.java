@@ -14,6 +14,7 @@ import com.king.mobile.base.BaseActivity;
 import com.king.mobile.util.ToastUtil;
 import com.king.mobile.widget.TitleBar;
 import com.king.player.R;
+import com.king.player.view.fragment.LiveTVFragment;
 import com.king.player.view.fragment.LocalVideoFragment;
 import com.king.player.view.fragment.RecordManagerFragment;
 import com.king.player.view.fragment.RemoteVideoFragment;
@@ -42,6 +43,8 @@ public class HomeActivity extends BaseActivity {
             v -> {
 
             });
+    private TitleBar.Action actionSync = new TitleBar.Action(null, R.drawable.ic_loop,
+            v -> videoViewModel.loadLiveTv());
 
     private ViewPager vpContent;
     private BottomNavigationView bnmv;
@@ -63,8 +66,15 @@ public class HomeActivity extends BaseActivity {
                         .setTitle("网络视频")
                         .invalidate();
                 break;
-            case R.id.record_manage:
+            case R.id.live_tv:
                 vpContent.setCurrentItem(2, true);
+                titleBar.setRightAction(actionSync)
+                        .setLeftAction(null)
+                        .setTitle("电视直播")
+                        .invalidate();
+                break;
+            case R.id.record_manage:
+                vpContent.setCurrentItem(3, true);
                 titleBar.setRightAction(null)
                         .setLeftAction(actionSetting)
                         .setTitle("视频管理")
@@ -89,6 +99,9 @@ public class HomeActivity extends BaseActivity {
                     bnmv.setSelectedItemId(R.id.remote_video);
                     break;
                 case 2:
+                    bnmv.setSelectedItemId(R.id.live_tv);
+                    break;
+                case 3:
                     bnmv.setSelectedItemId(R.id.record_manage);
                     break;
             }
@@ -128,6 +141,7 @@ public class HomeActivity extends BaseActivity {
         fragmentList = new ArrayList<>();
         fragmentList.add(new LocalVideoFragment());
         fragmentList.add(new RemoteVideoFragment());
+        fragmentList.add(new LiveTVFragment());
         fragmentList.add(new RecordManagerFragment());
         vpContent = findViewById(R.id.vp_content);
         FragmentManager fm = getSupportFragmentManager();

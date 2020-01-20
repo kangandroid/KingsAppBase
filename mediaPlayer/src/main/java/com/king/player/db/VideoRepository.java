@@ -6,17 +6,30 @@ import android.content.Context;
 import androidx.lifecycle.LiveData;
 
 import com.king.mobile.component.Callback;
+import com.king.mobile.util.AssetsUtil;
 import com.king.mobile.util.Executor;
+import com.king.mobile.util.JSONUtil;
+import com.king.mobile.util.Loker;
+import com.king.player.datasource.AssetDataSource;
 import com.king.player.datasource.LocalVideoSource;
 import com.king.player.datasource.VideoDao;
 import com.king.player.model.VideoInfo;
 
+import org.fourthline.cling.support.model.DIDLObject;
+
+import java.io.IOException;
 import java.util.List;
+
+import io.reactivex.Observable;
+import io.reactivex.Single;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 
 public class VideoRepository {
     private VideoDao videoDao;
     private LiveData<List<VideoInfo>> mVideos;
-    private LiveData<List<VideoInfo>> remoteVideoss;
+    private LiveData<List<VideoInfo>> remoteVideos;
+    private LiveData<List<VideoInfo>> liveTV;
     private Application app;
 
     public VideoRepository(Application application) {
@@ -24,7 +37,8 @@ public class VideoRepository {
         AppDatabase db = AppDatabase.getDatabase(application);
         videoDao = db.videoDao();
         mVideos = videoDao.findLocal();
-        remoteVideoss = videoDao.findRemote();
+        remoteVideos = videoDao.findRemote();
+        liveTV = videoDao.findAllTV();
     }
 
     public LiveData<List<VideoInfo>> getLocalVideo() {
@@ -32,7 +46,7 @@ public class VideoRepository {
     }
 
     public LiveData<List<VideoInfo>> getRemoteVideo() {
-        return remoteVideoss;
+        return remoteVideos;
     }
 
     public void insert(VideoInfo videoInfo, final Callback callback) {
@@ -52,6 +66,26 @@ public class VideoRepository {
         });
     }
 
+    public Single<Boolean> insert(VideoInfo videoInfo) {
+        Loker.d("----------insert--------------");
+        return Single.just(videoInfo)
+                .subscribeOn(Schedulers.newThread())
+                .map(this::insertVideoSync)
+                .observeOn(AndroidSchedulers.mainThread());
+
+    }
+
+    private Boolean insertVideoSync(VideoInfo videoInfo) {
+        Loker.d("----------insertVideoSync--------------");
+        VideoInfo video = videoDao.findOneByUrl(videoInfo.url);
+        if (video == null) {
+            videoDao.insert(videoInfo);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public void delete(VideoInfo videoInfo) {
         Executor.getInstance().execute(() -> videoDao.deleteVideo(videoInfo));
     }
@@ -68,9 +102,23 @@ public class VideoRepository {
         });
     }
 
+    public void loadLiveTv() {
+        Executor.getInstance().execute(() -> {
+            Context context = app.getApplicationContext();
+            videoDao.deleteLiveTv();
+            List<VideoInfo> videoInfos = new AssetDataSource(context).getVideos();
+            if (videoInfos != null && videoInfos.size() > 0) {
+                videoDao.insertAll(videoInfos);
+            }
+        });
+    }
+
     public void updateVideoInfo(VideoInfo videoInfo) {
         Executor.getInstance().execute(() -> videoDao.update(videoInfo));
     }
 
 
+    public LiveData<List<VideoInfo>> getLiveTV() {
+        return liveTV;
+    }
 }

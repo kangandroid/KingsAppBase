@@ -1,4 +1,4 @@
-include ':app', ':downloadlib',
+include ':app', ':downloadlib', ':keling',
         ':mediaPlayer',
 //        ':camera',
         ':common', ':immersionbar', ':immersionbar-components', ':nesp-cling'

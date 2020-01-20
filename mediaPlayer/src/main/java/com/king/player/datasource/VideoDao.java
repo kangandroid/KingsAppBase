@@ -83,7 +83,16 @@ public interface VideoDao {
     /**
      * @return
      */
-    @Query("select * from tab_videos where local_id is null")
+    @Query("select * from tab_videos where local_id is null and type != 2")
     LiveData<List<VideoInfo>> findRemote();
 
+    /**
+     * 查询直播台
+     * @return
+     */
+    @Query("select * from tab_videos where type = 2 ")
+    LiveData<List<VideoInfo>> findAllTV();
+
+    @Query("delete from tab_videos where type = 2 ")
+    void deleteLiveTv();
 }

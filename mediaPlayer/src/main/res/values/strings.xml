@@ -19,4 +19,7 @@
     <string name="name_input_hint">请输入视频名称</string>
     <string name="url">URL：</string>
     <string name="url_input_hit">请输入视频链接</string>
+    <string name="title_device_list">设备列表</string>
+    <string name="live_tv">电视直播</string>
+    <string name="type">类型：</string>
 </resources>

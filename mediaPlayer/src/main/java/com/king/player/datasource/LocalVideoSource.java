@@ -44,7 +44,7 @@ public class LocalVideoSource {
                 info.name = name;
                 info.localId = id;
                 info.url = data;
-                info.type = type;
+                info.type = 0;
                 info.size = size;
                 info.createTime = System.currentTimeMillis() / 1000;
                 info.dateAdded = addDate;
