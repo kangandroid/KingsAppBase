@@ -33,7 +33,10 @@ public class LiveTVFragment extends BaseListFragment {
         recyclerView.setLayoutManager(new GridLayoutManager(activity, 2));
         adapter = new LiveTVListAdapter(activity);
         recyclerView.setAdapter(adapter);
-        adapter.setOnItemClickLitener((videoInfo, view, position) -> play(videoInfo));
+        adapter.setOnItemClickLitener((videoInfo, view, position) -> {
+//            play(videoInfo);
+            new ScreenCastFragment(videoInfo).cast(getFragmentManager());
+        });
         videoViewModel.getLiveTVList().observe(this, list -> adapter.setData(list));
     }
 

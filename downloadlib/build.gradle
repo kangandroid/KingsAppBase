@@ -47,6 +47,7 @@ dependencies {
     implementation 'com.squareup.okhttp3:logging-interceptor:3.9.0'
     // optional - Guava support for Room, including Optional and ListenableFuture
     // implementation "androidx.room:room-guava:$room_version"
+    implementation 'org.greenrobot:eventbus:3.1.1'
 
     // Test helpers
     testImplementation "androidx.room:room-testing:$room_version"

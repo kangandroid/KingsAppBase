@@ -16,6 +16,7 @@ import org.fourthline.cling.android.AndroidRouter;
 import org.fourthline.cling.android.AndroidUpnpService;
 import org.fourthline.cling.controlpoint.ControlPoint;
 import org.fourthline.cling.model.meta.Device;
+import org.fourthline.cling.model.meta.RemoteDevice;
 import org.fourthline.cling.registry.Registry;
 import org.fourthline.cling.transport.Router;
 
@@ -38,13 +39,11 @@ public class DevicesManager {
 
 
         public void onServiceConnected(ComponentName className, IBinder service) {
-            Loker.d("DevicesManager ======= onServiceConnected");
             if (service instanceof AndroidUpnpService) { // 连接
-                Loker.d("DevicesManager ======= instanceof AndroidUpnpService");
                 upnpService = ((AndroidUpnpService) service).get();
                 Router router = upnpService.getRouter();
-                if ( router instanceof AndroidRouter){
-                     androidRouter = (AndroidRouter) router;
+                if (router instanceof AndroidRouter) {
+                    androidRouter = (AndroidRouter) router;
                 }
                 controlPoint = upnpService.getControlPoint();
                 Registry registry = upnpService.getRegistry();
@@ -58,6 +57,7 @@ public class DevicesManager {
             upnpService = null;
         }
     };
+    private List<Device> devices;
 
     public MutableLiveData<Device> getLinkedDevice() {
         return linkedDevice;
@@ -75,6 +75,19 @@ public class DevicesManager {
         deviceList = new MutableLiveData<>();
     }
 
+    public void addDevice(RemoteDevice device) {
+        if (!devices.contains(device)) {
+            devices.add(device);
+            deviceList.postValue(devices);
+        }
+    }
+
+    public void removeDevice(RemoteDevice device) {
+        if (devices.contains(device)) {
+            devices.remove(device);
+        }
+    }
+
     private static class InstanceHolder {
         private static DevicesManager instance = new DevicesManager();
     }
@@ -84,40 +97,51 @@ public class DevicesManager {
     }
 
     private void getDevices(Registry registry) {
-        Loker.d("getDevices =======");
-        List<Device> deviceArrayList = new ArrayList<>();
+        devices = new ArrayList<>();
         Collection<Device> devices = registry.getDevices();
-        Loker.d("devices size ======="+ devices.size());
         Iterator<Device> iterator = devices.iterator();
-        while (iterator.hasNext()){
+        while (iterator.hasNext()) {
             Device device = iterator.next();
-            deviceArrayList.add(device);
-            Loker.d("device.getDisplayString =======" + device.getDisplayString());
+            this.devices.add(device);
         }
-        deviceList.postValue(deviceArrayList);
+        deviceList.postValue(this.devices);
     }
 
     public boolean isConnected() {
         return upnpService != null;
     }
 
-    public void cast(Device device) {
+    public void setDevice(Device device) {
         if (isConnected()) {
             playController = new PlayController(controlPoint, device);
-            playController.play("1");
         }
         linkedDevice.postValue(device);
     }
 
-    public PlayController getPlayControler() {
-        return playController;
+
+    public PlayController getPlayController() {
+        if (isConnected() && playController != null) {
+            return playController;
+        } else {
+            return null;
+        }
     }
 
+    /**
+     * 绑定服务
+     *
+     * @param activity
+     */
     public void bindService(FragmentActivity activity) {
         Intent intent = new Intent(activity, UpnpClient.class);
         activity.bindService(intent, upnpConnection, Context.BIND_AUTO_CREATE);
     }
 
+    /**
+     * 解绑服务
+     *
+     * @param activity
+     */
     public void shutDown(FragmentActivity activity) {
         if (upnpService != null) {
             activity.unbindService(upnpConnection);

@@ -45,6 +45,9 @@ public class DevicesListFragment extends BaseDialog {
         DevicesManager dm = DevicesManager.getInstance();
         DeviceViewModel dmv = ViewModelProviders.of(this).get(DeviceViewModel.class);
         dmv.getDeviceList().observe(this, adapter::setData);
-        adapter.setOnItemClickLitener((device, view, i) -> dm.cast(device));
+        adapter.setOnItemClickLitener((device, view, i) -> {
+            dm.setDevice(device);
+            dismiss();
+        });
     }
 }

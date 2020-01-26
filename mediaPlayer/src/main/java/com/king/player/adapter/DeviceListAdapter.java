@@ -40,11 +40,12 @@ public class DeviceListAdapter extends BaseListAdapter<Device> {
 
         @Override
         protected void bindView(Device bean, int position, Context context) {
-            name.setText(bean.getDisplayString());
-            PlayController pc = DevicesManager.getInstance().getPlayControler();
+            name.setText(bean.getDetails().getFriendlyName());
+            PlayController pc = DevicesManager.getInstance().getPlayController();
             if (pc != null) {
                 Device device = pc.getDevice();
-                if (bean.getIdentity().equals(device.getIdentity())) {
+                String connectDeviceName = device.getDetails().getFriendlyName();
+                if (connectDeviceName.equals(bean.getDetails().getFriendlyName())) {
                     ivLinked.setVisibility(View.VISIBLE);
                 } else {
                     ivLinked.setVisibility(View.INVISIBLE);

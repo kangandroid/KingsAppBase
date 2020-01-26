@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/speed_selector"
+    android:layout_width="260dp"
+    android:layout_height="80dp"
+    android:padding="10dp"
+    android:background="@drawable/bg_speed_selector"
+    android:orientation="horizontal">
+
+    <RadioButton
+        android:id="@+id/speed_1x"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:button="@null"
+        android:checked="true"
+        android:gravity="center"
+        android:text="1X"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="18dp" />
+
+    <RadioButton
+        android:id="@+id/speed_1.2x"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:button="@null"
+        android:checked="false"
+        android:gravity="center"
+        android:text="1.2X"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="18dp" />
+
+    <RadioButton
+        android:id="@+id/speed_1.5x"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:button="@null"
+        android:checked="true"
+        android:gravity="center"
+        android:text="1.5X"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="18dp" />
+
+    <RadioButton
+        android:id="@+id/speed_2x"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:button="@null"
+        android:checked="true"
+        android:gravity="center"
+        android:text="2X"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="18dp" />
+
+</RadioGroup>

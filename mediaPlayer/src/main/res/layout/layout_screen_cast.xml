@@ -12,7 +12,7 @@
         android:background="@color/colorPrimaryDark">
 
         <TextView
-            android:id="@+id/device_name"
+            android:id="@+id/state_desc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -22,13 +22,13 @@
             android:textSize="18sp" />
 
         <TextView
-            android:id="@+id/state_desc"
+            android:id="@+id/device_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="16dp"
-            android:textColor="@color/white"
             android:text="搜索投屏设备"
+            android:textColor="@color/white"
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -39,8 +39,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:layout_marginBottom="20dp"
-            android:max="110"
-            android:progress="30" />
+            android:max="1"
+            android:progress="0" />
     </FrameLayout>
 
     <LinearLayout
@@ -51,18 +51,30 @@
         android:gravity="center"
         android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/action_control"
+
+        <ImageView
+            android:id="@+id/play_control"
             android:layout_width="100dp"
-            android:textColor="@color/white"
             android:layout_height="36dp"
+            android:layout_marginHorizontal="1dp"
             android:background="@drawable/bg_action_left"
+            android:paddingLeft="10dp"
+            android:scaleType="center"
+            android:src="@drawable/ic_play" />
+
+        <TextView
+            android:id="@+id/speed"
+            android:layout_width="60dp"
+            android:layout_height="36dp"
+            android:background="@color/colorPrimaryDark"
             android:gravity="center"
-            android:text="1080P" />
+            android:text="1X"
+            android:textColor="@color/white"
+            android:textSize="16dp" />
 
         <ImageView
             android:id="@+id/exit"
-            android:layout_width="80dp"
+            android:layout_width="60dp"
             android:layout_height="36dp"
             android:layout_marginHorizontal="1dp"
             android:background="@color/colorPrimaryDark"
@@ -72,11 +84,11 @@
         <TextView
             android:id="@+id/change_device"
             android:layout_width="100dp"
-            android:textColor="@color/white"
             android:layout_height="36dp"
             android:background="@drawable/bg_action_right"
             android:gravity="center"
-            android:text="换设备" />
+            android:text="换设备"
+            android:textColor="@color/white" />
 
     </LinearLayout>
 

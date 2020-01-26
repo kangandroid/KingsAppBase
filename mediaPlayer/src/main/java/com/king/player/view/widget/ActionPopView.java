@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.king.mobile.downloadlib.DownloadManager;
 import com.king.mobile.util.ColorUtil;
 import com.king.mobile.widget.CommonDialog;
 import com.king.mobile.widget.CommonPop;
@@ -51,6 +52,7 @@ public class ActionPopView extends CommonPop {
         } else {
             throw new RuntimeException("context is not activity");
         }
+
         editContent = LayoutInflater.from(mContext).inflate(R.layout.dialog_edit, null);
         etName = editContent.findViewById(R.id.et_name);
         etDesc = editContent.findViewById(R.id.et_desc);
@@ -67,6 +69,12 @@ public class ActionPopView extends CommonPop {
     protected void initView(View view) {
         view.findViewById(R.id.action_edit).setOnClickListener(v -> showEditDialog());
         view.findViewById(R.id.action_delete).setOnClickListener(v -> showDeleteDialog());
+        view.findViewById(R.id.action_download).setOnClickListener(v -> download());
+    }
+
+    private void download() {
+        DownloadManager instance = DownloadManager.Companion.getInstance();
+        instance.download(videoInfo.url);
     }
 
 

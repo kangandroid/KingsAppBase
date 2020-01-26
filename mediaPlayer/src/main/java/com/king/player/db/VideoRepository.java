@@ -6,21 +6,15 @@ import android.content.Context;
 import androidx.lifecycle.LiveData;
 
 import com.king.mobile.component.Callback;
-import com.king.mobile.util.AssetsUtil;
 import com.king.mobile.util.Executor;
-import com.king.mobile.util.JSONUtil;
 import com.king.mobile.util.Loker;
 import com.king.player.datasource.AssetDataSource;
 import com.king.player.datasource.LocalVideoSource;
 import com.king.player.datasource.VideoDao;
 import com.king.player.model.VideoInfo;
 
-import org.fourthline.cling.support.model.DIDLObject;
-
-import java.io.IOException;
 import java.util.List;
 
-import io.reactivex.Observable;
 import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;

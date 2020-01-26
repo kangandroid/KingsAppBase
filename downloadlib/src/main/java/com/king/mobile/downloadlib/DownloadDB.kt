@@ -5,11 +5,12 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = arrayOf(Task::class), version = 1, exportSchema = false)
+@Database(entities = arrayOf(Task::class, ThreadTask::class), version = 1, exportSchema = false)
 abstract class DownloadDB : RoomDatabase() {
 
 
     abstract fun taskDao(): TaskDao
+    abstract fun threadTaskDao(): ThreadTaskDao
 
     companion object {
         lateinit var INSTANCE: DownloadDB

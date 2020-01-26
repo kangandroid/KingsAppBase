@@ -4,13 +4,13 @@ import java.io.File
 import java.io.RandomAccessFile
 
 class DownThread(tTask: ThreadTask, task: Task) : Runnable {
-    var frequency = 500 // 更新进度频率
+    private var frequency = 500 // 更新进度频率
     val task = task
     val tTask = tTask
-    lateinit var listener: Listener
+    private lateinit var listener: Listener
     override fun run() {
-        val realStart = tTask.start + tTask.fineshed
-        val end = tTask.start + tTask.size
+        val realStart = tTask.start + tTask.finished
+        val end = tTask.start + tTask.finished
         val response = OkhttpHelper.doRequestRange(task.url, realStart, end)
         if (response.code == 206) {
             val file = File(task.path)
@@ -23,7 +23,7 @@ class DownThread(tTask: ThreadTask, task: Task) : Runnable {
             var time = System.currentTimeMillis()
             while (inputStream!!.read(buf).also { len = it } != -1) {
                 raf.write(buf, 0, len)
-                tTask.fineshed += len.toLong()
+                tTask.finished += len.toLong()
                 val ll: Long = System.currentTimeMillis() - time
                 if (ll > frequency) {
                     time = System.currentTimeMillis()

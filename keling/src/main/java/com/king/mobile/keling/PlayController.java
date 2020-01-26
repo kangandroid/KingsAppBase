@@ -7,24 +7,19 @@ import org.fourthline.cling.model.action.ActionInvocation;
 import org.fourthline.cling.model.message.UpnpResponse;
 import org.fourthline.cling.model.meta.Device;
 import org.fourthline.cling.model.meta.Service;
-import org.fourthline.cling.model.types.DeviceType;
-import org.fourthline.cling.model.types.ServiceType;
-import org.fourthline.cling.model.types.UDADeviceType;
 import org.fourthline.cling.model.types.UDAServiceType;
 import org.fourthline.cling.support.avtransport.callback.Pause;
 import org.fourthline.cling.support.avtransport.callback.Play;
 import org.fourthline.cling.support.avtransport.callback.Seek;
+import org.fourthline.cling.support.avtransport.callback.SetAVTransportURI;
 import org.fourthline.cling.support.avtransport.callback.Stop;
 import org.fourthline.cling.support.renderingcontrol.callback.SetMute;
 import org.fourthline.cling.support.renderingcontrol.callback.SetVolume;
 
 public class PlayController {
-    //    public static final ServiceType ContentDirectory_ST = new UDAServiceType("ContentDirectory");
     /**
      * 控制服务
      */
-    public static final ServiceType RenderingControl_ST = new UDAServiceType("RenderingControl");
-    public static final DeviceType MediaRenderer_DT = new UDADeviceType("MediaRenderer");
     private ControlPoint mCp;
     private Service avTransportService;
     private Service renderingControlService;
@@ -39,15 +34,17 @@ public class PlayController {
         renderingControlService = device.findService(renderingControl);
     }
 
+
     /**
      * 断开
      */
     public void stop() {
-        mCp.execute(new Stop(renderingControlService) {
+        mCp.execute(new Stop(avTransportService) {
             @Override
             public void failure(ActionInvocation invocation, UpnpResponse operation, String defaultMsg) {
 
             }
+
         });
     }
 
@@ -56,6 +53,25 @@ public class PlayController {
      */
     public void play(String speed) {
         mCp.execute(new Play(avTransportService, speed) {
+
+            @Override
+            public void failure(ActionInvocation invocation, UpnpResponse operation, String defaultMsg) {
+                Loker.e(defaultMsg);
+            }
+
+            @Override
+            public void success(ActionInvocation invocation) {
+                super.success(invocation);
+            }
+        });
+    }
+
+    /**
+     * 设置播放源
+     */
+    public void setSource(String url) {
+
+        mCp.execute(new SetAVTransportURI(avTransportService, url) {
 
             @Override
             public void failure(ActionInvocation invocation, UpnpResponse operation, String defaultMsg) {
@@ -110,7 +126,10 @@ public class PlayController {
         });
     }
 
-
+    /**
+     * 暂停
+     * @param device
+     */
     public void pause(Device device) {
         mCp.execute(new Pause(renderingControlService) {
             @Override
