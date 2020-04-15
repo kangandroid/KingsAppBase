@@ -22,7 +22,7 @@
                 android:id="@+id/action_edit"
                 android:layout_width="60dp"
                 android:layout_height="36dp"
-                android:drawableLeft="@drawable/ic_edit"
+                android:drawableStart="@drawable/ic_edit"
                 android:gravity="center"
                 android:text="@string/edit"
                 android:textAlignment="center"
@@ -38,12 +38,13 @@
                 android:id="@+id/action_delete"
                 android:layout_width="60dp"
                 android:layout_height="36dp"
-                android:drawableLeft="@drawable/ic_delete_sweep"
+                android:drawableStart="@drawable/ic_delete_sweep"
                 android:gravity="center"
                 android:text="@string/delete"
                 android:textAlignment="center"
                 android:textColor="@color/textBlack"
                 android:textSize="14sp" />
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
@@ -53,9 +54,9 @@
                 android:id="@+id/action_download"
                 android:layout_width="60dp"
                 android:layout_height="36dp"
-                android:drawableLeft="@drawable/ic_file_download"
+                android:drawableStart="@drawable/ic_file_download"
                 android:gravity="center"
-                android:text="@string/delete"
+                android:text="@string/download"
                 android:textAlignment="center"
                 android:textColor="@color/textBlack"
                 android:textSize="14sp" />

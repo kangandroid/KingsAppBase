@@ -86,10 +86,9 @@ public class VideoRepository {
 
     public void loadLocalVideo() {
         Executor.getInstance().execute(() -> {
+            videoDao.deleteLocal();
             Context context = app.getApplicationContext();
             List<VideoInfo> videoList = new LocalVideoSource(context).getVideoList();
-            List<VideoInfo> local = videoDao.findLocalList();
-            videoList.removeAll(local);
             if (videoList.size() > 0) {
                 videoDao.insertAll(videoList);
             }

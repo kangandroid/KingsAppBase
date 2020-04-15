@@ -2,7 +2,6 @@ package com.king.player.adapter;
 
 import android.content.Context;
 import android.text.TextUtils;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -10,7 +9,6 @@ import android.widget.TextView;
 import com.king.mobile.base.BaseListAdapter;
 import com.king.mobile.util.BindLayout;
 import com.king.mobile.util.ImageUtil;
-import com.king.mobile.widget.CommonDialog;
 import com.king.player.R;
 import com.king.player.model.VideoInfo;
 import com.king.player.view.widget.ActionPopView;

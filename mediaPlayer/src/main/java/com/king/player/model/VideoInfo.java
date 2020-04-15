@@ -45,9 +45,11 @@ public class VideoInfo implements Serializable {
     public int privacy;
 
     @ColumnInfo(name = "duration")
-    public int duration; // 秒
+    public long duration; // 秒
+    @ColumnInfo(name = "position")
+    public long position; // 播放位置
     @ColumnInfo(name = "progress")
-    public int progress; // 秒
+    public int progress; //
     @ColumnInfo(name = "latest_play_time")
     public long latestPlayTime;
     @ColumnInfo(name = "speed")// 秒

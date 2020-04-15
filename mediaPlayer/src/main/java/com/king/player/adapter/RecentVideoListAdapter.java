@@ -43,8 +43,8 @@ public class RecentVideoListAdapter extends BaseListAdapter<VideoInfo> {
         protected void bindView(VideoInfo bean, int position, Context context) {
             ImageUtil.loadCover(ivIcon, bean.url);
             tvName.setText(bean.name);
-            progressBar.setMax(bean.duration);
-            progressBar.setProgress(bean.progress);
+            progressBar.setMax(bean.progress);
+            progressBar.setProgress(100);
         }
     }
 }

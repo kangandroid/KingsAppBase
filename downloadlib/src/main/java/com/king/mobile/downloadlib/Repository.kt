@@ -5,7 +5,7 @@ import java.util.HashMap
 
 class Repository(context: Context) {
 
-    var db: DownloadDB = DownloadDB.getDatabase(context)!!
+    var db: DownloadDB = DownloadDB.getDatabase(context)
     val taskDao = this.db.taskDao()
     val threadDao = this.db.threadTaskDao()
 

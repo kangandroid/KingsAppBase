@@ -6,25 +6,32 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.ImageView;
 
-import com.king.mobile.util.Loker;
+import com.king.mobile.util.ImageUtil;
 import com.king.mobile.util.ToastUtil;
-import com.king.mobile.widget.TitleBar;
 import com.king.player.R;
 import com.king.player.model.VideoInfo;
 import com.shuyu.gsyvideoplayer.GSYBaseActivityDetail;
 import com.shuyu.gsyvideoplayer.GSYVideoManager;
 import com.shuyu.gsyvideoplayer.builder.GSYVideoOptionBuilder;
+import com.shuyu.gsyvideoplayer.listener.GSYVideoProgressListener;
 import com.shuyu.gsyvideoplayer.video.StandardGSYVideoPlayer;
 
 import java.io.Serializable;
+import java.util.HashMap;
 
-import static com.king.mobile.util.ImageUtil.loadCover;
 
 public class PlayerActivity extends GSYBaseActivityDetail<StandardGSYVideoPlayer> {
 
     private StandardGSYVideoPlayer detailPlayer;
     private String url;
-    private TitleBar titleBar;
+    private VideoInfo videoInfo;
+
+    private GSYVideoProgressListener progressListener = (progress, secProgress, currentPosition, duration) -> {
+        videoInfo.duration = duration; // 总时长
+        videoInfo.latestPlayTime = System.currentTimeMillis() / 1000; // 当前播放时长
+        videoInfo.position = currentPosition; // 当前播放时长
+        videoInfo.progress = progress;
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,21 +40,13 @@ public class PlayerActivity extends GSYBaseActivityDetail<StandardGSYVideoPlayer
         Intent intent = getIntent();
         Serializable extra = intent.getSerializableExtra("videoInfo");
         if (extra instanceof VideoInfo) {
-            VideoInfo videoInfo = (VideoInfo) extra;
-            String title = videoInfo.name;
+            videoInfo = (VideoInfo) extra;
             if (TextUtils.isEmpty(videoInfo.localPath)) {
                 url = videoInfo.url;
             } else {
                 url = videoInfo.localPath;
             }
             detailPlayer = findViewById(R.id.detail_player);
-            Loker.d("title ====== " +title);
-            titleBar = findViewById(R.id.title_bar);
-            titleBar.setTitleTextColor(R.color.textWhite)
-                    .setTitle(title)
-                    .setLeftAction(TitleBar.ACTION_BACK_DARK)
-                    .setTitleBarColorRes(R.color.transparent)
-                    .invalidate();
             initVideoBuilderMode();
         } else {
             ToastUtil.show("视频信息出错");
@@ -90,17 +89,29 @@ public class PlayerActivity extends GSYBaseActivityDetail<StandardGSYVideoPlayer
     public GSYVideoOptionBuilder getGSYVideoOptionBuilder() {
         //内置封面可参考SampleCoverVideo
         ImageView imageView = new ImageView(this);
-        loadCover(imageView, url);
+        ImageUtil.loadCover(imageView, url);
+        HashMap<String, String> mapHeadData = new HashMap<>(); // 视频请求头地址 例如：authority
         return new GSYVideoOptionBuilder()
-                .setThumbImageView(imageView)
-                .setUrl(url)
-                .setCacheWithPlay(true)
-                .setVideoTitle(" ")
-                .setIsTouchWiget(true)
+                .setThumbImageView(imageView) // 缩略图
+                .setUrl(url) // 播放地址
+                .setAutoFullWithSize(true) // 自动全屏
+//                .setBottomProgressBarDrawable(getResources().getDrawable(R.drawable.progress_bar))
+                .setCacheWithPlay(true) // 是否缓存
+                .setVideoTitle(videoInfo.name) // 标题
+                .setIsTouchWiget(true) //
+                .setSeekRatio(0.3f)
+                .setSeekOnStart(0) // 设置开始播放的位置
                 .setRotateViewAuto(false)
+                .setStartAfterPrepared(true) // 准备完成后自动播放
+                .setMapHeadData(mapHeadData)
                 .setLockLand(false)
                 .setShowFullAnimation(false)
                 .setNeedLockFull(true)
+                .setVideoAllCallBack(this)
+                .setFullHideActionBar(true)
+                .setShrinkImageRes(R.drawable.ic_fullscreen_exit)
+                .setEnlargeImageRes(R.drawable.ic_fullscreen)
+                .setGSYVideoProgressListener(progressListener)
                 .setSeekRatio(1);
     }
 
@@ -109,8 +120,16 @@ public class PlayerActivity extends GSYBaseActivityDetail<StandardGSYVideoPlayer
 
     }
 
+
     @Override
     public boolean getDetailOrientationRotateAuto() {
         return true;
+    }
+
+    @Override
+    public void onPlayError(String url, Object... objects) {
+        super.onPlayError(url, objects);
+        // 播放出错时
+
     }
 }
