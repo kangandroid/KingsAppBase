@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import com.king.mobile.base.BaseApplication
 import com.king.mobile.downloadlib.DownThread.Listener
 import com.king.mobile.util.Executor
+import com.king.mobile.util.Loker
 import okhttp3.Response
 import java.io.File
 import java.util.*
@@ -27,7 +28,6 @@ class DownloadManager(context: Context) : Listener {
         val tasks = repository.getAllTask()
         val tTasks = repository.getAllTreadTask()
         tTasksMap = repository.getThreadTasksMap()
-
     }
 
     private val THREAD_TASK_MAX_SIZE = 10 * 1024 * 1024L
@@ -91,7 +91,7 @@ class DownloadManager(context: Context) : Listener {
         } else if (tTasksMap.size < taskCount) { // 正在下载数还未满
             Executor.getInstance().execute {
                 val url = task.url
-                val response: Response = OkhttpHelper.doRequest(url)
+                val response: Response = OkHttpHelper.doRequest(url)
                 var size = response.body?.contentLength() ?: -1
                 if (response.code == 200 && size > 0) { // 可以下载
                     val dir = File(DOWNLOAD_DIR)
@@ -183,6 +183,8 @@ class DownloadManager(context: Context) : Listener {
 
     fun download(url: String) {
         val task = createTask(url)
-//        start(task)
+        if (task != null) start(task) else {
+            Loker.d("---------------task == null")
+        }
     }
 }

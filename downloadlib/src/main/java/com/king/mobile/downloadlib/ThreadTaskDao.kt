@@ -11,7 +11,7 @@ interface ThreadTaskDao {
     @Query("SELECT distinct(url) FROM TAB_THREAD_TASK")
     fun getAllDownloadingTask(): List<String>  // 查处正在下载的任务
 
-    @Query("SELECT * FROM TAB_TASK WHERE id = :id LIMIT 1")
+    @Query("SELECT * FROM TAB_THREAD_TASK WHERE id = :id LIMIT 1")
     fun findById(id: Long): ThreadTask  // 查找具体某一个线程任务
 
     @Query("SELECT * FROM TAB_THREAD_TASK WHERE url = :url")

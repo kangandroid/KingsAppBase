@@ -19,6 +19,7 @@ public class BaseApplication extends Application {
         super.onCreate();
         mContext = getBaseContext();
         ScreenAdapter.init(360);
+        this.registerActivityLifecycleCallbacks(AppWatcher.getInstance());
         Log.e(getPackageName(), "BaseApplication---------BaseApplication");
     }
 

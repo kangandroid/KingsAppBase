@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.king.mobile.downloadlib.DownloadManager;
 import com.king.mobile.util.ColorUtil;
+import com.king.mobile.util.Executor;
 import com.king.mobile.widget.CommonDialog;
 import com.king.mobile.widget.CommonPop;
 import com.king.player.R;
@@ -69,7 +70,7 @@ public class ActionPopView extends CommonPop {
     protected void initView(View view) {
         view.findViewById(R.id.action_edit).setOnClickListener(v -> showEditDialog());
         view.findViewById(R.id.action_delete).setOnClickListener(v -> showDeleteDialog());
-        view.findViewById(R.id.action_download).setOnClickListener(v -> download());
+        view.findViewById(R.id.action_download).setOnClickListener(v -> Executor.getInstance().execute(this::download));
     }
 
     private void download() {

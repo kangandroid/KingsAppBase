@@ -2,8 +2,15 @@ package com.king.mobile.cptprocessor;
 
 import com.google.auto.service.AutoService;
 import com.king.mobile.component.Component;
+import com.squareup.javapoet.ClassName;
+import com.squareup.javapoet.JavaFile;
+import com.squareup.javapoet.MethodSpec;
+import com.squareup.javapoet.ParameterizedTypeName;
+import com.squareup.javapoet.TypeSpec;
 
+import java.io.IOException;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
@@ -17,12 +24,11 @@ import javax.annotation.processing.RoundEnvironment;
 import javax.lang.model.SourceVersion;
 import javax.lang.model.element.Element;
 import javax.lang.model.element.ElementKind;
-import javax.lang.model.element.Name;
+import javax.lang.model.element.Modifier;
 import javax.lang.model.element.TypeElement;
-import javax.lang.model.type.TypeMirror;
 import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
-import javax.tools.Diagnostic;
+
 
 
 @AutoService(Processor.class) // 用来生成META-INF/services/javax.annotation.processing.Processor文件的
@@ -37,58 +43,64 @@ public class ComponentProcessor extends AbstractProcessor {
     @Override
     public synchronized void init(ProcessingEnvironment processingEnv) {
         super.init(processingEnv);
+        filer = processingEnv.getFiler();
         typeUtils = processingEnv.getTypeUtils();
         elementUtils = processingEnv.getElementUtils();
-        filer = processingEnv.getFiler();
         messager = processingEnv.getMessager();
     }
 
     @Override
     public boolean process(Set<? extends TypeElement> set, RoundEnvironment roundEnvironment) {
         Set<? extends Element> elements = roundEnvironment.getElementsAnnotatedWith(Component.class);
-        for (Element element : elements) {
-            if (element.getKind() != ElementKind.CLASS) {
-                error(element, "Only classes can be annotated with @%s", Component.class.getSimpleName());
-                return true;
-            }
-            TypeElement typeElement = (TypeElement) element;
-            try {
-                ComponentAnnotatedClass aClass = new ComponentAnnotatedClass(typeElement);
-                if (!isValidClass(aClass)) {
-                    return true;
-                }
-                ComponentAnnotatedClass annotatedClass = componentClasses.get(aClass.name);
-                if (annotatedClass == null) {
-                    componentClasses.put(aClass.name, aClass);
-                }
+        MethodSpec methodSpec = getMethodFromElements(elements);
+        TypeSpec clazz = createClassWithMethod(methodSpec);
+        writeClassToFile(clazz);
+        return true;
+    }
 
-
-            } catch (IllegalArgumentException e) {
-                error(typeElement, e.getLocalizedMessage());
-                return true;
-            }
-
+    private void writeClassToFile(TypeSpec clazz) {
+        JavaFile file = JavaFile.builder("com.king.mobile.testapp.apt", clazz).build();
+        try {
+            file.writeTo(filer);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        return true;
     }
 
-    private boolean isValidClass(ComponentAnnotatedClass item) {
-        TypeElement classElement = item.annotatedClassElement;
-        Class<? extends Name> aClass = classElement.getSimpleName().getClass();
-        messager.printMessage(Diagnostic.Kind.NOTE, aClass.getCanonicalName());
-        return true;
+    private TypeSpec createClassWithMethod(MethodSpec method) {
+        TypeSpec.Builder ourClass = TypeSpec.classBuilder("ComponentManager");
+        ourClass.addModifiers(Modifier.PUBLIC);
+        ourClass.addJavadoc("auto generate class ~\n\n @author ${user name}");
+        ourClass.addMethod(method);
+        return null;
     }
 
-    private void error(Element e, String msg, Object... args) {
-        messager.printMessage(
-                Diagnostic.Kind.ERROR,
-                String.format(msg, args),
-                e);
+    private MethodSpec getMethodFromElements(Set<? extends Element> elements) {
+        MethodSpec.Builder builder = MethodSpec.methodBuilder("getAllClasses");
+        builder.addModifiers(Modifier.PUBLIC, Modifier.STATIC);
+        ParameterizedTypeName returnType = ParameterizedTypeName.get(
+                ClassName.get(Set.class),
+                ClassName.get(Class.class)
+        );
+        builder.returns(returnType);
+        //  "$T" 是占位符，代表一个类型，可以自动 import 包。其它占位符：
+        // $L: 字符(Literals)、 $S: 字符串(String)、 $N: 命名(Names)
+        builder.addStatement("$T<$T> set = new $T<>();", Set.class,Class.class, HashSet.class);
+        for (Element element: elements){
+            ElementKind kind = element.getKind();
+            if(kind.isClass()){
+                builder.addStatement("set.add($T.class);", element.asType());
+            }
+        }
+        builder.addStatement("return set;");
+        builder.addModifiers();
+        return builder.build();
     }
+
 
     @Override
     public Set<String> getSupportedAnnotationTypes() {
-        Set<String> types = Collections.emptySet();
+        Set<String> types = new java.util.HashSet<>(Collections.emptySet());
         types.add(Component.class.getCanonicalName());
         return types;
     }

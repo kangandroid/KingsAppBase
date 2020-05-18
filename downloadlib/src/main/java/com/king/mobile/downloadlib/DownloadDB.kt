@@ -7,36 +7,21 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 @Database(entities = [Task::class, ThreadTask::class], version = 1, exportSchema = false)
 abstract class DownloadDB : RoomDatabase() {
 
-
     abstract fun taskDao(): TaskDao
 
     abstract fun threadTaskDao(): ThreadTaskDao
 
     companion object {
-
         private var instance: DownloadDB? = null
-//        @Synchronized
-//        fun get(context: Context): CheeseDb {
-//            if (instance == null) {
-//                instance = Room.databaseBuilder(context.applicationContext,
-//                        CheeseDb::class.java, "CheeseDatabase")
-//                        .addCallback(object : RoomDatabase.Callback() {
-//                            override fun onCreate(db: SupportSQLiteDatabase) {
-//                                fillInDb(context.applicationContext)
-//                            }
-//                        }).build()
-//            }
-//            return instance!!
-//        }
         @Synchronized
         fun getDatabase(context: Context): DownloadDB {
             if (instance == null) {
                 instance = Room.databaseBuilder(context.applicationContext,DownloadDB::class.java, "Download_DB")
-//                        .addCallback(object : RoomDatabase.Callback() {
-//                            override fun onCreate(db: SupportSQLiteDatabase) {
-//                                initData(context.applicationContext)
-//                            }
-//                        })
+                        .addCallback(object : RoomDatabase.Callback() {
+                            override fun onCreate(db: SupportSQLiteDatabase) {
+                                initData(context.applicationContext)
+                            }
+                        })
                         .build()
             }
             return instance as DownloadDB

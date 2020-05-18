@@ -4,10 +4,10 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "TAB_TASK")
+@Entity(tableName = "TAB_TASK", primaryKeys = ["id","url"])
 data class Task(
-        @PrimaryKey(autoGenerate = true) val id: Long,
-        @PrimaryKey val url: String,
+        @ColumnInfo val id: Long,
+        @ColumnInfo val url: String,
         @ColumnInfo var name: String?,
         @ColumnInfo var path: String?,
         @ColumnInfo var size: Long,

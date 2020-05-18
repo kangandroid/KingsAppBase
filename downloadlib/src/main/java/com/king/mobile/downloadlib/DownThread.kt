@@ -11,7 +11,7 @@ class DownThread(tTask: ThreadTask, task: Task) : Runnable {
     override fun run() {
         val realStart = tTask.start + tTask.finished
         val end = tTask.start + tTask.finished
-        val response = OkhttpHelper.doRequestRange(task.url, realStart, end)
+        val response = OkHttpHelper.doRequestRange(task.url, realStart, end)
         if (response.code == 206) {
             val file = File(task.path)
             var raf = RandomAccessFile(file, "rwd")

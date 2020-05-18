@@ -70,5 +70,9 @@ public abstract class BaseFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
     }
 
+    protected void initView(){
+
+    }
+
 
 }

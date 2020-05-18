@@ -1,18 +1,15 @@
 package com.king.mobile.cptprocessor;
 
 import com.king.mobile.component.Component;
-
 import javax.lang.model.element.TypeElement;
-import javax.lang.model.type.DeclaredType;
-import javax.lang.model.type.MirroredTypeException;
 
-public class ComponentAnnotatedClass {
-    public TypeElement annotatedClassElement;
-    public String name;
-    public String type;
-    public String params;
+class ComponentAnnotatedClass {
+    TypeElement annotatedClassElement;
+    String name;
+    private String type;
+    private String params;
 
-    public ComponentAnnotatedClass(TypeElement classElement) throws IllegalArgumentException {
+    ComponentAnnotatedClass(TypeElement classElement) throws IllegalArgumentException {
         this.annotatedClassElement = classElement;
         Component component = classElement.getAnnotation(Component.class);
         name = component.name();
@@ -38,16 +35,5 @@ public class ComponentAnnotatedClass {
                             Component.class.getSimpleName(), classElement.getQualifiedName().toString()));
         }
 
-//      try{
-//            String clazz = component.type();
-//            qualifiedSuperClassName = clazz.getCanonicalName();
-//            simpleTypeName = clazz.getSimpleName();
-//     } catch (MirroredTypeException mte) {
-//            DeclaredType classTypeMirror = (DeclaredType) mte.getTypeMirror();
-//            TypeElement classTypeElement = (TypeElement) classTypeMirror.asElement();
-//            qualifiedSuperClassName = classTypeElement.getQualifiedName().toString();
-//            simpleTypeName = classTypeElement.getSimpleName().toString();
-//
-//       }
     }
 }
