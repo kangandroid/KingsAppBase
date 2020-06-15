@@ -31,3 +31,16 @@
 
 ###7. Android dalvik虚拟机和Art虚拟机的优化升级点
 
+
+###8. Android 系统启动过程
+
+
+###9. Activity 启动过程
+
+
+###10. AMS
+
+###11. WMS
+
+
+
