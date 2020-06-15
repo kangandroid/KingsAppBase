@@ -52,7 +52,6 @@ public class ScreenAdapter {
      */
     public static void restoreDensity(Context context) {
         context.getResources().getDisplayMetrics().setToDefaults();
-
         DisplayMetrics metrics = getMetricsOnMiui(context.getResources());
         if (metrics != null)
             metrics.setToDefaults();
