@@ -1,6 +1,7 @@
 package com.king.player;
 
 
+import com.king.mobile.base.AppWatcher;
 import com.king.mobile.base.BaseApplication;
 
 public class App extends BaseApplication {
@@ -8,4 +9,6 @@ public class App extends BaseApplication {
     public void onCreate() {
         super.onCreate();
     }
+
+
 }

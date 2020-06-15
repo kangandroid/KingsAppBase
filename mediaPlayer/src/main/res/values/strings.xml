@@ -1,10 +1,26 @@
 <resources>
-    <string name="app_name">PLAYER</string>
-        <string name="player_activity_name">Media player</string>
-        <string name="media_url_mp3">http://storage.googleapis.com/exoplayer-test-media-0/play.mp3</string>
-        <string name="media_url_mp4">http://vjs.zencdn.net/v/oceans.mp4</string>
-        <string name="media_url_mp4_1">https://media.w3.org/2010/05/sintel/trailer.mp4</string>
-        <string name="media_url_mp4_2">http://mirror.aarnet.edu.au/pub/TED-talks/911Mothers_2010W-480p.mp4</string>
-        <string name="media_url_dash"><![CDATA[http://www.youtube.com/api/manifest/dash/id/bf5bb2419360daf1/source/youtube?as=fmp4_audio_clear,fmp4_sd_hd_clear&sparams=ip,ipbits,expire,source,id,as&ip=0.0.0.0&ipbits=0&expire=19000000000&signature=51AF5F39AB0CEC3E5497CD9C900EBFEAECCCB5C7.8506521BFC350652163895D4C26DEE124209AA9E&key=ik0]]></string>
-        <string name="logo">Google logo</string>
+    <string name="app_name">Free播放器</string>
+    <string name="local_video">本地视频</string>
+    <string name="record">记录管理</string>
+    <string name="remote_video">网络视频</string>
+    <string name="download_manager">下载管理</string>
+    <string name="latest_play">最近播放</string>
+    <string name="device_name">设备名称</string>
+    <string name="video_sample">{"name": "庆余年"}</string>
+    <string name="video_Collection_sample">{"name": "庆余年"}</string>
+    <string name="app_desc">懂你的的播放器</string>
+    <string name="skip">跳过</string>
+    <string name="permission_deny">授权失败</string>
+    <string name="more">更多</string>
+    <string name="delete">删除</string>
+    <string name="edit">编辑</string>
+    <string name="name">名称：</string>
+    <string name="desc">描述：</string>
+    <string name="name_input_hint">请输入视频名称</string>
+    <string name="url">URL：</string>
+    <string name="url_input_hit">请输入视频链接</string>
+    <string name="title_device_list">设备列表</string>
+    <string name="live_tv">电视直播</string>
+    <string name="type">类型：</string>
+    <string name="download">下载</string>
 </resources>

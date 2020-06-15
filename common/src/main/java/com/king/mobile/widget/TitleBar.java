@@ -1,5 +1,6 @@
 package com.king.mobile.widget;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
@@ -17,10 +18,13 @@ import androidx.annotation.ColorRes;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
+import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.Fragment;
 
+import com.gyf.immersionbar.ImmersionBar;
 import com.king.mobile.util.ColorUtil;
 import com.king.mobile.util.R;
-import com.king.mobile.util.ScreenUtils;
 
 public class TitleBar extends LinearLayout {
     private Context mContext;
@@ -33,7 +37,6 @@ public class TitleBar extends LinearLayout {
     private ImageView iconLeft;
     private ImageView iconRight;
 
-    private View stateBarPlaceholder;
     private String mTitle;
     @ColorInt
     private int bacgroundColor;
@@ -43,6 +46,21 @@ public class TitleBar extends LinearLayout {
     private Action rightAction;
     private ImageView imageBg;
     private Drawable gradientBg;
+
+    public static Action ACTION_BACK_DARK;
+    public static Action ACTION_BACK_LIGHT;
+
+    static {
+        OnClickListener onClickListener = v -> {
+            Context context = v.getContext();
+            if (context == null) return;
+            if (context instanceof Activity) {
+                ((Activity) context).onBackPressed();
+            }
+        };
+        ACTION_BACK_DARK = new Action("", R.drawable.ic_back_white, onClickListener);
+        ACTION_BACK_LIGHT = new Action("", R.drawable.ic_back_black, onClickListener);
+    }
 
     public TitleBar(Context context) {
         this(context, null);
@@ -55,11 +73,6 @@ public class TitleBar extends LinearLayout {
     public TitleBar(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         mContext = context;
-        this.setOrientation(VERTICAL);
-        int statusBarHeight = ScreenUtils.getStatusBarHeight(context);
-        stateBarPlaceholder = new View(context);
-        this.addView(stateBarPlaceholder, 0);
-        stateBarPlaceholder.getLayoutParams().height = statusBarHeight;
         inflateView(context);
     }
 
@@ -87,13 +100,43 @@ public class TitleBar extends LinearLayout {
     }
 
     public TitleBar gradient(GradientDrawable.Orientation orientation, @ColorInt int[] colors) {
-        gradientBg = new GradientDrawable(orientation,colors);
+        gradientBg = new GradientDrawable(orientation, colors);
         return this;
     }
 
+    public TitleBar immersive(Activity activity, boolean isDark ) {
+        ImmersionBar.with(activity)
+                .statusBarDarkFont(isDark)
+                .keyboardEnable(true)
+                .titleBar(this)
+                .init();
+        return this;
+    }
+
+    public TitleBar immersive(Fragment fragment, boolean isDark) {
+        ImmersionBar.with(fragment)
+                .statusBarDarkFont(isDark)
+                .keyboardEnable(true)
+                .titleBar(this)
+                .init();
+        return this;
+    }
+
+    public TitleBar immersive(DialogFragment fragment, boolean isDark) {
+        ImmersionBar.with(fragment)
+                .statusBarDarkFont(isDark)
+                .keyboardEnable(true)
+                .titleBar(this)
+                .init();
+        return this;
+    }
 
     public TitleBar setTitle(String title) {
         this.mTitle = title;
+        return this;
+    }
+    public TitleBar setTitle(@StringRes int title) {
+        this.mTitle = getResources().getString(title);
         return this;
     }
 
@@ -197,4 +240,6 @@ public class TitleBar extends LinearLayout {
         }
 
     }
+
+
 }

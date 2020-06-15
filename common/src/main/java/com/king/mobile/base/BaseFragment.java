@@ -1,6 +1,5 @@
 package com.king.mobile.base;
 
-import android.animation.Animator;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,7 +17,7 @@ import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 public abstract class BaseFragment extends Fragment {
 
     private TitleBar titleBar;
-    private SmartRefreshLayout mContainer;
+    protected SmartRefreshLayout mContainer;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -27,22 +26,26 @@ public abstract class BaseFragment extends Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
         View view;
         if (hasTitle()) {
             if (isOverlay()) {
-                view = inflater.inflate(R.layout.activity_base_overlay, container);
-                titleBar = view.findViewById(R.id.title_bar);
+                view = inflater.inflate(R.layout.activity_base_overlay, null);
             } else {
-                view = inflater.inflate(R.layout.activity_base, container);
+                view = inflater.inflate(R.layout.activity_base, null);
             }
             titleBar = view.findViewById(R.id.title_bar);
             setTitle(titleBar);
-            mContainer = view.findViewById(R.id.action_container);
-            inflater.inflate(getContentLayoutId(), mContainer);
+            mContainer = view.findViewById(R.id.container);
         } else {
-            view = inflater.inflate(getContentLayoutId(), container);
+            mContainer = new SmartRefreshLayout(getContext());
+            ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+            mContainer.setLayoutParams(params);
+            view = mContainer;
         }
+        inflater.inflate(getContentLayoutId(), mContainer);
         return view;
     }
 
@@ -67,18 +70,9 @@ public abstract class BaseFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
     }
 
-    @Override
-    public Animator onCreateAnimator(int transit, boolean enter, int nextAnim) {
-        return super.onCreateAnimator(transit, enter, nextAnim);
+    protected void initView(){
+
     }
 
-    @Override
-    public void onPause() {
-        super.onPause();
-    }
 
-    @Override
-    public void onStop() {
-        super.onStop();
-    }
 }

@@ -1,21 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#E64A19</color>
-    <color name="colorPrimaryDark">#0288D1</color>
+    <color name="colorOrange">#E64A19</color>
+    <color name="colorBlue">#000FFF</color>
     <color name="colorAccent">#E64A19</color>
 
 
-    <color name="white">#FFF</color>
     <color name="textBlack">#333</color>
     <color name="textWhite">#E0F7FA</color>
     <color name="textLink">#03A9F4</color>
     <color name="textError">#D50000</color>
+    <color name="textGray">#888888</color>
 
-    <color name="bgGray">#F1F8E9</color>
+    <color name="gray_1">#EEDDDDDD</color>
+    <color name="gray_2">#EE9EA09E</color>
     <color name="transparent">#00FFFFFF</color>
 
-    <color name="defaultTitleBg">#AFFF</color>
-    <color name="defaultTitleText">#333</color>
-    <color name="defaultContentBg">#AFFF</color>
+    <color name="white">#FFF</color>
+    <color name="colorTransWhite">#AFFF</color>
+
+
+    <color name="trans_black">#88000000</color>
 
 </resources>

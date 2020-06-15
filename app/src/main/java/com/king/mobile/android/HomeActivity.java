@@ -15,7 +15,7 @@ public class HomeActivity extends BaseActivity {
     protected void setTitle(TitleBar titleBar) {
         titleBar.setTitle(getResources().getString(R.string.app_name))
                 .setTitleTextColor("#FFFFFF")
-                .setTitleBarColorRes(R.color.colorPrimary)
+                .setTitleBarColorRes(R.color.white)
                 .setLeftAction(new TitleBar.Action("ENV", 0, v -> {
                 }))
                 .invalidate();

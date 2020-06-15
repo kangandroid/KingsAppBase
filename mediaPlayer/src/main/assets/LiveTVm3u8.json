@@ -1,0 +1,278 @@
+[
+  {
+    "name": "CCTV1 综合",
+    "url": "http://125.210.152.18:9090/live/CCTV1HD_H265.m3u8"
+  },
+  {
+    "name": "CCTV2 财经",
+    "url": "http://125.210.152.18:9090/live/CCTV2HD_H265.m3u8"
+  },
+  {
+    "name": "CCTV3 综艺",
+    "url": "http://125.210.152.18:9090/live/CCTV3HD_H265.m3u8"
+  },
+  {
+    "name": "CCTV4 国际",
+    "url": "http://121.31.30.91:8081/ysten-business/live/cctv-4/1.m3u8"
+  },
+  {
+    "name": "CCTV5 体育",
+    "url": "http://125.210.152.18:9090/live/CCTV5HD_H265.m3u8"
+  },
+  {
+    "name": "CCTV6 电影",
+    "url": "http://125.210.152.18:9090/live/CCTV6HD_H265.m3u8"
+  },
+  {
+    "name": "CCTV7 军事农业",
+    "url": "http://125.210.152.18:9090/live/CCTV7HD_H265.m3u8"
+  },
+  {
+    "name": "CCTV8 电视剧",
+    "url": "http://125.210.152.18:9090/live/CCTV8HD_H265.m3u8"
+  },
+  {
+    "name": "CCTV9 纪录",
+    "url": "http://125.210.152.18:9090/live/CCTVJLHD_H265.m3u8"
+  },
+  {
+    "name": "CCTV10 科教",
+    "url": "http://125.210.152.18:9090/live/CCTV10HD_H265.m3u8"
+  },
+  {
+    "name": "CCTV11 戏曲",
+    "url": "http://121.31.30.91:8081/ysten-business/live/cctv-11/1.m3u8"
+  },
+  {
+    "name": "CCTV12 社会与法",
+    "url": "http://125.210.152.18:9090/live/CCTV12HD_H265.m3u8"
+  },
+  {
+    "name": "CCTV13 新闻",
+    "url": "http://121.31.30.91:8081/ysten-business/live/cctv-13/1.m3u8"
+  },
+  {
+    "name": "CCTV14 少儿",
+    "url": "http://125.210.152.18:9090/live/CCTV14HD_H265.m3u8"
+  },
+  {
+    "name": "CCTV15 音乐",
+    "url": "http://121.31.30.91:8081/ysten-business/live/cctv-15/1.m3u8"
+  },
+  {
+    "name": "浙江卫视",
+    "url": "http://125.210.152.18:9090/live/ZJWSHD_H265.m3u8"
+  },
+  {
+    "name": "重庆卫视",
+    "url": "http://118.123.60.12:8114/LIVES/Fsv_otype=1&FvSeid=&Fsv_filetype=mull&Fsv_chan_hls_se_idx=012&Provider_id=&Pcontent_id=index.m3u8"
+  },
+  {
+    "name": "CGTN",
+    "url": "http://livedoc.cgtn.com/1000d/prog_index.m3u8"
+  },
+  {
+    "name": "农林卫视",
+    "url": "http://stream.snrtv.com/sxtvs-nl.m3u8"
+  },
+  {
+    "name": "湖南卫视",
+    "url": "http://125.210.152.18:9090/live/HNWSHD_H265.m3u8"
+  },
+  {
+    "name": "安徽卫视",
+    "url": "http://118.123.60.12:8114/LIVES/Fsv_otype=1&FvSeid=&Fsv_filetype=mull&Fsv_chan_hls_se_idx=008&Provider_id=&Pcontent_id=index.m3u8"
+  },
+  {
+    "name": "江苏卫视",
+    "url": "http://121.31.30.90:8085/ysten-business/live/hdjiangsustv/1.m3u8"
+  },
+  {
+    "name": "江苏卫视",
+    "url": "http://118.123.60.6:8114/LIVES/Fsv_otype=1&FvSeid=&Fsv_filetype=mull&Fsv_chan_hls_se_idx=001&Provider_id=&Pcontent_id=index.m3u8"
+  },
+  {
+    "name": "东方卫视",
+    "url": "http://live1.plus.hebtv.com/dfws/sd/live.m3u8"
+  },
+  {
+    "name": "四川卫视",
+    "url": "http://118.123.60.12:8114/LIVES/Fsv_otype=1&FvSeid=&Fsv_filetype=mull&Fsv_chan_hls_se_idx=000&Provider_id=&Pcontent_id=index.m3u8"
+  },
+  {
+    "name": "深圳卫视",
+    "url": "http://118.123.60.12:8114/LIVES/Fsv_otype=1&FvSeid=&Fsv_filetype=mull&Fsv_chan_hls_se_idx=002&Provider_id=&Pcontent_id=index.m3u8"
+  },
+  {
+    "name": "天津卫视",
+    "url": "http://118.123.60.6:8114/LIVES/Fsv_otype=1&FvSeid=&Fsv_filetype=mull&Fsv_chan_hls_se_idx=004&Provider_id=&Pcontent_id=index.m3u8"
+  },
+  {
+    "name": "山东卫视",
+    "url": "http://118.123.60.6:8114/LIVES/Fsv_otype=1&FvSeid=&Fsv_filetype=mull&Fsv_chan_hls_se_idx=005&Provider_id=&Pcontent_id=index.m3u8"
+  },
+  {
+    "name": "黑龙江卫视",
+    "url": "http://118.123.60.6:8114/LIVES/Fsv_otype=1&FvSeid=&Fsv_filetype=mull&Fsv_chan_hls_se_idx=006&Provider_id=&Pcontent_id=index.m3u8"
+  },
+  {
+    "name": "云南卫视",
+    "url": "http://hwapi.yunshicloud.com/8xughf/e0bx15.m3u8"
+  },
+  {
+    "name": "云南卫视",
+    "url": "http://118.123.60.8:8114/LIVES/Fsv_otype=1&FvSeid=&Fsv_filetype=mull&Fsv_chan_hls_se_idx=013&Provider_id=&Pcontent_id=index.m3u8"
+  },
+  {
+    "name": "东方卫视",
+    "url": "http://118.123.60.8:8114/LIVES/Fsv_otype=1&FvSeid=&Fsv_filetype=mull&Fsv_chan_hls_se_idx=001&Provider_id=&Pcontent_id=index.m3u8"
+  },
+  {
+    "name": "北京卫视",
+    "url": "http://118.123.60.8:8114/LIVES/Fsv_otype=1&FvSeid=&Fsv_filetype=mull&Fsv_chan_hls_se_idx=003&Provider_id=&Pcontent_id=index.m3u8"
+  },
+  {
+    "name": "天津卫视",
+    "url": "http://118.123.60.8:8114/LIVES/Fsv_otype=1&FvSeid=&Fsv_filetype=mull&Fsv_chan_hls_se_idx=004&Provider_id=&Pcontent_id=index.m3u8"
+  },
+  {
+    "name": "湖北卫视",
+    "url": "http://118.123.60.8:8114/LIVES/Fsv_otype=1&FvSeid=&Fsv_filetype=mull&Fsv_chan_hls_se_idx=005&Provider_id=&Pcontent_id=index.m3u8"
+  },
+  {
+    "name": "广东卫视",
+    "url": "http://nclive.grtn.cn/gdws/sd/live.m3u8"
+  },
+  {
+    "name": "广东卫视",
+    "url": "http://118.123.60.12:8114/LIVES/Fsv_otype=1&FvSeid=&Fsv_filetype=mull&Fsv_chan_hls_se_idx=004&Provider_id=&Pcontent_id=index.m3u8"
+  },
+  {
+    "name": "辽宁卫视",
+    "url": "http://118.123.60.12:8114/LIVES/Fsv_otype=1&FvSeid=&Fsv_filetype=mull&Fsv_chan_hls_se_idx=018&Provider_id=&Pcontent_id=index.m3u8"
+  },
+  {
+    "name": "江西卫视",
+    "url": "http://118.123.60.8:8114/LIVES/Fsv_otype=1&FvSeid=&Fsv_filetype=mull&Fsv_chan_hls_se_idx=010&Provider_id=&Pcontent_id=index.m3u8"
+  },
+  {
+    "name": "吉林卫视",
+    "url": "http://118.123.60.8:8114/LIVES/Fsv_otype=1&FvSeid=&Fsv_filetype=mull&Fsv_chan_hls_se_idx=011&Provider_id=&Pcontent_id=index.m3u8"
+  },
+  {
+    "name": "甘肃卫视",
+    "url": "http://stream.gstv.com.cn/gsws/sd/live.m3u8"
+  },
+  {
+    "name": "贵州卫视",
+    "url": "http://118.123.60.8:8114/LIVES/Fsv_otype=1&FvSeid=&Fsv_filetype=mull&Fsv_chan_hls_se_idx=014&Provider_id=&Pcontent_id=index.m3u8"
+  },
+  {
+    "name": "广西卫视",
+    "url": "http://118.123.60.8:8114/LIVES/Fsv_otype=1&FvSeid=&Fsv_filetype=mull&Fsv_chan_hls_se_idx=015&Provider_id=&Pcontent_id=index.m3u8"
+  },
+  {
+    "name": "青海卫视",
+    "url": "http://118.123.60.8:8114/LIVES/Fsv_otype=1&FvSeid=&Fsv_filetype=mull&Fsv_chan_hls_se_idx=016&Provider_id=&Pcontent_id=index.m3u8"
+  },
+  {
+    "name": "康巴卫视",
+    "url": "http://118.123.60.8:8114/LIVES/Fsv_otype=1&FvSeid=&Fsv_filetype=mull&Fsv_chan_hls_se_idx=017&Provider_id=&Pcontent_id=index.m3u8"
+  },
+  {
+    "name": "西藏卫视",
+    "url": "http://media.vtibet.com/masvod/HLSLive/9/hanyuTV_q1.m3u8"
+  },
+  {
+    "name": "西藏藏语",
+    "url": "http://media.vtibet.com/masvod/HLSLive/7/zangyuTV_q1.m3u8"
+  },
+  {
+    "name": "河南卫视",
+    "url": "http://118.123.60.8:8114/LIVES/Fsv_otype=1&FvSeid=&Fsv_filetype=mull&Fsv_chan_hls_se_idx=019&Provider_id=&Pcontent_id=index.m3u8"
+  },
+  {
+    "name": "新疆卫视",
+    "url": "http://118.123.60.6:8114/LIVES/Fsv_otype=1&FvSeid=&Fsv_filetype=mull&Fsv_chan_hls_se_idx=009&Provider_id=&Pcontent_id=index.m3u8"
+  },
+  {
+    "name": "陕西卫视",
+    "url": "http://118.123.60.12:8114/LIVES/Fsv_otype=1&FvSeid=&Fsv_filetype=mull&Fsv_chan_hls_se_idx=011&Provider_id=&Pcontent_id=index.m3u8"
+  },
+  {
+    "name": "甘肃卫视",
+    "url": "http://118.123.60.6:8114/LIVES/Fsv_otype=1&FvSeid=&Fsv_filetype=mull&Fsv_chan_hls_se_idx=012&Provider_id=&Pcontent_id=index.m3u8"
+  },
+  {
+    "name": "东南卫视",
+    "url": "http://118.123.60.6:8114/LIVES/Fsv_otype=1&FvSeid=&Fsv_filetype=mull&Fsv_chan_hls_se_idx=013&Provider_id=&Pcontent_id=index.m3u8"
+  },
+  {
+    "name": "贵州卫视",
+    "url": "http://118.123.60.6:8114/LIVES/Fsv_otype=1&FvSeid=&Fsv_filetype=mull&Fsv_chan_hls_se_idx=014&Provider_id=&Pcontent_id=index.m3u8"
+  },
+  {
+    "name": "河北卫视",
+    "url": "http://weblive.hebtv.com/live/hbws_bq/index.m3u8"
+  },
+  {
+    "name": "青海卫视",
+    "url": "http://118.123.60.6:8114/LIVES/Fsv_otype=1&FvSeid=&Fsv_filetype=mull&Fsv_chan_hls_se_idx=016&Provider_id=&Pcontent_id=index.m3u8"
+  },
+  {
+    "name": "宁夏卫视",
+    "url": "http://118.123.60.6:8114/LIVES/Fsv_otype=1&FvSeid=&Fsv_filetype=mull&Fsv_chan_hls_se_idx=017&Provider_id=&Pcontent_id=index.m3u8"
+  },
+  {
+    "name": "西藏卫视",
+    "url": "http://118.123.60.6:8114/LIVES/Fsv_otype=1&FvSeid=&Fsv_filetype=mull&Fsv_chan_hls_se_idx=018&Provider_id=&Pcontent_id=index.m3u8"
+  },
+  {
+    "name": "山西卫视",
+    "url": "http://118.123.60.12:8114/LIVES/Fsv_otype=1&FvSeid=&Fsv_filetype=mull&Fsv_chan_hls_se_idx=010&Provider_id=&Pcontent_id=index.m3u8"
+  },
+  {
+    "name": "旅游卫视",
+    "url": "http://118.123.60.12:8114/LIVES/Fsv_otype=1&FvSeid=&Fsv_filetype=mull&Fsv_chan_hls_se_idx=014&Provider_id=&Pcontent_id=index.m3u8"
+  },
+  {
+    "name": "内蒙古卫视",
+    "url": "http://118.123.60.12:8114/LIVES/Fsv_otype=1&FvSeid=&Fsv_filetype=mull&Fsv_chan_hls_se_idx=016&Provider_id=&Pcontent_id=index.m3u8"
+  },
+  {
+    "name": "广东体育",
+    "url": "http://116.199.5.52:8114/00000000/index.m3u8?&Fsv_ctype=LIVES&Fsv_otype=1&FvSeid=5abd1660af1babb4&Fsv_filetype=1&Fsv_ctype=LIVES&Fsv_cid=0&Fsv_chan_hls_se_idx=20&Fsv_rate_id=0&Fsv_SV_PARAM1=0&Fsv_ShiftEnable=0&Fsv_ShiftTsp=0&Provider_id=&Pcontent_id=&Fsv_CMSID=&Fsv_otype=1"
+  },
+  {
+    "name": "南方卫视TVS2",
+    "url": "http://nclive.grtn.cn/tvs2/sd/live.m3u8"
+  },
+  {
+    "name": "厦门卫视",
+    "url": "http://183.207.249.11/PLTV/2/224/3221226093/2.m3u8"
+  },
+  {
+    "name": "上海教育",
+    "url": "http://live.setv.sh.cn/slive/shedu02_1200k.m3u8"
+  },
+  {
+    "name": "上海教育",
+    "url": "http://live.setv.sh.cn/slive/shedu02_800k.m3u8"
+  },
+  {
+    "name": "劲爆体育",
+    "url": "http://183.207.249.9/PLTV/2/224/3221226045/index.m3u8"
+  },
+  {
+    "name": "珠江电影",
+    "url": "http://116.199.5.52:8114/00000000/index.m3u8?&Fsv_ctype=LIVES&Fsv_otype=1&FvSeid=5abd1660af1babb4&Fsv_filetype=1&Fsv_ctype=LIVES&Fsv_cid=0&Fsv_chan_hls_se_idx=7&Fsv_rate_id=0&Fsv_SV_PARAM1=0&Fsv_ShiftEnable=0&Fsv_ShiftTsp=0&Provider_id=&Pcontent_id=&Fsv_CMSID=&Fsv_otype=1"
+  },
+  {
+    "name": "河北影视",
+    "url": "http://weblive.hebtv.com/live/hbys_bq/index.m3u8"
+  },
+  {
+    "name": "峨眉电影HD",
+    "url": "http://scgctvshow.sctv.com/hdlive/emei/1.m3u8"
+  }
+]

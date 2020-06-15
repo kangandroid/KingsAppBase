@@ -4,8 +4,6 @@
     <style name="AppBaseTheme" parent="Theme.AppCompat.NoActionBar">
         <item name="android:windowBackground">@color/white</item>
         <item name="android:windowTranslucentStatus">true</item>
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
@@ -25,6 +23,7 @@
         <item name="android:backgroundDimEnabled">true</item>
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowIsFloating">false</item>
+        <item name="android:windowBackground">@color/transparent</item>
     </style>
 
     <!--顶部弹出Dialog动画-->

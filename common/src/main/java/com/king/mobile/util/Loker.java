@@ -6,23 +6,32 @@ public class Loker {
 
     private static final String Tag = "Loker";
 
-    public static void i(String m) {
-        Log.i(Tag, m);
+    public static void i(String... messages) {
+
+        Log.i(Tag, getString(messages));
     }
 
-    public static void d(String m) {
-        Log.d(Tag, m);
+    public static void d(String... messages) {
+        Log.d(Tag, getString(messages));
     }
 
-    public static void e(String m) {
-        Log.e(Tag, m);
+    public static void e(String... messages) {
+        Log.e(Tag, getString(messages));
     }
 
-    public static void v(String m) {
-        Log.v(Tag, m);
+    public static void v(String... messages) {
+        Log.v(Tag, getString(messages));
     }
 
-    public static void w(String m) {
-        Log.w(Tag, m);
+    public static void w(String... messages) {
+        Log.w(Tag, getString(messages));
+    }
+
+    private static String getString(String[] messages) {
+        StringBuffer sb = new StringBuffer();
+        for (String str : messages) {
+            sb.append(str).append(",");
+        }
+        return sb.toString();
     }
 }
