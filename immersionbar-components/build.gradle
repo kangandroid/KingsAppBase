@@ -1,5 +1,5 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.novoda.bintray-release'
+//apply plugin: 'com.novoda.bintray-release'
 
 android {
     compileSdkVersion 28
@@ -23,11 +23,11 @@ dependencies {
     compileOnly project(':immersionbar')
 }
 
-publish {
-    userOrg = 'geyifeng'
-    groupId = 'com.gyf.immersionbar'
-    artifactId = 'immersionbar-components'
-    publishVersion = "3.0.0-beta05"
-    desc = 'Android bar management'
-    website = 'https://github.com/gyf-dev/ImmersionBar'
-}
+//publish {
+//    userOrg = 'geyifeng'
+//    groupId = 'com.gyf.immersionbar'
+//    artifactId = 'immersionbar-components'
+//    publishVersion = "3.0.0-beta05"
+//    desc = 'Android bar management'
+//    website = 'https://github.com/gyf-dev/ImmersionBar'
+//}

@@ -32,7 +32,7 @@ dependencies {
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.core:core-ktx:1.2.0'
+    implementation 'androidx.core:core-ktx:1.3.0'
 
     def room_version = "2.2.5"
     implementation "androidx.room:room-runtime:$room_version"
@@ -55,3 +55,18 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 }
+task clearJar(type: Delete){
+    delete 'lib/DownloadSDK.jar'
+}
+
+task makeJar(type: Jar){
+    baseName('DownloadSDK')
+    from('build/intermediates/classes/debug/')
+    into('build/outputs/')
+    exclude('src/test','src/androidTest')
+    exclude{
+        it.name.startsWith('R')
+    }
+}
+
+makeJar.dependsOn(clearJar,build)

@@ -5,8 +5,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':component')
     annotationProcessor "com.google.auto.service:auto-service:1.0-rc6"//  升级Gradle 以后会需要
-    implementation 'com.google.auto.service:auto-service:1.0-rc6' //
-    // 谷歌的 AutoService 可以让我们的注解处理器自动注册上
+    implementation 'com.google.auto.service:auto-service:1.0-rc6' // 谷歌的 AutoService 可以让我们的注解处理器自动注册上
     implementation 'com.squareup:javapoet:1.11.1' // 代码生成.java文件的库
     implementation 'com.google.guava:guava:24.1-jre'
     implementation files(Jvm.current().toolsJar)

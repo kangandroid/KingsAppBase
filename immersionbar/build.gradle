@@ -1,5 +1,5 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.novoda.bintray-release'
+//apply plugin: 'com.novoda.bintray-release'
 
 def ext = rootProject.ext
 android {
@@ -21,11 +21,11 @@ dependencies {
     compileOnly 'androidx.appcompat:appcompat:1.1.0'
 }
 
-publish {
-    userOrg = 'geyifeng'
-    groupId = 'com.gyf.immersionbar'
-    artifactId = 'immersionbar'
-    publishVersion = "3.0.0-beta05"
-    desc = 'Android bar management'
-    website = 'https://github.com/gyf-dev/ImmersionBar'
-}
+//publish {
+//    userOrg = 'geyifeng'
+//    groupId = 'com.gyf.immersionbar'
+//    artifactId = 'immersionbar'
+//    publishVersion = "3.0.0-beta05"
+//    desc = 'Android bar management'
+//    website = 'https://github.com/gyf-dev/ImmersionBar'
+//}
