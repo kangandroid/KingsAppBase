@@ -27,5 +27,8 @@ public class Executor {
         if (task == null) return;
         fixedThreadPool.execute(task);
     }
+    ExecutorService executor(){
+        return fixedThreadPool;
+    }
 
 }
