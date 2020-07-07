@@ -4,6 +4,7 @@
     package="com.king.mobile.android">
 
     <application
+        android:name="com.king.mobile.base.BaseApplication"
         android:allowBackup="false"
         android:appComponentFactory="123"
         android:icon="@mipmap/ic_launcher"

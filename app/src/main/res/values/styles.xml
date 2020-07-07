@@ -3,9 +3,16 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="AppBaseTheme">
         <item name="android:windowBackground">@color/white</item>
-<!--        全屏无状态栏-->
-<!--        <item name="android:windowFullscreen">true</item>-->
+    </style>
 
+    <style name="MenuAppearanceInactive">
+        <item name="itemIconTint">@color/colorPrimaryDark</item>
+        <item name="itemTextColor">@color/colorPrimaryDark</item>
+    </style>
+
+    <style name="MenuAppearanceActive">
+        <item name="itemIconTint">@color/colorAccent</item>
+        <item name="itemTextColor">@color/colorAccent</item>
     </style>
 
 </resources>

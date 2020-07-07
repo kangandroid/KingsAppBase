@@ -1,4 +1,4 @@
-##ANR
+
 ###1.是什么导致了ANR？
 在Android中，程序的响应性是由Activity Manager与Window Manager系统服务来负责监控的。当系统监测到下面的条件之一时会显示ANR的对话框：
 
@@ -24,8 +24,44 @@
 * 使用性能测试工具，例如Systrace与Traceview来判断程序中影响响应性的瓶颈。
 
 ###4.Android消息机制
+Looper 构造函数私有 通过静态方法 prepare() 来为当前线程创建实例。 
+线程唯一 保存在 ThreadLocal 用来保存线程私有的数据 getMap(curThread)得到ThreadLocalMap.getEntry(ThreadLocal) 的Looper
+静态方法loop 先检查当前线程是否存在Looper 存在则for (;;)开启无线循环，从MessageQueue中取消息
+ 调用 msg.target.dispatchMessage(msg);处理消息 Message msg.target就是发送他的 handler
 
+MessageQueue Looper在创建时就会在构造函数中创建 mQueue = new MessageQueue(quitAllowed)；
+queue.enqueueMessage(msg, uptimeMillis) 对消息进行排序插入消息队列
+
+MessageQueue中有几个native方法
+
+    private native static long nativeInit();  在java的MessageQueue创建时C++同时也会创建消息队列
+    private native static void nativeDestroy(long ptr);销毁消息队列
+    private native void nativePollOnce(long ptr, int timeoutMillis); /*non-static for callbacks*/ epull机制唤醒C++层的looper 来读取消息
+    private native static void nativeWake(long ptr);
+    private native static boolean nativeIsPolling(long ptr);
+    private native static void nativeSetFileDescriptorEvents(long ptr, int fd, int events);
+    
+
+Handler 负责发送消息（sendXXX Message 和post Runnable 最终被封装成Message 的.callBack）和并在创建的线程处理消息处理消息（onHandlerMessage）
+所有发送消息最终调用 enqueueMessage --> msg.target = this
+在调用 MessageQueue.enqueueMessage(msg, uptimeMillis)
+消息处理 
+
+    public void dispatchMessage(Message msg) {
+        if (msg.callback != null) { // 
+            handleCallback(msg);
+        } else {
+            if (mCallback != null) { // 创建handler时会创建 或者设置 
+                if (mCallback.handleMessage(msg)) {
+                    return;
+                }
+            }
+            handleMessage(msg); // 最后才执行
+        }
+    }
 ###5. Android View绘制流程
+
+
 
 ###6. Android 屏幕渲染机制
 
@@ -41,6 +77,34 @@
 ###10. AMS
 
 ###11. WMS
+
+
+
+###Glide 
+1.Glide 对象是单例，用volatile修饰。创建过程用同步代码块。
+    初始化过程：
+    网络 
+    缓存 
+    生命周期
+    
+    target
+    
+    ActivityThread.java
+    --------------------------------------------------------------
+        public static void main(String[] args) {
+        ...
+            Looper.prepareMainLooper();
+            ...
+            ActivityThread thread = new ActivityThread();
+            thread.attach(false, startSeq);
+   
+            if (sMainThreadHandler == null) {
+                sMainThreadHandler = thread.getHandler();
+            }
+            ...
+            Looper.loop();
+            throw new RuntimeException("Main thread loop unexpectedly exited");
+        }
 
 
 
