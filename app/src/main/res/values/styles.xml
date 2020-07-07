@@ -15,4 +15,5 @@
         <item name="itemTextColor">@color/colorAccent</item>
     </style>
 
+    <color name="colorPrimaryDark">#2196F3</color>
 </resources>

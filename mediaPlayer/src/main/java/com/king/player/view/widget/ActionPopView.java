@@ -74,7 +74,7 @@ public class ActionPopView extends CommonPop {
     }
 
     private void download() {
-        DownloadManager instance = DownloadManager.Companion.getInstance();
+        DownloadManager instance = DownloadManager.getInstance(mContext);
         instance.download(videoInfo.url);
     }
 

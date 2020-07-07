@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData;
 
 import com.king.mobile.downloadlib.DownloadThread.Listener;
 import com.king.mobile.util.Executor;
+import com.king.mobile.util.InstanceUtil;
 import com.king.mobile.util.Loker;
 
 import java.io.File;
@@ -24,9 +25,9 @@ import okhttp3.ResponseBody;
 public class DownloadManager implements Listener {
     Context mContext;
     private ExecutorService downloadExecutor;
+    private static DownloadManager mInstance;
 
     private DownloadManager(Context context) {
-        mContext = context;
         List<Task> tasks = repository.getAllTask();
         List<ThreadTask> tTasks = repository.getAllTreadTask();
         tTasksMap = repository.getThreadTasksMap();
@@ -41,6 +42,17 @@ public class DownloadManager implements Listener {
     private long THREAD_TASK_MAX_SIZE = 10 * 1024 * 1024L;
     int taskCount = 3;
     String DOWNLOAD_DIR = "${context.filesDir.absolutePath}/download";
+
+    public static DownloadManager getInstance(Context context) {
+        if (mInstance == null) {
+            synchronized (DownloadManager.class) {
+                if (mInstance == null) {
+                    mInstance = new DownloadManager(context);
+                }
+            }
+        }
+        return mInstance;
+    }
 
 
     private Task createTask(String url) {
@@ -160,40 +172,40 @@ public class DownloadManager implements Listener {
     /**
      * 立即开始某个任务
      */
-    void startNow(Task task) {
+    public void startNow(Task task) {
 
     }
 
     /**
      * 开始下载列表
      */
-    void start() {
+    public void start() {
 
     }
 
     /**
      * 停止所有任务
      */
-    void stop() {
+    public void stop() {
 
     }
 
     /**
      * 停止任务
      */
-    void stop(Task task) {
+    public void stop(Task task) {
 
     }
 
     /**
      * 删除任务
      */
-    void delete(Task task) {
+    public void delete(Task task) {
 
     }
 
 
-    void download(String url) {
+    public void download(String url) {
         Task task = createTask(url);
         if (task != null) start(task);
         else {

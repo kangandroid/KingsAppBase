@@ -1,5 +1,6 @@
 package com.king.mobile.android;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
@@ -10,7 +11,7 @@ class HomePageAdapter extends FragmentPagerAdapter {
     List<Fragment> mFragments;
 
     public HomePageAdapter(FragmentManager fm, List<Fragment> fragments) {
-        super(fm);
+        super(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         mFragments = fragments;
     }
 
