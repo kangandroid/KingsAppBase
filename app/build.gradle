@@ -19,7 +19,7 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
-        maxSdkVersion 28
+        maxSdkVersion 29
         signingConfig signingConfigs.release
         multiDexEnabled = true
     }

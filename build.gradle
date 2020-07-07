@@ -14,7 +14,7 @@ buildscript {
         classpath 'com.android.tools.build:gradle:4.0.0'
 //        classpath 'com.novoda:bintray-release:0.9.1'
 //        classpath 'com.alibaba:arouter-register:1.0.2'
-        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.72'
+//        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.72'
         classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
     }
 }
@@ -37,12 +37,12 @@ task clean(type: Delete) {
 }
 
 ext {
-    compileSdkVersion = 28
-    targetSdkVersion = 28
+    compileSdkVersion = 29
+    targetSdkVersion = 29
     minSdkVersion = 21
     javaVersion = 1.8
-    buildToolsVersion = '28.0.3'
-    supportLibraryVersion = '28.0.0'
+    buildToolsVersion = '29.0.0'
+    supportLibraryVersion = '29.0.0'
     appcompatVersion = '1.1.0-rc01'
     xRecyclerviewVersion = '1.0.0'
     xNavigationVersion = '2.0.0'
