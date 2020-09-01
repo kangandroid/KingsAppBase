@@ -158,16 +158,16 @@ public class HomeActivity extends BaseActivity {
         return R.layout.activity_home;
     }
 
-    long previousBackpress = 0;
+    long previousBackPress = 0;
 
     @Override
     public void onBackPressed() {
         long l = System.currentTimeMillis();
-        if (l - previousBackpress < 1500) {
+        if (l - previousBackPress < 1500) {
             finish();
         } else {
             ToastUtil.show("再按一次退出");
-            previousBackpress = l;
+            previousBackPress = l;
         }
 
     }

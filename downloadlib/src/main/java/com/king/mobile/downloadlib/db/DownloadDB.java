@@ -1,14 +1,19 @@
-package com.king.mobile.downloadlib;
+package com.king.mobile.downloadlib.db;
 
 import android.content.Context;
 
+import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-abstract class DownloadDB extends RoomDatabase {
-    abstract TaskDao taskDao();
+import com.king.mobile.downloadlib.model.Task;
+import com.king.mobile.downloadlib.model.ThreadTask;
 
-    abstract ThreadTaskDao threadTaskDao();
+@Database(entities = {Task.class, ThreadTask.class}, version = 1, exportSchema = false)
+public abstract class DownloadDB extends RoomDatabase {
+    public abstract TaskDao taskDao();
+
+    public abstract ThreadTaskDao threadTaskDao();
 
     private static volatile DownloadDB INSTANCE;
 
@@ -17,8 +22,7 @@ abstract class DownloadDB extends RoomDatabase {
             synchronized (DownloadDB.class) {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                            DownloadDB.class, "KingApp_DB")
-                            .build();
+                            DownloadDB.class, "DownloadDB_DB").build();
                 }
             }
         }
