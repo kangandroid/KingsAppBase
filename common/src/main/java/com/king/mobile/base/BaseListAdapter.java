@@ -46,7 +46,7 @@ public abstract class BaseListAdapter<T> extends
         onBindVHLayoutId(mViewBundles);
     }
 
-    public void setOnItemClickLitener(OnItemClickListener<T> onItemClickLitener) {
+    public void setOnItemClickListener(OnItemClickListener<T> onItemClickLitener) {
         this.mOnItemClickLitener = onItemClickLitener;
     }
 

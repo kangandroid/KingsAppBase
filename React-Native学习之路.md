@@ -4,8 +4,8 @@
 * ECMAScript
 * ES6
 * React
-* Reduct
-* React-Reduct
+* Redux
+* React-Redux
 * React-Native
 
 ##ECMAScript学习笔记
@@ -32,6 +32,15 @@
 	npm install --save react react-dom
 	
 **注意：**为了防止潜在的不兼容性，所有的 react 包应该使用相同的版本 （包括 react，react-dom，react-test-renderer 等）。
+JS
+1. 判断 js 类型的方式
+    a.typeof 可以判断出'string','number','boolean','undefined','symbol'
+             但判断 typeof(null) 时值为 'object';
+             判断数组和对象时值均为 'object'
+    b.instanceof 原理是 构造函数的 prototype 属性是否出现在对象的原型链中的任何位置
+    c.Object.prototype.toString.call() 常用于判断浏览器内置对象,对于所有基本的数据类型都能进行判断，即使是 null 和 undefined
+    d.Array.isArray(obj) 判断是否是数组。
+
 ### JSX
 **从本质上讲，JSX 只是为 React.createElement(component, props, ...children) 函数提供的语法糖。**
 

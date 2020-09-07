@@ -35,7 +35,7 @@ public class LocalVideoFragment extends BaseListFragment {
     }
 
     @Override
-    protected void adaptList(RecyclerView recyclerView) {
+    protected void setLayoutManager(RecyclerView recyclerView) {
         recyclerView.setLayoutManager(new GridLayoutManager(activity, 3));
         adapter = new LocalVideoListAdapter(activity);
         Context context = Objects.requireNonNull(getContext());
@@ -44,7 +44,7 @@ public class LocalVideoFragment extends BaseListFragment {
         recyclerView.addItemDecoration(decorV);
         recyclerView.addItemDecoration(decorH);
         recyclerView.setAdapter(adapter);
-        adapter.setOnItemClickLitener((videoInfo, view, position) -> play(videoInfo));
+        adapter.setOnItemClickListener((videoInfo, view, position) -> play(videoInfo));
         videoViewModel.getLocalVideoList().observe(this, list -> {
             adapter.setData(list);
         });

@@ -1,3 +1,5 @@
+include ':refreshLayout'
+include ':wakap'
 include ':app', ':downloadlib', ':keling', ':mediaPlayer',
 //        ':camera',
         ':common', ':immersionbar', ':immersionbar-components', ':nesp-cling',

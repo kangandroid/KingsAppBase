@@ -46,7 +46,7 @@ public class ActionPopView extends CommonPop {
 
     public ActionPopView(Context context, VideoInfo videoInfo) {
         super(context);
-        mContext = App.mContext;
+        mContext = App.getContext();
         this.videoInfo = videoInfo;
         if (context instanceof AppCompatActivity) {
             AppCompatActivity activity = (AppCompatActivity) context;

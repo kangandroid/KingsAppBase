@@ -12,13 +12,10 @@ import com.king.mobile.util.R;
 import com.king.mobile.util.ScreenAdapter;
 import com.king.mobile.util.ThemeManager;
 import com.king.mobile.widget.TitleBar;
-import com.scwang.smartrefresh.layout.SmartRefreshLayout;
-
 public abstract class BaseActivity extends AppCompatActivity {
 
     protected TitleBar titleBar;
-    protected SmartRefreshLayout mContainer;
-
+    protected FrameLayout mContainer;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,9 +36,6 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void setContainer(){
         ThemeManager.Theme currentTheme = ThemeManager.getInstance().getTheme();
         mContainer.setBackgroundColor(currentTheme.activityBackgrounColor);
-        mContainer.setEnableRefresh(false);
-        mContainer.setEnableLoadMore(false);
-        mContainer.setEnableOverScrollDrag(false);
     }
 
 
@@ -55,8 +49,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         LayoutInflater.from(this).inflate(contentLayoutId, mContainer);
     }
 
-    protected abstract @LayoutRes
-    int getContentLayoutId();
+    protected abstract @LayoutRes int getContentLayoutId();
 
 
     protected void setTitle(TitleBar titleBar) {

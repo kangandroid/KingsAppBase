@@ -7,7 +7,6 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -19,7 +18,6 @@ import com.king.player.viewmodel.VideoViewModel;
 
 import java.util.Objects;
 
-import static android.widget.GridLayout.HORIZONTAL;
 import static android.widget.GridLayout.VERTICAL;
 
 public class RemoteVideoFragment extends BaseListFragment {
@@ -36,14 +34,14 @@ public class RemoteVideoFragment extends BaseListFragment {
     }
 
     @Override
-    protected void adaptList(RecyclerView recyclerView) {
+    protected void setLayoutManager(RecyclerView recyclerView) {
         recyclerView.setLayoutManager(new LinearLayoutManager(activity,RecyclerView.VERTICAL ,false));
         adapter = new RemoteVideoListAdapter(activity);
         Context context = Objects.requireNonNull(getContext());
         DividerItemDecoration decorV = new DividerItemDecoration(context, VERTICAL);
         recyclerView.addItemDecoration(decorV);
         recyclerView.setAdapter(adapter);
-        adapter.setOnItemClickLitener((videoInfo, view, position) -> play(videoInfo));
+        adapter.setOnItemClickListener((videoInfo, view, position) -> play(videoInfo));
         videoViewModel.getRemoteVideoList().observe(this, list -> adapter.setData(list));
     }
 
