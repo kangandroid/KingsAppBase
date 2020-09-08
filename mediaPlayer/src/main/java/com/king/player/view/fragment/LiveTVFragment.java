@@ -29,11 +29,11 @@ public class LiveTVFragment extends BaseListFragment {
     }
 
     @Override
-    protected void adaptList(RecyclerView recyclerView) {
+    protected void setLayoutManager(RecyclerView recyclerView) {
         recyclerView.setLayoutManager(new GridLayoutManager(activity, 2));
         adapter = new LiveTVListAdapter(activity);
         recyclerView.setAdapter(adapter);
-        adapter.setOnItemClickLitener((videoInfo, view, position) -> {
+        adapter.setOnItemClickListener((videoInfo, view, position) -> {
             play(videoInfo);
 //            new ScreenCastFragment(videoInfo).cast(getFragmentManager());
         });

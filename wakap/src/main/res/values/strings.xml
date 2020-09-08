@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">哇咖噗</string>
+    <string name="action_settings">Settings</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="cancel">取消</string>
+    <string name="setting">设置</string>
+    <string name="apk">获取apk</string>
+    <string name="choose_time">选择触发时间</string>
+    <string name="select_app">选择要启动的App</string>
+    <string name="cread_alarm">添加闹钟任务</string>
+</resources>

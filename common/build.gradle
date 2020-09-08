@@ -46,7 +46,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar', '*.arr'])
-    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
@@ -57,15 +57,30 @@ dependencies {
     implementation 'com.squareup.okhttp3:okhttp:4.2.2'
     implementation 'com.squareup.retrofit2:retrofit:2.7.0'
     implementation 'com.github.bumptech.glide:glide:4.10.0'
+    implementation project(path: ':immersionbar')
+
+    implementation project(path: ':refreshLayout')
 //    implementation 'com.blankj:utilcodex:1.24.7'
-    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-andx-15'
-    implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.0-andx-15'
 //    implementation 'com.alibaba:arouter-api:1.5.0'
 //    annotationProcessor 'com.alibaba:arouter-compiler:1.2.2'
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.2.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    androidTestImplementation 'androidx.test:runner:1.3.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     androidTestImplementation 'com.squareup.leakcanary:leakcanary-android-core:2.0'
-    implementation project(path: ':immersionbar')
 
 }
+
+task clearJar(type: Delete){
+    delete 'libs/common.jar'
+}
+
+task makeJar(type: Jar){
+    baseName('common')
+    into('libs/')
+    exclude('src/test','src/androidTest')
+    exclude{
+        it.name.startsWith('R')
+    }
+}
+
+makeJar.dependsOn(clearJar,build)

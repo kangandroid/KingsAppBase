@@ -50,7 +50,7 @@ public class VideoListActivity extends BaseActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         VideoListAdapter videoListAdapter = new VideoListAdapter(this);
         recyclerView.setAdapter(videoListAdapter);
-        videoListAdapter.setOnItemClickLitener((video, view, index) -> play(video.url));
+        videoListAdapter.setOnItemClickListener((video, view, index) -> play(video.url));
     }
 
     private static final int READ_REQUEST_CODE = 42;

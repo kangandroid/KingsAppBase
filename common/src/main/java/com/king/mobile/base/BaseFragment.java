@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
@@ -12,12 +13,11 @@ import androidx.fragment.app.Fragment;
 
 import com.king.mobile.util.R;
 import com.king.mobile.widget.TitleBar;
-import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
 public abstract class BaseFragment extends Fragment {
 
-    private TitleBar titleBar;
-    protected SmartRefreshLayout mContainer;
+    protected TitleBar titleBar;
+    protected FrameLayout mContainer;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -29,25 +29,30 @@ public abstract class BaseFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View view;
-        if (hasTitle()) {
-            if (isOverlay()) {
-                view = inflater.inflate(R.layout.activity_base_overlay, null);
-            } else {
-                view = inflater.inflate(R.layout.activity_base, null);
-            }
-            titleBar = view.findViewById(R.id.title_bar);
-            setTitle(titleBar);
-            mContainer = view.findViewById(R.id.container);
+        if (isOverlay()) {
+            view = inflater.inflate(R.layout.activity_base_overlay, null);
         } else {
-            mContainer = new SmartRefreshLayout(getContext());
-            ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(
-                    ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-            mContainer.setLayoutParams(params);
-            view = mContainer;
+            view = inflater.inflate(R.layout.activity_base, null);
+        }
+        titleBar = view.findViewById(R.id.title_bar);
+        mContainer = view.findViewById(R.id.container);
+        if (hasTitle()) {
+            view.setVisibility(View.VISIBLE);
+            setTitle(titleBar);
+        } else {
+            titleBar.setVisibility(View.GONE);
         }
         inflater.inflate(getContentLayoutId(), mContainer);
         return view;
     }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        initView(view);
+    }
+
+    protected abstract void initView(@NonNull View view);
 
     protected void setTitle(TitleBar titleBar) {
     }
@@ -63,16 +68,4 @@ public abstract class BaseFragment extends Fragment {
     protected boolean hasTitle() {
         return false;
     }
-
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-    }
-
-    protected void initView(){
-
-    }
-
-
 }

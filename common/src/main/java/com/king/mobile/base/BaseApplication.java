@@ -8,7 +8,7 @@ import com.king.mobile.util.ScreenAdapter;
 
 public class BaseApplication extends Application {
 
-    public static Context mContext;
+    private static Context mContext;
 
     public static Context getContext() {
         return mContext;
@@ -18,7 +18,7 @@ public class BaseApplication extends Application {
     public void onCreate() {
         super.onCreate();
         mContext = getBaseContext();
-        ScreenAdapter.init(360);
+        ScreenAdapter.init(750);
         this.registerActivityLifecycleCallbacks(AppWatcher.getInstance());
         Log.e(getPackageName(), "BaseApplication---------BaseApplication");
     }

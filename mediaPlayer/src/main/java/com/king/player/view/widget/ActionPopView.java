@@ -14,8 +14,10 @@ import androidx.lifecycle.ViewModelProviders;
 import com.king.mobile.downloadlib.DownloadManager;
 import com.king.mobile.util.ColorUtil;
 import com.king.mobile.util.Executor;
+import com.king.mobile.util.Loker;
 import com.king.mobile.widget.CommonDialog;
 import com.king.mobile.widget.CommonPop;
+import com.king.player.App;
 import com.king.player.R;
 import com.king.player.model.VideoInfo;
 import com.king.player.viewmodel.VideoViewModel;
@@ -44,7 +46,7 @@ public class ActionPopView extends CommonPop {
 
     public ActionPopView(Context context, VideoInfo videoInfo) {
         super(context);
-        mContext = context;
+        mContext = App.getContext();
         this.videoInfo = videoInfo;
         if (context instanceof AppCompatActivity) {
             AppCompatActivity activity = (AppCompatActivity) context;

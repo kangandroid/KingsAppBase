@@ -42,5 +42,18 @@ Application app = r.packageInfo.makeApplication(false, mInstrumentation);
 3. 通过反射创建
 
 
+## BroadCast 机制
+消息发布和订阅的事件驱动模型，以binder机制为基础
+1.BroadCastReceiver的注册过程
+app process -->system server process
+ContextWrapper.registerReceiver()
+ContextImpl.registerReceiver()
+Intent intent = ActivityManager.getService().registerReceiver();
 
+ActivityManagerService
+
+2.广播发送过程
+
+
+3.广播的接收
 		

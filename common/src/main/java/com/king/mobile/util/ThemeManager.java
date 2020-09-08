@@ -21,8 +21,8 @@ public class ThemeManager {
         defaultTheme.inactiveColor = Color.parseColor("#224466");
         defaultTheme.activityBackgrounColor = Color.parseColor("#EEEEEE");
         defaultTheme.titleBgColor = Color.parseColor("#AAFFFFFF");
-        defaultTheme.titleFontColor = Color.parseColor("#333333");
-        defaultTheme.navigateBarColor = Color.parseColor("#FFFFFF");
+        defaultTheme.titleFontColor = Color.parseColor("#AAFFFFFF");
+        defaultTheme.navigateBarColor = Color.parseColor("#AAFFFFFF");
         theme = defaultTheme;
     }
 
