@@ -24,13 +24,12 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         super.onCreate(savedInstanceState);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     }
 
     @Override
     protected void setTitle(TitleBar titleBar) {
-        int[] colors = {Color.parseColor("#539EFF"), Color.parseColor("#0F77FF")};
         titleBar.setTitleBarColorRes(R.color.colorPrimaryDark)
                 .setTitle(R.string.app_name)
                 .setTitleTextColor(R.color.colorAccent)

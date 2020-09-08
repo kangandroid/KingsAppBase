@@ -38,6 +38,7 @@ import java.util.List;
 import io.reactivex.Observable;
 import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
 public class TaskCreateActivity extends BaseActivity {
@@ -133,16 +134,25 @@ public class TaskCreateActivity extends BaseActivity {
             task.triggerAtMillis = timeInMillis;
             task.targetPackageName = appInfo.appName;
             task.targetPackageName = appInfo.packageName;
-            Observable.just(task).map((Task t) -> {
-                AlarmUtils.setOneShotAlarm(this, t);
-                calendarA.add(minute,1);
-                AlarmUtils.setOpenSelf(this,calendarA.getTimeInMillis());
-                taskViewModel.insert(t);
-                return true;
-            }).subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread()).subscribe(
-                    (success) -> finish()
-            );
+            Disposable subscribe = Observable.just(task)
+                    .map((Task t) -> {
+                        AlarmUtils.setOneShotAlarm(this, t);
+                        calendarA.add(Calendar.MINUTE, 1);
+//                AlarmUtils.setOpenSelf(this,calendarA.getTimeInMillis());
+                        taskViewModel.insert(t);
+                        return true;
+                    })
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(
+                            (success) -> {
+                                if (success) {
+                                    finish();
+                                }
+                            },
+                            (e) -> Loker.e("---------", e.toString())
+                    );
+            Loker.e("subscribe.isDisposed()---------" + subscribe.isDisposed());
         });
 
     }
