@@ -2,6 +2,7 @@ package com.king.mobile.wakap.model;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 
@@ -15,4 +16,7 @@ public interface TaskDao {
 
     @Insert
     void addTask(Task task);
+
+    @Delete
+    void deleteTask(Task task);
 }

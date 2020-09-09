@@ -12,6 +12,10 @@ import com.king.mobile.wakap.model.TaskDao;
 
 import java.util.List;
 
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
+
 public class TaskViewModel extends AndroidViewModel {
 
 
@@ -32,5 +36,15 @@ public class TaskViewModel extends AndroidViewModel {
 
     public void insert(Task task) {
         taskDao.addTask(task);
+    }
+
+    public void delete(Task task) {
+        Observable.just(task)
+                .map((data) -> {
+                    taskDao.deleteTask(data);
+                    return true;
+                })
+                .subscribeOn(Schedulers.io())
+                .subscribe();
     }
 }

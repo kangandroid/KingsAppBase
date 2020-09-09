@@ -1,18 +1,20 @@
 package com.king.mobile.wakap;
 
+import android.app.AlertDialog;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.WindowManager;
 import android.widget.ImageButton;
 
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.king.mobile.base.BaseActivity;
 import com.king.mobile.wakap.model.Task;
+import com.king.mobile.wakap.util.AlarmUtils;
 import com.king.mobile.widget.TitleBar;
 
 import java.util.List;
@@ -43,8 +45,26 @@ public class MainActivity extends BaseActivity {
         btnAddAlarm.setOnClickListener(v -> startActivity(new Intent(this, TaskCreateActivity.class)));
         list = findViewById(R.id.recycler_view);
         list.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
+        list.addItemDecoration(new DividerItemDecoration(this,
+                DividerItemDecoration.VERTICAL));
         TaskListAdapter adapter = new TaskListAdapter(this);
         list.setAdapter(adapter);
+        adapter.setOnItemLongClickListener((task, view, position) -> {
+            boolean happened = System.currentTimeMillis() > task.triggerAtMillis;
+            String action = happened ? "删除" : "取消";
+            AlertDialog dialog = new AlertDialog.Builder(this)
+                    .setMessage("是否" + action + "该任务？")
+                    .setNegativeButton("Let me see", (dialog12, which) -> {
+                        dialog12.dismiss();
+                    })
+                    .setPositiveButton(action, (dialog1, which) -> {
+                        if (!happened) {
+                            AlarmUtils.cancelAlarm(this, task);
+                        }
+                        taskViewModel.delete(task);
+                    }).create();
+            dialog.show();
+        });
         taskViewModel.getTasks().observe(this, (List<Task> data) -> adapter.setData(data));
     }
 

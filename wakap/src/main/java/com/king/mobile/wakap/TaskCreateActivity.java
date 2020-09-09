@@ -138,7 +138,7 @@ public class TaskCreateActivity extends BaseActivity {
                     .map((Task t) -> {
                         AlarmUtils.setOneShotAlarm(this, t);
                         calendarA.add(Calendar.MINUTE, 1);
-//                AlarmUtils.setOpenSelf(this,calendarA.getTimeInMillis());
+                        AlarmUtils.setOpenSelf(this, calendarA.getTimeInMillis());
                         taskViewModel.insert(t);
                         return true;
                     })

@@ -10,7 +10,7 @@ public class Task {
     @Ignore
     private static final long serialVersionUID = 8822818790694831649L;
     @PrimaryKey(autoGenerate = true)
-    public long id;
+    public int id;
     @ColumnInfo
     public String name;
     @ColumnInfo

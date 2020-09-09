@@ -14,6 +14,7 @@ import com.king.mobile.wakap.util.PackageUtils;
 import java.text.ParseException;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 class TaskListAdapter extends BaseListAdapter<Task> {
     public TaskListAdapter(Context context) {
@@ -43,11 +44,12 @@ class TaskListAdapter extends BaseListAdapter<Task> {
         protected void bindView(Task bean, int position, Context context) throws ParseException {
             Calendar instance = Calendar.getInstance();
             instance.setTimeInMillis(bean.triggerAtMillis);
-            tvTime.setText(instance.get(Calendar.YEAR) + "年"
-                    + (instance.get(Calendar.MONTH) + 1) + "月"
-                    + instance.get(Calendar.DAY_OF_MONTH) + "日 "
-                    + instance.get(Calendar.HOUR_OF_DAY) + "时"
-                    + instance.get(Calendar.MINUTE) + "分");
+            tvTime.setText(String.format(Locale.CHINA, "%d年%d月%d日\r\n%d时%d分",
+                    instance.get(Calendar.YEAR),
+                    instance.get(Calendar.MONTH) + 1,
+                    instance.get(Calendar.DAY_OF_MONTH),
+                    instance.get(Calendar.HOUR_OF_DAY),
+                    instance.get(Calendar.MINUTE)));
             AppInfo appInfo = PackageUtils.getAppInfo(bean.targetPackageName);
             appName.setText(appInfo.appName);
             appIcon.setImageDrawable(appInfo.icon);

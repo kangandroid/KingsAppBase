@@ -23,8 +23,8 @@ public abstract class BaseListAdapter<T> extends
     private Context mContext;
     private LayoutInflater mInflater;
     private List<Class<?>> mViewBundles;
-    private OnItemClickListener<T> mOnItemClickLitener;
-    private OnItemLongClickListener<T> mOnItemLongClickLitener;
+    private OnItemClickListener<T> mOnItemClickListener;
+    private OnItemLongClickListener<T> mOnItemLongClickListener;
 
     public void setData(List<T> list) {
         this.mList = list;
@@ -47,7 +47,11 @@ public abstract class BaseListAdapter<T> extends
     }
 
     public void setOnItemClickListener(OnItemClickListener<T> onItemClickLitener) {
-        this.mOnItemClickLitener = onItemClickLitener;
+        this.mOnItemClickListener = onItemClickLitener;
+    }
+
+    public void setOnItemLongClickListener(OnItemLongClickListener<T> onItemLongClickListener) {
+        this.mOnItemLongClickListener = onItemLongClickListener;
     }
 
 
@@ -76,13 +80,13 @@ public abstract class BaseListAdapter<T> extends
             e.printStackTrace();
         }
         holder.itemView.setOnClickListener(v -> {
-            if (mOnItemClickLitener != null) {
-                mOnItemClickLitener.onItemClick(mList.get(position), holder.itemView, holder.getLayoutPosition());
+            if (mOnItemClickListener != null) {
+                mOnItemClickListener.onItemClick(mList.get(position), holder.itemView, holder.getLayoutPosition());
             }
         });
         holder.itemView.setOnLongClickListener(v -> {
-            if (mOnItemLongClickLitener != null) {
-                mOnItemLongClickLitener.onItemLongClick(mList.get(position), holder.itemView,
+            if (mOnItemLongClickListener != null) {
+                mOnItemLongClickListener.onItemLongClick(mList.get(position), holder.itemView,
                         holder.getLayoutPosition());
                 return true;
             } else {
@@ -182,10 +186,10 @@ public abstract class BaseListAdapter<T> extends
     public static class ViewBundle {
         public ViewBundle(int layoutId, Class<? extends BaseViewHolder> clazz) {
             this.layoutId = layoutId;
-            this.VHclazz = clazz;
+            this.vhClazz = clazz;
         }
 
         public int layoutId;
-        public Class VHclazz;
+        public Class vhClazz;
     }
 }
