@@ -1,6 +1,14 @@
 package com.king.mobile.util;
 
+import android.os.Build;
 import android.util.Log;
+
+import androidx.annotation.RequiresApi;
+
+import java.util.concurrent.Exchanger;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
 
 public class Loker {
 
@@ -33,5 +41,15 @@ public class Loker {
             sb.append(str).append(",");
         }
         return sb.toString();
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public void test(){
+        int nThreads = 3;
+        ExecutorService singleThreadExecutor = Executors.newSingleThreadExecutor();
+        ExecutorService fixedThreadPool = Executors.newFixedThreadPool(nThreads);
+        ExecutorService cachedThreadPool = Executors.newCachedThreadPool();
+        ScheduledExecutorService scheduledThreadPool = Executors.newScheduledThreadPool(3);
+        ExecutorService workStealingPool = Executors.newWorkStealingPool();
     }
 }

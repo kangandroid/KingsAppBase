@@ -20,13 +20,15 @@ import static android.app.PendingIntent.FLAG_IMMUTABLE;
 import static android.content.Context.ALARM_SERVICE;
 
 public class AlarmUtils {
+
+    private static int selfCode = 100;
     public static void setOneShotAlarm(Context context, Task task) {
         try {
             AppInfo appInfo = PackageUtils.getAppInfo(task.targetPackageName);
             PendingIntent sender = PendingIntent.getActivity(context, task.id, appInfo.launchIntent, FLAG_IMMUTABLE);
             AlarmManager am = (AlarmManager) context.getSystemService(ALARM_SERVICE);
             assert am != null;
-            AlarmManagerCompat.setExactAndAllowWhileIdle(am, AlarmManager.RTC_WAKEUP, task.triggerAtMillis, sender);
+            AlarmManagerCompat.setAndAllowWhileIdle(am, AlarmManager.RTC_WAKEUP, task.triggerAtMillis, sender);
         } catch (Exception e) {
             Loker.d("---------------" + e.getMessage());
         }
@@ -34,8 +36,9 @@ public class AlarmUtils {
     }
 
     public static void setOpenSelf(Context context, long triggerAtMillis) {
+        selfCode++;
         AppInfo appInfo = PackageUtils.getAppInfo("com.king.mobile.wakap");
-        PendingIntent sender = PendingIntent.getActivity(context, 0, appInfo.launchIntent, FLAG_IMMUTABLE);
+        PendingIntent sender = PendingIntent.getActivity(context, selfCode, appInfo.launchIntent, FLAG_IMMUTABLE);
         AlarmManager am = (AlarmManager) context.getSystemService(ALARM_SERVICE);
         assert am != null;
         AlarmManagerCompat.setExactAndAllowWhileIdle(am, AlarmManager.RTC_WAKEUP, triggerAtMillis, sender);

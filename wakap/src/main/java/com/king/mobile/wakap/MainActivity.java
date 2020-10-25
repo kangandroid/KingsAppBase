@@ -13,11 +13,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.king.mobile.base.BaseActivity;
-import com.king.mobile.wakap.model.Task;
 import com.king.mobile.wakap.util.AlarmUtils;
 import com.king.mobile.widget.TitleBar;
-
-import java.util.List;
 
 public class MainActivity extends BaseActivity {
     private TaskViewModel taskViewModel;
@@ -65,7 +62,7 @@ public class MainActivity extends BaseActivity {
                     }).create();
             dialog.show();
         });
-        taskViewModel.getTasks().observe(this, (List<Task> data) -> adapter.setData(data));
+        taskViewModel.getTasks().observe(this, adapter::setData);
     }
 
 
