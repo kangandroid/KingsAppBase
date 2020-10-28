@@ -29,17 +29,16 @@ public class RecordManagerFragment extends BaseFragment {
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+    protected void initView(@NonNull View view) {
         avRecent = view.findViewById(R.id.av_recent);
         recentList = view.findViewById(R.id.recent_list);
-        recentList.setLayoutManager(new LinearLayoutManager(getContext(),RecyclerView.HORIZONTAL,false));
+        recentList.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false));
         DividerItemDecoration decorV = new DividerItemDecoration(getContext(), VERTICAL);
         recentList.addItemDecoration(decorV);
         adapter = new RecentVideoListAdapter(getContext());
         recentList.setAdapter(adapter);
-        avRecent.setOnClickListener(v->{});
-
+        avRecent.setOnClickListener(v -> {
+        });
     }
 }
 

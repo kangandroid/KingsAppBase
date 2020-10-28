@@ -11,7 +11,8 @@
         android:supportsRtl="true"
         android:usesCleartextTraffic="true"
         android:theme="@style/AppBaseTheme"
-        tools:replace="android:allowBackup">
+        tools:replace="android:allowBackup"
+        tools:targetApi="m">
         <activity
             android:name=".view.PlayerActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|smallestScreenSize|uiMode"

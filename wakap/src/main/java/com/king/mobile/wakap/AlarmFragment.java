@@ -11,12 +11,11 @@ public class AlarmFragment extends BaseListFragment<Task> {
 
     @Override
     protected void setLayoutManager(RecyclerView recyclerView) {
-
     }
 
     @Override
     protected BaseListAdapter createAdapter() {
-        return null;
+        return null ;
     }
 
     @Override

@@ -89,6 +89,33 @@ Handler 负责发送消息（sendXXX Message 和post Runnable 最终被封装成
 ###11. WMS
 
 
+###12.RecyclerView
+#### 12.1 RecyclerView （androidx.recyclerview.widget）
+继承 ViewGroup 实现了ScrollingView, NestedScrollingChild2, NestedScrollingChild3等接口
+Adapter ：{Adapter}的子类负责提供表示数据集中项的视图
+Position：数据项在适配器内的位置.
+Index：在调用{getChildAt}时使用的附加子视图的索引
+Binding：准备子视图以显示与适配器中位置对应的数据的过程。
+Recycle（view）：以前用于显示特定适配器的数据的视图位置可放置在缓存中，以便稍后重用，这可以跳过初始和布局构建，
+            从而极大地提高性能
+Scrap（view）：在布局期间进入临时分离状态的子视图。废弃视图可以在不完全脱离父类RecyclerView的情况下被重用，如果
+            不需要重新绑定，可以不修改;如果视图被认为是脏的，可以由适配器修改
+Dirty（view）：一个子视图，在显示之前必须由适配器rebound
+
+
+RecyclerView在{@link Adapter}和{@link LayoutManager}之间引入了额外的抽象级别，以便能够在布局计算期间检测批
+处理中的数据集更改。这使LayoutManager不必跟踪适配器更改来计算动画。它还有助于提高性能，因为所有视图绑定同时发生，
+避免了不必要的绑定。
+因此，在RecyclerView中有两种position相关方法:
+布局位置:Item在最新布局计算中的位置。这是 从布置图经理的角度来看职位
+适配器位置:一个Item在适配器中的位置。这是我们的位置 适配器的透视图。
+除了调度adapter.notify*事件并计算更新后的布局的时间外，这两个位置是相同的。
+
+
+LayoutManger
+ViewHolder
+DiffUtil
+
 
 ###Glide 
 1.Glide 对象是单例，用volatile修饰。创建过程用同步代码块。

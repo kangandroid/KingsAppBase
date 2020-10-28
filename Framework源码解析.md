@@ -56,4 +56,7 @@ ActivityManagerService
 
 
 3.广播的接收
+
+
+
 		

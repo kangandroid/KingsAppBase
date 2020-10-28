@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.king.mobile.base.BaseListAdapter;
 import com.king.mobile.base.BaseListFragment;
 import com.king.player.adapter.LocalVideoListAdapter;
 import com.king.player.model.VideoInfo;
@@ -37,17 +38,26 @@ public class LocalVideoFragment extends BaseListFragment {
     @Override
     protected void setLayoutManager(RecyclerView recyclerView) {
         recyclerView.setLayoutManager(new GridLayoutManager(activity, 3));
-        adapter = new LocalVideoListAdapter(activity);
         Context context = Objects.requireNonNull(getContext());
         DividerItemDecoration decorV = new DividerItemDecoration(context, VERTICAL);
         DividerItemDecoration decorH = new DividerItemDecoration(context, HORIZONTAL);
         recyclerView.addItemDecoration(decorV);
         recyclerView.addItemDecoration(decorH);
-        recyclerView.setAdapter(adapter);
+    }
+
+    @Override
+    protected BaseListAdapter createAdapter() {
+        adapter = new LocalVideoListAdapter(activity);
         adapter.setOnItemClickListener((videoInfo, view, position) -> play(videoInfo));
         videoViewModel.getLocalVideoList().observe(this, list -> {
             adapter.setData(list);
         });
+        return adapter;
+    }
+
+    @Override
+    protected void requestData(int requestType) {
+
     }
 
     private void play(VideoInfo videoInfo) {

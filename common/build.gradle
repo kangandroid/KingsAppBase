@@ -39,7 +39,6 @@ android {
         targetCompatibility = ext.javaVersion
         sourceCompatibility = ext.javaVersion
     }
-    buildToolsVersion = ext.buildToolsVersion
 
 }
 

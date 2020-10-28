@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.king.mobile.base.BaseListAdapter;
 import com.king.mobile.base.BaseListFragment;
 import com.king.player.adapter.LiveTVListAdapter;
 import com.king.player.model.VideoInfo;
@@ -31,13 +32,23 @@ public class LiveTVFragment extends BaseListFragment {
     @Override
     protected void setLayoutManager(RecyclerView recyclerView) {
         recyclerView.setLayoutManager(new GridLayoutManager(activity, 2));
+
+    }
+
+    @Override
+    protected BaseListAdapter createAdapter() {
+
         adapter = new LiveTVListAdapter(activity);
         recyclerView.setAdapter(adapter);
         adapter.setOnItemClickListener((videoInfo, view, position) -> {
             play(videoInfo);
 //            new ScreenCastFragment(videoInfo).cast(getFragmentManager());
         });
-        videoViewModel.getLiveTVList().observe(this, list -> adapter.setData(list));
+        return adapter;
+    }
+
+    @Override
+    protected void requestData(int requestType) {
     }
 
     private void play(VideoInfo videoInfo) {

@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.king.mobile.util.BindLayoutMapping;
 import com.king.mobile.util.InstanceUtil;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
@@ -55,6 +57,7 @@ public abstract class BaseListAdapter<T> extends
     }
 
 
+    @NotNull
     @Override
     public BaseViewHolder<T> onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         if (mViewBundles != null && mViewBundles.size() > 0) {
