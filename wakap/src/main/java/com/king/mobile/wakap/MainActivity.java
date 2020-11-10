@@ -16,8 +16,16 @@ import com.king.mobile.base.BaseActivity;
 import com.king.mobile.wakap.util.AlarmUtils;
 import com.king.mobile.widget.TitleBar;
 
+import javax.inject.Inject;
+
+import dagger.hilt.android.AndroidEntryPoint;
+import dagger.hilt.android.migration.OptionalInject;
+
+@AndroidEntryPoint
 public class MainActivity extends BaseActivity {
     private TaskViewModel taskViewModel;
+
+    @Inject
     private RecyclerView list;
 
 
