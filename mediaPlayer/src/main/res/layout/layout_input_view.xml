@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="100pt">
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/name"
+        android:textColor="@color/textBlack"
+        android:textSize="28pt" />
+
+    <EditText
+        android:id="@+id/et_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="@drawable/bg_et"
+        android:hint="@string/input_hint_website_name"
+        android:inputType="textMultiLine"
+        android:padding="8dp"
+        android:textColor="@color/TextSecondary"
+        android:textColorHint="@color/TextPlaceholder"
+        android:textSize="28pt" />
+
+    <ImageView
+        android:id="@+id/iv_clear"
+        android:layout_width="40pt"
+        android:layout_height="40pt"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="10pt"
+        android:src="@drawable/ic_round_highlight" />
+
+</FrameLayout>

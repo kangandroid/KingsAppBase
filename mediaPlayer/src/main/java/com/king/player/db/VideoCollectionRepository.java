@@ -6,7 +6,7 @@ import androidx.lifecycle.LiveData;
 
 import com.king.mobile.util.Executor;
 import com.king.player.datasource.VideoCollectionDao;
-import com.king.player.model.VideoCollection;
+import com.king.player.video.VideoCollection;
 
 import java.util.List;
 

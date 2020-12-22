@@ -8,6 +8,7 @@ import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewParent;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -29,6 +30,7 @@ import com.king.mobile.util.R;
 public class TitleBar extends LinearLayout {
     private Context mContext;
     private FrameLayout container;
+    private FrameLayout titleContainer;
     private LinearLayout actionLeft;
     private LinearLayout actionRight;
     private TextView txTitle;
@@ -39,13 +41,14 @@ public class TitleBar extends LinearLayout {
 
     private String mTitle;
     @ColorInt
-    private int bacgroundColor;
+    private int backgroundColor;
     @ColorInt
     private int titleTextColor;
     private Action leftAction;
     private Action rightAction;
     private ImageView imageBg;
     private Drawable gradientBg;
+    private View titleView;
 
     public static Action ACTION_BACK_DARK;
     public static Action ACTION_BACK_LIGHT;
@@ -66,6 +69,11 @@ public class TitleBar extends LinearLayout {
         this(context, null);
     }
 
+    public TitleBar setTitleView(View titleView) {
+        this.titleView = titleView;
+        return this;
+    }
+
     public TitleBar(Context context, @Nullable AttributeSet attrs) {
         this(context, attrs, 0);
     }
@@ -80,6 +88,7 @@ public class TitleBar extends LinearLayout {
         View view = LayoutInflater.from(context).inflate(R.layout.layout_app_title, this);
         imageBg = findViewById(R.id.iv_title_bg);
         container = view.findViewById(R.id.action_container);
+        titleContainer = view.findViewById(R.id.title_container);
         actionLeft = container.findViewById(R.id.action_left);
         iconLeft = actionLeft.findViewById(R.id.icon_left);
         txTitleLeft = actionLeft.findViewById(R.id.title_left);
@@ -142,19 +151,19 @@ public class TitleBar extends LinearLayout {
 
     public TitleBar setTitleBarColorRes(@ColorRes int color) {
         gradientBg = null;
-        bacgroundColor = ColorUtil.getColor(mContext, color);
+        backgroundColor = ColorUtil.getColor(mContext, color);
         return this;
     }
 
     public TitleBar setTitleBarColorInt(@ColorInt int color) {
         gradientBg = null;
-        bacgroundColor = color;
+        backgroundColor = color;
         return this;
     }
 
     public TitleBar setTitleBarColor(String color) {
         gradientBg = null;
-        bacgroundColor = ColorUtil.getColor(color);
+        backgroundColor = ColorUtil.getColor(color);
         return this;
     }
 
@@ -189,7 +198,7 @@ public class TitleBar extends LinearLayout {
         } else if (gradientBg != null) {
             setBackground(gradientBg);
         } else {
-            setBackgroundColor(bacgroundColor);
+            setBackgroundColor(backgroundColor);
         }
         txTitleLeft.setTextColor(titleTextColor);
         if (leftAction != null) {
@@ -221,8 +230,14 @@ public class TitleBar extends LinearLayout {
         } else {
             actionRight.setVisibility(GONE);
         }
-        txTitle.setText(mTitle);
-        txTitle.setTextColor(titleTextColor);
+        if(titleView!=null){
+            txTitle.setVisibility(GONE);
+            titleContainer.addView(titleView);
+        }else {
+            txTitle.setVisibility(VISIBLE);
+            txTitle.setText(mTitle);
+            txTitle.setTextColor(titleTextColor);
+        }
     }
 
     public static class Action {

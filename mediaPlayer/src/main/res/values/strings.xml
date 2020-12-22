@@ -4,6 +4,9 @@
     <string name="record">记录管理</string>
     <string name="remote_video">网络视频</string>
     <string name="download_manager">下载管理</string>
+    <string name="latest_search">最近搜索</string>
+    <string name="latest_download">最近下载</string>
+    <string name="latest_collect">最近收藏</string>
     <string name="latest_play">最近播放</string>
     <string name="device_name">设备名称</string>
     <string name="video_sample">{"name": "庆余年"}</string>
@@ -17,10 +20,15 @@
     <string name="name">名称：</string>
     <string name="desc">描述：</string>
     <string name="name_input_hint">请输入视频名称</string>
+    <string name="input_hint_website_name">请输入网站名称</string>
+    <string name="input_hint_website_url">请输入网站网址</string>
     <string name="url">URL：</string>
     <string name="url_input_hit">请输入视频链接</string>
     <string name="title_device_list">设备列表</string>
     <string name="live_tv">电视直播</string>
     <string name="type">类型：</string>
     <string name="download">下载</string>
+    <string name="no_record">暂无记录</string>
+    <string name="addWebSite">添加常用网址</string>
+    <string name="baidu">百度</string>
 </resources>

@@ -6,7 +6,7 @@ import android.text.TextUtils;
 import com.king.mobile.util.ClipboardUtils;
 import com.king.mobile.util.CommonRegexs;
 import com.king.mobile.util.JSONUtil;
-import com.king.player.model.VideoInfo;
+import com.king.player.video.VideoInfo;
 
 import java.util.ArrayList;
 import java.util.List;

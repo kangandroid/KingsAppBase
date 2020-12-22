@@ -7,6 +7,10 @@ import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.WindowManager;
 
+import com.king.mobile.base.BaseApplication;
+
+import org.jetbrains.annotations.NotNull;
+
 import java.lang.reflect.Field;
 import java.util.Objects;
 
@@ -17,6 +21,7 @@ import static android.content.Context.WINDOW_SERVICE;
  */
 public class ScreenAdapter {
     private static float mDesignWidth; // 设计图采用屏幕的宽度
+    private static float xdpi;
 
     public static void init(float designWidth) {
         mDesignWidth = designWidth;
@@ -25,40 +30,57 @@ public class ScreenAdapter {
     /**
      * 重新计算displayMetrics.xhdpi, 使单位pt重定义为设计稿的相对长度
      *
-     * @param context 上下文
+     * @param resources 上下文
      * @see # activate()
      */
-    public static void resetDensity(Context context) {
+    public static void adaptDensity(Resources resources) {
         if (mDesignWidth == 0) {
-            throw new RuntimeException("should ScreenAdapter.init(designWidth); first");
+            throw new RuntimeException("should call ScreenAdapter.init(designWidth); first");
         }
-        if (context == null)
-            return;
+        if (resources == null) return;
+        DisplayMetrics metrics = getMetricsCompat(resources);
+        float xdpi = getXdpi();
+        if (metrics != null && metrics.xdpi != xdpi) {
+            metrics.xdpi = xdpi;
+            metrics.ydpi = xdpi;
+        }
+
+    }
+
+    private static float getXdpi() {
+        if (xdpi == 0) {
+            Point size = getScreenSize(BaseApplication.getContext());
+            xdpi = size.x / mDesignWidth * 72f;
+        }
+        return xdpi;
+    }
+
+    @NotNull
+    private static Point getScreenSize(Context context) {
         Point size = new Point();
-        ((WindowManager) Objects.requireNonNull(context.getSystemService(WINDOW_SERVICE))).getDefaultDisplay().getSize(size);
-        Resources resources = context.getResources();
-        resources.getDisplayMetrics().xdpi = size.x / mDesignWidth * 72f;
-        DisplayMetrics metrics = getMetricsOnMiui(context.getResources());
-        if (metrics != null) {
-            metrics.xdpi = size.x / mDesignWidth * 72f;
-        }
+        WindowManager windowManager = (WindowManager) Objects.requireNonNull(context.getSystemService(WINDOW_SERVICE));
+        windowManager.getDefaultDisplay().getSize(size);
+        return size;
     }
 
     /**
      * 恢复displayMetrics为系统原生状态，单位pt恢复为长度单位磅
      *
-     * @param context 上下文
+     * @param resources 上下文
      * @see # inactivate()
      */
-    public static void restoreDensity(Context context) {
-        context.getResources().getDisplayMetrics().setToDefaults();
-        DisplayMetrics metrics = getMetricsOnMiui(context.getResources());
+    public static void restoreDensity(Resources resources) {
+        resources.getDisplayMetrics().setToDefaults();
+        DisplayMetrics metrics = getMetricsCompat(resources);
         if (metrics != null)
             metrics.setToDefaults();
     }
 
-    //解决MIUI更改框架导致的MIUI7+Android5.1.1上出现的失效问题(以及极少数基于这部分miui去掉art然后置入xposed的手机)
-    private static DisplayMetrics getMetricsOnMiui(Resources resources) {
+    /**
+     * 解决MIUI更改框架导致的MIUI7+Android5.1.1上出现的失效问题(以及极少数基于这部分miui去掉art然后置入xposed的手机)
+     */
+    private static DisplayMetrics getMetricsCompat(Resources resources) {
+//        Resources resources = context.getResources();
         if ("MiuiResources".equals(resources.getClass().getSimpleName())
                 || "XResources".equals(resources.getClass().getSimpleName())) {
             try {
@@ -68,8 +90,9 @@ public class ScreenAdapter {
             } catch (Exception e) {
                 return null;
             }
+        } else {
+            return resources.getDisplayMetrics();
         }
-        return null;
     }
 
     /**

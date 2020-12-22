@@ -1,6 +1,9 @@
 package com.king.player.view;
 
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -9,15 +12,18 @@ import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.viewpager.widget.ViewPager;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.tabs.TabLayout;
 import com.king.mobile.base.BaseActivity;
+import com.king.mobile.util.ColorUtil;
+import com.king.mobile.util.ScreenAdapter;
 import com.king.mobile.util.ToastUtil;
 import com.king.mobile.widget.TitleBar;
 import com.king.player.R;
+import com.king.player.search.ui.SearchActivity;
+import com.king.player.view.fragment.LatestFragment;
 import com.king.player.view.fragment.LiveTVFragment;
 import com.king.player.view.fragment.LocalVideoFragment;
 import com.king.player.view.fragment.RecordManagerFragment;
-import com.king.player.view.fragment.RemoteVideoFragment;
 import com.king.player.view.fragment.SplashFragment;
 import com.king.player.view.fragment.VideoInfoDialog;
 import com.king.player.viewmodel.VideoViewModel;
@@ -26,6 +32,8 @@ import com.yanzhenjie.permission.runtime.Permission;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static android.util.TypedValue.COMPLEX_UNIT_PT;
 
 public class HomeActivity extends BaseActivity {
     private VideoViewModel videoViewModel;
@@ -39,6 +47,13 @@ public class HomeActivity extends BaseActivity {
 
     private TitleBar.Action actionAdd = new TitleBar.Action(null, R.drawable.ic_action_add,
             v -> VideoInfoDialog.show(getSupportFragmentManager()));
+    private TitleBar.Action actionSearch = new TitleBar.Action(null, R.drawable.ic_action_search,
+            v -> goSearch());
+
+    private void goSearch() {
+        startActivity(new Intent(this, SearchActivity.class));
+    }
+
     private TitleBar.Action actionSetting = new TitleBar.Action(null, R.drawable.ic_settings,
             v -> {
 
@@ -47,109 +62,97 @@ public class HomeActivity extends BaseActivity {
             v -> videoViewModel.loadLiveTv());
 
     private ViewPager vpContent;
-    private BottomNavigationView bnmv;
     private List<Fragment> fragmentList;
-    private BottomNavigationView.OnNavigationItemSelectedListener navigationItemSelectedListener = menuItem -> {
-        int itemId = menuItem.getItemId();
-        switch (itemId) {
-            case R.id.local_video:
-                vpContent.setCurrentItem(0, true);
-                titleBar.setRightAction(actionScan)
-                        .setTitle("本地视频")
-                        .setLeftAction(null)
-                        .invalidate();
-                break;
-            case R.id.remote_video:
-                vpContent.setCurrentItem(1, true);
-                titleBar.setRightAction(actionAdd)
-                        .setLeftAction(null)
-                        .setTitle("网络视频")
-                        .invalidate();
-                break;
-            case R.id.live_tv:
-                vpContent.setCurrentItem(2, true);
-                titleBar.setRightAction(actionSync)
-                        .setLeftAction(null)
-                        .setTitle("电视直播")
-                        .invalidate();
-                break;
-            case R.id.record_manage:
-                vpContent.setCurrentItem(3, true);
-                titleBar.setRightAction(null)
-                        .setLeftAction(actionSetting)
-                        .setTitle("视频管理")
-                        .invalidate();
-                break;
-        }
-        return true;
-    };
-    private ViewPager.OnPageChangeListener mOnPageChangeListener = new ViewPager.OnPageChangeListener() {
-        @Override
-        public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-        }
-
-        @Override
-        public void onPageSelected(int position) {
-            switch (position) {
-                case 0:
-                    bnmv.setSelectedItemId(R.id.local_video);
-                    break;
-                case 1:
-                    bnmv.setSelectedItemId(R.id.remote_video);
-                    break;
-                case 2:
-                    bnmv.setSelectedItemId(R.id.live_tv);
-                    break;
-                case 3:
-                    bnmv.setSelectedItemId(R.id.record_manage);
-                    break;
-            }
-        }
-
-        @Override
-        public void onPageScrollStateChanged(int state) {
-
-        }
-    };
+    private TabLayout tabLayout;
+    private String[] tabTexts = {"最近", "收藏", "下载", "本地"};
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        SplashFragment.show(getSupportFragmentManager());
+        new SplashFragment().show(getSupportFragmentManager(),SplashFragment.TAG);
     }
 
     @Override
     protected boolean isOverlay() {
-        return false;
+        return true;
     }
 
     @Override
     protected void setTitle(TitleBar titleBar) {
-        titleBar.setTitleBarColorRes(R.color.title_bg)
-                .setTitle(R.string.app_name)
-                .setTitleTextColor(R.color.title_text)
-                .setLeftAction(null)
+        tabLayout = new TabLayout(this);
+        tabLayout.setTabTextColors(Color.parseColor("#666666"), Color.parseColor("#000000"));
+        tabLayout.setInlineLabel(true);
+        tabLayout.setUnboundedRipple(true);
+        tabLayout.setTabIndicatorFullWidth(false);
+        tabLayout.setSelectedTabIndicatorColor(Color.BLACK);
+        titleBar.setTitleView(tabLayout)
                 .immersive(this, true)
-                .setRightAction(actionScan)
+                .setLeftAction(actionSearch)
+                .setRightAction(actionAdd)
                 .invalidate();
     }
 
     @Override
     protected void initView() {
         videoViewModel = ViewModelProviders.of(this).get(VideoViewModel.class);
-        fragmentList = new ArrayList<>();
-        fragmentList.add(new LocalVideoFragment());
-        fragmentList.add(new RemoteVideoFragment());
-        fragmentList.add(new LiveTVFragment());
-        fragmentList.add(new RecordManagerFragment());
+        createFragment();
         vpContent = findViewById(R.id.vp_content);
         FragmentManager fm = getSupportFragmentManager();
         vpContent.setAdapter(new HomeFragmentPagerAdapter(fm, fragmentList));
         vpContent.setOffscreenPageLimit(2);
-        vpContent.addOnPageChangeListener(mOnPageChangeListener);
-        bnmv = findViewById(R.id.bottom_nav_view);
-        bnmv.setOnNavigationItemSelectedListener(navigationItemSelectedListener);
+        tabLayout.setupWithViewPager(vpContent);
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                TextView view = (TextView) tab.getCustomView();
+                view.setTextColor(ColorUtil.getColor("#111111"));
+                view.getPaint().setFakeBoldText(true);
+                view.setTextSize(COMPLEX_UNIT_PT,40);
+                view.setWidth((int) ScreenAdapter.pt2px(HomeActivity.this,110));
+
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+                TextView view = (TextView) tab.getCustomView();
+                view.setTextColor(ColorUtil.getColor("#666666"));
+                view.getPaint().setFakeBoldText(false);
+                view.setWidth((int) ScreenAdapter.pt2px(HomeActivity.this,72));
+                view.setTextSize(COMPLEX_UNIT_PT,36);
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+            }
+        });
+        setTabs();
+    }
+
+    private void createFragment() {
+        fragmentList = new ArrayList<>();
+        fragmentList.add(new LatestFragment());
+        fragmentList.add(new LiveTVFragment());
+        fragmentList.add(new RecordManagerFragment());
+        fragmentList.add(new LocalVideoFragment());
+    }
+
+    private void setTabs() {
+        for (int index = 0; index < tabTexts.length; index++) {
+            TabLayout.Tab tabAt = tabLayout.getTabAt(index);
+            TextView textView = new TextView(this);
+            if (tabAt.isSelected()) {
+                textView.setTextSize(COMPLEX_UNIT_PT,40);
+                textView.getPaint().setFakeBoldText(true);
+                textView.setTextColor(ColorUtil.getColor("#111111"));
+                textView.setWidth((int) ScreenAdapter.pt2px(HomeActivity.this,110));
+            } else {
+                textView.setTextSize(COMPLEX_UNIT_PT,36);
+                textView.setTextColor(ColorUtil.getColor("#666666"));
+                textView.setWidth((int) ScreenAdapter.pt2px(HomeActivity.this,72));
+            }
+            textView.setText(tabTexts[index]);
+            tabAt.setCustomView(textView);
+        }
     }
 
 

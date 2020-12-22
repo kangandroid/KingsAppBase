@@ -1,7 +1,7 @@
 package com.king.mobile.wakap.recylerview;
 
-import android.media.session.PlaybackState;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -13,6 +13,8 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.king.mobile.wakap.R;
 
 class ListActivity extends AppCompatActivity {
 
@@ -28,6 +30,8 @@ class ListActivity extends AppCompatActivity {
         recyclerView.setItemViewCacheSize(5);
         RecyclerView.LayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
+        AdapterImp adapter = new AdapterImp();
+        recyclerView.setAdapter(adapter);
     }
 
     class CustomLayoutManger extends RecyclerView.LayoutManager {
@@ -38,9 +42,31 @@ class ListActivity extends AppCompatActivity {
         }
     }
 
-    class CustomAdapter extends ListAdapter{
+    class AdapterImp extends RecyclerView.Adapter<CustomViewHolder> {
 
-        protected CustomAdapter(@NonNull DiffUtil.ItemCallback diffCallback) {
+        public AdapterImp() {
+        }
+
+        @NonNull
+        @Override
+        public CustomViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            return null;
+        }
+
+        @Override
+        public void onBindViewHolder(@NonNull CustomViewHolder holder, int position) {
+
+        }
+
+        @Override
+        public int getItemCount() {
+            return 0;
+        }
+    }
+
+    class CustomAdapter<T> extends ListAdapter{
+
+        public CustomAdapter(@NonNull DiffUtil.ItemCallback diffCallback) {
             super(diffCallback);
         }
 
@@ -64,6 +90,7 @@ class ListActivity extends AppCompatActivity {
 
         public CustomViewHolder(@NonNull View itemView) {
             super(itemView);
+            View view = LayoutInflater.from(itemView.getContext()).inflate(R.layout.item_task, null);
         }
 
 

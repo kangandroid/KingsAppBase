@@ -5,37 +5,19 @@ import android.util.Log;
 import android.view.View;
 
 import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.FragmentManager;
 
 import com.king.mobile.util.R;
 import com.king.mobile.widget.BaseDialog;
 
 public class SplashFragment extends BaseDialog {
-
+    public static final String TAG = "SplashFragment";
     private Handler handler;
     private int waitSecond = 3;
 
-    private SplashFragment() {
+    public SplashFragment() {
+        setStyle(DialogFragment.STYLE_NORMAL, R.style.Dialog_FullScreen);
     }
 
-    private static SplashFragment getInstance() {
-        return InstanceHolder.instance;
-    }
-
-    public static void show(FragmentManager fg) {
-        SplashFragment instance = getInstance();
-        instance.setStyle(DialogFragment.STYLE_NORMAL, R.style.Dialog_FullScreen);
-        instance.show(fg, "Splash");
-    }
-
-    public static void hide() {
-        getInstance().dismiss();
-    }
-
-
-    private static class InstanceHolder {
-        private static SplashFragment instance = new SplashFragment();
-    }
 
     @Override
     protected int setLayoutId() {
@@ -52,12 +34,11 @@ public class SplashFragment extends BaseDialog {
                 Log.d("KK", String.format("剩余%dS", waitSecond));
                 if (waitSecond < 0) {
                     msg.getTarget().removeCallbacksAndMessages(null);
-                    hide();
-                    return true;
+                    dismiss();
                 } else {
                     msg.getTarget().sendEmptyMessageDelayed(1, 1000);
-                    return true;
                 }
+                return true;
             } else {
                 return false;
             }

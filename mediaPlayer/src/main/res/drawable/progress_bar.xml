@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!-- 背景  gradient是渐变,corners定义的是圆角 -->
     <item android:id="@android:id/background">
         <shape>
             <corners android:radius="10dp" />
 
-            <solid android:color="@color/gray_2" />
+            <solid android:color="@color/Info" />
         </shape>
     </item>
     <!-- 第二条进度条颜色 -->
@@ -17,10 +17,10 @@
 
                 <gradient
                     android:angle="90.0"
-                    android:centerColor="#ac6079"
+                    android:centerColor="@color/TextSecondary"
                     android:centerY="0.45"
-                    android:endColor="#6c213a"
-                    android:startColor="#e71a5e" />
+                    android:endColor="@color/Primary"
+                    android:startColor="@color/Info" />
             </shape>
         </clip>
     </item>
@@ -29,8 +29,7 @@
         <clip>
             <shape>
                 <corners android:radius="10dip" />
-
-                <solid android:color="@color/colorPrimaryDark" />
+                <solid android:color="@color/Primary" />
             </shape>
         </clip>
     </item>

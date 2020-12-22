@@ -9,7 +9,7 @@ import com.king.mobile.base.BaseListAdapter;
 import com.king.mobile.util.BindLayout;
 import com.king.mobile.util.ImageUtil;
 import com.king.player.R;
-import com.king.player.model.VideoInfo;
+import com.king.player.video.VideoInfo;
 
 import java.util.List;
 

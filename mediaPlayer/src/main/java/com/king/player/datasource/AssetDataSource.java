@@ -4,7 +4,7 @@ import android.content.Context;
 
 import com.king.mobile.util.AssetsUtil;
 import com.king.mobile.util.JSONUtil;
-import com.king.player.model.VideoInfo;
+import com.king.player.video.VideoInfo;
 
 import java.io.IOException;
 import java.util.List;

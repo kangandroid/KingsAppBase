@@ -7,7 +7,7 @@ import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
 
-import com.king.player.model.VideoInfo;
+import com.king.player.video.VideoInfo;
 
 import java.util.List;
 

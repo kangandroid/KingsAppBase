@@ -4,4 +4,9 @@
         <attr name="title" format="string" />
         <attr name="sub_title" format="string" />
     </declare-styleable>
+    <declare-styleable name="TextInputView">
+        <attr name="inputTitle" format="string" />
+        <attr name="inputHint" format="string" />
+        <attr name="android:inputType"/>
+    </declare-styleable>
 </resources>

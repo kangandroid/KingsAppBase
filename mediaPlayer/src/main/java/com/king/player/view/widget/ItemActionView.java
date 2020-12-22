@@ -13,6 +13,8 @@ import android.widget.TextView;
 import com.king.mobile.util.ScreenAdapter;
 import com.king.player.R;
 
+import static android.util.TypedValue.COMPLEX_UNIT_PT;
+
 public class ItemActionView extends FrameLayout {
 
     private TextView tvTitle;
@@ -44,12 +46,12 @@ public class ItemActionView extends FrameLayout {
         String subTitle = typedArray.getString(R.styleable.ItemActionView_sub_title);
         typedArray.recycle();
         tvTitle.setTextColor(getResources().getColor(R.color.textBlack));
-        tvTitle.setTextSize(16);
+        tvTitle.setTextSize(COMPLEX_UNIT_PT,32);
         tvTitle.setText(title);
         tvTitle.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));//加粗
         tvSubTitle.setText(subTitle);
         tvSubTitle.setTextColor(getResources().getColor(R.color.textBlack));
-        tvSubTitle.setTextSize(14);
+        tvSubTitle.setTextSize(COMPLEX_UNIT_PT,28);
         Drawable drawable = getResources().getDrawable(R.drawable.ic_enter);
         drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
         tvSubTitle.setCompoundDrawables(null,null, drawable,null);
@@ -58,10 +60,10 @@ public class ItemActionView extends FrameLayout {
         LayoutParams titleParams = new LayoutParams(wrapContent, wrapContent);
         LayoutParams subTitleParams = new LayoutParams(wrapContent, wrapContent);
         titleParams.gravity = Gravity.CENTER | Gravity.START;
-        titleParams.leftMargin = (int) ScreenAdapter.pt2px(context, 16);
+        titleParams.leftMargin = (int) ScreenAdapter.pt2px(context, 40);
         addView(tvTitle, titleParams);
         subTitleParams.gravity = Gravity.CENTER | Gravity.END;
-        subTitleParams.rightMargin = (int) ScreenAdapter.pt2px(context, 16);
+        subTitleParams.rightMargin = (int) ScreenAdapter.pt2px(context, 40);
         addView(tvSubTitle, subTitleParams);
     }
 

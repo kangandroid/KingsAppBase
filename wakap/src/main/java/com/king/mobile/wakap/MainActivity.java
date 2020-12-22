@@ -21,18 +21,18 @@ import javax.inject.Inject;
 import dagger.hilt.android.AndroidEntryPoint;
 import dagger.hilt.android.migration.OptionalInject;
 
-@AndroidEntryPoint
 public class MainActivity extends BaseActivity {
     private TaskViewModel taskViewModel;
 
     @Inject
     private RecyclerView list;
+    private TaskListAdapter adapter;
 
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        super.onCreate(savedInstanceState);
     }
 
     @Override
@@ -45,15 +45,21 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-        taskViewModel = new ViewModelProvider(this).get(TaskViewModel.class);
         ImageButton btnAddAlarm = findViewById(R.id.add_alarm);
         btnAddAlarm.setOnClickListener(v -> startActivity(new Intent(this, TaskCreateActivity.class)));
         list = findViewById(R.id.recycler_view);
         list.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
         list.addItemDecoration(new DividerItemDecoration(this,
                 DividerItemDecoration.VERTICAL));
-        TaskListAdapter adapter = new TaskListAdapter(this);
+        adapter = new TaskListAdapter(this);
         list.setAdapter(adapter);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        taskViewModel = new ViewModelProvider(this).get(TaskViewModel.class);
+        taskViewModel.getTasks().observe(this, adapter::setData);
         adapter.setOnItemLongClickListener((task, view, position) -> {
             boolean happened = System.currentTimeMillis() > task.triggerAtMillis;
             String action = happened ? "删除" : "取消";
@@ -70,9 +76,8 @@ public class MainActivity extends BaseActivity {
                     }).create();
             dialog.show();
         });
-        taskViewModel.getTasks().observe(this, adapter::setData);
-    }
 
+    }
 
     @Override
     protected int getContentLayoutId() {

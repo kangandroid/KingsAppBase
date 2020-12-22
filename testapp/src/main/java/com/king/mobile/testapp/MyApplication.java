@@ -7,11 +7,11 @@ public class MyApplication extends Application {
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
-        try {
-            HookHelper.hookAMS();
-            HookHelper.hookHandler();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+//        try {
+//            HookHelper.hookAMS();
+//            HookHelper.hookHandler();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
     }
 }

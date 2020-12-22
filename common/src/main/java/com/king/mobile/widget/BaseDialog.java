@@ -2,6 +2,7 @@ package com.king.mobile.widget;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.app.FragmentManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -18,7 +19,6 @@ import androidx.fragment.app.DialogFragment;
 
 import com.gyf.immersionbar.ImmersionBar;
 import com.king.mobile.util.KeyboardUtil;
-import com.king.mobile.util.Loker;
 import com.king.mobile.util.R;
 
 public abstract class BaseDialog extends DialogFragment {

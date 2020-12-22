@@ -7,7 +7,7 @@ import androidx.hilt.lifecycle.ViewModelInject;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
-import com.king.mobile.wakap.model.AppDatabase;
+import com.king.mobile.wakap.model.WakapDatabase;
 import com.king.mobile.wakap.model.Task;
 import com.king.mobile.wakap.model.TaskDao;
 
@@ -18,14 +18,13 @@ import io.reactivex.schedulers.Schedulers;
 
 public class TaskViewModel extends AndroidViewModel {
 
-
     private final LiveData<List<Task>> listLiveData;
     private final TaskDao taskDao;
 
     @ViewModelInject
     public TaskViewModel(@NonNull Application application) {
         super(application);
-        AppDatabase db = AppDatabase.getDatabase(application);
+        WakapDatabase db = WakapDatabase.getDatabase(application);
         taskDao = db.taskDao();
         listLiveData = taskDao.getAll();
 

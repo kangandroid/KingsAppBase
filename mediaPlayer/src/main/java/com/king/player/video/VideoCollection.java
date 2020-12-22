@@ -1,4 +1,4 @@
-package com.king.player.model;
+package com.king.player.video;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;

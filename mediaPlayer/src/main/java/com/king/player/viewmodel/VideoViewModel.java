@@ -7,11 +7,10 @@ import androidx.lifecycle.LiveData;
 
 import com.king.mobile.component.Callback;
 import com.king.player.db.VideoRepository;
-import com.king.player.model.VideoInfo;
+import com.king.player.video.VideoInfo;
 
 import java.util.List;
 
-import io.reactivex.Observable;
 import io.reactivex.Single;
 
 public class VideoViewModel extends AndroidViewModel {

@@ -1,8 +1,7 @@
-package com.king.player.model;
+package com.king.player.video;
 
 import android.text.TextUtils;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;

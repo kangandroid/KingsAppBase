@@ -2,6 +2,7 @@ package com.king.player.view.fragment;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
@@ -12,8 +13,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.king.mobile.base.BaseListAdapter;
 import com.king.mobile.base.BaseListFragment;
+import com.king.mobile.widget.TitleBar;
 import com.king.player.adapter.LocalVideoListAdapter;
-import com.king.player.model.VideoInfo;
+import com.king.player.video.VideoInfo;
 import com.king.player.view.PlayerActivity;
 import com.king.player.viewmodel.VideoViewModel;
 
@@ -27,6 +29,19 @@ public class LocalVideoFragment extends BaseListFragment {
     private LocalVideoListAdapter adapter;
     private FragmentActivity activity;
 
+    @Override
+    protected boolean hasTitle() {
+        return true;
+    }
+
+    @Override
+    protected void setTitle(TitleBar titleBar) {
+        titleBar.setTitle("")
+                .setTitleBarColorInt(Color.WHITE)
+                .immersive(this, true)
+                .invalidate();
+
+    }
 
     @Override
     public void onAttach(@NonNull Context context) {

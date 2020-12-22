@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import com.king.mobile.util.ImageUtil;
 import com.king.mobile.util.ToastUtil;
 import com.king.player.R;
-import com.king.player.model.VideoInfo;
+import com.king.player.video.VideoInfo;
 import com.shuyu.gsyvideoplayer.GSYBaseActivityDetail;
 import com.shuyu.gsyvideoplayer.GSYVideoManager;
 import com.shuyu.gsyvideoplayer.builder.GSYVideoOptionBuilder;

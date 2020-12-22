@@ -11,7 +11,7 @@ import com.king.mobile.util.Loker;
 import com.king.player.datasource.AssetDataSource;
 import com.king.player.datasource.LocalVideoSource;
 import com.king.player.datasource.VideoDao;
-import com.king.player.model.VideoInfo;
+import com.king.player.video.VideoInfo;
 
 import java.util.List;
 

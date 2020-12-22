@@ -12,11 +12,11 @@ import com.king.mobile.util.Loker;
 
 
 @Database(entities = {Task.class}, version = 1, exportSchema = false)
-public abstract class AppDatabase extends RoomDatabase {
+public abstract class WakapDatabase extends RoomDatabase {
 
     public abstract TaskDao taskDao();
 
-    private static volatile AppDatabase INSTANCE;
+    private static volatile WakapDatabase INSTANCE;
 
     private static RoomDatabase.Callback sRoomDatabaseCallback = new RoomDatabase.Callback() {
         @Override
@@ -38,12 +38,11 @@ public abstract class AppDatabase extends RoomDatabase {
         }
     };
 
-    public static AppDatabase getDatabase(final Context context) {
+    public static WakapDatabase getDatabase(final Context context) {
         if (INSTANCE == null) {
-            synchronized (AppDatabase.class) {
+            synchronized (WakapDatabase.class) {
                 if (INSTANCE == null) {
-                    INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                            AppDatabase.class, "KingApp_DB")
+                    INSTANCE = Room.databaseBuilder(context, WakapDatabase.class, "Wakap_DB")
                             .addCallback(sRoomDatabaseCallback)
                             .build();
                 }

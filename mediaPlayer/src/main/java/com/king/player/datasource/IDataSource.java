@@ -1,6 +1,6 @@
 package com.king.player.datasource;
 
-import com.king.player.model.VideoInfo;
+import com.king.player.video.VideoInfo;
 
 import java.util.List;
 

@@ -2,29 +2,22 @@ package com.king.player.view.fragment;
 
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.SparseArray;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.SimpleAdapter;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.google.android.material.snackbar.Snackbar;
-import com.king.mobile.component.Callback;
 import com.king.mobile.util.ToastUtil;
 import com.king.mobile.widget.BaseDialog;
 import com.king.mobile.widget.TitleBar;
 import com.king.player.R;
-import com.king.player.adapter.MyAdapter;
-import com.king.player.model.VideoInfo;
-import com.king.player.model.VideoType;
+import com.king.player.video.VideoInfo;
+import com.king.player.video.VideoType;
 import com.king.player.viewmodel.VideoViewModel;
-
-import io.reactivex.functions.Consumer;
 
 public class VideoInfoDialog extends BaseDialog {
     private VideoViewModel vvm;
@@ -71,7 +64,7 @@ public class VideoInfoDialog extends BaseDialog {
         titleBar.setTitle("视频信息")
                 .immersive(this, false)
                 .setTitleTextColor(R.color.white)
-                .setTitleBarColorRes(R.color.colorPrimary)
+                .setTitleBarColorRes(R.color.Primary)
                 .setLeftAction(new TitleBar.Action("取消", 0, v -> dismiss()))
                 .setRightAction(new TitleBar.Action("确定", 0, v -> submit()))
                 .invalidate();

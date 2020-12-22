@@ -4,7 +4,7 @@ import android.view.View;
 
 import com.king.mobile.widget.BaseDialog;
 import com.king.player.R;
-import com.king.player.model.VideoInfo;
+import com.king.player.video.VideoInfo;
 
 class VideoEditDialog extends BaseDialog {
     public VideoEditDialog(VideoInfo videoInfo) {

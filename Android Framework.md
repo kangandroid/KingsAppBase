@@ -1,0 +1,73 @@
+# Android Framework
+
+## Android 系统的启动
+1. 按电源健，通电启动引导程序BootLoader。
+2. BootLoader拉起OS启动Linux内核。
+3. Linux内核启动，设置缓存、计划表，加载驱动，寻找init，启动init进程。
+4. init进程的启动 
+5. zygote进程的启动，
+6. SystemServer进程的启动
+7. Launcher app的启动
+
+### zygote进程的启动
+> zygote进程是虚拟机实例，可通过复制自身来创建系统服务进程及应用进程，zygote进程于系统服务进程是通过socket通信来实现进程的创建的。被复制创建的进程中关闭server socket
+
+1. 创建AppRuntime调用start启动进程。
+2. 创建VM注册JNI
+3. 通过JNI 调用ZygoteInit的main方法进入VM的Java框架层
+4. registerZygoteSocket创建ServerSocket，runSelectLoop来启动服务监听，等待AMS创建的进程的请求
+5.  SystemServer进程的启动
+
+### SystemServer进程启动（pid==0）
+> SystemServer进程主要负责创建和管理系统服务。
+
+1.  ZygoteInit.java的forkSystemServer创建了SystemServer进程
+2. ZygoteInit.zygoteInit/ZygoteInit.main
+
+	1. commonInit 设置时间/设置默认userAgent
+	2. nativeZygoteInit/nativeFinishInit 启动Binder线程池
+	2. applicationInit 通过反射吊起SystemServer 的静态 main方法
+3.  SystemServer的main方法new SystemServer实例并执行run
+4.  run初始化设置各种选项 Looper.prepareMainLooper(); 
+5.  创建SystemServiceManager 来启动和管理诸多系统服务，
+6.  然后Start services
+	* startBootstrapServices 引导服务 如：Installer、ActivityManagerService、PackageManagerService 、PowerManagerService 、RecoverySystemService 、LightsService 、DisplayManagerService、UserManagerService、OverlayManagerService
+	* startCoreServices 核心服务 如：BatteryService 、UsageService、WebViewUpdateService、BinderCallsStatsService、
+	* startOtherServices 其他服务 如：VibratorService、IStorageManager、NetworkManagementService、IpSecService、NetworkStatsService... WindowManagerService、InputManagerService... 
+7. Looper.loop()启动消息循环; 抛出异常退出。
+
+## Launcher App 的启动
+> Android系统启动的最后一步是启动一个Home应用程序，这个应用程序用来显示系统中已经安装的应用程序，这个Home应用程序就叫做Launcher。
+
+1.  PackageManager在创建过程中会用Installer安装所有应用。包括Launcher
+2. 系统服务启动完成后 ActivityManagerService调用systemReady方法
+3. 调用mStackSupervisor.resumeFocusedStackTopActivityLocked()
+4. 调用mStackSupervisor.resumeFocusedStackTopActivityLocked()
+5. systemReady调用startHomeActivityLocked 启动Launcher HomeActivity
+6. 创建Intent addCategory  CATEGORY_HOME，通过PackageManager来找到launcher应用的
+
+## User App 启动
+> app的启动其实可分为两个阶段，应用进程的创建及Launch Activity的启动。热启动不需要创建进程。
+
+###冷启动
+1. Launcher -->AMS
+
+	`Launcher -> Activity -> Instrumentation -> IActivityManager -> AMS`
+2. AMS-->ActivityThread
+3. ActivityThread-->Activity
+
+###热启动
+
+## Activity 启动
+
+
+## Window 运行
+
+
+## Service 启动
+
+
+## Broadcast 运行过程
+
+
+

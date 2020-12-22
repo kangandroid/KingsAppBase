@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.king.mobile.base.BaseListAdapter;
 import com.king.mobile.base.BaseListFragment;
 import com.king.player.adapter.LiveTVListAdapter;
-import com.king.player.model.VideoInfo;
+import com.king.player.video.VideoInfo;
 import com.king.player.view.PlayerActivity;
 import com.king.player.viewmodel.VideoViewModel;
 

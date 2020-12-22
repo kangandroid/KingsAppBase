@@ -7,8 +7,7 @@ import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
 
-import com.king.player.model.VideoCollection;
-import com.king.player.model.VideoInfo;
+import com.king.player.video.VideoCollection;
 
 import java.util.List;
 

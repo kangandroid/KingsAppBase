@@ -1,0 +1,44 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/BorderBase"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:layout_width="750pt"
+        android:layout_height="100pt"
+        android:paddingHorizontal="40pt"
+        android:orientation="horizontal">
+        <ImageView
+            android:id="@+id/iv_checked"
+            android:visibility="invisible"
+            android:layout_width="40pt"
+            android:src="@drawable/ic_round_check_fill"
+            android:layout_height="40pt"
+            android:layout_gravity="center_vertical" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="0pt"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:textColor="@color/TextPrimary" />
+
+        <ImageView
+            android:id="@+id/iv_delete"
+            android:padding="20pt"
+            android:layout_width="80pt"
+            android:layout_height="80pt"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/ic_delete" />
+
+        <ImageView
+            android:id="@+id/iv_edit"
+            android:padding="20pt"
+            android:layout_width="80pt"
+            android:layout_height="80pt"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/ic_edit" />
+    </LinearLayout>
+</LinearLayout>

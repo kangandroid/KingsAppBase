@@ -1,22 +1,54 @@
-<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.king.mobile.testapp">
+<?xml version="1.0" encoding="utf-8"?><manifest xmlns:android="http://schemas.android.com/apk/res/android"
+package="com.king.mobile.testapp">
 
-    <application
-        android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+<application
+    android:allowBackup="true"
+    android:icon="@mipmap/ic_launcher"
+    android:label="@string/app_name"
+    android:name=".MyApp"
+    android:roundIcon="@mipmap/ic_launcher_round"
+    android:supportsRtl="true"
+    android:theme="@style/AppTheme">
+    <service
+        android:name=".TestService"
+        android:enabled="true"
+        android:exported="false"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <service android:name=".ProxyService"/>
-    </application>
+    <activity
+        android:name=".MainActivity"
+        android:configChanges="orientation">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+    </activity>
+
+    <service
+        android:name=".MyIntentService"
+        android:exported="false" />
+    <service android:name=".ProxyService" />
+
+    <meta-data
+        android:name="com.google.android.gms.car.application"
+        android:resource="@xml/automotive_app_desc" />
+
+    <service android:name=".MyMessagingService" />
+
+    <receiver android:name="com.king.mobile.testapp.MessageReadReceiver">
+        <intent-filter>
+            <action android:name="com.king.mobile.testapp.ACTION_MESSAGE_READ" />
+        </intent-filter>
+    </receiver>
+
+    <receiver android:name="com.king.mobile.testapp.MessageReplyReceiver">
+        <intent-filter>
+            <action android:name="com.king.mobile.testapp.ACTION_MESSAGE_REPLY" />
+        </intent-filter>
+    </receiver>
+</application>
+<instrumentation
+    android:name=".TestInstrumentation"
+    android:targetPackage="com.king.mobile.testapp" />
 
 </manifest>

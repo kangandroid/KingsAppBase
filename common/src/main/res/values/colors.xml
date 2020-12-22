@@ -7,7 +7,7 @@
 
     <color name="textBlack">#333</color>
     <color name="textWhite">#E0F7FA</color>
-    <color name="textLink">#03A9F4</color>
+    <color name="textLink">@color/colorBlue</color>
     <color name="textError">#D50000</color>
     <color name="textGray">#888888</color>
     <color name="themeBlue">#368BFF</color>
@@ -16,10 +16,28 @@
     <color name="gray_2">#EE9EA09E</color>
     <color name="transparent">#00FFFFFF</color>
 
-    <color name="white">#FFF</color>
     <color name="colorTransWhite">#AFFF</color>
-
-
     <color name="trans_black">#88000000</color>
+
+    <color name="white">#FFF</color>
+    <color name="black">#000000</color>
+
+
+    <color name="Primary">#409EFF</color>
+    <color name="Success">#67C23A</color>
+    <color name="Warning">#E6A23C</color>
+    <color name="Danger">#F56C6C</color>
+    <color name="Info">#909399</color>
+
+    <color name="BorderBase">#DCDFE6</color>
+    <color name="BorderLight">#E4E7ED</color>
+    <color name="BorderLighter">#EBEEF5</color>
+    <color name="BorderExtralight">#F2F6FC</color>
+
+    <color name="TextPrimary">#303133</color>
+    <color name="TextRegular">#606266</color>
+    <color name="TextSecondary">#909399</color>
+    <color name="TextPlaceholder">#C0C4CC</color>
+
 
 </resources>

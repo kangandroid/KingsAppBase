@@ -18,16 +18,16 @@
 BitMap在内存中的大小 width * height * pxSize
 
 ### 数据结构集合框架实现原理
-* List
-	*     ArrayList：底层实现是数组，默认容量是10，每次达到上限后会扩容 oldCapcity + oldCapcity >>1 (约为1.5)。将会创建新的数组将原有数组中的数据copy到新数组中，Arrays.copyOf. Systerm.copyArray
-	*     LinkedList：
-* Set
-	*     HashSet
-	*     TreeSet
+* List	  可包含重复元素
+	*     ArrayList：底层实现是数组，默认容量是10，每次达到上限后会扩容 oldCapcity + oldCapcity >>1 (约为1.5)。将会创建新的数组将原有数组中的数据copy到新数组中，Arrays.copyOf. Systerm.copyArray。扩容过程有内存峰值，尽量避免。
+	*     LinkedList：用链表数据结构，来实现的list 增删操作平繁的要选LinkedList，ArrayList查询效率更高O(1)
+* Set.   不可包含重复元素
+	*     HashSet 实现原理 在 HashMap 的key上保存数据，value上保存一个空对象，具体参见HashMap
+	*     TreeSet 实现原理 在 TreeSet 的key上保存数据，value上保存一个空对象，具体参见TreeSet
 * Map
-	*     HashMap 数组➕链表（1.8）
+	*     HashMap 数组➕链表（1.8 + 红黑树）
 	*     TreeMap
-4.
+
 
 
 ##Object类 万物之源
@@ -74,29 +74,36 @@ BitMap在内存中的大小 width * height * pxSize
 直接内存 使用NIO可直接读写
 
 ###GC机制
-
-*     a.标记-清除算法，占用空间小，效率低，产生内存碎片
-*     b.复制算法，简单高效，但需要等量内存担保，得到连续的内存，存活对象变多时，效率会下降
-*     c.标记整理算法， 先标记除要回收的对象，然后将存活对象向一端靠拢，然后清理端边界以外的内存
-*     d.分代回收算法，根据存活对象的生命周期长短将内存分为几块区域，JVM堆内存分为 新生代和老年代 **新生代**采用复制算法，**老年代**使用标记整理算法。
-
-### 引用类型与使用场景
-
-* a.强引用 直接指向实例对象的引用。 引用存在就不可被回收。
-* b.软引用 指向SoftReference包裹对象的引用，但内存一出之前，GC回收软引用. 做内存缓存，如图片缓存
-* c.弱引用 指向WeakReference包裹对象的引用，下一次GC到来时会被回收，不论是否面临内存溢出， 在静态内部类中，经常会使用虚引用。防止内存泄漏。
-* d.虚引用 指向PhantomReference包裹对象的引用，获取不到对象实例
-
-### 方法区的回收：
-    废弃的常量，常量的引用不存在时会被回收。
-    无用的类，类的实例不存在，类的字节码没有被引用，类的加载器已被回收。
-
+### 标记算法：
+1. 	引用计数法 引用数为0时，则可回收，对于互相调用的情况，会出现计数永不为0。
+1. 	跟搜索法： GC Roots 不可达时则可回收。
 ### GC Roots
     a.VM Stack中引用的对象
     b.Native method Stack中的引用对象
     c.方法区中的静态属性引用的对象
     d.方法区中的常量对象
     GC Root不可达的对象将会被标记回收
+    
+*     a.标记-清除算法，占用空间小，效率低，产生内存碎片
+*     b.复制算法，简单高效，但需要等量内存担保，得到连续的内存，存活对象变多时，效率会下降
+*     c.标记整理算法， 先标记除要回收的对象，然后将存活对象向一端靠拢，然后清理端边界以外的内存
+*     d.（堆内存回收）分代回收算法，根据存活对象的生命周期长短将内存分为几块区域，JVM堆内存分为 新生代和老年代 **新生代**采用复制算法，**老年代**使用标记整理算法。
+
+HotSpot 虚拟机采用分代回收算法：
+老年代：新生代（Eden ：Surviver （ From：To = 1:1）=8 ：2） = 2 ：1
+
+### 引用类型与使用场景
+
+* a.强引用 直接指向实例对象的引用。 引用存在就不可被回收。
+* b.软引用 指向SoftReference包裹对象的引用，但内存一出之前，GC回收软引用. 做内存缓存，如图片缓存，防止内存泄漏。
+* c.弱引用 指向WeakReference包裹对象的引用，下一次GC到来时会被回收，不论是否面临内存溢出， 在静态内部类中，经常会使用虚引用。
+* d.虚引用 指向PhantomReference包裹对象的引用，获取不到对象实例
+
+### 方法区的回收：
+    废弃的常量，常量的引用不存在时会被回收。
+    无用的类，类的实例不存在，类的字节码没有被引用，类的加载器已被回收。
+
+
 
 
 
@@ -123,7 +130,6 @@ BitMap在内存中的大小 width * height * pxSize
 
 ###并发
 指令重排序，JVM 为了优化程序执行过程。编译时改变指令的执行顺序。
-volatile (易变的) 保证变量对所有线程可见性每次调用时都会去主内存中read
 
 线程的实现
 
@@ -145,43 +151,62 @@ new Thread
 
 ####1.线程
 1. 线程的状态
-	1. NEW :创建
+	1. NEW :创建 new 
 	1. RUNNABLE：可运行，调用start之后
 	1. BLOCKED：阻塞，等待获取锁
-	1. WAITING：await  yeild 等方法自己不会自动变回runnable状态
+	1. WAITING：await yeild 等方法自己不会自动变回runnable状态
 	1. TIMED_WAITING：定时等待 时间到了自动变回runnable状态
 	1. TERMINATED：结束 run方法执行完成或者异常退出
+	
+	![](https://img-blog.csdn.net/20180803160520523)
 2. Java线程创建的几种方式
 	* 继承Thread类
 	* 实现Runnable接口
 	* Callable 返回Future对象
-	* 使用线程池创建()。管理调度线程
-3. 线程的一些方法
+	* 使用线程池创建()管理调度线程
+3. 线程相关的一些方法:
+	Obj 的方法 wait() 与 notify()	notifyAll()  wait(timeout) 自动唤醒
+	 wait 同步方法中调用，调用对象锁住的对象 
+	 notify 
+	
+	sleep（timeout）不会释放锁，wait（timeout）会释放锁。
 
 ####2.线程池
-        ExecutorService singleThreadExecutor = Executors.newSingleThreadExecutor();
-        核心线程数和最大线程数都为1
-            public static ExecutorService newSingleThreadExecutor() {
-                return new FinalizableDelegatedExecutorService
-                    (new ThreadPoolExecutor(1, 1,
-                                            0L, TimeUnit.MILLISECONDS,
-                                            new LinkedBlockingQueue<Runnable>()));
-            }
-        ExecutorService fixedThreadPool = Executors.newFixedThreadPool(mThreadCount);
-            public static ExecutorService newFixedThreadPool(int nThreads) {
-                    return new ThreadPoolExecutor(nThreads, nThreads,
-                                                  0L, TimeUnit.MILLISECONDS,
-                                                  new LinkedBlockingQueue<Runnable>());
-            }
-        ExecutorService cachedThreadPool = Executors.newCachedThreadPool();
-            public static ExecutorService newCachedThreadPool() {
-                return new ThreadPoolExecutor(0, Integer.MAX_VALUE,
-                                              60L, TimeUnit.SECONDS,
-                                              new SynchronousQueue<Runnable>());
-            }
-        ScheduledExecutorService scheduledThreadPool = Executors.newScheduledThreadPool(coreThreadCount);
+线程池的状态
 
-        ExecutorService workStealingPool = Executors.newWorkStealingPool();
+ *   RUNNING:  接受新任务并处理排队的任务
+ *   SHUTDOWN: 不接受新任务，但处理排队的任务
+ *   STOP: 不接受新任务，不处理排队的任务，中断正在进行的任务
+ *   TIDYING:  所有任务都已终止，workerCount为零，转换为TIDYING状态的线程将运行terminated（）钩子方法
+ *   TERMINATED: terminated()以执行完毕。
+ 
+ 线程池的核心参数及意义
+ 
+	字段 |意义|
+	---------|--------|
+	int corePoolSize|核心线程数，保留工作线程的最小数量，核心线程不会timeout除非设置allowCoreThreadTimeOut =true|
+	int maximumPoolSize|最大线程数 不能超过CAPACITY|
+	long keepAliveTime TimeUnit unit|当存活的线程数大于corePoolSize时，闲置线程多少时间后被销毁|
+	BlockingQueue workQueue|用来存放execute()方法提交的Runnable任务|
+	ThreadFactory threadFactory|创建线程的工厂对象|
+	RejectedExecutionHandler handler|用来处理当线程数和队列数超上限时的策略|
+ 
+ 
+ 	常用的BlockingQueue |意义|
+	---------|--------|
+	SynchronousQueue|一个不存储元素的阻塞队列  CachedThreadPool|
+	LinkedBlockingQueue|可设置容量队列）基于链表结构的阻塞队列，按FIFO排序任务|
+	ArrayBlockingQueue|数组实现的有界阻塞队列|
+	DelayQueue |延迟队列）是一个任务定时周期的延迟执行的队列。根据指定的执行时间从小到大排序|
+	PriorityBlockingQueue |具有优先级的无界阻塞队列|
+
+
+Executors.newSingleThreadExecutor();// 核心线程数和最大线程数都为1 LinkedBlockingQueue
+Executors.newFixedThreadPool(mThreadCount); //固定只有mThreadCount核心线程 。LinkedBlockingQueue
+Executors.newCachedThreadPool(); // 无核心线程，可以无限创建工作线程，线程保活60s，SynchronousQueue
+Executors.newScheduledThreadPool(coreThreadCount); // 可做周期性，延时任务。线程保活10ms DelayedWorkQueue
+submit 和 excute 方法的区别：都是提交任务 submit会将提交的Runnable 包装成FutureTask 来执行 返回Future 我们可以通过Future。get()得到执行完成的结果。excute返回void 。
+  
 
 
 
@@ -191,19 +216,7 @@ new Thread
 公平锁/非公平锁  公平锁是多线程模式下按照申请顺序来获取锁,排队获取锁。非公平锁但锁处于处
 乐观锁/悲观锁    悲观锁在多线程并发模式下一定会出现线程安全问题,
 
-### 线程的状态及生命周期
-
-1. NEW : NEW --> start()--> RUNNABLE --> run(--> BLOCKED-->) --> TERMINATED
-2. RUNNABLE,
-3. BLOCKED,
-4. WAITING,
-5. TIMED_WAITING,
-6. TERMINATED;
-
-### 线程的创建方式
-
-
-### volatile ，synchronized，Lock
+### volatile synchronized  Lock
 
 #### volatile ：
 * 防止指令重排：修饰符修饰成员变量，被修饰的变量在被操作时，通过提供“内存屏障”的方式来防止被虚拟机指令重排序；
@@ -211,7 +224,10 @@ new Thread
 * volatile并不保证变量更新的原子性，比如：i++ 这样的非原子运算操作
 * 轻量级的锁机制，屏蔽了虚拟机对指令的优化，有一定的性能损耗，不可滥用。
 
-#### Synchronized：
+#### synchronized：
+![synchronized原理](https://upload-images.jianshu.io/upload_images/4491294-e3bcefb2bacea224.png)
+对于synchronized修饰的方法编译后的字节码会加上ACC_SYNCHRONIZED标记，当synchronized同步代码块则是在代码块前插入monitorenter ，结束的位置插入monitorexit。每一个对象有且仅有一个与之对应的monitor（监视器）对象，当线程
+
 互斥性、可见性、顺序性
 
 ### 对象锁与类锁的区别
@@ -220,16 +236,29 @@ new Thread
 * 修饰**代码块**：需要传入锁对象，可以是对象实例也可以是类的字节码对象。
 
 ### 死锁
+是在多线程模式下，线程直接一种循环等待状态
+四个必要条件：
+1.互斥：同一时间资源只能被一个线程使用。
+2.占有并等待：线程占有一个资源并等待另一个资源。
+3.资源不能抢占，只能等待执行完成，自动释放。
+4.循环等待：有一组线程循环等待对方的资源。
 
-### 线程池
+### Lock
+#### Lock 与 synchronized  对比。
+1.Lock是一个接口，而synchronized是Java中的关键字，synchronized是内置的语言实现；
+2.lock可以拿到获取锁的结果，synchronized并不会有任何反馈。
+3. interrupt方法只能中断阻塞转台的线程，持有锁的线程无法interrupt，synchronized 线程阻塞状态不可中断
+4.lock必须手动释放锁，synchronized会在执行完成，或异常后自动释放锁。
 
-###  虚拟机内存分区
+#### ReentrantLock 
+ReentrantLock主要利用CAS+AQS队列来实现。它支持公平锁和非公平锁，两者的实现类似
 
 
-### 垃圾回收原理
 
-### GC算法
 
-### 引用类型
+
+
+
+
 
 

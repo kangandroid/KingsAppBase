@@ -13,7 +13,7 @@ import com.king.mobile.keling.DevicesManager;
 import com.king.mobile.keling.PlayController;
 import com.king.mobile.widget.BaseDialog;
 import com.king.player.R;
-import com.king.player.model.VideoInfo;
+import com.king.player.video.VideoInfo;
 import com.king.player.view.widget.ChooseSpeedPopView;
 
 
@@ -85,7 +85,7 @@ public class ScreenCastFragment extends BaseDialog {
                 String displayString = device.getDetails().getFriendlyName();
                 deviceName.setText(displayString);
                 stateDesc.setText("已连接");
-                stateDesc.setTextColor(getResources().getColor(R.color.green));
+                stateDesc.setTextColor(getResources().getColor(R.color.Success));
                 DevicesManager instance = DevicesManager.getInstance();
                 playController = instance.getPlayController();
                 playController.setSource(videoInfo.url);

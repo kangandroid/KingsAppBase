@@ -1,3 +1,4 @@
+include ':lib'
 include ':refreshLayout'
 include ':wakap'
 include ':app', ':downloadlib', ':keling', ':mediaPlayer',

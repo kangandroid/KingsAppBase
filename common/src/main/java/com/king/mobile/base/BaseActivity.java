@@ -1,6 +1,8 @@
 package com.king.mobile.base;
 
+import android.content.res.Resources;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.widget.FrameLayout;
 
@@ -8,18 +10,20 @@ import androidx.annotation.LayoutRes;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.king.mobile.util.Loker;
 import com.king.mobile.util.R;
 import com.king.mobile.util.ScreenAdapter;
 import com.king.mobile.util.ThemeManager;
 import com.king.mobile.widget.TitleBar;
+
 public abstract class BaseActivity extends AppCompatActivity {
 
     protected TitleBar titleBar;
     protected FrameLayout mContainer;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ScreenAdapter.resetDensity(this);
         if (isOverlay()) {
             setContentView(R.layout.activity_base_overlay);
         } else {
@@ -33,7 +37,15 @@ public abstract class BaseActivity extends AppCompatActivity {
         initView();
     }
 
-    protected void setContainer(){
+
+    @Override
+    public Resources getResources() {
+        Resources resources = super.getResources();
+        ScreenAdapter.adaptDensity(resources);
+        return resources;
+    }
+
+    protected void setContainer() {
         ThemeManager.Theme currentTheme = ThemeManager.getInstance().getTheme();
         mContainer.setBackgroundColor(currentTheme.activityBackgrounColor);
     }
@@ -49,7 +61,8 @@ public abstract class BaseActivity extends AppCompatActivity {
         LayoutInflater.from(this).inflate(contentLayoutId, mContainer);
     }
 
-    protected abstract @LayoutRes int getContentLayoutId();
+    protected abstract @LayoutRes
+    int getContentLayoutId();
 
 
     protected void setTitle(TitleBar titleBar) {
@@ -59,5 +72,9 @@ public abstract class BaseActivity extends AppCompatActivity {
         return true;
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
 
 }
