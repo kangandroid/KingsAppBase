@@ -87,7 +87,7 @@ flutter:   # flutter 的配置
 					RenderObjectWidget (framework.dart) 
 					ProxyWidget (framework.dart)
 ``` 
-![System overview](/Users/kangkai/Desktop/20200630135316.jpg)
+![System overview](images/widget.jpg)
 #### Widget 的生命周期事件
 
 ![Widget 的生命周期](https://upload-images.jianshu.io/upload_images/177500-bee7673f0f126dea.png)
@@ -418,6 +418,8 @@ keytool -genkey -v -keystore ~/key.jks -keyalg RSA -keysize 2048 -validity 10000
 **构建apk**
 
 	flutter build apk --target-platform android-arm,android-arm64,android-x64 --split-per-abi
+
+
 
 
 

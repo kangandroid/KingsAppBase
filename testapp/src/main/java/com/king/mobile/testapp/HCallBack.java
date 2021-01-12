@@ -6,6 +6,8 @@ import android.os.Message;
 
 import androidx.annotation.NonNull;
 
+import com.king.mobile.testapp.hook.HookHelper;
+
 public class HCallBack implements Handler.Callback {
     public static final int LAUNCH_ACTIVITY = 100;
 

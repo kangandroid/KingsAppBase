@@ -7,11 +7,9 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
-import javax.inject.Inject;
 
 public class TestAdapter extends ListAdapter {
 
-    @Inject
     protected TestAdapter(@NonNull DiffUtil.ItemCallback diffCallback) {
         super(diffCallback);
     }

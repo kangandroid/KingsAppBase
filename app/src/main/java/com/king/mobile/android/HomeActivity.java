@@ -35,7 +35,6 @@ public class HomeActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-        View view = ComponentManager.getViewComponet("Camera", "CameraView", this);
     }
 
 

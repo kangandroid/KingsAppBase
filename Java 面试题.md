@@ -2,7 +2,7 @@
 ### 基础数据类型与大小
 * byte(8bit) 一个字节 8个二进制位 内存的最小单位 bit  1kb = 1024bit
 * char(16bit)
-* boolean(8bit/32bit)
+* boolean(为了内存中对齐 8bit/32bit)
 * short(16bit)
 * int(32bit)
 * long(64bit)
@@ -16,7 +16,9 @@
 * ALPHA_8   8bit
 
 BitMap在内存中的大小 width * height * pxSize
-
+Android 资源解析 的时候会拉伸或压缩图片资源比如：
+资源在hpdi 目录，设备为xxhdpi 加载时会将图片拉伸为 targetDpi/resDpi
+倍
 ### 数据结构集合框架实现原理
 * List	  可包含重复元素
 	*     ArrayList：底层实现是数组，默认容量是10，每次达到上限后会扩容 oldCapcity + oldCapcity >>1 (约为1.5)。将会创建新的数组将原有数组中的数据copy到新数组中，Arrays.copyOf. Systerm.copyArray。扩容过程有内存峰值，尽量避免。
@@ -27,6 +29,18 @@ BitMap在内存中的大小 width * height * pxSize
 * Map
 	*     HashMap 数组➕链表（1.8 + 红黑树）
 	*     TreeMap
+### HashMap
+* 实现原理：
+hash表+链表+红黑树。hash表初始长度16，扩容因子0.75(柏松分布，减少碰撞与空间利用的平衡点). 每次扩容X2。所以哈希表的容量总是2的n次方
+* hash表的实现 ：key 的hashCode高位与地位抑或得hash值（使高位已参与进来，减少碰撞），key在hash表中的位置 i = hash&（容量-1）。
+* 链表与红黑树的转换：
+Node->TreeNode 8, TreeNode ->Node 6,不相同的目的在于防止过多的转换。与链表相比红黑树查找更快，当占据内存更大。更多的情况是，hash冲突的个数<7,此时链表的查询效率也可以接受， 为了节省空间选择链表>7时,链表效率下降明显，改用树（64）。
+* 扩容 resize：什么时候扩容？控桶数量不足25%时。
+
+
+### ConcurrentHashMap
+Java1.7 Segment数组+HashEntry数组。Segment继承了ReentrantLock，自带锁。
+Java1.8 Synchronized + CAS + Node + Unsafe
 
 
 
@@ -61,6 +75,7 @@ BitMap在内存中的大小 width * height * pxSize
 ##虚拟机原理
 
 ### JVM内存模型 
+高速缓存区的存在，为了保证缓存一致。
 * 线程共享主存 
 * 工作内存
 
@@ -91,20 +106,16 @@ BitMap在内存中的大小 width * height * pxSize
 
 HotSpot 虚拟机采用分代回收算法：
 老年代：新生代（Eden ：Surviver （ From：To = 1:1）=8 ：2） = 2 ：1
-
+### 方法区的回收：
+    废弃的常量，常量的引用不存在时会被回收。
+    无用的类，类的实例不存在，类的字节码没有被引用，类的加载器已被回收。
+    
 ### 引用类型与使用场景
 
 * a.强引用 直接指向实例对象的引用。 引用存在就不可被回收。
 * b.软引用 指向SoftReference包裹对象的引用，但内存一出之前，GC回收软引用. 做内存缓存，如图片缓存，防止内存泄漏。
 * c.弱引用 指向WeakReference包裹对象的引用，下一次GC到来时会被回收，不论是否面临内存溢出， 在静态内部类中，经常会使用虚引用。
 * d.虚引用 指向PhantomReference包裹对象的引用，获取不到对象实例
-
-### 方法区的回收：
-    废弃的常量，常量的引用不存在时会被回收。
-    无用的类，类的实例不存在，类的字节码没有被引用，类的加载器已被回收。
-
-
-
 
 
 ###类加载机制
@@ -120,12 +131,12 @@ HotSpot 虚拟机采用分代回收算法：
 	5. 动态语言使用
 
 **双亲委派机制**
-
 1.类加载过程
 2.加载时间
 3.双亲委派机制
-4.打破双亲委派机制
-
+![](images/javaclassloader.png)
+	
+静态变量属于类变量，像这样public static int a = 1  的语句执行在类加载时时执行。类加载只有一次，必然之执行一次。
 
 
 ###并发
@@ -168,7 +179,6 @@ new Thread
 	Obj 的方法 wait() 与 notify()	notifyAll()  wait(timeout) 自动唤醒
 	 wait 同步方法中调用，调用对象锁住的对象 
 	 notify 
-	
 	sleep（timeout）不会释放锁，wait（timeout）会释放锁。
 
 ####2.线程池
@@ -223,12 +233,14 @@ submit 和 excute 方法的区别：都是提交任务 submit会将提交的Runn
 * 可见性：线程修改volatile变量时会强制将修改后的值刷新的主内存，其他现程在读取变量时，会重新读区最新的值。
 * volatile并不保证变量更新的原子性，比如：i++ 这样的非原子运算操作
 * 轻量级的锁机制，屏蔽了虚拟机对指令的优化，有一定的性能损耗，不可滥用。
+volatile 变量在编译后，在执行写操作前会发出Lock指令，发出的LOCK#指令锁总线（或锁缓存行），同时让Thread-B高速缓存中的缓存行内容失效
 
 #### synchronized：
 ![synchronized原理](https://upload-images.jianshu.io/upload_images/4491294-e3bcefb2bacea224.png)
-对于synchronized修饰的方法编译后的字节码会加上ACC_SYNCHRONIZED标记，当synchronized同步代码块则是在代码块前插入monitorenter ，结束的位置插入monitorexit。每一个对象有且仅有一个与之对应的monitor（监视器）对象，当线程
+对于synchronized修饰的方法编译后的字节码会加上ACC_SYNCHRONIZED标记，
+当synchronized同步代码块则是在代码块前插入monitorenter ，结束的位置插入monitorexit。每一个对象有且仅有一个与之对应的monitor（监视器）对象，当线程
 
-互斥性、可见性、顺序性
+### 互斥性、可见性、顺序性
 
 ### 对象锁与类锁的区别
 * 修饰**实例的方法**：锁住的是当前的实例，当前实例的中所有被Synchronized的方法只能被持有锁的单一线程执行，其他线程只能等待锁被释放后再去获取锁。
@@ -238,10 +250,11 @@ submit 和 excute 方法的区别：都是提交任务 submit会将提交的Runn
 ### 死锁
 是在多线程模式下，线程直接一种循环等待状态
 四个必要条件：
-1.互斥：同一时间资源只能被一个线程使用。
-2.占有并等待：线程占有一个资源并等待另一个资源。
-3.资源不能抢占，只能等待执行完成，自动释放。
-4.循环等待：有一组线程循环等待对方的资源。
+
+* 1.互斥：同一时间资源只能被一个线程使用。
+* 2.占有并等待：线程占有一个资源并等待另一个资源。
+* 3.资源不能抢占，只能等待执行完成，自动释放。
+* 4.循环等待：有一组线程循环等待对方的资源。
 
 ### Lock
 #### Lock 与 synchronized  对比。
@@ -252,6 +265,23 @@ submit 和 excute 方法的区别：都是提交任务 submit会将提交的Runn
 
 #### ReentrantLock 
 ReentrantLock主要利用CAS+AQS队列来实现。它支持公平锁和非公平锁，两者的实现类似
+
+
+
+## 设计模式
+1.装饰器模式，跟 代理模式的区别。
+代理模式：代理模式的定义：由于某些原因需要给某对象提供一个代理以控制对该对象的访问。这时，访问对象不适合或者不能直接引用目标对象，代理对象作为访问对象和目标对象之间的中介。代理是基于接口实现的。源码 Binder通信。
+主要作用：保护目标类，适合于C/S 模式下使用，降低耦合性，增加拓展性。
+缺点：增加了类的数量，性能有一定损耗。
+
+装饰器模式：在不修改原先对象核心的功能的情况下，对功能进行增强, 属于对象结构型模式。实现是基于继承的。
+源码示例：Java.io  BufferedInputStream/BufferedOutputStream
+
+外观模式：为子系统中的一组接口提供一个一致的界面，外观模式定义了一个高层接口，这个接口使得这一子系统更加容易使用（Android Context）
+
+模版设计模式：Android组件 activity service 等。
+
+
 
 
 

@@ -3,6 +3,7 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/container"
+    android:baselineAligned="false"
     android:layout_width="match_parent"
     android:layout_height="100dp"
     android:gravity="top"

@@ -11,5 +11,3 @@ dependencies {
     implementation files(Jvm.current().toolsJar)
 }
 
-sourceCompatibility = "8"
-targetCompatibility = "8"

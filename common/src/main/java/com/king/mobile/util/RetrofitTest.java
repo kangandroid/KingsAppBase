@@ -13,14 +13,17 @@ import retrofit2.Retrofit;
 
 class RetrofitTest {
 
-    void retrofitTest(){
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://api.github.com/")
-                .client(new OkHttpClient())
-                .callbackExecutor(Executor.getInstance().executor())
-                .build();
-        Api service = retrofit.create(Api.class);
+    private static Api api;
 
-        service.listRepos("octocat");
+    static Api getApi() {
+        if (api == null) {
+            Retrofit retrofit = new Retrofit.Builder()
+                    .baseUrl("https://api.github.com/")
+                    .client(new OkHttpClient())
+                    .callbackExecutor(Executor.getInstance().executor())
+                    .build();
+            api = retrofit.create(Api.class);
+        }
+        return api;
     }
 }

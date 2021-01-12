@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">util</string>
+    <string name="app_name">HostApp</string>
     <string name="page_title">page title</string>
     <string name="cancel">取消</string>
     <string name="confirm">确定</string>

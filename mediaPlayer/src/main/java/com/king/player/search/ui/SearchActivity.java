@@ -1,8 +1,6 @@
 package com.king.player.search.ui;
 
-import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.net.http.SslError;
 import android.os.Message;
@@ -12,6 +10,7 @@ import android.webkit.ClientCertRequest;
 import android.webkit.ConsoleMessage;
 import android.webkit.GeolocationPermissions;
 import android.webkit.HttpAuthHandler;
+import android.webkit.JavascriptInterface;
 import android.webkit.JsPromptResult;
 import android.webkit.JsResult;
 import android.webkit.PermissionRequest;
@@ -27,19 +26,18 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.king.mobile.base.BaseActivity;
 import com.king.mobile.widget.TitleBar;
 import com.king.player.R;
 import com.king.player.search.WebsiteViewModel;
+
 
 public class SearchActivity extends BaseActivity {
 
@@ -97,12 +95,26 @@ public class SearchActivity extends BaseActivity {
     private void setUpWebView() {
         WebSettings settings = webView.getSettings();
         settings.setUseWideViewPort(true);
+        settings.setDatabaseEnabled(true);
         settings.setLoadWithOverviewMode(true);
         settings.setAllowFileAccess(true);
-        settings.setJavaScriptEnabled(true);
         webView.setWebChromeClient(new CustomWebChromeClient());
         webView.setWebViewClient(new CustomWebViewClient());
-        webView.loadUrl(url);
+
+        webView.loadUrl("javascript:function()");
+        webView.evaluateJavascript("", new ValueCallback<String>() {
+            @Override
+            public void onReceiveValue(String value) {
+
+            }
+        });
+        settings.setJavaScriptEnabled(true);
+        webView.addJavascriptInterface(this,"appClient");
+    }
+
+    @JavascriptInterface
+    public void hello(String msg) {
+        System.out.println(msg);
     }
 
     @Override
@@ -218,46 +230,105 @@ public class SearchActivity extends BaseActivity {
         @Override
         public void onFormResubmission(WebView view, Message dontResend, Message resend) {
             super.onFormResubmission(view, dontResend, resend);
+//            resend.sendToTarget(); // 再次请求
         }
 
+        /**
+         * 通知宿主应用程序更新其访问的链接数据库
+         * @param view
+         * @param url
+         * @param isReload
+         */
         @Override
         public void doUpdateVisitedHistory(WebView view, String url, boolean isReload) {
             super.doUpdateVisitedHistory(view, url, isReload);
+
         }
 
+        /**
+         * 收到SSL 认证错误 日志记录上传服务器 更新证书
+         * @param view
+         * @param handler
+         * @param error
+         */
         @Override
         public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
             super.onReceivedSslError(view, handler, error);
         }
 
+        /**
+         * 收到证书请求 针对Https
+         * @param view
+         * @param request
+         */
         @Override
         public void onReceivedClientCertRequest(WebView view, ClientCertRequest request) {
-            super.onReceivedClientCertRequest(view, request);
+//            super.onReceivedClientCertRequest(view, request);
+//            request.proceed(privateKey, X509Certificate); //处理传入私钥和证书
+//            request.ignore(); // 忽略证书请求
+//            request.cancel();  // 取消请求
         }
 
+        /**
+         * http 请求需要 authentication 参数校验 如登陆 或者其他权限认证
+         * @param view
+         * @param handler
+         * @param host
+         * @param realm
+         */
         @Override
         public void onReceivedHttpAuthRequest(WebView view, HttpAuthHandler handler, String host, String realm) {
             super.onReceivedHttpAuthRequest(view, handler, host, realm);
+//            handler.proceed("username","password"); //传入用户名密码 进行认证；
+//            handler.useHttpAuthUsernamePassword(); // 使用本地保存的凭证，如cookie中 或者local store中
+//            handler.cancel(); //取消访问
         }
 
+        /**
+         * 给宿主应用机会来处理按键事件
+         * @param view
+         * @param event
+         * @return
+         */
         @Override
         public boolean shouldOverrideKeyEvent(WebView view, KeyEvent event) {
+
             return super.shouldOverrideKeyEvent(view, event);
         }
 
+        /**
+         * 通知宿主 有按键事件未处理
+         * @param view
+         * @param event
+         */
         @Override
         public void onUnhandledKeyEvent(WebView view, KeyEvent event) {
+
             super.onUnhandledKeyEvent(view, event);
         }
 
+        /**
+         * 页面的缩放比例发生变法时回调，可以用于定制缩放指示器
+         * @param view
+         * @param oldScale  原比例
+         * @param newScale  现在的比例
+         */
         @Override
         public void onScaleChanged(WebView view, float oldScale, float newScale) {
             super.onScaleChanged(view, oldScale, newScale);
         }
 
+        /**
+         * 收到登陆请求时
+         * @param view
+         * @param realm
+         * @param account
+         * @param args  登陆所需的参数
+         */
         @Override
         public void onReceivedLoginRequest(WebView view, String realm, @Nullable String account, String args) {
             super.onReceivedLoginRequest(view, realm, account, args);
+
         }
 
         @Override
@@ -265,6 +336,13 @@ public class SearchActivity extends BaseActivity {
             return super.onRenderProcessGone(view, detail);
         }
 
+        /**
+         * 通知宿主 当前加载的页面被标记为安全的了
+         * @param view
+         * @param request
+         * @param threatType
+         * @param callback
+         */
         @Override
         public void onSafeBrowsingHit(WebView view, WebResourceRequest request, int threatType, SafeBrowsingResponse callback) {
             super.onSafeBrowsingHit(view, request, threatType, callback);
@@ -276,17 +354,32 @@ public class SearchActivity extends BaseActivity {
             super();
         }
 
+        /**
+         *
+         * 页面加载进度变化时的回调 定义自己的加载进度展示
+         * @param view
+         * @param newProgress
+         */
         @Override
         public void onProgressChanged(WebView view, int newProgress) {
             super.onProgressChanged(view, newProgress);
             progressBar.setProgress(newProgress);
         }
 
+        /**
+         * 页面标题加载完成的回调 定义自己的 标题栏
+         * @param view
+         * @param title
+         */
         @Override
         public void onReceivedTitle(WebView view, String title) {
             super.onReceivedTitle(view, title);
         }
-
+        /**
+         * 页面logo 加载完成的回调 定义自己的 标题栏
+         * @param view
+         * @param icon
+         */
         @Override
         public void onReceivedIcon(WebView view, Bitmap icon) {
             super.onReceivedIcon(view, icon);
@@ -297,16 +390,32 @@ public class SearchActivity extends BaseActivity {
             super.onReceivedTouchIconUrl(view, url, precomposed);
         }
 
+        /**
+         * 页面进入全屏的通知
+         * @param view 可能是视频播放器
+         * @param callback
+         */
         @Override
         public void onShowCustomView(View view, CustomViewCallback callback) {
             super.onShowCustomView(view, callback);
         }
 
+        /**
+         * 页面退出全屏的通知
+         */
         @Override
         public void onHideCustomView() {
             super.onHideCustomView();
         }
 
+        /**
+         *  使用场景  视屏悬浮弹窗
+         * @param view
+         * @param isDialog true 是弹窗 false 是全屏
+         * @param isUserGesture 是否是手势触发的
+         * @param resultMsg 消息
+         * @return true 表示遵从请求，将视图添加的新的窗口中。false 不创建新的窗口
+         */
         @Override
         public boolean onCreateWindow(WebView view, boolean isDialog, boolean isUserGesture, Message resultMsg) {
             return super.onCreateWindow(view, isDialog, isUserGesture, resultMsg);
@@ -317,16 +426,38 @@ public class SearchActivity extends BaseActivity {
             super.onRequestFocus(view);
         }
 
+        /**
+         * 视屏悬浮弹窗 关闭
+         * @param window
+         */
         @Override
         public void onCloseWindow(WebView window) {
             super.onCloseWindow(window);
         }
 
+        /**
+         * JS弹窗 将要弹出时的
+         * @param view
+         * @param url 页面地址
+         * @param message 弹窗消息
+         * @param result enter 健的结果
+         * @return 是否要自行处理弹窗 ，比如自定义Dialog去展示
+         */
         @Override
         public boolean onJsAlert(WebView view, String url, String message, JsResult result) {
-            return true;
+//            result.confirm();
+//            result.cancel();
+            return super.onJsAlert(view,url,message,result);
         }
 
+        /**
+         * 弹窗的确认回调
+         * @param view
+         * @param url
+         * @param message
+         * @param result
+         * @return
+         */
         @Override
         public boolean onJsConfirm(WebView view, String url, String message, JsResult result) {
             return super.onJsConfirm(view, url, message, result);
@@ -334,6 +465,7 @@ public class SearchActivity extends BaseActivity {
 
         @Override
         public boolean onJsPrompt(WebView view, String url, String message, String defaultValue, JsPromptResult result) {
+            result.confirm();
             return super.onJsPrompt(view, url, message, defaultValue, result);
         }
 
@@ -343,16 +475,28 @@ public class SearchActivity extends BaseActivity {
         }
 
 
+        /**
+         * 获取定位权限
+         * @param origin
+         * @param callback
+         */
         @Override
         public void onGeolocationPermissionsShowPrompt(String origin, GeolocationPermissions.Callback callback) {
             super.onGeolocationPermissionsShowPrompt(origin, callback);
         }
 
+        /**
+         *
+         */
         @Override
         public void onGeolocationPermissionsHidePrompt() {
             super.onGeolocationPermissionsHidePrompt();
         }
 
+        /**
+         * 获取权限
+         * @param request
+         */
         @Override
         public void onPermissionRequest(PermissionRequest request) {
             super.onPermissionRequest(request);
@@ -391,6 +535,13 @@ public class SearchActivity extends BaseActivity {
             super.getVisitedHistory(callback);
         }
 
+        /**
+         * 展示文件选择器 选择文件的时候 可以自定义文件选择器
+         * @param webView
+         * @param filePathCallback
+         * @param fileChooserParams
+         * @return
+         */
         @Override
         public boolean onShowFileChooser(WebView webView, ValueCallback<Uri[]> filePathCallback, FileChooserParams fileChooserParams) {
             return super.onShowFileChooser(webView, filePathCallback, fileChooserParams);

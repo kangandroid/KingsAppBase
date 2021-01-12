@@ -6,7 +6,9 @@ import androidx.annotation.NonNull;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+import androidx.room.migration.Migration;
 import androidx.sqlite.db.SupportSQLiteDatabase;
+import androidx.sqlite.db.SupportSQLiteOpenHelper;
 
 import com.king.mobile.util.Loker;
 import com.king.player.datasource.VideoCollectionDao;
@@ -19,7 +21,7 @@ import com.king.player.search.WebSiteInfo;
 @Database(entities = {
         VideoInfo.class,
         WebSiteInfo.class,
-        VideoCollection.class}, version = 1, exportSchema = false)
+        VideoCollection.class}, version = 2, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
 
     public abstract VideoDao videoDao();
@@ -27,8 +29,6 @@ public abstract class AppDatabase extends RoomDatabase {
     public abstract VideoCollectionDao videoCollectionDao();
 
     public abstract WebSiteDao webSiteDao();
-
-
 
     private static volatile AppDatabase INSTANCE;
 
@@ -41,32 +41,39 @@ public abstract class AppDatabase extends RoomDatabase {
 
         @Override
         public void onCreate(@NonNull SupportSQLiteDatabase db) {
-            super.onCreate(db);
-            Loker.d("AppDatabase---------onCreate");
-            if(db instanceof AppDatabase ){
-                AppDatabase appDatabase = (AppDatabase) db;
-                WebSiteInfo info = new WebSiteInfo();
-                info.isDefault = 1;
-                info.useTimes=10000;
-                info.title = "百度";
-                info.url = "https://www.baidu.com";
-                appDatabase.webSiteDao().insert(info);
-            }
+            super.onCreate(db); //默认创建数据库 还可以做额外的事
+            // 创建数据库
+
         }
 
         @Override
         public void onDestructiveMigration(@NonNull SupportSQLiteDatabase db) {
             super.onDestructiveMigration(db);
-            Loker.d("AppDatabase---------onDestructiveMigration");
+            int version = db.getVersion();
+            // 修改已有的库 （升级）
+
+            Loker.d("AppDatabase---------onDestructiveMigration ");
         }
+
+
     };
 
     public static AppDatabase getDatabase(final Context context) {
+        MigrationContainer mc = new MigrationContainer();
+        Migration mig_1_2 = new Migration(1, 2){
+            @Override
+            public void migrate(@NonNull SupportSQLiteDatabase database) {
+                String sql = "";
+                database.execSQL(sql);
+            }
+        };
+        mc.addMigrations();
         if (INSTANCE == null) {
             synchronized (AppDatabase.class) {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                             AppDatabase.class, "KingApp_DB")
+                            .addMigrations(mig_1_2)
                             .addCallback(sRoomDatabaseCallback)
                             .build();
                 }

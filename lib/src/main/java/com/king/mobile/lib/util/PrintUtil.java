@@ -9,4 +9,16 @@ public class PrintUtil {
         System.out.print("}");
 
     }
+
+    public static void printB(int abc) {
+        System.out.println(Integer.toBinaryString(abc));
+    }
+
+    public static void print(int abc) {
+        System.out.println(abc);
+    }
+
+    public static void print(String abc) {
+        System.out.println(abc);
+    }
 }
