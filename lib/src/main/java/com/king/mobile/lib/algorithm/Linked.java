@@ -1,10 +1,5 @@
 package com.king.mobile.lib.algorithm;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
-import javax.xml.soap.Node;
-
 class Linked {
     static class ListNode {
         ListNode next;
@@ -63,6 +58,7 @@ class Linked {
     }
 
     /**
+     *
      * @param header 链表头
      */
     public static void sort(ListNode header) {
@@ -112,41 +108,12 @@ class Linked {
         return newHead;
     }
 
-    public boolean HasSubtree(TreeNode root1,TreeNode root2) {
-        if(root1==null||root2 ==null)return false;
-        if(root1.val == root2.val){
-            if(isSame(root1,root2)) {
-                return true;
-            }
-        }
-        return HasSubtree(root1.left,root2) || HasSubtree(root1.right,root2);
-    }
-    boolean isSame(TreeNode root1,TreeNode root2){
-        if(root2 == null)return true;
-        if(root1 == null || root1.val != root2.val){
-            return false;
-        }else{
-            return isSame(root1.left,root2.left)&&isSame(root1.right,root2.right);
-        }
-    }
+
+
+
 
     public static void main(String[] args) {
-        ListNode node1 = new ListNode(1);
-        ListNode node2 = new ListNode(2);
-        ListNode node3 = new ListNode(3);
-        ListNode node4 = new ListNode(4);
-        node1.next = node2;
-        node2.next = node3;
-        node3.next = node4;
-        ListNode reverse = reverse(node1);
-        do {
-            System.out.println(reverse.value);
-            reverse = reverse.next;
-        }
-        while (reverse.next != null);
-        System.out.println(reverse.value);
 
-        ArrayList<Object> objects = new ArrayList<>();
     }
 
 }

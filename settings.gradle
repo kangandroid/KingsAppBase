@@ -1,3 +1,4 @@
+include ':kottest'
 include ':lib'
 include ':refreshLayout'
 include ':wakap'

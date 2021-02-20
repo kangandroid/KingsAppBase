@@ -7,6 +7,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.widget.RemoteViews;
 
 import com.king.mobile.testapp.MainActivity;
 import com.king.mobile.testapp.R;
@@ -20,8 +21,10 @@ public class TestNotificationWrapper {
     private final Notification.Builder builder;
     private final String channelOneId = "com.king.test.NotificationId";
     private NotificationChannel notificationChannel = null;
+    private Context mContext;
 
     public TestNotificationWrapper(Context context, int notificationId) {
+        mContext = context;
         Intent action = new Intent(context, MainActivity.class);
         PendingIntent intent = PendingIntent.getActivity(context, 100, action, 0);
         mNM = (NotificationManager) context.getSystemService(NOTIFICATION_SERVICE);
@@ -51,6 +54,12 @@ public class TestNotificationWrapper {
 
     public Notification getNotification() {
         return builder.build();
+    }
+
+    private void updateRemoteView(){
+        RemoteViews remoteViews = new RemoteViews(mContext.getPackageName(),R.layout.fragment_test);
+        builder.setContent(remoteViews);
+//        remoteViews.addView();
     }
 
     public void updateNotification(int longitude, int latitude) {

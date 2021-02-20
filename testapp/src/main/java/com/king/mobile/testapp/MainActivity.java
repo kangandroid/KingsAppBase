@@ -27,6 +27,7 @@ import android.widget.Toast;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.king.mobile.testapp.fragment.ItemFragment;
 import com.king.mobile.testapp.fragment.TestFragment;
+import com.king.mobile.testapp.fragment.TestViewFragment;
 import com.king.mobile.testapp.receiver.MessageReadReceiver;
 import com.king.mobile.testapp.daemon.TestService;
 import com.king.mobile.testapp.utils.LogUtil;
@@ -47,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
     private TestFragment testFragment;
     private TestFragment testFragment1;
     private TestFragment testFragment2;
-    private TestFragment testFragment3;
+    private TestViewFragment testFragment3;
     private ItemFragment itemFragment;
     private ViewPager viewPager;
     private boolean connected;
@@ -63,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
         testFragment = new TestFragment();
         testFragment1 = new TestFragment("testFragment1");
         testFragment2 = new TestFragment("testFragment2");
-        testFragment3 = new TestFragment("testFragment3");
+        testFragment3 = new TestViewFragment("TestViewFragment");
         setContentView(R.layout.activity_main);
         container = findViewById(R.id.container);
         findViewById(R.id.button).setOnClickListener(v -> add());

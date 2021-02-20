@@ -1,12 +1,14 @@
 package com.king.mobile.lib.algorithm;
 
+import com.king.mobile.lib.util.PrintUtil;
+
 import java.util.Arrays;
 
 class DynamicProgramming {
 
 
     /**
-     * 给定一个无序的整数数组，找到其中最长上升子序列的长度。
+     * 给定一个无序的整数数组，找到其中最长上升子序列的长度。(不连续)
      * eg
      * 输入: [10,9,2,5,3,7,101,18]
      * 输出: 4
@@ -14,23 +16,38 @@ class DynamicProgramming {
     public static int lengthOfLIS(int[] nums) {
         int length = nums.length;
         if (length < 2) return length;
-        int[] dp = new int[length];
-        //  dp[i]是以nums[i]结尾的 lengthOfLIS
-        // dp[i] = max(dp[i-1]
+        int[] dp = new int[length]; // 过程存储容器
+        //  dp[i]是以nums[i]结尾的 前i个元素的最优解，dp[i] = dp[i-1] 的关系
         Arrays.fill(dp, 1);
-        int res = dp[0];
-        for (int i = 0; i < length; i++) {
+        int res = dp[0]; // 初始值
+        for (int i = 1; i < length; i++) {
             for (int j = 0; j < i; j++) {
-                if (nums[j] < nums[i]) {
-                    dp[i] = Math.max(dp[j] + 1, dp[i]);
+                if (nums[j] < nums[i]) { // 判断条件
+                    dp[i] = Math.max(dp[j] + 1, dp[i]); // 状态方程
                 }
             }
-            res = Math.max(res, dp[i]);
+            res = Math.max(res, dp[i]); // 取最优解
             System.out.println(res);
         }
         return res;
 
     }
+
+    /**
+     * 给定一个整数数组 nums ，找到一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。
+     *
+     * 示例:
+     *
+     * 输入: [-2,1,-3,4,-1,2,1,-5,4]
+     *      [-2,1, 1,4, 4,2,1,-5,4]
+     * 输出: 6
+     *
+     * 解释: 连续子数组 [4,-1,2,1] 的和最大，为 6。
+     */
+    public int maxSubSum(int [] n){
+        return 0;
+    }
+
 
     /**
      * 给你一个二进制字符串数组 strs 和两个整数 m 和 n 。
@@ -48,12 +65,25 @@ class DynamicProgramming {
      * 解释：最大的子集是 {"0", "1"} ，所以答案是 2 。
      */
     public int findMaxForm(String[] strs, int m, int n) {
-        // dp(i,j)
-        // 状态转移方程 dp(i,j) =
-        return 0;
+        if (strs.length == 0) return 0;
+        int[][] dp = new int[m + 1][n + 1];  // dp[i-1][j-1]
+        for (String s : strs) {
+            int count1 = 0, count0 = 0;
+            for (char c : s.toCharArray()) {
+                if (c == '0') {
+                    count0++;
+                } else {
+                    count1++;
+                }
+            }
+            for (int i = m; i >= count0; i--) {
+                for (int j = n; j >= count1; j--) {
+                    dp[i][j] = Math.max(dp[i][j],dp[i-count0][j-count1]+1); //状态方程的怎么设计？
+                }
+            }
+        }
+        return dp[m][n];
     }
-
-    ;
 
     /**
      * 一只青蛙一次可以跳上1级台阶，也可以跳上2级台阶。求该青蛙跳上一个 n 级的台阶总共有多少种跳法。
@@ -139,14 +169,49 @@ class DynamicProgramming {
         return 0;
     }
 
-    ;
+    /**
+     * 给两个整数数组 A 和 B ，返回两个数组中公共的、长度最长的子数组的长度。
+     * <p>
+     * 示例：
+     * <p>
+     * 输入：
+     * A: [1,2,3,2,1]
+     * B: [3,2,1,4,7]
+     * 输出：3
+     * 解释：
+     * 长度最长的公共子数组是 [3, 2, 1] 。
+     */
+    public static int findLength(int[] A, int[] B) {
+        if (A.length == 0 || B.length == 0) return 0;
+        int[][] dp = new int[A.length + 1][B.length + 1]; // 为什要加一
+        int maxLength = 0;
+        int lastA = 0;
+        int lastB = 0;
+        for (int i = 1; i <= A.length; i++) {
+            for (int j = 1; j <= B.length; j++) {
+                if (A[i - 1] == B[j - 1]) { //
+                    dp[i][j] = dp[i - 1][j - 1] + 1;
+                    if (dp[i][j] > maxLength) {
+                        lastA = i;
+                        lastB = j;
+                    }
+                    maxLength = Math.max(dp[i][j], maxLength); //dp[i][j] 表示A 0-i 与 B 0-j 的最长公共字串
+                }
+            }
+        }
+        PrintUtil.print("lastA=" + lastA);
+        PrintUtil.print("lastB=" + lastB);
+        return maxLength;
+    }
 
 
     public static void main(String[] args) {
 //        int result = lengthOfLIS(new int[]{10, 9, 2, 5, 3, 7, 101, 18});
-        int result = numWays(3);
-        System.out.println(result);
-
+//        int result = numWays(3);
+//        System.out.println(result);
+        int[] a = {1, 2, 3, 2, 1};
+        int[] b = {3, 2, 1, 4, 7};
+        PrintUtil.print(findLength(a, b));
     }
 
 

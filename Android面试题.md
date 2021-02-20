@@ -92,6 +92,8 @@ A  onStop - onDestroyView -  onCreateAnimation - onCreateAnimator
 B  onPause 
 C onResume 
 viewpager.setOffscreenPageLimit(int limit) 来设置缓存多少个Page最多2*limit +1 page。
+
+viewPager adapter的notifydataChanged方法调用需要 实现 getItemPosition 方法
 ## Context
 ### 1. context继承关系
 > Context 抽象类 上下文主要用于获取资源 SP Resource Assets Intent PackageManager ContentResolver
@@ -99,15 +101,15 @@ viewpager.setOffscreenPageLimit(int limit) 来设置缓存多少个Page最多2*l
 > 
 > >ContextWrapper 外观设计模式，内部都包含一个ContextIml mBase
 > > >
-> > > Service
+> > >  Service
 > > > 
-> > >Application
+> > > Application
 > > >
 > > >  ContextThemeWrapper
 > > > > Activity
 
-### getApplication()和getApplicationContext()
-是同一个对象 Application在进程中只有一个实例它本身就是Context ，所以getApplicationContext()所得到的 也可以是Application对象。只不过getApplication是在Activity和Service中才有。getApplicationContext 是Context的方法 ；Activity getApplication attach的时候传入的。
+### getApplication()和 getApplicationContext()
+是同一个对象 Application在进程中只有一个实例它本身就是Context ，所以getApplicationContext()所得到的 也可以是Application对象。只不过getApplication是在Activity和Service中才有。getApplicationContext 是 Context的方法；Activity getApplication attach的时候传入的。
 
 ### 正确使用Context
 Context 使用导致内存泄漏。静态资源持有Activity，Handler
@@ -129,7 +131,7 @@ onUnbind 返回true，所有的绑定都解绑后再次绑定时会执行！
 2. onStartCommond 中 startForeground 与通知绑定提升为为前台服务
 3. onStartCommond中返回 START_STICKY_COMPATIBILITY 或 START_STICKY成为粘性服务，被系统回收时会尝试重启。
 4. 设置守护进程，通过IPC保活。
-5.   
+5. 
 
 ### IntentSrvice 
 onHandleIntent 在子线程中执行，执行完后自动销毁。实现原理HandlerThread。
@@ -170,7 +172,7 @@ abortBroadcast();
 
 *  ContentProviders 负责管理结构化数据的访问，封装数据并且提供一套定义数据安全的机制。
 *  ContentObserver 对数据（数据采用uri描述）进行监听，当监听到数据变化通知时，系统就会调用ContentObserver的onChange()方法
-*  ContentResolve 调用getContentResolver().notifyChange(uri, null)来通知注册在此URI上的访问者
+*  ContentResolver 调用getContentResolver().notifyChange(uri, null)来通知注册在此URI上的访问者
 
 ### ContentProvider的使用
 1. 提供数据进程创建：继承ContentProvider ，实现其方法包括onCreate 和 增删改查，在Manifest中注册。
@@ -216,7 +218,7 @@ abortBroadcast();
 	1. 升级操作 public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion)
 	在这里做升级的操作,也就是说,当你改变数据库的　version的时候,系统会自动判断,你当前的版本是高于,还是低于你要创建的版本。当然这里是低于!!!
 
-升级的具体思路就是,只添加字段,不做其他操作.因为,你升级以后还是需要用到老版本的一些属性,所有说,这样说有很大的好处,
+		升级的具体思路就是,只添加字段,不做其他操作.因为,你升级以后还是需要用到老版本的一些属性,所有说,这样说有很大的好处,
 然后就是当数据库不存在时,也需要创建对应版本的数据库
 	2. 降级操作 public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion)
 大概步骤就是
@@ -228,6 +230,36 @@ abortBroadcast();
 	然后就是一个很重要的操作了,那就是,如果当你降级不成功怎么办?
 	我们的解决方案也很简单,那就是加一个try/catch() 来捕获这个异常,然后创建对应表的数据结构
 > 	SQLite ALTER 不支持 删除列的操作 只能 ADD和RENAME 
+>  SQL: 
+> DML:数据修改语言 数据的 增 删 改 查
+> 增： insert into TAB_NAME  (column_1, column_2, column_3,...) VALUES (value_1, value_2, value_3, ...);
+> 删：delete from TAB_NAME where id = 'id...'; 
+> 清空表：truncate table TAB_NAME；// 不会记录每一条删除的记录 比 delete * 要高效。
+> 改：update TAB_NAME set column1=value1,column2=value2,... where some_column=some_value;
+> 查：SELECT column_name,column_name FROM table_name;
+> 	   SELECT * FROM table_name;
+> 	   SELECT DISTINCT column_name,column_name FROM table_name;
+> 连表查询：
+> INNER JOIN：如果表中有至少一个匹配，则返回行
+> LEFT JOIN：即使右表中没有匹配，也从左表返回所有的行
+> RIGHT JOIN：即使左表中没有匹配，也从右表返回所有的行
+> FULL JOIN：只要其中一个表中存在匹配，则返回行
+> 
+> DDL:数据定义语言 表的创建 修改 删除
+>创建   CREATE TABLE table_name
+	(
+	column_name1 data_type(size),
+	column_name2 data_type(size),
+	column_name3 data_type(size),
+	....
+	);
+	DROP TABLE table_name；
+ALTER TABLE table_name 
+     	ADD column_name datatype   添加字段
+	MODIFY COLUMN column_name datatype 修改字段
+	DROP COLUMN column_name 删除字段 SQL 不支持删除字段
+
+
 
 ### Room
 使用Room的时候，如果你改变了数据库的schema但是没有更新version，app将会crash。
@@ -289,6 +321,8 @@ commit 是同步操作直到写入磁盘，会有boolean结果，applay 是存�
 线程不安全，解决实现 SharedPreferences 加同步锁。或者封装自己的SP工具类 实现同步。
 垮进程也不安全，无法解决？通过binder IPC 。选择一个进程中维护SP在其他进程通过IPC记者读写。
 
+替代方案：腾讯 MMKV 序列化方式 protobuf 保证效率， 多进程共享mmap 信号量来保证跨进程操作的安全性。
+
 ## ANR
 ###1.是什么导致了ANR？
 在Android中，程序的响应性是由ActivityManager与WindowManager系统服务来负责监控的。
@@ -296,8 +330,8 @@ commit 是同步操作直到写入磁盘，会有boolean结果，applay 是存�
 
 1. 对输入事件(例如硬件点击或者屏幕触摸事件)，5秒内都无响应。
 2. BroadReceiver不能够在10秒内结束接收到任务（onReceive方法执行时长，前台10s 后台60s）。
-3.  Service 前台20s后台200s未完成启动
-4.  ContentProvider的publish在10s内没进行完：
+3. Service 前台20s后台200s未完成启动
+4. ContentProvider的publish在10s内没进行完：
 
 对于你的应用中任何可能长时间执行的操作，你都不应该执行在UI线程。
 根本原因
@@ -334,8 +368,8 @@ commit 是同步操作直到写入磁盘，会有boolean结果，applay 是存�
 ### ANR的定位
 日志保存在trace文件保存到了/data/anr/traces.txt，
 获取 
-adb pull /data/anr/traces.txt (anr_2020_2_21_xxx）
-adb bugreport ./bugreport.zip
+adb pull /data/anr/traces.txt
+adb bugreport ./bugreport.zip (anr_2020_2_21_xxx  android 10)
 
 日志解析：
 
@@ -365,6 +399,7 @@ CUP的使用率。
             Looper.loop();
             throw new RuntimeException("Main thread loop unexpectedly exited");
         }
+        
 ### Looper 
 构造函数私有 通过静态方法 prepare() 来为当前线程创建实例。 
 线程唯一 保存在 ThreadLocal 用来保存线程私有的数据 getMap(curThread)得到ThreadLocalMap.getEntry(ThreadLocal) 的Looper。静态方法loop 先检查当前线程是否存在Looper 存在则for (;;)开启无线循环，从MessageQueue中取消息调用 msg.target.dispatchMessage(msg);处理消息 Message msg.target就是发送他的 handler
@@ -378,6 +413,9 @@ CUP的使用率。
     mainLooper.setMessageLogging(printer);// 监听FrameHandler 来检查UI 卡顿。
     
 ### ThreadLocal 
+
+在通过Thread 拿到ThreadLocal对象 （ThreadLocalMap 是ThreadLocal静态内部类），
+每个Thread都有自己的ThreadLocalMap threadLocals 是一种hash表。ThreadLocal对象作为Key存储对象。
 
 
 ### MessageQueue
@@ -420,6 +458,15 @@ Linux 的I/O 多路复用机制。全名event poll，同时管理大量的文件
         }
     }
     
+    
+## OOM
+OutOfMemoryError 内存溢出。DVM 内存分配机制，对每个进程都设置了heapsize 当应用使用内存超过时就会发生OOM
+造成OOM 的原因有，一次性申请的内存过大超出可用内存，二 内存泄漏导致内存资源逐渐耗尽。
+对于第一种情况下是
+大图图片加载  因为一部手机屏幕的大小分辨率是确定的 所以我们所需要显示的内容必要大小也是固定的，加载时应该根据实际情况设置取样率 和 取样范围来部分加载 图片资源避免OOM。对于可能有OOM的地方进行TryCatch 然后调整取样率来解决，或者用Weak/SoftRefence来避免OOM 导致的crash。大文件的加载（MD5校验 读取文件缓存区域过大）。
+对于内存泄漏 通过工具排查 Leak Canery集成到项目中，还有通过AS自带工具Profile中内存分析工具 来排查具体的泄漏位置。
+常见的泄漏 IO Socket Cursor 等及时为关闭。 或则Activity/Fragment View等泄漏 Context。一般都是编码bug 导致的。找到以后更正。Native内存泄漏 不太懂不瞎说了。
+    
 ## View
 > View做为构建视图的基本单元，总是在屏幕上占据矩形区域，承担视图绘制和事件的处理。所有view以一颗树的形式被安排在Window内。view分为两大类一类是viewgroup 负责组织和放置view，他们一般是不可见的，另一类就是view可见的如文本，图片，按钮等。在窗口中展示view所占据 的位置由位置和形状决定。
 
@@ -430,11 +477,26 @@ Linux 的I/O 多路复用机制。全名event poll，同时管理大量的文件
 > 由ViewRootImpl发起  preformTraversals（）
 
 1. 预测量 走完整测量流程，计算需要窗口的尺寸
+	1. measureHieracy()
 2. 窗口布局，与WMS通讯，协商调整窗口尺寸
 3. 测量 measure 父控件为子空间提供约束，子控件在onMeasure中，根据MeasureSpec完成测量。递归从上至下传递约束，测量结果至下而上窗体，父控件根据子控件测量结果，最终确定，自身尺寸，最终窗口约束框架下完成测量。
 4. 	摆放 layout 根据测量的尺寸从上至下递归逐层确定自控在父控件中的上下左右的值。 
 5. 绘制 draw 绘制过程分为多种情况：
-	*  软件绘制
+	*  软件绘制drawSoftware()
+		1. 通过Surface.lockCanvas()获取到一个绘制的Canvas
+		2. 对Canvas进行变换实现滚动效果
+		3. 通过mView.draw(Canvas)绘制view树。
+			1. 绘制背景，不受滚动的影响
+			2. 执行onDraw()绘制自身内容
+			3. 执行ViewGroup.dispatchDraw()绘制子view
+				1. canvas.save()保存状态，canvas.clipRect()锁定绘制区域。
+				2. 确定子控件的绘制顺序 ,默认按添加顺序绘制，通过setChildrenDrawingOrderEnable(true)；覆写getChildDrawingOrder()。来指定自控家的绘制顺序。这一点对于重叠子控件的绘制至关重要。
+				3. 遍历children 对需要绘制的执行 rawChild(canvas，child，time动画时间)
+				4. 调用子控件的View.draw(ViewGroup，Canvas，time)
+					1. 变换坐标系，包括子控件在父控件中位置，动画等
+					2. 变换后的Canvas 绘制子控件
+			4. 绘制空件装饰，即滚动条。
+		4. 通过Surface.unlockCanvasAndPost() 显示绘制内容。
 	*  硬件绘制
 	*  软件缓存绘制
 	*  硬件缓存绘制
@@ -466,7 +528,6 @@ InputEventReciever（InputChannel ，Looper）// 事件接收 receiver.onInputEv
 
 ### Touch事件分发 
 ----------------------------------
-ViewRootImpl  --> dispatchPointerEvent().
 	mView --> dispatchPointerEvent()
 	mView --> dispatchPointerEvent(MothionEvent)
 
@@ -479,12 +540,11 @@ ViewRootImpl  --> dispatchPointerEvent().
 
 
 ### 动画 
-
-
 控件的动画有三种：
-ValueAnimator/ ObjectAnimator/ViewPropirtyAnimator 属性动画。
-LayoutTransition 类 使用ObjectAnimator来实现ViewGroup中删除和添加子view的动画
-View.startAnimation 开启动画。
+#### ValueAnimator/ ObjectAnimator/ViewPropirtyAnimator 属性动画。
+ValueAnimator内部实现了一个Runnable接口线程，唯一的AnimationHandler类，开启动画时ValueAnimator不断底将AnimationHandler抛给Choreographer，并在VSYNC信号到来时，修改指定的属性，从而引起View的invalidate()来绘制更新。
+#### LayoutTransition 类 使用ObjectAnimator来实现ViewGroup中删除和添加子view的动画
+#### View.startAnimation 开启动画。
 
 <!--Animation 包含四类动画 平移 缩放 旋转 和透明度 
 描述一个动画过程，起、止状态，时长，延时，变化速率。
@@ -506,7 +566,6 @@ Choreographer 对动画逐帧渲染 postCallback-->
 
 ### View优化
 
-###10. AMS
 
 ###11. WMS
 
@@ -543,13 +602,12 @@ RecyclerView在{@link Adapter}和{@link LayoutManager}之间引入了额外的�
 除了调度adapter.notify*事件并计算更新后的布局的时间外，这两个位置是相同的。
 
 LayoutManger
-ViewHolder
-DiffUtil
+ViewHoldersDiffUtil
 
 优化：
 1.设置全局的 RecycledViewPool
 2.setViewCacheExtension 给指定的位置返回固定视图。
-3.Adapter 采用listAdapter 传入DiffUtil. ItemCallback。根据不同的数据作ItemCallback实现，减少不必要的刷新。
+3.Adapter 采用listAdapter 传入DiffUtil.ItemCallback。根据不同的数据作ItemCallback实现，减少不必要的刷新。
 4.数据预加载()。
 
 
@@ -560,14 +618,27 @@ DiffUtil
 
 ##Android性能优化
 ### 开发阶段：
+### [严格模式StrictMode](https://www.cnblogs.com/yaowen/p/6024690.html)
+
+debug模式下开启严格模式，检测主线程中耗时操作，IO ，网络，或自定义的耗时方法调用，以及closable的使用防止遗忘关闭，数据 以及activity的泄漏等可以弹窗提示，日志等。
+
+### 启动时长优化
+首先要统计启动项的耗时情况。
+找到具体耗时的方法。（Debug.startMethodTracing([Path])/Debug.stopMethodTracing()）在指定路径下生成.trace文件。
+将其拖到AS中打开会看到，方法调用及耗时及线程情况。通过此文件可以查出耗时规律。
+可以采用异步启动，或延时启动等策略来加快启动的事件。
+视觉的优化 通过设置窗口背景图来给 以及闪屏来等待启动完成。掩饰在mainactivity中的启动耗时。
+
 ####1. 绘制优化
 android UI的绘制的帧率60FPS时，人眼才不会感觉卡顿，Android的垂直同步信号每16ms同步一次Surface给SurfaceFlinger 去输出到屏幕，否者就要等到下一次信号才能在进行同步，就会出现丢帧现象，人眼感觉卡顿。所以绘制优化的目的就是要确保16ms完成控制树的绘制。
 造成卡顿的原因较多：
 1.布局过于复杂，在16ms无法完成绘制。
 优化：简化布局尽量减少控件树的深度，避免过度绘制，譬如背景色尽量不去设置，对于绘制层叠较深的可用自定义控件，将其扁平化。尽量给布局确定的尺寸，减少测量耗时。使用硬件加速，合理设置绘制缓存提高绘制效率。
-刷新时invalidate 和 requestLayout 调用时
-2.合理使用动画，
+只需重新绘制时 invalidate 和 需要重新布局时 requestLayout 调用时。
+2.布局的耗时主要IO 及XML的解析反射创建对象，这一过程比较耗时，可以在编译时，将XML文件转换成代码 例如X2C 框架，可以加速ViewTree的构建。
+2.合理使用动画，动画是双刃剑利用不好就会好资源的卡顿，用的好可以给人视觉的舒适感，合理引导用户。
 3.内存抖动引发GC，导致暂停等待GC（在内存优化中再说）。
+
 
 ####2. 内存优化
 避免内存泄漏：
@@ -580,8 +651,8 @@ android UI的绘制的帧率60FPS时，人眼才不会感觉卡顿，Android的�
 
 * 直接使用IP可以减掉域名解析时间。
 * 共用链接池减少建立连接的事件。
-* 利用缓存可以节省流量，也可以提升速度。
-* 用CDN服务器提高稳定性响应速度。
+* 利用缓存响应可以节省流量，也可以提升速度。
+* 静态资源用CDN服务器提高稳定性响应速度。
 * 设置优先级数据接口优先，图片次之，文件下载最低，日志空闲时上报。优先保证数据接口完成请求。
 * 图片按需加载，按设备的分辨率；
 
@@ -606,11 +677,12 @@ android UI的绘制的帧率60FPS时，人眼才不会感觉卡顿，Android的�
 
 提高运行效率，
 Lint 代码检测。
-内存泄漏检测LeakCannery /
+内存泄漏检测 LeakCannery 
 
 AS 
-Profile 
+Profile 检测内存泄漏 及 内存分析。
 Layout Inspector 查看布局层级。以DecorView 为根的树
+
 MAT
 #### 打包发布：
 1.移除无用资源和代码
@@ -680,9 +752,9 @@ RsvTotalUsed:     296452 kB
 adb shell dumpsys meminfo [ packagename/pid] //查看进程的内存信息
 
 #### 应用程序如何绕过dalvikvm heapsize的限制?
-1 .创建子进程,使用android:process标签
-2.使用jni在native heap上申请空间（推荐使用）
-3.使用显存（操作系统预留RAM的一部分作为显存）开启硬件加速。
+1. 创建子进程,使用android:process标签
+2. 使用jni在native heap上申请空间（推荐使用）
+3. 使用显存（操作系统预留RAM的一部分作为显存）开启硬件加速。
 关于bitmap是 调用native方法创建，但对象引用还在java层，属于Java对象所以是分配在VM heap上 ，故图片加载会出现OOM。
 dakvikvm heap 分为 zygote heap 和 active heap，zygote heap上的对象
 #### 后台进程保活?
@@ -716,6 +788,7 @@ dakvikvm heap 分为 zygote heap 和 active heap，zygote heap上的对象
 * void onReceivedClientCertRequest(WebView view, ClientCertRequest request) // Https服务端需要证书时再次设置。三种处理方式1. request.proceed()
 
 ### WebChromeClient
+
 ### JS 与 Java 的互调
 #### 对于Android调用JS代码的方法有2种：
 1. 通过WebView的loadUrl（）
@@ -775,23 +848,27 @@ mWebView.addJavascriptInterface(new JsToJava(), "myjsfunction");
 
 
 ## SurfaceView
-### 基本使用
+> SurfaceView 成员SurfaceHolder 持有一个Surface，通过Surface.lockCanvas() 得到一个Canvas对象，可以通过Canvas再surface上绘制。SurfaceView window session通过。
+View树在ViewRootImpl创建时会创建属于自己的Surface。在View树中如果有SurfaceView ,SurefaceFlinger 在Layer
 
+### 基本使用
+继承SurfaceView
 
 
 ##热修复
 资源替换
-1.通过反射创建新的AssertManager，通过反射调用addAssertPath 将我们新的资源的路径添加。
-2.通过反射替换Resource的mAssert字段将引用指向1创建的AssertManager对象
+1.通过反射创建新的AssetManager，通过反射调用addAssetPath 将我们新的资源的路径添加。
+2.通过反射替换Resource的mAsset字段将引用指向1创建的AssetManager对象
+
 类加载
     android 加载类时会从DexPathList的成员dexElements中逐个查找，每一个Element内部都封装了DexFile DexFile用来加载dex，所以我们通过反射将补丁dex
     插入到封装成Element插入到dexElements列表第一个元素，重新启动后优先会被加载，从而起到修复的作用，还有就是替换element，这就要求分dex时 哪个类在哪个dex中都是确定的。
 底层替换方案：限制多 只能修改替换不能增删
-instant Run
+	instant Run
 
 3.动态链接库的修复：
     so加载的方法 load 加载完整路径的so  loadLibrary 按so名称加载安装后解压路径下的so loadLibrary最终会调findLibrary方法。
-    1.将so补丁插入到DexPathList的成员 nativeLibraryElement数组中让补丁so优先加载返回 ，和类的加载一样so也不会重复加载。
+    1.将so补丁插入到DexPathList的成员 nativeLibraryElement 数组中让补丁so优先加载返回 ，和类的加载一样so也不会重复加载。
     2.使用系统的load方法接管so的加载，通过反射将补丁so路径作为参数。
     
 日志系统异常上报，
@@ -821,7 +898,7 @@ hook的点一般为静态变量和单例对象，稳定不易变
 4.组件的启动
 Activity
 hook IActivityManager 通过反射用代理对象替换系统的IActivityManager，从而将启动占坑Activity的intent替换为 目标Activity的intent
-然后再hool ActivityThread 成员 mCallBack 在activity启动完成后将 将intent还原一边维持生命周期的正常运作。
+然后再hook ActivityThread 成员 mCallBack 在activity启动完成后将 将intent还原一边维持生命周期的正常运作。
 hook Instrumentation
 Service
 BroadCastReceiver
@@ -847,6 +924,9 @@ ContentProvider
 
 4. Application 冲突, 编译merge Manifest 通过repalce来解决冲突。
 
+### 组件的分发
+框架 定义组件管理类，提供组件注册，访问接口 ，组件通过编译时 注解 或者 反射 实例，（具体可以参照系统服务的的方式来实现）
+
 
 ## IPC通信
 ### 共享内存/管道PIPE/Socket/信号量s/Binder
@@ -855,7 +935,18 @@ ContentProvider
 * 管道PIPE 其实就是特殊的文件。一个进程写入，另一个进程读区是半双工，通过双管道实现双工。也分为两种：匿名管道（主要用于父进程与子进程之间） 和 命名管道（是建立在实际的磁盘介质或文件系统（而不是只存在于内存中）上有自己名字的文件，任何进程可以在任何时间通过文件名或路径名与该文件建立联系。）
 * Socket 计算机通过端口建立连接。服务端口（服务进程）和客服端端口（客服进程）建立连接后可读可写。
 * Binder 通过内存映射 mmap 实现的。
+
 ### Binder 机制
+Binder机制是基于C/S 架构的IPC 机制。
+Binder类和BinderProxy分别实现了IBinder接口，Binder作为服务端 Bn的代表，BinderProxy作为客户端Bp的代表。
+BinderInternal 类仅供Bidnder框架使用，内部有一个GcWatcher类 承担Binder架构中的回收工作。
+Parcel 类用于通信数据的实现。
+IBinder 接口中 flag_oneway 用于非阻塞调用，如 客服端 发起IPC请求时，会阻塞直到服务端响应返回。flag_oneway可以使的客服端在服务端接收到请求后便脱离阻塞状态（可以通过注册回调来处理服务端的响应）。
+Java层的Binder是native层的镜像，主要功能还是有native去实现的，Java层通过JNI 提供使用接口。
+
+### SystemServer 进程 与  App进程的IPC
+SystemServer 进程由zygote fork 创建。在这个进程内创建并维护了所有的系统服务，供应用进程调用。SystemServer 创建的服务由 SystemServiceManger 管理注册到 ServiceManger中，以便用户进程 可以通过ServiceManger 获取到相应的服务。
+
 
 ###  AIDL 
 1. 定义ADIL文件在其中定义数据交付接口XXX。编译生成.Java 接口文件 内部类 abstract class XXX.stub。
@@ -867,8 +958,10 @@ ContentProvider
 7. 服务端 出错如何通知的 客服端？service.linkToDeath 来反向注册DeathRecipient 到 服务端。但与服务端的 连接出现问题时服务的会调用DeathRecipient.binderDied 方法，通知客服端。service.unlinkToDeath取消注册。
 8. 传递数据为引用数据类型时数据类要实现Parcelable接口。当然两端都得有相同的AIDL和数据类。
 9. 传递的数据最大1M-8k，大于这个值则会报TransactionTooLargeException。binder head 4M
+### RemoteViews 跨进程view控制
 
-  
+RemoteViews是一个支持跨进程创建并更新View的工具类；实现原理RemoteViews实现了Parcelable接口，具备跨进程传输的能力，借用binder进行数据传递。
+
 ## 提高 app 安全性的方法？
 * 敏感信息加密存储，
 * 组件默认export=false 如需暴露，设置好权限和校验。
@@ -877,6 +970,8 @@ ContentProvider
 * 加固：
 * 签名：
 
+
+### 打包过程的hook
 
 
 
@@ -916,10 +1011,62 @@ ContextImpl appContext = createBaseContextForActivity(r)创建mBase
 Application app = r.packageInfo.makeApplication(false, mInstrumentation); 创建Application
 
 
+
+## 原生 RN Flutter对比
+
+### 原生 
+编码方式   语言Java/Kotlin 编译型 布局用XML预览。
+内存占用  图形绘制 Java heap 为主。运行在DVM/ART 不需要额外的执行或者渲染框架 
+UI绘制 
+从 XML 到 View 对象。IO XML解析及 反射创建对象。耗时可以用X2C优化。对象 分配在DVM heap上 有heapsize 限制 容易OOM (开启多进程或使用Native内存)。语言Java/Kotlin 编译型 。打包遍以后在 代码dex 资源 res 目录下。
+
+### RN  
+编码方式  语言 JavaScript 解释性脚本语言。打包时js代码会被压缩到 js bundle文件中。执行需要靠JS 引擎。
+内存占用 
+
+UI绘制 
+React component组合式开发，响应式布局，虚拟DOM 节点 映射转换成原生View。这过程比较耗时，语言 JavaScript 解释执行JS core 
+
+### Flutter 
+编码方式  Dart语言  开发时JIT 方便即时查看UI，发布时 AOT打包成 .so 执行效率高。运行在Dart VM上
+内存占用 
+启动时需要预热 加载资源 代码 启动DartVM 为Dart运行做准备，所以启动较慢
+VM heap 比较稳定占用内存重要是Graphic 和 native heap
+UI绘制 
+通过Widgets构建Element树 其中提取出RenderObject 来绘制UI有自己的绘制引擎。绘制完成交给 Surface VSYNC信号到来时，将数据交给SurfaceFlinger来显示在屏幕上。没有XML的解析，也没有虚拟DOM和VIew的转换。
+
+
+
         
+## Android kotlin
+### 协程
+###  函数式编程
 
 
+## Android 架构组件
+![Android架构](./images/final-architecture.png)
+您不应在应用组件( Activity、Fragment、Service、内容提供程序和广播接收器)中存储任何应用数据或状态，并且应用组件不应相互依赖。
+### ViewModel
+ ViewModel 对象为特定的界面组件（如 Fragment 或 Activity）提供数据，
+ 并包含数据处理业务逻辑，以与Model进行通信。
+ 例如，ViewModel 可以调用其他组件来加载数据，还可以转发用户请求来修改数据。ViewModel 不了解界面组件，因此不受配置更改（如在旋转设备时重新创建 Activity）的影响。
+### LifeCycle
+![](./images/lifecycle-states.svg)
 
+1. 使界面控制器（Activity 和 Fragment）尽可能保持精简。它们不应试图获取自己的数据，而应使用 ViewModel 执行此操作，并观察 LiveData 对象以将更改体现到视图中。
+1. 设法编写数据驱动型界面，对于此类界面，界面控制器的责任是随着数据更改而更新视图，或者将用户操作通知给 ViewModel。
+1. 将数据逻辑放在 ViewModel 类中。ViewModel 应充当界面控制器与应用其余部分之间的连接器。不过要注意，ViewModel 不负责获取数据（例如，从网络获取）。ViewModel 应调用相应的组件来获取数据，然后将结果提供给界面控制器。
+1. 使用 Data Binding 在视图与界面控制器之间维持干净的接口。这样一来，您可以使视图更具声明性，并尽量减少需要在 Activity 和 Fragment 中编写的更新代码。如果您更愿意使用 Java 编程语言执行此操作，请使用诸如 Butter Knife 之类的库，以避免样板代码并实现更好的抽象化。
+1. 如果界面很复杂，不妨考虑创建 presenter 类来处理界面的修改。这可能是一项艰巨的任务，但这样做可使界面组件更易于测试。
+1. 避免在 ViewModel 中引用 View 或 Activity 上下文。如果 ViewModel 存在的时间比 Activity 更长（在配置更改的情况下），Activity 将泄露并且不会由垃圾回收器妥善处置。
+1. 使用 Kotlin 协程管理长时间运行的任务和其他可以异步运行的操作。
+### LiveData
+
+LiveData 是一种可观察的数据存储器。
+应用中的其他组件可以使用此存储器监控对象的更改，而无需在它们之间创建明确且严格的依赖路径。
+LiveData 组件还遵循应用组件（如 Activity、Fragment 和 Service）的生命周期状态，并包括清理逻辑以防止对象泄漏和过多的内存消耗。
+
+![Android架构](./images/network-bound-resource.png)
 
 
 

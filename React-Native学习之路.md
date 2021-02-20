@@ -9,7 +9,44 @@
 * React-Native
 
 ##ECMAScript学习笔记
+### 类型判定
+1. typeof  可以判断 string  number  boolean  undefinded symbol
+
+	```
+	typeof(12)  --> "number"
+	typeof("12")  --> "string"
+	typeof(null)  -->  "object"
+	typeof(true)  --> "boolean"
+	let a; typeof(a)  --> "undefined"
+	let a = {}; typeof(a)  --> "object"
+	typeof([])  --> "object"
+	```
+2. instanceof  
+3. Array.isArray([]) --> true
+浅拷贝  	Object.assign()
+		Array.prototype.slice()
+扩展运算符 ... 
+深拷贝  JSON.parse(JSON.stringify())
+
+
 ####数组
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ##ES6学习笔记

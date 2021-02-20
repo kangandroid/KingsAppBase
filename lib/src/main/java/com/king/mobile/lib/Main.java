@@ -6,15 +6,16 @@ import com.king.mobile.lib.util.PrintUtil;
 
 public class Main {
     public static void main(String[] args) {
-        ProductAndConsumer productAndConsumer = new ProductAndConsumer();
-        productAndConsumer.startProduce();
-        try {
-            Thread thread = Thread.currentThread();
-            thread.sleep(2000l);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        productAndConsumer.startConsume();
+//        ProductAndConsumer productAndConsumer = new ProductAndConsumer();
+//        productAndConsumer.startProduce();
+//        try {
+//            Thread thread = Thread.currentThread();
+//            thread.sleep(2000l);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+//        productAndConsumer.startConsume();
+        finallyTest();
     }
 
     static int hash(Object key) {
@@ -26,5 +27,14 @@ public class Main {
         PrintUtil.printB(h);
         int cont = h >>> 16;
         return h ^ cont;
+    }
+
+    static void finallyTest() {
+        try {
+            PrintUtil.print("try");
+            System.exit(0);
+        } finally {
+            PrintUtil.print("finally");
+        }
     }
 }

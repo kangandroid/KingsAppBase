@@ -418,6 +418,29 @@ keytool -genkey -v -keystore ~/key.jks -keyalg RSA -keysize 2048 -validity 10000
 **构建apk**
 
 	flutter build apk --target-platform android-arm,android-arm64,android-x64 --split-per-abi
+	
+### flutter Android打包过程
+1. 代码 -->lib/abi/libapp.so 
+dart 代码编译后生成动态连接库 libapp.so 在引擎初始化时先加载资源 在加载代码。
+
+2. 图片等资源 -->assets/flutter_assets 
+
+	flutter_assets/AssetManifest.json 
+	flutter_assets/FontManifest.json 
+	 json格式 图片和字体等资源代码中引用（key）和路径（value）的映射关系。
+ 
+
+### flutter Dart与原生的互调
+dart 调用 原生方法：
+1.  原生注册方法。
+2. dart调用。
+	
+	 const platform = const MethodChannel('samples.flutter.dev/battery');
+	 final result = await platform.invokeMethod('methodName');
+	 
+3. 原生 调用dart：
+	
+	
 
 
 

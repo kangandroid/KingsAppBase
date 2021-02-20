@@ -1,9 +1,12 @@
 package com.king.player.view;
 
+import android.view.ViewGroup;
+
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
+import java.util.Collections;
 import java.util.List;
 
 class HomeFragmentPagerAdapter extends FragmentPagerAdapter {
@@ -24,4 +27,5 @@ class HomeFragmentPagerAdapter extends FragmentPagerAdapter {
     public int getCount() {
         return mFragments.size();
     }
+    
 }

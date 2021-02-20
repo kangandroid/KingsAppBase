@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.widget.Toast;
 
+import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -41,7 +42,8 @@ public class VideoListActivity extends BaseActivity {
                 .permission(Permission.WRITE_EXTERNAL_STORAGE, Permission.RECORD_AUDIO)
                 .onGranted(data -> Toast.makeText(this, "授权成功", Toast.LENGTH_SHORT).show())
                 .onDenied(data -> Toast.makeText(this, "授权失败", Toast.LENGTH_SHORT).show());
-        vvm = ViewModelProviders.of(this).get(VideoCollectionViewModel.class);
+        ViewModelProvider provider = new ViewModelProvider(this);
+        vvm =  provider.get(VideoCollectionViewModel.class);
         titleBar.setLeftAction(null)
                 .setTitle("视屏列表")
                 .setRightAction(new TitleBar.Action(null, R.drawable.ic_add, v -> showDialog()))
@@ -50,6 +52,9 @@ public class VideoListActivity extends BaseActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         VideoListAdapter videoListAdapter = new VideoListAdapter(this);
         recyclerView.setAdapter(videoListAdapter);
+        vvm.getVideoList().observe(this,(data)->{
+
+        });
         videoListAdapter.setOnItemClickListener((video, view, index) -> play(video.url));
     }
 

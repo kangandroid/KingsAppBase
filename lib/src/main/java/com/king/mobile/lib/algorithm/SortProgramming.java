@@ -2,56 +2,8 @@ package com.king.mobile.lib.algorithm;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
-import java.util.Stack;
 
 class SortProgramming {
-
-    public static void quickSort(int[] arr, int start, int end) {
-        if (start >= end) return;
-        int midIndex = start;// 占位
-        for (int i = start + 1; i <= end; i++) { // 遍历
-            if (arr[i] < arr[start]) { // 比标杆小的值
-                arr[midIndex] = arr[i];// 移至坑位
-                midIndex++; // 坑位前移
-                for (int j = i; j > midIndex; j--) { // 再次留出坑位
-                    arr[j] = arr[j - 1];
-                }
-            }
-        }
-        arr[midIndex] = arr[start]; // 填坑
-        // 分治 坑位两侧
-        quickSort(arr, start, midIndex - 1);
-        quickSort(arr, midIndex + 1, end);
-    }
-
-    /**
-     * 快速排序
-     *
-     * @param l   数组的开始index
-     * @param r   数组的结束index
-     * @param arr
-     */
-    private static void quick(int l, int r, int[] arr) {
-        if (l >= r) return; // 跳出递归
-        int bIndex = l;
-        for (int i = l + 1; i <= r; i++) {
-            if (arr[i] < arr[l]) {
-                int tem = arr[i];
-                for (int j = i; j > bIndex; j--) {
-                    arr[j] = arr[j - 1];
-                    System.out.println(Arrays.toString(arr));
-                }
-                arr[bIndex] = tem;
-                bIndex++;
-            }
-        }
-        quick(l, bIndex - 1, arr);
-        quick(bIndex + 1, r, arr);
-    }
 
     /**
      * 归并排序
@@ -123,6 +75,31 @@ class SortProgramming {
         return arr;
     }
 
+    /**
+     * 快速排序
+     *
+     * @param array   数组
+     * @param start   数组的开始index
+     * @param end   数组的结束index
+     */
+    public static void quickSort(int[] array, int start, int end) {
+        if (start >= end) return;
+        int pivot = start;
+        int pivotV = array[start];
+        for (int i = start + 1; i <= end; i++) {
+            if (array[i] < pivotV) {
+                array[pivot] = array[i];
+                pivot++;
+                for (int j = i; j> pivot ; j--) {
+                    array[j] = array[j-1];
+                }
+            }
+        }
+        array[pivot] = pivotV;
+        quickSort(array,start,pivot-1);
+        quickSort(array,pivot+1,end);
+    }
+
     public static void main(String[] args) {
         int[] arr = {9, 3, 5, 7, 4, 8};
         quickSort(arr, 0, arr.length - 1);
@@ -183,24 +160,7 @@ class SortProgramming {
         return list;
     }
 
-    public boolean IsPopOrder(int [] pushA,int [] popA) {
-        Queue<TreeNode> queue = new LinkedList<>();
-        Stack<Integer> stack = new Stack<>();
-        int i= 0, j= 0;
-        while(i<pushA.length){
-            if(pushA[i]!=popA[j]){
-                stack.push(pushA[i++]);
-            }else{
-                i++;
-                j++;
-                while(!stack.empty() && stack.peek()== popA[j]){
-                    stack.pop();
-                    j++;
-                }
-            }
-        }
-        return stack.empty();
-    }
+
 
     public ArrayList<Integer> GetLeastNumbers_Solution(int [] input, int k) {
         ArrayList<Integer> list = new ArrayList<Integer>();

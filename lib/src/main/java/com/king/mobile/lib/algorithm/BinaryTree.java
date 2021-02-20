@@ -6,10 +6,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
+import java.util.Stack;
 
-class BinaryTree {
+public class BinaryTree {
 
-    static class TreeNode {
+    public static class TreeNode {
         int val;
         TreeNode left;
         TreeNode right;
@@ -90,6 +92,11 @@ class BinaryTree {
         return root;
     }
 
+    /**
+     *  BFS
+     * @param root
+     * @return
+     */
     public ArrayList<Integer> PrintFromTopToBottom(TreeNode root) {
         ArrayList<Integer> result = new ArrayList<>();
         if (root == null) return result;
@@ -107,6 +114,15 @@ class BinaryTree {
         }
         return result;
     }
+
+    public static void dfs(TreeNode root){
+        if(root==null)return;
+        int val = root.val;
+        dfs(root.left);
+        dfs(root.right);
+        PrintUtil.print(val);
+    }
+
 
     public boolean VerifySquenceOfBST(int[] sequence) {
         if (sequence == null || sequence.length == 0) return false;
@@ -134,7 +150,7 @@ class BinaryTree {
 
 
     public static void main(String[] args) {
-        ArrayList<Integer> arrayList = new ArrayList();
+        ArrayList<Integer> arrayList = new ArrayList<>();
 //        preTraverse(root, arrayList);
 //        inTraverse(root, arrayList);
 //        lastTraverse(root, arrayList);
@@ -145,6 +161,7 @@ class BinaryTree {
         int[] pre = {0, 1, 3, 4, 2, 5, 6};
         int[] in = {3, 1, 4, 0, 5, 2, 6};
         TreeNode treeNode = reConstructBinaryTree(pre, in);
+        dfs(treeNode);
         lastTraverse(treeNode, arrayList);
         PrintUtil.print(Arrays.toString(arrayList.toArray()));
     }
@@ -165,16 +182,55 @@ class BinaryTree {
      * 要求不能创建任何新的结点，只能调整树中结点指针的指向。
      */
     TreeNode tem = null;
-    public TreeNode Convert(TreeNode pRootOfTree){
-        if(pRootOfTree == null)return null;
+
+    public TreeNode Convert(TreeNode pRootOfTree) {
+        if (pRootOfTree == null) return null;
         Convert(pRootOfTree.right);
-        if(tem!=null){
+        if (tem != null) {
             pRootOfTree.right = tem;
             tem.left = pRootOfTree;
         }
         tem = pRootOfTree;
         Convert(pRootOfTree.left);
         return tem;
+    }
+
+    public boolean HasSubtree(TreeNode root1, TreeNode root2) {
+        if (root1 == null || root2 == null) return false;
+        if (root1.val == root2.val) {
+            if (isSame(root1, root2)) {
+                return true;
+            }
+        }
+        return HasSubtree(root1.left, root2) || HasSubtree(root1.right, root2);
+    }
+
+    boolean isSame(TreeNode root1, TreeNode root2) {
+        if (root2 == null) return true;
+        if (root1 == null || root1.val != root2.val) {
+            return false;
+        } else {
+            return isSame(root1.left, root2.left) && isSame(root1.right, root2.right);
+        }
+    }
+
+    public boolean IsPopOrder(int[] pushA, int[] popA) {
+        Queue<TreeNode> queue = new LinkedList<>();
+        Stack<Integer> stack = new Stack<>();
+        int i = 0, j = 0;
+        while (i < pushA.length) {
+            if (pushA[i] != popA[j]) {
+                stack.push(pushA[i++]);
+            } else {
+                i++;
+                j++;
+                while (!stack.empty() && stack.peek() == popA[j]) {
+                    stack.pop();
+                    j++;
+                }
+            }
+        }
+        return stack.empty();
     }
 
     public void findPath(TreeNode root, int target, ArrayList<ArrayList<Integer>> paths) {
