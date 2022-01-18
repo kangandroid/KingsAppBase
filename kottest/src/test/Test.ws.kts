@@ -14,5 +14,3 @@ var counter = 0
 
 
 
-
-

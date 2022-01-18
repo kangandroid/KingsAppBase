@@ -103,7 +103,7 @@ viewPager adapter的notifydataChanged方法调用需要 实现 getItemPosition �
 > > >
 > > >  Service
 > > > 
-> > > Application
+> > >  Application
 > > >
 > > >  ContextThemeWrapper
 > > > > Activity
@@ -146,8 +146,8 @@ context.registerReceiver(receiver,filter)
 sendBroadcast(intent);
 sendOrderedBroadcast(intent,"");
 ### 广播的类型
-1. 注册方式静态注册（manifest中注册）和动态注册（代码）
-2. 接收方式 **有序广播**和**无序广播** 有序广播 按优先级 接收并且可以决定是否继续传递下去。无序广播按注册顺序发送。
+1. 注册方式：静态注册（manifest中注册）和动态注册（代码）
+2. 接收方式：**有序广播**和**无序广播** 有序广播 按优先级 接收并且可以决定是否继续传递下去。无序广播按注册顺序发送。
 
 ### 广播拦截（有序广播）
 abortBroadcast();
@@ -200,7 +200,7 @@ abortBroadcast();
 	* 	normal  表示权限是低风险的，不会对系统、用户或其他应用程序造成危害；
 	* 	dangerous  表示权限是高风险的，系统将可能要求用户输入相关信息，才会授予此权限；
 	* 	signature  表示只有当应用程序所用数字签名与声明引权限的应用程序所用数字签名相同时，才能将权限授给它；
-	* 	signatureOrSystem  表示将权限授给具有相同数字签名的应用程序或android 包类。这一保护级别适和于非常特殊的情况，比如多个供应商需要通过系统映像共享功能时
+
 
 ##数据库
 ### SQLite
@@ -230,8 +230,10 @@ abortBroadcast();
 	然后就是一个很重要的操作了,那就是,如果当你降级不成功怎么办?
 	我们的解决方案也很简单,那就是加一个try/catch() 来捕获这个异常,然后创建对应表的数据结构
 > 	SQLite ALTER 不支持 删除列的操作 只能 ADD和RENAME 
+> 
 >  SQL: 
 > DML:数据修改语言 数据的 增 删 改 查
+> 
 > 增： insert into TAB_NAME  (column_1, column_2, column_3,...) VALUES (value_1, value_2, value_3, ...);
 > 删：delete from TAB_NAME where id = 'id...'; 
 > 清空表：truncate table TAB_NAME；// 不会记录每一条删除的记录 比 delete * 要高效。
@@ -381,7 +383,7 @@ ANR类型：KeyDispatchTimeout
 CUP的使用率。
 
 
-#Android消息机制
+##Android消息机制
 	
 	ActivityThread.java
     --------------------------------------------------------------
@@ -460,7 +462,7 @@ Linux 的I/O 多路复用机制。全名event poll，同时管理大量的文件
     
     
 ## OOM
-OutOfMemoryError 内存溢出。DVM 内存分配机制，对每个进程都设置了heapsize 当应用使用内存超过时就会发生OOM
+OutOfMemoryError 内存溢出。DVM/ART 内存分配机制，对每个进程都设置了heapsize 当应用使用内存超过时就会发生OOM
 造成OOM 的原因有，一次性申请的内存过大超出可用内存，二 内存泄漏导致内存资源逐渐耗尽。
 对于第一种情况下是
 大图图片加载  因为一部手机屏幕的大小分辨率是确定的 所以我们所需要显示的内容必要大小也是固定的，加载时应该根据实际情况设置取样率 和 取样范围来部分加载 图片资源避免OOM。对于可能有OOM的地方进行TryCatch 然后调整取样率来解决，或者用Weak/SoftRefence来避免OOM 导致的crash。大文件的加载（MD5校验 读取文件缓存区域过大）。
@@ -479,7 +481,7 @@ OutOfMemoryError 内存溢出。DVM 内存分配机制，对每个进程都设�
 1. 预测量 走完整测量流程，计算需要窗口的尺寸
 	1. measureHieracy()
 2. 窗口布局，与WMS通讯，协商调整窗口尺寸
-3. 测量 measure 父控件为子空间提供约束，子控件在onMeasure中，根据MeasureSpec完成测量。递归从上至下传递约束，测量结果至下而上窗体，父控件根据子控件测量结果，最终确定，自身尺寸，最终窗口约束框架下完成测量。
+3. 测量 measure 父控件为子空间提供约束，子控件在onMeasure中，根据MeasureSpec完成测量。递归从上至下传递约束，测量结果至下而上传递，父控件根据子控件测量结果，最终确定，自身尺寸，最终窗口约束框架下完成测量。
 4. 	摆放 layout 根据测量的尺寸从上至下递归逐层确定自控在父控件中的上下左右的值。 
 5. 绘制 draw 绘制过程分为多种情况：
 	*  软件绘制drawSoftware()
@@ -515,6 +517,7 @@ OutOfMemoryError 内存溢出。DVM 内存分配机制，对每个进程都设�
 5. mInputChannel 对接InputDispatcher的管道
 6. mInputEventReceiver 用于接收输入事件
 7. **RunQueue** View.post/postDelay 从attachInfo中获取ViewRootImpl的成员mHandler 执行Runnable 然而当View没有attcah 时attachInfo为空。post 的runnable会被添加到RunQueue中。ViewRootImpl在吧RunQueue中的Runnable 发送给mHandler。
+
 #### 生命周期
 构造函数-> setView->addView->...->die
 
@@ -550,21 +553,7 @@ ValueAnimator内部实现了一个Runnable接口线程，唯一的AnimationHandl
 描述一个动画过程，起、止状态，时长，延时，变化速率。
 Transformation 类描述了一个变换 主要包含：透明度和一个二维矩阵变换
 Choreographer 对动画逐帧渲染 postCallback-->
-### 屏幕适配
 
-1. Animation and Transform
-
-
-
-###6. Android 屏幕渲染机制
-###7. Android dalvik虚拟机和Art虚拟机的优化升级点
-###8. Android 系统启动过程
-###9.
-
-
-
-
-### View优化
 
 
 ###11. WMS
@@ -944,6 +933,13 @@ Parcel 类用于通信数据的实现。
 IBinder 接口中 flag_oneway 用于非阻塞调用，如 客服端 发起IPC请求时，会阻塞直到服务端响应返回。flag_oneway可以使的客服端在服务端接收到请求后便脱离阻塞状态（可以通过注册回调来处理服务端的响应）。
 Java层的Binder是native层的镜像，主要功能还是有native去实现的，Java层通过JNI 提供使用接口。
 
+IBinder
+程对象的基本接口，是轻量级远程过程调用机制的核心部分，设计用于在执行进程内和跨进程调用时实现高性能。此接口描述与远程对象交互的抽象协议。不要直接实现这个接口，而是从Binder扩展。
+IBinder API 的关键是` transact() `匹配 `Binder.onTransact()`。这些方法分别允许您发送方法调用给IBinder对象和通过Binder对象接收该调用。此事务API是同步的，因此在`Binder.onTransact()`返回之前，对` transact() `的调用不会返回。这是调用本地进程中存在的对象时的预期行为，而底层进程间通信（IPC）机制确保在跨进程时应用这些相同的语义。通过 ` transact() ` 传递的数据是Parcel ，一种通用的数据缓冲区，它还维护有关其内容的一些元数据。元数据用于管理缓冲区中的IBinder对象引用，以便在缓冲区跨进程移动时维护这些引用。此机制确保当IBinder写入包裹并发送到另一个进程时，如果该另一个进程将对该IBinder的引用发送回原始进程，则原始进程将接收回相同的IBinder对象。这些语义允许IBinder/Binder对象用作唯一标识（用作令牌或用于其他目的），可以跨流程进行管理。
+
+系统在其运行的每个进程中维护一个事务线程池。这些线程用于调度来自其他进程的所有IPC。例如，当IPC从进程A发送到进程B时，A中的调用线程在将事务发送到进程B时阻塞transact（）。B中的下一个可用池线程接收传入事务，在目标对象上调用`Binder.onTransact()`，并使用结果Parcel进行答复。收到结果后，进程A中的线程返回以允许其继续执行。实际上，其他进程似乎用作您在自己的进程中执行时未创建额外的线程。
+Binder系统还支持跨进程的递归。例如，如果进程A对进程B执行一个事务，而进程B在处理该事务时在A中实现的IBinder上调用transact（），则A中当前等待原始事务完成的线程将负责调用B调用的对象上`Binder.onTransact()`。这确保了调用远程绑定器对象时的递归语义与调用本地对象时的递归语义相同。
+
 ### SystemServer 进程 与  App进程的IPC
 SystemServer 进程由zygote fork 创建。在这个进程内创建并维护了所有的系统服务，供应用进程调用。SystemServer 创建的服务由 SystemServiceManger 管理注册到 ServiceManger中，以便用户进程 可以通过ServiceManger 获取到相应的服务。
 
@@ -957,7 +953,7 @@ SystemServer 进程由zygote fork 创建。在这个进程内创建并维护了�
 6. 然后便可以进行数据交付。
 7. 服务端 出错如何通知的 客服端？service.linkToDeath 来反向注册DeathRecipient 到 服务端。但与服务端的 连接出现问题时服务的会调用DeathRecipient.binderDied 方法，通知客服端。service.unlinkToDeath取消注册。
 8. 传递数据为引用数据类型时数据类要实现Parcelable接口。当然两端都得有相同的AIDL和数据类。
-9. 传递的数据最大1M-8k，大于这个值则会报TransactionTooLargeException。binder head 4M
+9. 传递的数据最大1M-8k，大于这个值则会报TransactionTooLargeException。binder heap 4M
 ### RemoteViews 跨进程view控制
 
 RemoteViews是一个支持跨进程创建并更新View的工具类；实现原理RemoteViews实现了Parcelable接口，具备跨进程传输的能力，借用binder进行数据传递。
@@ -1068,6 +1064,8 @@ LiveData 组件还遵循应用组件（如 Activity、Fragment 和 Service）的
 
 ![Android架构](./images/network-bound-resource.png)
 
+### Jetpack Compose
 
+Compose kotlin语言实现的UI框架。
 
 

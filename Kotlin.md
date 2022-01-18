@@ -127,7 +127,9 @@ Lambda 表达式或者匿名函数（以及局部函数和对象表达式） 可
 	    println("Coroutine scope is over") // 这一行在内嵌 launch 执行完毕后才输出
 	}
 
-> unBlocking 与 coroutineScope可能看起来很类似，因为它们都会等待其协程体以及所有子协程结束。 主要区别在于，runBlocking 方法会阻塞当前线程来等待， 而 coroutineScope 只是挂起，会释放底层线程用于其他用途。 由于存在这点差异，runBlocking 是常规函数，而 coroutineScope 是挂起函数。
+> unBlocking 与 coroutineScope可能看起来很类似，因为它们都会等待其协程体以及所有子协程结束。
+主要区别在于，runBlocking 方法会阻塞当前线程来等待， 而 coroutineScope 只是挂起，会释放底层线程用于其他用途。
+由于存在这点差异，runBlocking 是常规函数，而 coroutineScope 是挂起函数。
 
 #### 提取函数重构
 我们来将 launch { …… } 内部的代码块提取到独立的函数中。当你对这段代码执行“提取函数”重构时，你会得到一个带有 suspend 修饰符的新函数。

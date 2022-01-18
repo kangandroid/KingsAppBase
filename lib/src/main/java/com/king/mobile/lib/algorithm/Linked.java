@@ -13,6 +13,11 @@ class Linked {
         }
     }
 
+    /**
+     * 链表反转
+     * @param header
+     * @return
+     */
     public static ListNode reverse(ListNode header) {
         if (header.next == null) return header;
         ListNode oldHeader = header;
@@ -28,7 +33,7 @@ class Linked {
     }
 
     /**
-     * 删除链表的倒数endIndex个节点
+     * 删除链表的倒数endIndex个节点 双指针
      *
      * @param header
      * @param endIndex
@@ -58,7 +63,6 @@ class Linked {
     }
 
     /**
-     *
      * @param header 链表头
      */
     public static void sort(ListNode header) {
@@ -67,7 +71,7 @@ class Linked {
 
     /**
      * 输入两个单调递增的链表，输出两个链表合成后的链表，当然我们需要合成后的链表满足单调不减规则。
-     *
+     * 合并有序连标
      * @param list1
      * @param list2
      */
@@ -107,9 +111,6 @@ class Linked {
         }
         return newHead;
     }
-
-
-
 
 
     public static void main(String[] args) {

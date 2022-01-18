@@ -17,8 +17,8 @@
 
 BitMap在内存中的大小 width * height * pxSize
 Android 资源解析 的时候会拉伸或压缩图片资源比如：
-资源在hpdi 目录，设备为xxhdpi 加载时会将图片拉伸为 targetDpi/resDpi
-倍
+资源在hpdi 目录，设备为xxhdpi 加载时会将图片拉伸为 targetDpi/resDpi倍
+
 ### 数据结构集合框架实现原理
 * List	  可包含重复元素
 	*     ArrayList：底层实现是数组，默认容量是10，每次达到上限后会扩容 oldCapcity + oldCapcity >>1 (约为1.5)。将会创建新的数组将原有数组中的数据copy到新数组中，Arrays.copyOf. Systerm.copyArray。扩容过程有内存峰值，尽量避免。
@@ -35,7 +35,7 @@ hash表+链表+红黑树。hash表初始长度16，扩容因子0.75(柏松分布
 * hash表的实现 ：key 的hashCode高位与地位抑或得hash值（使高位已参与进来，减少碰撞），key在hash表中的位置 i = hash&（容量-1）。
 * 链表与红黑树的转换：
 Node->TreeNode 8, TreeNode ->Node 6,不相同的目的在于防止过多的转换。与链表相比红黑树查找更快，当占据内存更大。更多的情况是，hash冲突的个数<7,此时链表的查询效率也可以接受， 为了节省空间选择链表>7时,链表效率下降明显，改用树（64）。
-* 扩容 resize：什么时候扩容？控桶数量不足25%时。
+* 扩容 resize：什么时候扩容？空桶数量不足25%时。
 
 
 ### ConcurrentHashMap
@@ -90,9 +90,9 @@ Java1.8 Synchronized + CAS + Node + Unsafe
 
 ###GC机制
 ### 标记算法：
-1. 	引用计数法 引用数为0时，则可回收，对于互相调用的情况，会出现计数永不为0。
-1. 	跟搜索法： GC Roots 不可达时则可回收。
-### GC Roots
+1. 	引用计数法： 引用数为0时，则可回收，对于互相调用的情况，会出现计数永不为0。
+2. 	根搜索法： GC Roots 不可达时则可回收。
+#### GC Roots
     a.VM Stack中引用的对象
     b.Native method Stack中的引用对象
     c.方法区中的静态属性引用的对象
@@ -113,8 +113,8 @@ HotSpot 虚拟机采用分代回收算法：
 ### 引用类型与使用场景
 
 * a.强引用 直接指向实例对象的引用。 引用存在就不可被回收。
-* b.软引用 指向SoftReference包裹对象的引用，但内存一出之前，GC回收软引用. 做内存缓存，如图片缓存，防止内存泄漏。
-* c.弱引用 指向WeakReference包裹对象的引用，下一次GC到来时会被回收，不论是否面临内存溢出， 在静态内部类中，经常会使用虚引用。
+* b.软引用 指向SoftReference包裹对象的引用，但内存溢出之前，GC回收软引用. 可做内存缓存，如图片缓存，充分利用内存的同时防止内存溢出。
+* c.弱引用 指向WeakReference包裹对象的引用，下一次GC到来时会被回收，不论是否面临内存溢出， 在静态内部类中，经常会使用弱引用防止内存泄露。
 * d.虚引用 指向PhantomReference包裹对象的引用，获取不到对象实例
 
 
@@ -124,11 +124,12 @@ HotSpot 虚拟机采用分代回收算法：
 加载 -- 验证 -- 准备 -- 解析 -- 初始化 -- 使用 --卸载
 
 加载时机：
-	1. new 创建对象或调用类的静态成员时
-	2. 通过反射调用
-	3. 子类初始化时会先加载父类
-	4. main方法所使用到的类
-	5. 动态语言使用
+
+1. new 创建对象或调用类的静态成员时
+2. 通过反射调用
+3. 子类初始化时会先加载父类
+4. main方法所使用到的类
+5. 动态语言使用
 
 **双亲委派机制**
 1.类加载过程
@@ -139,35 +140,32 @@ HotSpot 虚拟机采用分代回收算法：
 静态变量属于类变量，像这样public static int a = 1  的语句执行在类加载时时执行。类加载只有一次，必然之执行一次。
 
 
-###并发
-指令重排序，JVM 为了优化程序执行过程。编译时改变指令的执行顺序。
+##并发
+指令重排序：JVM 为了优化程序执行过程。编译时改变指令的执行顺序。
 
-线程的实现
+线程的实现：java线程是通过系统线程实现的。
 
 线程的调度
-1.协同式线程调度
-2.抢占式线程调度（java线程调度方式）
+
+1. 协同式线程调度  kotlin的协程
+2. 抢占式线程调度（java线程调度方式）
+
 状态转换
-new Thread
-1.线程创建 start()
-2.准备就绪，只差cpu执行权
-3.run() 在run方法中执行
-4.waiting 不占用cpu，等待其他线程唤醒 Object.await()
-5.
+
 线程安全
 
 锁优化
 
-主内存 到 工作内存，对象创建以后保存在堆内存中。当有子线程调用对象时，是会先住内存的值到工作内存中，使用完成后会写回的主内存中去。
+主内存 到 工作内存，对象创建以后保存在堆内存中。当有子线程调用对象时，是会先将主内存的值复制一份到工作内存中，使用完成后会写回的主内存中去。
 
 ####1.线程
 1. 线程的状态
 	1. NEW :创建 new 
-	1. RUNNABLE：可运行，调用start之后
-	1. BLOCKED：阻塞，等待获取锁
-	1. WAITING：await yeild 等方法自己不会自动变回runnable状态
-	1. TIMED_WAITING：定时等待 时间到了自动变回runnable状态
-	1. TERMINATED：结束 run方法执行完成或者异常退出
+	2. RUNNABLE：可运行，调用start之后
+	3. BLOCKED：阻塞，等待获取锁
+	4. WAITING：await yeild 等方法自己不会自动变回runnable状态
+	5. TIMED_WAITING：定时等待 时间到了自动变回runnable状态
+	6. TERMINATED：结束 run方法执行完成或者异常退出
 	
 	![](https://img-blog.csdn.net/20180803160520523)
 2. Java线程创建的几种方式
@@ -215,18 +213,19 @@ Executors.newSingleThreadExecutor();// 核心线程数和最大线程数都为1 
 Executors.newFixedThreadPool(mThreadCount); //固定只有mThreadCount核心线程 。LinkedBlockingQueue
 Executors.newCachedThreadPool(); // 无核心线程，可以无限创建工作线程，线程保活60s，SynchronousQueue
 Executors.newScheduledThreadPool(coreThreadCount); // 可做周期性，延时任务。线程保活10ms DelayedWorkQueue
-submit 和 excute 方法的区别：都是提交任务 submit会将提交的Runnable 包装成FutureTask 来执行 返回Future 我们可以通过Future。get()得到执行完成的结果。excute返回void 。
+
+**submit 和 excute 方法的区别：**都是提交任务 submit会将提交的Runnable 包装成FutureTask 来执行 返回Future 我们可以通过Future。get()得到执行完成的结果。excute返回void 。
   
 
 
 
 
 
-####3.锁
-公平锁/非公平锁  公平锁是多线程模式下按照申请顺序来获取锁,排队获取锁。非公平锁但锁处于处
-乐观锁/悲观锁    悲观锁在多线程并发模式下一定会出现线程安全问题,
+### 3.锁
+1. 公平锁/非公平锁：公平锁是多线程模式下按照申请顺序来获取锁,排队获取锁。非公平锁但锁处于处竞争状态
+2. 乐观锁/悲观锁：悲观锁在多线程并发模式下一定会出现线程安全问题,
 
-### volatile synchronized  Lock
+### volatile synchronized Lock
 
 #### volatile ：
 * 防止指令重排：修饰符修饰成员变量，被修饰的变量在被操作时，通过提供“内存屏障”的方式来防止被虚拟机指令重排序；
@@ -281,7 +280,33 @@ ReentrantLock主要利用CAS+AQS队列来实现。它支持公平锁和非公平
 
 模版设计模式：Android组件 activity service 等。
 
-
+### 设计模式分为三大类：
+*  创建型模式
+	*  工厂方法模式 
+	*  抽象工厂模式
+	*  单例模式		
+	*  建造者模式	Okhttp Request/Response
+	*  原型模式     
+*  结构型模式
+	*  适配器模式    ListView/ RecyclerView
+	*  装饰器模式   	Java.io  BufferedInputStream/BufferedOutputStream
+	*  代理模式	   静态代理/动态代理 ->Retrofit
+	*  外观模式		Android Context
+	*  桥接模式		adb/js bridge
+	*  组合模式		Compose
+	*  享元模式		int/message pool
+*  行为型模式
+	*  策略模式		
+	*  模板方法模式	Activity/Service
+	*  观察者模式	事件监听，广播，EventBus
+	*  迭代子模式	数据集合
+	*  责任链模式    Okhttp 的拦截器
+	*  命令模式		
+	*  备忘录模式
+	*  状态模式
+	*  访问者模式
+	*  中介者模式
+	*  解释器模式
 
 
 

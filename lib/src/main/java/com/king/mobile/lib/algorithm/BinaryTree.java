@@ -47,7 +47,7 @@ public class BinaryTree {
         root.right.right = new TreeNode(6);
     }
 
-
+    // 前序遍历
     public static void preTraverse(TreeNode root, List<Integer> list) {
         if (root == null) return;
         list.add(root.val);
@@ -55,6 +55,7 @@ public class BinaryTree {
         preTraverse(root.right, list);
     }
 
+    // 中叙遍历
     public static void inTraverse(TreeNode root, List<Integer> list) {
         if (root == null) return;
         inTraverse(root.left, list);
@@ -62,6 +63,7 @@ public class BinaryTree {
         inTraverse(root.right, list);
     }
 
+    // 后续遍历
     public static void lastTraverse(TreeNode root, List<Integer> list) {
         if (root == null) return;
         lastTraverse(root.left, list);
@@ -70,9 +72,9 @@ public class BinaryTree {
     }
 
     /**
-     * 输入某二叉树的前序遍历和中序遍历的结果，请重建出该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重
-     * 复的数字。
-     * 例如输入前序遍历序列{1,2,4,7,3,5,6,8}和中序遍历序列{4,7,2,1,5,3,8,6}，则重建二叉树并返回。
+     * 输入某二叉树的前序遍历和中序遍历的结果，请重建出该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。
+     * <p>
+     * 例如：输入前序遍历序列{1,2,4,7,3,5,6,8} 和 中序遍历序列{4,7,2,1,5,3,8,6}，则重建二叉树并返回。
      *
      * @param pre
      * @param in
@@ -93,7 +95,8 @@ public class BinaryTree {
     }
 
     /**
-     *  BFS
+     * BFS
+     *
      * @param root
      * @return
      */
@@ -115,20 +118,34 @@ public class BinaryTree {
         return result;
     }
 
-    public static void dfs(TreeNode root){
-        if(root==null)return;
+    /**
+     * 深度优先遍历
+     *
+     * @param root
+     */
+    public static void dfs(TreeNode root) {
+        if (root == null) return;
         int val = root.val;
         dfs(root.left);
         dfs(root.right);
         PrintUtil.print(val);
     }
 
-
-    public boolean VerifySquenceOfBST(int[] sequence) {
+    /**
+     * @param sequence
+     * @return
+     */
+    public boolean verifySequenceOfBST(int[] sequence) {
         if (sequence == null || sequence.length == 0) return false;
         return isBSTSequence(sequence, 0, sequence.length - 1);
     }
 
+    /**
+     * @param sequence
+     * @param start
+     * @param end
+     * @return
+     */
     private boolean isBSTSequence(int[] sequence, int start, int end) {
         if (start >= end) return true;
         int index = -1;
@@ -183,18 +200,23 @@ public class BinaryTree {
      */
     TreeNode tem = null;
 
-    public TreeNode Convert(TreeNode pRootOfTree) {
+    public TreeNode convert(TreeNode pRootOfTree) {
         if (pRootOfTree == null) return null;
-        Convert(pRootOfTree.right);
+        convert(pRootOfTree.right);
         if (tem != null) {
             pRootOfTree.right = tem;
             tem.left = pRootOfTree;
         }
         tem = pRootOfTree;
-        Convert(pRootOfTree.left);
+        convert(pRootOfTree.left);
         return tem;
     }
 
+    /**
+     * @param root1
+     * @param root2
+     * @return
+     */
     public boolean HasSubtree(TreeNode root1, TreeNode root2) {
         if (root1 == null || root2 == null) return false;
         if (root1.val == root2.val) {
@@ -205,15 +227,26 @@ public class BinaryTree {
         return HasSubtree(root1.left, root2) || HasSubtree(root1.right, root2);
     }
 
+    /**
+     * 判断两节点以下是否相同
+     *
+     * @param root1
+     * @param root2
+     * @return
+     */
     boolean isSame(TreeNode root1, TreeNode root2) {
-        if (root2 == null) return true;
-        if (root1 == null || root1.val != root2.val) {
+        if (root1.val != root2.val) {
             return false;
         } else {
             return isSame(root1.left, root2.left) && isSame(root1.right, root2.right);
         }
     }
 
+    /**
+     * @param pushA
+     * @param popA
+     * @return
+     */
     public boolean IsPopOrder(int[] pushA, int[] popA) {
         Queue<TreeNode> queue = new LinkedList<>();
         Stack<Integer> stack = new Stack<>();
@@ -246,7 +279,7 @@ public class BinaryTree {
         } else if (root.left != null && root.right == null) {
             path.add(root.left.val);
             findPath(root.left, target, paths);
-        } else if (root.right == null && root.right != null) {
+        } else if (root.left == null) {
             path.add(root.right.val);
             findPath(root.right, target, paths);
         } else {
@@ -257,6 +290,52 @@ public class BinaryTree {
             paths.add(arrayList);
             findPath(root.right, target, paths);
         }
+    }
+
+
+    public int[][] threeOrders(TreeNode root) {
+        List<Integer> pre = new ArrayList();
+        List<Integer> in = new ArrayList();
+        List<Integer> last = new ArrayList();
+
+        preTraverse(root, pre);
+        inTraverse(root, in);
+        lastTraverse(root, last);
+
+        int n = pre.size();
+        int[][] result = new int[3][n];
+        for (int i = 0; i < n; i++) {
+            result[0][i] = pre.get(i);
+            result[1][i] = in.get(i);
+            result[2][i] = last.get(i);
+        }
+        return result;
+    }
+
+    public ArrayList<ArrayList<Integer>> levelOrder(TreeNode root) {
+        // write code here
+        ArrayList<ArrayList<Integer>> result = new ArrayList();
+        LinkedList<TreeNode> queue = new LinkedList();
+        queue.add(root);
+        LinkedList<TreeNode> tem = new LinkedList();
+        ArrayList<Integer> arrayList = new ArrayList();
+        while (queue.size() > 0) {
+            TreeNode node = queue.removeFirst();
+            arrayList.add(node.val);
+            if (node.left != null) {
+                tem.addLast(node.left);
+            }
+            if (node.right != null) {
+                tem.addLast(node.right);
+            }
+            if (queue.size() == 0) {
+                result.add(arrayList);
+                arrayList = new ArrayList();
+                queue = tem;
+                tem = new LinkedList();
+            }
+        }
+        return result;
     }
 
 

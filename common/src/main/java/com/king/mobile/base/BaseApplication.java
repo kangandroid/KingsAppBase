@@ -2,19 +2,11 @@ package com.king.mobile.base;
 
 import android.app.Application;
 import android.content.Context;
-import android.content.res.Configuration;
-import android.content.res.Resources;
-import android.os.Build;
-import android.util.DebugUtils;
-import android.util.DisplayMetrics;
-import android.util.Log;
-import android.view.Display;
+import android.util.SparseIntArray;
 
-import com.king.mobile.util.Loker;
+import androidx.core.app.FrameMetricsAggregator;
+
 import com.king.mobile.util.ScreenAdapter;
-import com.king.refresh.util.DisplayUtil;
-
-import java.lang.reflect.Method;
 
 public class BaseApplication extends Application {
 
@@ -47,6 +39,17 @@ public class BaseApplication extends Application {
 //    }
 
 
-
-
+    @Override
+    public void onTrimMemory(int level) {
+        super.onTrimMemory(level);
+        FrameMetricsAggregator frameMetricsAggregator = new FrameMetricsAggregator();
+//        frameMetricsAggregator.add(activity);
+//        frameMetricsAggregator.remove(activity);
+        SparseIntArray[] metrics = frameMetricsAggregator.getMetrics();
+        frameMetricsAggregator.reset();
+        frameMetricsAggregator.stop();
+        for (SparseIntArray metric : metrics) {
+            int i = metric.get(1);
+        }
+    }
 }

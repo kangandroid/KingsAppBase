@@ -6,7 +6,7 @@ class BinarySearch {
     /**
      * @param array  升序数组
      * @param target 查找目标
-     * @return target 在array 重的位置，不存在 返回-1。
+     * @return target 在array 中的位置，不存在 返回-1。
      */
     public static int search(int[] array, int target) {
         if (array == null || array.length == 0) {
@@ -36,21 +36,12 @@ class BinarySearch {
     }
 
     public static void main(String[] args) {
-//        int[][] array = {
-//                {1, 2, 8, 9},
-//                {2, 4, 9, 12},
-//                {4, 7, 10, 13},
-//                {6, 8, 11, 15}
-//        };
-//        try {
-//            callSelf();
-//        } catch (StackOverflowError e) {
-//            System.out.println("StackOverflowError --------- catched "+e.toString());
-//        }
-//        int[] ints = {0, 1, 2, 4, 5, 6, 7, 8, 9};
-//        System.out.println(search(ints, 3));
-        ;
-        PrintUtil.print(replaceSpace(new StringBuffer("We Are Happy")));
+        int[][] array = {
+                {1, 2, 8, 9},
+                {2, 4, 9, 12},
+                {4, 7, 10, 13},
+                {6, 8, 11, 15}
+        };
     }
 
     /**
@@ -60,6 +51,7 @@ class BinarySearch {
      * true
      */
     public static boolean findIn2D(int target, int[][] array) {
+        // 复杂度 O（m+n）
         int xStart = 0;
         int yStart = array[0].length - 1;
         while (xStart < array.length && yStart >= 0) {
